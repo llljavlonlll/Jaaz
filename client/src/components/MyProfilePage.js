@@ -11,7 +11,7 @@ export default class MyProfilePage extends Component {
     };
 
     componentDidMount() {
-        axios.get("api/user/me").then(res => {
+        axios.get("/api/user/me").then(res => {
             if (res.status === 200) {
                 this.setState({
                     name: res.data.name,

@@ -14,7 +14,7 @@ export default class QuestionPage extends Component {
     };
     componentDidMount() {
         axios
-            .get(`api/question/${this.props.match.params.id}`)
+            .get(`/api/question/${this.props.match.params.id}`)
             .then(res => {
                 this.setState({
                     status: res.status,
@@ -53,7 +53,7 @@ export default class QuestionPage extends Component {
                     <li>{owner}</li>
                     <li>
                         <img
-                            src={`http://127.0.0.1:5001/${image_name}`}
+                            src={`/${image_name}`}
                             alt="Question"
                             width="200"
                         />

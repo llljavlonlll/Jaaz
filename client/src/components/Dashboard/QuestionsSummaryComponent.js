@@ -7,7 +7,7 @@ import { loadQuestions } from "../../actions/questionsActions";
 class QuestionsSummaryComponent extends Component {
     componentDidMount() {
         axios
-            .get("api/question")
+            .get("/api/question")
             .then(res => {
                 this.props.dispatch(loadQuestions(res.data));
             })

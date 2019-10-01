@@ -11,7 +11,7 @@ const Header = props => {
 
     const handleLogout = () => {
         axios
-            .post("api/logout")
+            .post("/api/logout")
             .then(res => {
                 if (res.status === 200) {
                     Cookies.remove("token");

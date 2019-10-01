@@ -35,7 +35,7 @@ class UploaderComponent extends Component {
         };
 
         axios
-            .post("api/question/create", data, config)
+            .post("/api/question/create", data, config)
             .then(res => {
                 if (res.status === 200) {
                     this.setState({

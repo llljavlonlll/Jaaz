@@ -4,7 +4,6 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { loginSuccess } from "../actions/authActions";
 import ReactLoading from "react-loading";
-import { api_host } from "../data/keys";
 
 class LoginPage extends Component {
     state = {
@@ -35,7 +34,7 @@ class LoginPage extends Component {
         });
 
         axios
-            .post("api/login", this.state)
+            .post("/api/login", this.state)
             .then(res => {
                 if (res.status === 200) {
                     this.props.dispatch(loginSuccess());
