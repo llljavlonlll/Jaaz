@@ -1,0 +1,360 @@
+html {
+    font-size: 70%;
+}
+
+body {
+    background: #333745;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    color: white;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.container {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+}
+
+/* ----------------- Header ---------------------- */
+.header {
+    color: white;
+    background: #20222b;
+    margin-bottom: 4.8rem;
+    padding: 1.6rem 0;
+}
+
+.navbar__title {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.header a {
+    text-decoration: none;
+    color: #a5afd7;
+    margin: 0 0.5rem;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar__links {
+    padding: 0.9rem;
+}
+
+.navbar__links > button {
+    color: #a5afd7;
+    background: none;
+    border: none;
+    margin: 0 0.5rem;
+    padding: 0;
+}
+
+/* ----------------- End Header ---------------------- */
+
+/* ----------------- Login Page ---------------------- */
+.login-component {
+    background-color: #464b5e;
+    margin: 0 auto;
+    max-width: 40rem;
+}
+
+.login-component__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.login-component__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 3.2rem;
+}
+
+.login-error {
+    background-color: #333745;
+    text-align: center;
+    color: #ff8080;
+    border: 1px solid #ff8080;
+    border-radius: 0.5rem;
+    margin-bottom: 1.6rem;
+}
+
+.login-error p {
+    margin: 0.5rem;
+}
+
+.login-component__form__item {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1.6rem 0;
+}
+
+.login-component__form__item label {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.login-component__form__item input,
+.login-component__form__item select {
+    background: #333745;
+    border: none;
+    color: #a5afd7;
+    border-bottom: 0.3rem solid #272a35;
+    flex-grow: 1;
+    padding: 1.2rem;
+}
+
+.password-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.password-options p,
+.password-options label {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.password-options p {
+    text-decoration: underline;
+}
+
+.password-options p > a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.password-options input {
+    margin-right: 0.5rem;
+}
+
+.login-component__container button {
+    margin-top: 3.2rem;
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    padding: 1.6rem;
+}
+
+.login-component__container button:hover {
+    background: #9160da;
+    border-bottom: 0.3rem solid #724bad;
+}
+
+.spinner {
+    margin: 0 auto;
+}
+
+/* ----------------- End Login Page ---------------------- */
+
+/* ----------------- Question Uploader Component ---------------------- */
+
+.question-uploader {
+    background-color: #464b5e;
+    margin: 0 auto 4.8rem auto;
+    max-width: 100%;
+}
+
+.question-uploader__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.question-uploader__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 2.5rem;
+}
+
+.question-uploader__container button {
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    padding: 1.6rem 5rem;
+    margin-top: 3.2rem;
+}
+
+.question-uploader__container button:hover {
+    background: #9160da;
+    border-bottom: 0.3rem solid #724bad;
+}
+
+.image-preview {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #333745;
+    padding: 2.5rem;
+    border-bottom: 0.3rem solid #272a35;
+}
+
+.image-preview input {
+    padding: 5rem;
+    border: 2px dashed #8357c5;
+}
+
+.image-preview img {
+    max-width: 20rem;
+    margin: 3rem auto 0 auto;
+    border: 2px solid #8357c5;
+}
+
+/* ----------------- End QUestion Uploader Component ---------------------- */
+
+/* ----------------- Question Tiles Component ---------------------- */
+
+.question-tile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #333745;
+    padding: 1.2rem;
+    margin-bottom: 1.6rem;
+    border-bottom: 0.3rem solid #272a35;
+}
+
+.question-tile:hover {
+    background-color: #8357c5;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    cursor: pointer;
+}
+
+.question-image-container {
+    height: 10rem;
+    width: 20rem;
+    background-color: #464b5e;
+    margin-right: 2rem;
+    text-align: center;
+}
+
+.question-image-container img {
+    max-height: 100%;
+}
+
+.question-details {
+    flex-grow: 1;
+    min-width: 20rem;
+}
+
+.question-details h3 {
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.question-bullets {
+    display: flex;
+    flex-direction: row;
+}
+
+.question-bullets ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.3rem;
+    margin-right: 1.3rem;
+}
+
+/* ----------------- End Question Tiles Component ---------------------- */
+
+@media (max-width: 530px) {
+    .navbar__links {
+        display: none;
+    }
+
+    .container {
+        padding: 0 1.2rem;
+    }
+
+    .login-component__container {
+        padding: 1.2rem;
+    }
+
+    .login-component__container button {
+        margin-top: 1.6rem;
+    }
+
+    .question-uploader__container {
+        padding: 1.6rem;
+    }
+
+    .image-preview {
+        padding: 1rem;
+    }
+
+    .image-preview img {
+        margin-top: 1rem;
+        max-width: 17.5rem;
+    }
+}
+
+@media (max-width: 738px) {
+    .question-tile {
+        flex-direction: column;
+    }
+
+    .question-image-container {
+        background-color: #3c4251;
+        margin-right: 0;
+        text-align: center;
+        width: 100%;
+        height: 15rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .question-image-container img {
+        border: 1px solid #8357c5;
+        max-width: 100%;
+    }
+
+    .question-details {
+        background-color: #464b5e;
+        padding: 1rem 2.5rem 1rem 2.5rem;
+    }
+
+    .question-details h3 {
+        margin: 0 0 1.2rem 0;
+    }
+
+    .question-bullets {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .question-bullets ul {
+        margin: 0;
+    }
+
+    .question-bullets li {
+        margin: 0.2rem 0;
+    }
+}
