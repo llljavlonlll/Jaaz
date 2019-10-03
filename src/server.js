@@ -4,9 +4,10 @@ const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routers/api/users");
-const adminRouter = require("./routers/api/admins");
+const adminRouter = require("./routers/api/admin/admins");
 const generalRouter = require("./routers/api/generals");
-const questionRouter = require("./routers/api/questions");
+const questionRouter = require("./routers/api/student/questions");
+const solutionRouter = require("./routers/api/instructor/solutions");
 const cors = require("cors");
 
 const app = express();
@@ -32,6 +33,7 @@ app.use("/api/", generalRouter);
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/question", questionRouter);
+app.use("/api/solution", solutionRouter);
 
 // Fallback to index.html
 app.get("*", (req, res) => {

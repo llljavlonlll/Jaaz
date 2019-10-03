@@ -1,6 +1,6 @@
-const Question = require("../../models/questions");
-const auth = require("../../middleware/auth");
-const upload = require("./tools/question-uploader");
+const Question = require("../../../models/questions");
+const auth = require("../../../middleware/auth");
+const upload = require("../tools/question-uploader");
 const router = new require("express").Router();
 const path = require("path");
 
@@ -21,7 +21,7 @@ router.post("/create", auth, upload.single("question"), async (req, res) => {
     }
 });
 
-// Get all questions
+// Get all questions of authorized user
 // GET /question/
 router.get("/", auth, async (req, res) => {
     try {
@@ -40,7 +40,7 @@ router.get("/", auth, async (req, res) => {
     }
 });
 
-// Get a question by id
+// Get authorized user's question by id
 // GET /question/:id
 router.get("/:id", auth, async (req, res) => {
     try {
@@ -60,7 +60,7 @@ router.get("/:id", auth, async (req, res) => {
     }
 });
 
-// Delete a question by id
+// Delete authorized user's question by id
 // DELETE /question/:id
 router.delete("/:id", auth, async (req, res) => {
     try {
@@ -79,7 +79,7 @@ router.delete("/:id", auth, async (req, res) => {
     }
 });
 
-// Update a question by id
+// Update authorized user's question by id
 // PATCH /question/:id
 router.patch("/:id", auth, async (req, res) => {
     const allowedUpdates = ["status", "description", "subject"];

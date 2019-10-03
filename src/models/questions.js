@@ -22,21 +22,37 @@ const questionSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        required: true,
-        default: "In progress"
-    },
     uploaded_at: {
-        type: String,
+        type: Date,
         required: true,
-        maxLength: 10,
-        default: moment().format("DD/MM/YYYY")
+        default: moment()
+    },
+    status: {
+        type: Boolean,
+        required: true,
+        default: false
     },
     solved_by: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
-    }
+    },
+    solution: [
+        {
+            image: {
+                type: String,
+                require: true
+            },
+            description: String,
+            solved_by: {
+                type: mongoose.Schema.Types.ObjectId,
+                require: true
+            },
+            date: {
+                type: Date,
+                required: true
+            }
+        }
+    ]
 });
 
 module.exports = Question = mongoose.model("Question", questionSchema);

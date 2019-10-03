@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export default function QuestionTileComponent(props) {
     return (
@@ -23,19 +24,22 @@ export default function QuestionTileComponent(props) {
                             <li>Subject: {props.subject}</li>
                             <li>
                                 Status:{" "}
-                                <span
-                                    style={
-                                        props.status === "Completed"
-                                            ? { color: "green" }
-                                            : { color: "yellow" }
-                                    }
-                                >
-                                    {props.status}
-                                </span>
+                                {props.status ? (
+                                    <span style={{ color: "green" }}>
+                                        Completed
+                                    </span>
+                                ) : (
+                                    <span style={{ color: "yellow" }}>
+                                        In progress
+                                    </span>
+                                )}
                             </li>
                         </ul>
                         <ul>
-                            <li>Uploaded at: {props.uploaded_at}</li>
+                            <li>
+                                Uploaded at:{" "}
+                                {moment(props.uploaded_at).format("DD/MM/YYYY")}
+                            </li>
                             {/*<li>Solved by: Javlonbek B.</li>*/}
                         </ul>
                     </div>
