@@ -30,10 +30,13 @@ export default class MyProfilePage extends Component {
             return <ReactLoading color={"#8357c5"} type={"spin"} />;
         }
         return (
-            <div>
-                <p>Name: {this.state.name}</p>
-                <p>Email: {this.state.email}</p>
-                <p>Account Type: {this.state.account_type}</p>
+            <div className="question-uploader">
+                <h3 className="question-uploader__title">Question</h3>
+                <div className="question-uploader__container">
+                    <p>Name: {this.state.name}</p>
+                    <p>Email: {this.state.email}</p>
+                    <p>Account Type: {this.state.account_type}</p>
+                </div>
             </div>
         );
     }

@@ -51,20 +51,4 @@ router.delete("/me", auth, async (req, res) => {
     }
 });
 
-// Upload Question photo
-// POST /user/upload-question
-// router.post(
-//     "/upload-question",
-//     auth,
-//     upload.single("question"),
-//     (req, res) => {
-//         if (req.file) {
-//             res.send({ msg: "File saved" });
-//         }
-//     },
-//     (error, req, res, next) => {
-//         res.status(400).send({ error: error.message });
-//     }
-// );
-
 module.exports = router;

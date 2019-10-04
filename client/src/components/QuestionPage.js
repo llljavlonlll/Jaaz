@@ -102,7 +102,7 @@ export default class QuestionPage extends Component {
                             <ul>
                                 <li>Description: {solution[0].description}</li>
                                 <li>Solved by: {solution[0].solved_by}</li>
-                                <li>Solved: {solution[0].date}</li>
+                                <li>Solved at: {solution[0].solved_at}</li>
                                 <li>
                                     <img
                                         src={`/${solution[0].image}`}

@@ -8,6 +8,7 @@ const adminRouter = require("./routers/api/admin/admins");
 const generalRouter = require("./routers/api/generals");
 const questionRouter = require("./routers/api/student/questions");
 const solutionRouter = require("./routers/api/instructor/solutions");
+const pendingQuestionsRouter = require("./routers/api/instructor/questions");
 const cors = require("cors");
 
 const app = express();
@@ -28,12 +29,21 @@ app.use(express.static(frontEndDir));
 app.use(cookieParser());
 app.use(express.json());
 
-// Routes
+// General routes
 app.use("/api/", generalRouter);
+
+// User's account routes
 app.use("/api/user", userRouter);
+
+// Admin routes
 app.use("/api/admin", adminRouter);
+
+// Student questions route
 app.use("/api/question", questionRouter);
+
+// Instructor routes
 app.use("/api/solution", solutionRouter);
+app.use("/api/pending", pendingQuestionsRouter);
 
 // Fallback to index.html
 app.get("*", (req, res) => {

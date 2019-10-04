@@ -25,13 +25,20 @@ const questionSchema = mongoose.Schema({
     uploaded_at: {
         type: Date,
         required: true,
-        default: moment()
+        default: Date.now
     },
     status: {
-        type: Boolean,
+        type: String,
         required: true,
-        default: false
+        default: "Pending",
+        validate(value) {
+            const statuses = ["Pending", "Booked", "Completed"];
+            if (!statuses.includes(value)) {
+                throw new Error("Invalid status");
+            }
+        }
     },
+    booked_by: mongoose.Schema.Types.ObjectId,
     solved_by: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -47,7 +54,7 @@ const questionSchema = mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 require: true
             },
-            date: {
+            solved_at: {
                 type: Date,
                 required: true
             }

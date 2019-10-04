@@ -24,15 +24,17 @@ export default function QuestionTileComponent(props) {
                             <li>Subject: {props.subject}</li>
                             <li>
                                 Status:{" "}
-                                {props.status ? (
-                                    <span style={{ color: "green" }}>
-                                        Completed
-                                    </span>
-                                ) : (
-                                    <span style={{ color: "yellow" }}>
-                                        In progress
-                                    </span>
-                                )}
+                                <span
+                                    style={
+                                        props.status === "Pending"
+                                            ? { color: "red" }
+                                            : props.status === "Booked"
+                                            ? { color: "yellow" }
+                                            : { color: "green" }
+                                    }
+                                >
+                                    {props.status}
+                                </span>
                             </li>
                         </ul>
                         <ul>
