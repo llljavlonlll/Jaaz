@@ -286,7 +286,19 @@ button:disabled {
 
 /* ----------------- End Question Tiles Component ---------------------- */
 
+/* ----------------- Burger Menu Component ---------------------- */
+
+.burger-menu-button {
+    display: none;
+}
+
+/* ----------------- End Burger Menu Component ---------------------- */
+
 @media (max-width: 530px) {
+    .burger-menu-button {
+        display: inline-block;
+    }
+
     .navbar__links {
         display: none;
     }

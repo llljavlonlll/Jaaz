@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
         required: true,
         trim: true,
         validate(value) {
-            if (!["customer", "instructor", "admin"].includes(value)) {
+            if (!["customer", "instructor"].includes(value)) {
                 throw new Error("Invalid category. Select ");
             }
         }

@@ -20,6 +20,7 @@ import SignUpPage from "./components/SignUpPage";
 import DashboardPage from "./components/DashboardPage";
 import QuestionPage from "./components/QuestionPage";
 import NotFound from "./components/NotFound";
+import NavBar from "./components/MobileMenu";
 
 // Cookies
 import Cookies from "js-cookie";
@@ -37,6 +38,7 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <Router>
+                    <NavBar />
                     <Header />
                     <div className="container">
                         <Switch>

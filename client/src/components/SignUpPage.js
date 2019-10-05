@@ -122,7 +122,6 @@ class SignUpPage extends Component {
                             >
                                 <option value="customer">Customer</option>
                                 <option value="instructor">Instructor</option>
-                                <option value="admin">Admin</option>
                             </select>
                         </div>
                         <button>
