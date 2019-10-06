@@ -35,8 +35,9 @@ router.post("/login", async (req, res) => {
         const token = await user.generateAuthToken();
 
         res.cookie("token", token).send({
+            name: user.name,
             email: user.email,
-            token
+            category: user.category
         });
     } catch (err) {
         res.status(400).send({ err: err.message });

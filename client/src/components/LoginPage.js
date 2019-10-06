@@ -37,7 +37,7 @@ class LoginPage extends Component {
             .post("/api/login", this.state)
             .then(res => {
                 if (res.status === 200) {
-                    this.props.dispatch(loginSuccess());
+                    this.props.dispatch(loginSuccess({ ...res.data }));
                     this.props.history.push("/");
                 }
             })

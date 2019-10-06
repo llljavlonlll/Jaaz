@@ -1,6 +1,5 @@
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const USER_LOADED = "USER_LOADED";
-export const USER_LOADING = "USER_LOADING";
 export const LOAD_QUESTIONS = "LOAD_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const USER_LOGOUT = "USER_LOGOUT";
