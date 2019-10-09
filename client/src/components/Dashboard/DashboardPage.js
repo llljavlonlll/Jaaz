@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import Cookies from "js-cookie";
-import UploaderComponent from "./Dashboard/UploaderComponent";
-import QuestionsSummaryComponent from "./Dashboard/QuestionsSummaryComponent";
+import UploaderComponent from "./UploaderComponent";
+import QuestionsListComponent from "../Questions/QuestionsListComponent.js";
 
 class DashboardPage extends Component {
     render() {
@@ -12,7 +12,10 @@ class DashboardPage extends Component {
             dashboard = (
                 <div>
                     <UploaderComponent />
-                    <QuestionsSummaryComponent />
+                    <QuestionsListComponent
+                        api_path={"/api/question"}
+                        title={"Your questions"}
+                    />
                 </div>
             );
         } else {

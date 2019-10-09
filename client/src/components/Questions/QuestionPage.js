@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import moment from "moment";
 import ReactLoading from "react-loading";
 import Modal from "react-modal";
+import QuestionDetails from "./QuestionDetails";
 
 export default class QuestionPage extends Component {
     state = {
@@ -57,15 +57,7 @@ export default class QuestionPage extends Component {
         this.setState({ modalIsOpen: false });
     };
     render() {
-        const {
-            status,
-            uploaded_at,
-            description,
-            subject,
-            owner,
-            image_name,
-            solution
-        } = this.state;
+        const { solution } = this.state;
 
         if (this.state.isLoading) {
             return <ReactLoading color={"#8357c5"} type={"spin"} />;
@@ -73,28 +65,7 @@ export default class QuestionPage extends Component {
 
         return (
             <div>
-                <div className="question-uploader">
-                    <h3 className="question-uploader__title">Question</h3>
-                    <div className="question-uploader__container">
-                        <ul>
-                            <li>Status: {status}</li>
-                            <li>
-                                Uploaded at:{" "}
-                                {moment(uploaded_at).format("DD/MM/YYYY")}
-                            </li>
-                            <li>Description: {description}</li>
-                            <li>Subject: {subject}</li>
-                            <li>Owner: {owner}</li>
-                            <li>
-                                <img
-                                    src={`/${image_name}`}
-                                    alt="Question"
-                                    width="200"
-                                />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <QuestionDetails {...this.state} />
                 <div className="question-uploader">
                     <h3 className="question-uploader__title">Solution</h3>
                     <div className="question-uploader__container">

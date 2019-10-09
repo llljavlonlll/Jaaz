@@ -13,6 +13,10 @@ router.post("/book/:id", auth, async (req, res) => {
             return res.status(404).send({ msg: "Question not found!" });
         }
 
+        if (question.status === "Booked") {
+            return res.status(400).send({ msg: "Question is already booked!" });
+        }
+
         question.booked_by = req.user._id;
         question.status = "Booked";
 

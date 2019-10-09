@@ -30,7 +30,7 @@ class SignUpPage extends Component {
             .post(`/api/sign-up`, this.state)
             .then(res => {
                 if (res.status === 201) {
-                    this.props.dispatch(loginSuccess());
+                    this.props.dispatch(loginSuccess({ ...res.data }));
                     this.props.history.push("/");
                 }
             })

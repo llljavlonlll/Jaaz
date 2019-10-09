@@ -15,8 +15,9 @@ router.post("/sign-up", async (req, res) => {
         res.cookie("token", token)
             .status(201)
             .send({
+                name: user.name,
                 email: user.email,
-                token
+                category: user.category
             });
     } catch (err) {
         res.status(400).send({ err: err });

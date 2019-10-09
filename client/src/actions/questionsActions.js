@@ -1,6 +1,6 @@
 import { LOAD_QUESTIONS, ADD_QUESTION } from "./types";
 
-export const loadQuestions = questions => ({
+export const loadQuestions = (questions = []) => ({
     type: LOAD_QUESTIONS,
     questions
 });

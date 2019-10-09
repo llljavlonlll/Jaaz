@@ -26,16 +26,19 @@ export default class MyProfilePage extends Component {
     }
 
     render() {
-        if (this.state.isLoading) {
-            return <ReactLoading color={"#8357c5"} type={"spin"} />;
-        }
         return (
             <div className="question-uploader">
                 <h3 className="question-uploader__title">Question</h3>
                 <div className="question-uploader__container">
-                    <p>Name: {this.state.name}</p>
-                    <p>Email: {this.state.email}</p>
-                    <p>Account Type: {this.state.account_type}</p>
+                    {this.state.isLoading ? (
+                        <ReactLoading color={"#8357c5"} type={"spin"} />
+                    ) : (
+                        <div>
+                            <p>Name: {this.state.name}</p>
+                            <p>Email: {this.state.email}</p>
+                            <p>Account Type: {this.state.account_type}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         );

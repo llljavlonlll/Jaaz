@@ -3,7 +3,7 @@ const router = new express.Router();
 const auth = require("../../../middleware/auth");
 const Question = require("../../../models/questions");
 
-// Get all available questions
+// Get list of available questions
 // GET /api/pending
 // Query Params: subject=English uploaded_at=asc
 router.get("/", auth, async (req, res) => {
@@ -39,6 +39,24 @@ router.get("/", auth, async (req, res) => {
                 .send({ msg: "Currently, there are no available questions" });
         }
         res.send(questions);
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
+    }
+});
+
+// Get pending question by id
+// GET /api/pending/:id
+router.get("/:id", auth, async (req, res) => {
+    try {
+        const question = await Question.findOne({
+            _id: req.params.id
+        });
+
+        if (!question) {
+            return res.status(404).send({ msg: "Question not found!" });
+        }
+
+        res.send(question);
     } catch (err) {
         res.status(400).send({ msg: err.message });
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
@@ -30,16 +30,24 @@ const Header = props => {
     if (props.isAuthorized) {
         links = (
             <div className="navbar__links">
-                <Link to="/">Dashboard</Link>
-                <Link to="/profile">My Profile</Link>
+                <NavLink exact to="/" activeClassName="selected">
+                    Dashboard
+                </NavLink>
+                <NavLink to="/profile" activeClassName="selected">
+                    My Profile
+                </NavLink>
                 <button onClick={handleLogout}>Logout</button>
             </div>
         );
     } else {
         links = (
             <div className="navbar__links">
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
+                <NavLink to="/login" activeClassName="selected">
+                    Login
+                </NavLink>
+                <NavLink to="/signup" activeClassName="selected">
+                    Sign Up
+                </NavLink>
             </div>
         );
     }
@@ -48,9 +56,9 @@ const Header = props => {
         <div className="header">
             <div className="container">
                 <div className="navbar">
-                    <Link to="/" style={{ margin: 0, color: "white" }}>
+                    <NavLink to="/" style={{ margin: 0, color: "white" }}>
                         <h3 className="navbar__title">noCheat</h3>
-                    </Link>
+                    </NavLink>
                     {links}
                 </div>
             </div>

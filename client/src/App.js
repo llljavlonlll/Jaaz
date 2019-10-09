@@ -12,10 +12,12 @@ import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import MyProfilePage from "./components/MyProfilePage";
 import SignUpPage from "./components/SignUpPage";
-import DashboardPage from "./components/DashboardPage";
-import QuestionPage from "./components/QuestionPage";
+import DashboardPage from "./components/Dashboard/DashboardPage";
+import QuestionPage from "./components/Questions/QuestionPage";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/MobileMenu";
+import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
+import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
 
 // Integrate Redux
 import { connect } from "react-redux";
@@ -36,19 +38,15 @@ class App extends Component {
                 </Switch>
             );
         } else if (this.props.category === "instructor") {
-            const instructorDash = () => <div>Instructor Dashboard Page</div>;
-            const instructorQuestion = () => (
-                <div>Instructor Quiestion Page</div>
-            );
             routes = (
                 <Switch>
-                    <Route exact path="/" component={instructorDash} />
+                    <Route exact path="/" component={InstructorDashboard} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/profile" component={MyProfilePage} />
                     <Route
                         path="/question/:id"
-                        component={instructorQuestion}
+                        component={InstructorQuestion}
                     />
                     <Route path="/*" component={NotFound} />
                 </Switch>
