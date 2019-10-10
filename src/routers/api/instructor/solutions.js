@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const auth = require("../../../middleware/auth");
 const Question = require("../../../models/questions");
+const solutionUpload = require("../tools/solution-uploader");
 
 // Book an available question
 // POST /api/solution/book/:id
@@ -51,42 +52,48 @@ router.post("/unbook/:id", auth, async (req, res) => {
 
 // Add solution to the question selected by id
 // POST /api/solution/:id
-router.post("/:id", auth, async (req, res) => {
-    const solutionEntries = ["image", "description"];
-    const updates = Object.keys(req.body);
+router.post(
+    "/:id",
+    auth,
+    solutionUpload.single("solution"),
+    async (req, res) => {
+        const solutionEntries = ["solution", "description", "questionName"];
+        const updates = Object.keys(req.body);
 
-    // Check if solution has only allowed fields
-    const allowSolution = updates.every(update =>
-        solutionEntries.includes(update)
-    );
+        // Check if solution has only allowed fields
+        const allowSolution = updates.every(update =>
+            solutionEntries.includes(update)
+        );
 
-    if (!allowSolution) {
-        return res.status(400).send({ msg: "Invalid solution" });
-    }
-
-    try {
-        const question = await Question.findById(req.params.id);
-
-        if (!question) {
-            return res.status(404).send({ msg: "Question not found!" });
+        if (!allowSolution) {
+            return res.status(400).send({ msg: "Invalid solution" });
         }
 
-        question.solution.push({
-            ...req.body,
-            solved_by: req.user._id,
-            solved_at: Date.now()
-        });
-        question.status = "Completed";
+        try {
+            const question = await Question.findById(req.params.id);
 
-        await question.save();
+            if (!question) {
+                return res.status(404).send({ msg: "Question not found!" });
+            }
 
-        res.send({
-            status: question.status,
-            solution: question.solution
-        });
-    } catch (err) {
-        res.status(400).send({ msg: err.message });
+            question.solution.push({
+                ...req.body,
+                image: req.file.filename,
+                solved_by: req.user._id,
+                solved_at: Date.now()
+            });
+            question.status = "Completed";
+
+            await question.save();
+
+            res.send({
+                status: question.status,
+                solution: question.solution
+            });
+        } catch (err) {
+            res.status(400).send({ msg: err.message });
+        }
     }
-});
+);
 
 module.exports = router;

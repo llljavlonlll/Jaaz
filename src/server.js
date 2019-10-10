@@ -8,8 +8,9 @@ const adminRouter = require("./routers/api/admin/admins");
 const generalRouter = require("./routers/api/generals");
 const questionRouter = require("./routers/api/student/questions");
 const solutionRouter = require("./routers/api/instructor/solutions");
-const pendingQuestionsRouter = require("./routers/api/instructor/questions");
-const bookedQuestionsRouter = require("./routers/api/instructor/bookedQuestions");
+const pendingQuestionsRouter = require("./routers/api/instructor/pending");
+const bookedQuestionsRouter = require("./routers/api/instructor/booked");
+const completedQuestionsRouter = require("./routers/api/instructor/completed");
 const cors = require("cors");
 
 const app = express();
@@ -25,7 +26,7 @@ app.use(cors());
 
 // Static routers
 app.use("/images/questions", express.static(questionsDir));
-app.use("images/solutions", express.static(solutionsDir));
+app.use("/images/solutions", express.static(solutionsDir));
 app.use(express.static(frontEndDir));
 
 // Parsers
@@ -48,7 +49,7 @@ app.use("/api/question", questionRouter);
 app.use("/api/solution", solutionRouter);
 app.use("/api/pending", pendingQuestionsRouter);
 app.use("/api/booked", bookedQuestionsRouter);
-
+app.use("/api/completed", completedQuestionsRouter);
 // Fallback to index.html
 app.get("*", (req, res) => {
     res.sendFile(

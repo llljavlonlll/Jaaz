@@ -26,7 +26,8 @@ export default class SolutionUploader extends Component {
         const { file, description } = this.state;
 
         const data = new FormData();
-        data.append("question", file);
+        data.append("questionName", this.props.question_image_name);
+        data.append("solution", file);
         data.append("description", description);
 
         const config = {

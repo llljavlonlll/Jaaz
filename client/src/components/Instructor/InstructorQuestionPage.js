@@ -192,6 +192,9 @@ export default class QuestionPage extends Component {
                     <React.Fragment>
                         <SolutionUploader
                             question_id={this.props.match.params.id}
+                            // Pass image name to save the solution image's name
+                            // as "solution-(quesiton_image_name)"
+                            question_image_name={this.state.image_name}
                         />
                         <div className="question-uploader">
                             <h3 className="question-uploader__title">Action</h3>
