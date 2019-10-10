@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { Redirect } from "react-router";
 import QuestionsListComponent from "../Questions/QuestionsListComponent";
 import BookedQuestionsList from "./BookedQuestionsList";
+import CompletedQuestionsList from "./CompletedQuestionsList";
 
 export default class InstructorDashboardPage extends Component {
     render() {
@@ -17,6 +18,7 @@ export default class InstructorDashboardPage extends Component {
                         title={"Available questions"}
                     />
                     <BookedQuestionsList />
+                    <CompletedQuestionsList />
                 </div>
             );
         } else {

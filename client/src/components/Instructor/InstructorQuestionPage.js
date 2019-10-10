@@ -37,6 +37,17 @@ export default class QuestionPage extends Component {
             .catch(err => console.log(err));
     }
 
+    componentDidUpdate() {
+        axios
+            .get(`/api/pending/${this.props.match.params.id}`)
+            .then(res => {
+                this.setState({
+                    solution: res.data.solution
+                });
+            })
+            .catch(err => console.log(err));
+    }
+
     openBookModal = () => {
         this.setState({ bookModalIsOpen: true });
     };
@@ -81,6 +92,13 @@ export default class QuestionPage extends Component {
     closeModal = () => {
         this.setState({ bookModalIsOpen: false, unbookModalIsOpen: false });
     };
+
+    handleStatusUpdate = status => {
+        this.setState({
+            status
+        });
+    };
+
     render() {
         const { solution } = this.state;
 
@@ -195,6 +213,7 @@ export default class QuestionPage extends Component {
                             // Pass image name to save the solution image's name
                             // as "solution-(quesiton_image_name)"
                             question_image_name={this.state.image_name}
+                            handleStatusUpdate={this.handleStatusUpdate}
                         />
                         <div className="question-uploader">
                             <h3 className="question-uploader__title">Action</h3>

@@ -46,6 +46,7 @@ export default class SolutionUploader extends Component {
                         inputKey: Date.now(), // Update key to force re-render
                         description: ""
                     });
+                    this.props.handleStatusUpdate("Completed");
                     // this.props.dispatch(addQuestion(res.data));
                 }
             })

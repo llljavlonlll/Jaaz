@@ -21,7 +21,7 @@ export default class QuestionPage extends Component {
             .get(`/api/question/${this.props.match.params.id}`)
             .then(res => {
                 this.setState({
-                    status: res.status,
+                    status: res.data.status,
                     uploaded_at: res.data.uploaded_at,
                     description: res.data.description,
                     subject: res.data.subject,
@@ -56,6 +56,7 @@ export default class QuestionPage extends Component {
     closeModal = () => {
         this.setState({ modalIsOpen: false });
     };
+
     render() {
         const { solution } = this.state;
 
