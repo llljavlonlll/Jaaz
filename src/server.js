@@ -17,13 +17,15 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 // Static files directory
-const imagesDir = path.join(__dirname, "..", "images");
+const questionsDir = path.join(__dirname, "..", "questions");
+const solutionsDir = path.join(__dirname, "..", "solutions");
 const frontEndDir = path.join(__dirname, "..", "client", "build");
 
 app.use(cors());
 
 // Static routers
-app.use(express.static(imagesDir));
+app.use("/images/questions", express.static(questionsDir));
+app.use("images/solutions", express.static(solutionsDir));
 app.use(express.static(frontEndDir));
 
 // Parsers

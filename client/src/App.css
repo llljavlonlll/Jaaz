@@ -197,7 +197,7 @@ button:disabled {
     color: #a5afd7;
     padding: 2.5rem;
     overflow: auto;
-    max-height: 46rem;
+    max-height: 80rem;
 }
 
 .question-uploader__container button {
@@ -230,7 +230,8 @@ button:disabled {
 }
 
 .image-preview img {
-    max-width: 20rem;
+    max-width: 60rem;
+    max-height: 30rem;
     margin: 3rem auto 0 auto;
     border: 2px solid #8357c5;
 }

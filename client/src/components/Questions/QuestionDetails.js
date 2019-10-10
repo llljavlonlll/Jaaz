@@ -17,7 +17,7 @@ export default function QuestionDetails(props) {
                     <li>Owner: {props.owner}</li>
                     <li>
                         <img
-                            src={`/${props.image_name}`}
+                            src={`/images/questions/${props.image_name}`}
                             alt="Question"
                             width="200"
                         />

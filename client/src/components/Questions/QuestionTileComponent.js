@@ -10,7 +10,10 @@ export default function QuestionTileComponent(props) {
         >
             <div className="question-tile">
                 <div className="question-image-container">
-                    <img src={`/${props.image_name}`} alt="Question" />
+                    <img
+                        src={`/images/questions/${props.image_name}`}
+                        alt="Question"
+                    />
                 </div>
                 <div className="question-details">
                     <h3>

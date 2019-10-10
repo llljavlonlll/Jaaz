@@ -1,8 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const uuid = require("uuid");
 
-// Upload middleware configurations
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         const imageRoute = path.join(
@@ -11,7 +9,7 @@ const storage = multer.diskStorage({
             "..",
             "..",
             "..",
-            "questions"
+            "solutions"
         );
 
         cb(null, imageRoute);
@@ -21,7 +19,8 @@ const storage = multer.diskStorage({
     filename: function(req, file, cb) {
         cb(
             null,
-            uuid() +
+            "solution-" +
+                req.body.questionName +
                 file.originalname
                     .substr(file.originalname.length - 4)
                     .toLocaleLowerCase()

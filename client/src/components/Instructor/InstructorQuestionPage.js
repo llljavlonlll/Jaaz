@@ -90,8 +90,7 @@ export default class QuestionPage extends Component {
 
         return (
             <div>
-                {this.state.status === "Pending" ||
-                this.state.status === "Completed" ? (
+                {this.state.status === "Pending" ? (
                     <div className="question-uploader">
                         <h3 className="question-uploader__title">Action</h3>
                         <div className="question-uploader__container">
@@ -107,7 +106,7 @@ export default class QuestionPage extends Component {
                                     Book this question
                                 </button>
                             ) : this.state.status === "Completed" ? (
-                                "Solved!"
+                                <h1>Solved!</h1>
                             ) : null}
                             <Modal
                                 ariaHideApp={false}
@@ -179,20 +178,21 @@ export default class QuestionPage extends Component {
                                     <li>Solved at: {solution[0].solved_at}</li>
                                     <li>
                                         <img
-                                            src={`/${solution[0].image}`}
+                                            src={`/images/solutions/${solution[0].image}`}
                                             alt="Solution"
                                             width="200"
                                         />
                                     </li>
                                 </ul>
-                            ) : (
-                                <SolutionUploader />
-                            )}
+                            ) : null}
                         </div>
                     </div>
                 )}
                 {this.state.status === "Booked" ? (
                     <React.Fragment>
+                        <SolutionUploader
+                            question_id={this.props.match.params.id}
+                        />
                         <div className="question-uploader">
                             <h3 className="question-uploader__title">Action</h3>
                             <div className="question-uploader__container">

@@ -76,7 +76,7 @@ export default class QuestionPage extends Component {
                                 <li>Solved at: {solution[0].solved_at}</li>
                                 <li>
                                     <img
-                                        src={`/${solution[0].image}`}
+                                        src={`/images/solutions/${solution[0].image}`}
                                         alt="Solution"
                                         width="200"
                                     />
