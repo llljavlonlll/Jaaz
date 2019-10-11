@@ -18,7 +18,7 @@ button:disabled {
 }
 
 .container {
-    max-width: 80rem;
+    max-width: 70rem;
     margin: 0 auto;
     padding: 0 1.6rem;
 }
@@ -179,6 +179,7 @@ button:disabled {
     margin: 0 auto 3.6rem auto;
     max-width: 100%;
     border: 5px solid #3c4251;
+    flex-grow: 1;
 }
 
 .question-uploader__title {
@@ -197,7 +198,7 @@ button:disabled {
     color: #a5afd7;
     padding: 2.5rem;
     overflow: auto;
-    max-height: 80rem;
+    max-height: 65vh;
 }
 
 .question-uploader__container button {
@@ -302,6 +303,31 @@ button:disabled {
 }
 
 /* ----------------- End Burger Menu Component ---------------------- */
+@media (min-width: 1185px) {
+    .container {
+        max-width: 120rem;
+    }
+    .dash-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .question-uploader__customer {
+        max-width: 40rem;
+    }
+
+    .question-page-container {
+        display: flex;
+        flex-direction: row;
+    }
+    .details {
+        max-width: 50%;
+    }
+
+    .solution {
+        max-width: 50%;
+    }
+}
 
 @media (max-width: 530px) {
     .burger-menu-button {

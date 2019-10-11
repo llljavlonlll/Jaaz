@@ -61,7 +61,7 @@ class UploaderComponent extends Component {
 
     render() {
         return (
-            <div className="question-uploader">
+            <div className="question-uploader question-uploader__customer">
                 <h3 className="question-uploader__title">
                     Upload your question
                 </h3>

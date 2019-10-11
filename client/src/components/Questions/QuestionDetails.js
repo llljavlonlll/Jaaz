@@ -3,7 +3,7 @@ import moment from "moment";
 
 export default function QuestionDetails(props) {
     return (
-        <div className="question-uploader">
+        <div className="question-uploader details">
             <h3 className="question-uploader__title">Question details</h3>
             <div className="question-uploader__container">
                 <ul>
@@ -16,11 +16,13 @@ export default function QuestionDetails(props) {
                     <li>Subject: {props.subject}</li>
                     <li>Owner: {props.owner}</li>
                     <li>
-                        <img
-                            src={`/images/questions/${props.image_name}`}
-                            alt="Question"
-                            width="200"
-                        />
+                        <a href={`/images/questions/${props.image_name}`}>
+                            <img
+                                src={`/images/questions/${props.image_name}`}
+                                alt="Question"
+                                width="200"
+                            />
+                        </a>
                     </li>
                 </ul>
             </div>

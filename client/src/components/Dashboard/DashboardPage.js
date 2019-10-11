@@ -10,7 +10,7 @@ class DashboardPage extends Component {
 
         if (Cookies.get("token")) {
             dashboard = (
-                <div>
+                <div className="dash-container">
                     <UploaderComponent />
                     <QuestionsListComponent
                         api_path={"/api/question"}

@@ -66,26 +66,32 @@ export default class QuestionPage extends Component {
 
         return (
             <div>
-                <QuestionDetails {...this.state} />
-                <div className="question-uploader">
-                    <h3 className="question-uploader__title">Solution</h3>
-                    <div className="question-uploader__container">
-                        {solution.length > 0 ? (
-                            <ul>
-                                <li>Description: {solution[0].description}</li>
-                                <li>Solved by: {solution[0].solved_by}</li>
-                                <li>Solved at: {solution[0].solved_at}</li>
-                                <li>
-                                    <img
-                                        src={`/images/solutions/${solution[0].image}`}
-                                        alt="Solution"
-                                        width="200"
-                                    />
-                                </li>
-                            </ul>
-                        ) : (
-                            "In progress"
-                        )}
+                <div className="question-page-container">
+                    <QuestionDetails {...this.state} />
+                    <div className="question-uploader solution">
+                        <h3 className="question-uploader__title">Solution</h3>
+                        <div className="question-uploader__container">
+                            {solution.length > 0 ? (
+                                <ul>
+                                    <li>
+                                        Description: {solution[0].description}
+                                    </li>
+                                    <li>Solved by: {solution[0].solved_by}</li>
+                                    <li>Solved at: {solution[0].solved_at}</li>
+                                    <li>
+                                        <a href="google.com">
+                                            <img
+                                                src={`/images/solutions/${solution[0].image}`}
+                                                alt="Solution"
+                                                width="200"
+                                            />
+                                        </a>
+                                    </li>
+                                </ul>
+                            ) : (
+                                "In progress"
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className="question-uploader">
