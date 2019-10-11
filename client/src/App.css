@@ -303,9 +303,29 @@ button:disabled {
 }
 
 /* ----------------- End Burger Menu Component ---------------------- */
+
+/* ----------------- Tabular Component  ---------------------- */
+.react-tabs__tab {
+    color: #a5afd7 !important;
+}
+
+.react-tabs__tab-list {
+    margin: 0 !important;
+    border-bottom: 1px solid #8357c5 !important;
+}
+
+.react-tabs__tab--selected {
+    background: #3c4251 !important;
+    color: white !important;
+    border-color: #8357c5 !important;
+    border-radius: 0 !important;
+}
+/* ----------------- End Tabular Component ---------------------- */
+
 @media (min-width: 1185px) {
+    /* Dashboard */
     .container {
-        max-width: 120rem;
+        max-width: 135rem;
     }
     .dash-container {
         display: flex;
@@ -314,8 +334,11 @@ button:disabled {
 
     .question-uploader__customer {
         max-width: 40rem;
+        margin-right: 2rem;
     }
+    /* End Dashboard */
 
+    /* Customer Question Page */
     .question-page-container {
         display: flex;
         flex-direction: row;
@@ -327,6 +350,13 @@ button:disabled {
     .solution {
         max-width: 50%;
     }
+    /* End Customer Question Page */
+
+    /* Instructor Dash */
+    .react-tabs {
+        max-width: 60rem;
+    }
+    /* End Instructor Dash */
 }
 
 @media (max-width: 530px) {

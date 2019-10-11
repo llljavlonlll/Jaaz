@@ -4,6 +4,8 @@ import { Redirect } from "react-router";
 import QuestionsListComponent from "../Questions/QuestionsListComponent";
 import BookedQuestionsList from "./BookedQuestionsList";
 import CompletedQuestionsList from "./CompletedQuestionsList";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 export default class InstructorDashboardPage extends Component {
     render() {
@@ -11,15 +13,27 @@ export default class InstructorDashboardPage extends Component {
 
         if (Cookies.get("token")) {
             dashboard = (
-                <div>
-                    <QuestionsListComponent
-                        key={"allAvailableQuestions"}
-                        api_path={"/api/pending"}
-                        title={"Available questions"}
-                    />
-                    <BookedQuestionsList />
-                    <CompletedQuestionsList />
-                </div>
+                <Tabs>
+                    <TabList>
+                        <Tab>Available</Tab>
+                        <Tab>Booked</Tab>
+                        <Tab>Completed</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <QuestionsListComponent
+                            key={"allAvailableQuestions"}
+                            api_path={"/api/pending"}
+                            title={"Available questions"}
+                        />
+                    </TabPanel>
+                    <TabPanel>
+                        <BookedQuestionsList />
+                    </TabPanel>
+                    <TabPanel>
+                        <CompletedQuestionsList />
+                    </TabPanel>
+                </Tabs>
             );
         } else {
             dashboard = <Redirect to="/login" />;
