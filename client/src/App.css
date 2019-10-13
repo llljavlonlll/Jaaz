@@ -252,7 +252,7 @@ button:disabled {
 }
 
 .question-tile:hover {
-    background-color: #8357c5;
+    background-color: rgb(131, 87, 197);
     border-bottom: 0.3rem solid #66439b;
     color: white;
     cursor: pointer;
@@ -322,7 +322,7 @@ button:disabled {
 }
 /* ----------------- End Tabular Component ---------------------- */
 
-@media (min-width: 1185px) {
+@media (min-width: 1353px) {
     /* Dashboard */
     .container {
         max-width: 135rem;
@@ -353,9 +353,17 @@ button:disabled {
     /* End Customer Question Page */
 
     /* Instructor Dash */
-    .react-tabs {
-        max-width: 60rem;
+    .instructor-dash {
+        display: flex;
+        flex-direction: row;
     }
+
+    .react-tabs {
+        width: 57rem;
+        margin-right: 2rem;
+        height: 90.5vh;
+    }
+
     /* End Instructor Dash */
 }
 

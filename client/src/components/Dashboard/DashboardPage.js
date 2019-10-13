@@ -13,8 +13,10 @@ class DashboardPage extends Component {
                 <div className="dash-container">
                     <UploaderComponent />
                     <QuestionsListComponent
+                        key={"allMyQuestions"}
                         api_path={"/api/question"}
                         title={"Your questions"}
+                        no_content={"You don't have any questions yet"}
                     />
                 </div>
             );
