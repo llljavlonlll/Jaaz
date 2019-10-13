@@ -7,7 +7,8 @@ import QuestionTileLoadingAnimation from "./QuestionTileLoadingAnimation";
 
 class QuestionsListComponent extends Component {
     state = {
-        isLoading: true
+        isLoading: true,
+        isMobile: window.innerWidth <= 738
     };
     componentDidMount() {
         axios
@@ -29,16 +30,26 @@ class QuestionsListComponent extends Component {
 
     render() {
         return (
-            <div className="question-uploader">
-                <h3 className="question-uploader__title">{this.props.title}</h3>
-                <div className="question-uploader__container">
+            <div className="box">
+                <h3 className="box__title">{this.props.title}</h3>
+                <div className="box__container">
                     {this.state.isLoading ? (
                         <div>
-                            <QuestionTileLoadingAnimation />
-                            <QuestionTileLoadingAnimation />
-                            <QuestionTileLoadingAnimation />
-                            <QuestionTileLoadingAnimation />
-                            <QuestionTileLoadingAnimation />
+                            <QuestionTileLoadingAnimation
+                                mobile={this.state.isMobile}
+                            />
+                            <QuestionTileLoadingAnimation
+                                mobile={this.state.isMobile}
+                            />
+                            <QuestionTileLoadingAnimation
+                                mobile={this.state.isMobile}
+                            />
+                            <QuestionTileLoadingAnimation
+                                mobile={this.state.isMobile}
+                            />
+                            <QuestionTileLoadingAnimation
+                                mobile={this.state.isMobile}
+                            />
                         </div>
                     ) : this.props.questions.length > 0 ? (
                         this.props.questions.map(question => {

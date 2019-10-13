@@ -3,9 +3,9 @@ import moment from "moment";
 
 export default function QuestionDetails(props) {
     return (
-        <div className="question-uploader details">
-            <h3 className="question-uploader__title">Question details</h3>
-            <div className="question-uploader__container">
+        <div className="box">
+            <h3 className="box__title">Question details</h3>
+            <div className="box__container">
                 <ul>
                     <li>Description: {props.description}</li>
                     <li>Status: {props.status}</li>

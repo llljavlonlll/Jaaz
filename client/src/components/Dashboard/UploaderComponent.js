@@ -61,12 +61,10 @@ class UploaderComponent extends Component {
 
     render() {
         return (
-            <div className="question-uploader question-uploader__customer">
-                <h3 className="question-uploader__title">
-                    Upload your question
-                </h3>
+            <div className="box box__customer">
+                <h3 className="box__title">Upload your question</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="question-uploader__container">
+                    <div className="box__container">
                         <div className="login-component__form__item">
                             <label htmlFor="description">Description</label>
                             <input

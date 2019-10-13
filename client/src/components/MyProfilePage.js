@@ -27,9 +27,9 @@ export default class MyProfilePage extends Component {
 
     render() {
         return (
-            <div className="question-uploader">
-                <h3 className="question-uploader__title">Question</h3>
-                <div className="question-uploader__container">
+            <div className="box">
+                <h3 className="box__title">My Profile</h3>
+                <div className="box__container">
                     {this.state.isLoading ? (
                         <ReactLoading color={"#8357c5"} type={"spin"} />
                     ) : (

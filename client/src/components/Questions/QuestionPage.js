@@ -67,10 +67,13 @@ export default class QuestionPage extends Component {
         return (
             <div>
                 <div className="question-page-container">
-                    <QuestionDetails {...this.state} />
-                    <div className="question-uploader solution">
-                        <h3 className="question-uploader__title">Solution</h3>
-                        <div className="question-uploader__container">
+                    <div className="mw50">
+                        <QuestionDetails {...this.state} />
+                    </div>
+
+                    <div className="box">
+                        <h3 className="box__title">Solution</h3>
+                        <div className="box__container">
                             {solution.length > 0 ? (
                                 <ul>
                                     <li>
@@ -89,14 +92,14 @@ export default class QuestionPage extends Component {
                                     </li>
                                 </ul>
                             ) : (
-                                "In progress"
+                                <div>"In progress"</div>
                             )}
                         </div>
                     </div>
                 </div>
-                <div className="question-uploader">
-                    <h3 className="question-uploader__title">Actions</h3>
-                    <div className="question-uploader__container">
+                <div className="action-box">
+                    <h3 className="action-box__title">Actions</h3>
+                    <div className="action-box__container">
                         <button
                             style={{
                                 marginTop: 0,

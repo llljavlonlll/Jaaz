@@ -23,7 +23,10 @@ export default class InstructorDashboardPage extends Component {
 
         if (Cookies.get("token")) {
             dashboard = (
-                <div className="instructor-dash">
+                <div
+                    className="instructor-dash"
+                    style={{ maxWidth: "70rem", margin: "0 auto" }}
+                >
                     <Tabs>
                         <TabList>
                             <Tab>Available</Tab>
@@ -46,17 +49,17 @@ export default class InstructorDashboardPage extends Component {
                             <CompletedQuestionsList />
                         </TabPanel>
                     </Tabs>
-                    {this.state.showDetails && (
+                    {/*this.state.showDetails && (
                         <div
-                            className="question-uploader"
+                            className="box"
                             style={{ marginTop: "3rem" }}
                         >
-                            <h3 className="question-uploader__title">
+                            <h3 className="box__title">
                                 Details
                             </h3>
-                            <div className="question-uploader__container"></div>
+                            <div className="box__container"></div>
                         </div>
-                    )}
+                    )*/}
                 </div>
             );
         } else {

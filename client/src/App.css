@@ -172,17 +172,17 @@ button:disabled {
 
 /* ----------------- End Login Page ---------------------- */
 
-/* ----------------- Question Uploader Component ---------------------- */
-
-.question-uploader {
+/* ----------------- Action Box ---------------------- */
+.action-box {
     background-color: #464b5e;
     margin: 0 auto 3.6rem auto;
     max-width: 100%;
     border: 5px solid #3c4251;
     flex-grow: 1;
+    max-width: 70rem;
 }
 
-.question-uploader__title {
+.action-box__title {
     background-color: #3c4251;
     margin: 0;
     text-align: center;
@@ -192,16 +192,15 @@ button:disabled {
     font-size: 2rem;
 }
 
-.question-uploader__container {
+.action-box__container {
     display: flex;
     flex-direction: column;
     color: #a5afd7;
     padding: 2.5rem;
     overflow: auto;
-    max-height: 65vh;
 }
 
-.question-uploader__container button {
+.action-box__container button {
     background: #8357c5;
     border: none;
     border-bottom: 0.3rem solid #66439b;
@@ -211,7 +210,52 @@ button:disabled {
     margin-top: 3.2rem;
 }
 
-.question-uploader__container button:hover {
+.action-box__container button:hover {
+    background: #9160da;
+    border-bottom: 0.3rem solid #724bad;
+}
+/* ----------------- End Action Box ---------------------- */
+
+/* ----------------- Question Uploader Component ---------------------- */
+
+.box {
+    background-color: #464b5e;
+    margin: 0 auto 3.6rem auto;
+    max-width: 100%;
+    border: 5px solid #3c4251;
+    flex-grow: 1;
+}
+
+.box__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.box__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 2.5rem;
+    overflow: auto;
+    height: 65vh;
+}
+
+.box__container button {
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    padding: 1.6rem 5rem;
+    margin-top: 3.2rem;
+}
+
+.box__container button:hover {
     background: #9160da;
     border-bottom: 0.3rem solid #724bad;
 }
@@ -307,6 +351,7 @@ button:disabled {
 /* ----------------- Tabular Component  ---------------------- */
 .react-tabs__tab {
     color: #a5afd7 !important;
+    padding: 1.6rem !important;
 }
 
 .react-tabs__tab-list {
@@ -322,7 +367,7 @@ button:disabled {
 }
 /* ----------------- End Tabular Component ---------------------- */
 
-@media (min-width: 1353px) {
+@media (min-width: 1185px) {
     /* Dashboard */
     .container {
         max-width: 135rem;
@@ -332,7 +377,7 @@ button:disabled {
         flex-direction: row;
     }
 
-    .question-uploader__customer {
+    .box__customer {
         max-width: 40rem;
         margin-right: 2rem;
     }
@@ -343,28 +388,14 @@ button:disabled {
         display: flex;
         flex-direction: row;
     }
-    .details {
-        max-width: 50%;
+    .mw50 {
+        min-width: 50%;
     }
-
-    .solution {
-        max-width: 50%;
+    .instructor-question-page {
+        max-width: 70rem;
+        margin: 0 auto;
     }
     /* End Customer Question Page */
-
-    /* Instructor Dash */
-    .instructor-dash {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .react-tabs {
-        width: 57rem;
-        margin-right: 2rem;
-        height: 90.5vh;
-    }
-
-    /* End Instructor Dash */
 }
 
 @media (max-width: 530px) {
@@ -388,8 +419,9 @@ button:disabled {
         margin-top: 1.6rem;
     }
 
-    .question-uploader__container {
+    .box__container {
         padding: 1.6rem;
+        height: 60vh;
     }
 
     .image-preview {

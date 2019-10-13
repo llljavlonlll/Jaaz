@@ -107,11 +107,11 @@ export default class QuestionPage extends Component {
         }
 
         return (
-            <div>
+            <div className="instructor-question-page">
                 {this.state.status === "Pending" ? (
-                    <div className="question-uploader">
-                        <h3 className="question-uploader__title">Action</h3>
-                        <div className="question-uploader__container">
+                    <div className="action-box">
+                        <h3 className="action-box__title">Action</h3>
+                        <div className="action-box__container">
                             {this.state.status === "Pending" ? (
                                 <button
                                     style={{
@@ -182,11 +182,13 @@ export default class QuestionPage extends Component {
                         </div>
                     </div>
                 ) : null}
+
                 <QuestionsDetails {...this.state} />
+
                 {solution.length > 0 && (
-                    <div className="question-uploader">
-                        <h3 className="question-uploader__title">Solution</h3>
-                        <div className="question-uploader__container">
+                    <div className="box">
+                        <h3 className="box__title">Solution</h3>
+                        <div className="box__container">
                             {solution.length > 0 ? (
                                 <ul>
                                     <li>
@@ -215,9 +217,9 @@ export default class QuestionPage extends Component {
                             question_image_name={this.state.image_name}
                             handleStatusUpdate={this.handleStatusUpdate}
                         />
-                        <div className="question-uploader">
-                            <h3 className="question-uploader__title">Action</h3>
-                            <div className="question-uploader__container">
+                        <div className="action-box">
+                            <h3 className="action-box__title">Action</h3>
+                            <div className="action-box__container">
                                 <button
                                     style={{
                                         marginTop: 0,
