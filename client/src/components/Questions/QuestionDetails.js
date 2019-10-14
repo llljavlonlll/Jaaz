@@ -6,16 +6,8 @@ export default function QuestionDetails(props) {
         <div className="box">
             <h3 className="box__title">Question details</h3>
             <div className="box__container">
-                <ul>
-                    <li>Description: {props.description}</li>
-                    <li>Status: {props.status}</li>
-                    <li>
-                        Uploaded at:{" "}
-                        {moment(props.uploaded_at).format("DD/MM/YYYY")}
-                    </li>
-                    <li>Subject: {props.subject}</li>
-                    <li>Owner: {props.owner}</li>
-                    <li>
+                <div className="details">
+                    <div className="details-img">
                         <a href={`/images/questions/${props.image_name}`}>
                             <img
                                 src={`/images/questions/${props.image_name}`}
@@ -23,8 +15,17 @@ export default function QuestionDetails(props) {
                                 width="200"
                             />
                         </a>
-                    </li>
-                </ul>
+                    </div>
+                    <div className="details-info">
+                        <p>Description: {props.description}</p>
+                        <p>Status: {props.status}</p>
+                        <p>
+                            Uploaded at:{" "}
+                            {moment(props.uploaded_at).format("DD/MM/YYYY")}
+                        </p>
+                        <p>Subject: {props.subject}</p>
+                    </div>
+                </div>
             </div>
         </div>
     );

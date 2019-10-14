@@ -67,7 +67,7 @@ export default class QuestionPage extends Component {
         return (
             <div>
                 <div className="question-page-container">
-                    <div className="mw50">
+                    <div id="student-question-details">
                         <QuestionDetails {...this.state} />
                     </div>
 
@@ -92,7 +92,24 @@ export default class QuestionPage extends Component {
                                     </li>
                                 </ul>
                             ) : (
-                                <div>"In progress"</div>
+                                <div
+                                    style={{
+                                        display: "table",
+                                        height: "400px",
+                                        overflow: "hidden"
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            display: "table-cell",
+                                            verticalAlign: "middle"
+                                        }}
+                                    >
+                                        <div style={{ textAlign: "center" }}>
+                                            In progress
+                                        </div>
+                                    </div>
+                                </div>
                             )}
                         </div>
                     </div>

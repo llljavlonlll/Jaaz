@@ -242,7 +242,8 @@ button:disabled {
     color: #a5afd7;
     padding: 2.5rem;
     overflow: auto;
-    height: 65vh;
+    overflow-wrap: break-word;
+    height: 46rem;
 }
 
 .box__container button {
@@ -367,6 +368,31 @@ button:disabled {
 }
 /* ----------------- End Tabular Component ---------------------- */
 
+/* ----------------- Question Details Component ---------------------- */
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-img {
+    text-align: center;
+    /* margin-bottom: 2rem; */
+}
+.details-img img {
+    width: auto;
+    max-height: 30rem;
+}
+
+.details-info {
+    color: white;
+}
+
+/* ----------------- End Question Details Component ---------------------- */
+/* ----------------- Solution Component ---------------------- */
+.in-progress {
+    margin: 0 auto;
+}
+/* ----------------- End Solution Component ---------------------- */
 @media (min-width: 1185px) {
     /* Dashboard */
     .container {
@@ -396,6 +422,12 @@ button:disabled {
         margin: 0 auto;
     }
     /* End Customer Question Page */
+
+    /* Question details */
+    #student-question-details {
+        max-width: 50%;
+    }
+    /* ENd Question details */
 }
 
 @media (max-width: 530px) {
