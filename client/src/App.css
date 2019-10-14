@@ -380,19 +380,21 @@ button:disabled {
 }
 .details-img img {
     width: auto;
+    max-width: 100%;
     max-height: 30rem;
 }
 
 .details-info {
     color: white;
 }
-
 /* ----------------- End Question Details Component ---------------------- */
+
 /* ----------------- Solution Component ---------------------- */
 .in-progress {
     margin: 0 auto;
 }
 /* ----------------- End Solution Component ---------------------- */
+
 @media (min-width: 1185px) {
     /* Dashboard */
     .container {
