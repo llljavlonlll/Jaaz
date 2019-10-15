@@ -61,7 +61,24 @@ class QuestionsListComponent extends Component {
                             );
                         })
                     ) : (
-                        this.props.no_content
+                        <div
+                            style={{
+                                display: "table",
+                                height: "400px",
+                                overflow: "hidden"
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: "table-cell",
+                                    verticalAlign: "middle"
+                                }}
+                            >
+                                <div style={{ textAlign: "center" }}>
+                                    {this.props.no_content}
+                                </div>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>

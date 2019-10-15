@@ -60,7 +60,24 @@ export default class BookedQuestionsList extends Component {
                             );
                         })
                     ) : (
-                        "No questions"
+                        <div
+                            style={{
+                                display: "table",
+                                height: "400px",
+                                overflow: "hidden"
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: "table-cell",
+                                    verticalAlign: "middle"
+                                }}
+                            >
+                                <div style={{ textAlign: "center" }}>
+                                    You have not booked any question yet
+                                </div>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>

@@ -27,16 +27,19 @@ export default class MyProfilePage extends Component {
 
     render() {
         return (
-            <div className="box">
-                <h3 className="box__title">My Profile</h3>
-                <div className="box__container">
+            <div className="profile-box">
+                <h3 className="profile-box__title">My Profile</h3>
+                <div className="profile-box__container">
                     {this.state.isLoading ? (
                         <ReactLoading color={"#8357c5"} type={"spin"} />
                     ) : (
-                        <div>
-                            <p>Name: {this.state.name}</p>
-                            <p>Email: {this.state.email}</p>
-                            <p>Account Type: {this.state.account_type}</p>
+                        <div className="profile-info">
+                            <h4>Full Name</h4>
+                            <div>{this.state.name}</div>
+                            <h4>Email</h4>
+                            <div>{this.state.email}</div>
+                            <h4>Account Type</h4>
+                            <div>{this.state.account_type}</div>
                         </div>
                     )}
                 </div>

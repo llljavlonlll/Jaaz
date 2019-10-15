@@ -18,6 +18,7 @@ import NotFound from "./components/NotFound";
 import NavBar from "./components/MobileMenu";
 import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
 import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
+import Footer from "./components/Footer";
 
 // Integrate Redux
 import { connect } from "react-redux";
@@ -66,6 +67,7 @@ class App extends Component {
                 <NavBar />
                 <Header />
                 <div className="container">{routes}</div>
+                {/*<Footer />*/}
             </Router>
         );
     }

@@ -39,7 +39,9 @@ export default class InstructorDashboardPage extends Component {
                                 key={"allAvailableQuestions"}
                                 api_path={"/api/pending"}
                                 title={"Available questions"}
-                                no_content={"Currently, there are no questions"}
+                                no_content={
+                                    "Currently, there are no questions left"
+                                }
                             />
                         </TabPanel>
                         <TabPanel>
