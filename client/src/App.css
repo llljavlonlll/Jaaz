@@ -1,5 +1,6 @@
 html {
     font-size: 70%;
+    height: 100%;
 }
 
 body {
@@ -7,6 +8,20 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
     color: white;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 10rem;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10rem;
+    background: #20222b;
+    /* box-shadow: 0px 1px 5px black; */
+    box-shadow: 0px -2px 5px 0px black;
 }
 
 button {
@@ -72,7 +87,7 @@ button:disabled {
 .login-component {
     background-color: #464b5e;
     margin: 0 auto;
-    max-width: 40rem;
+    max-width: 45rem;
 }
 
 .login-component__title {
@@ -296,14 +311,26 @@ button:disabled {
     box-shadow: 0 1px 6px rgb(29, 29, 29);
 }
 
-.profile-box__title {
+.profile-box__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: #3c4251;
     margin: 0;
-    text-align: center;
-    padding: 1.6rem;
+    padding: 1.6rem 2.5rem;
     color: #a5afd7;
     font-weight: bold;
     font-size: 2rem;
+}
+
+.profile-box__header__title {
+    margin: 0;
+}
+
+.profile-box__header button {
+    background: none;
+    border: none;
+    color: #a5afd7;
 }
 
 .profile-box__container {

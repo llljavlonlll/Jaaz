@@ -9,6 +9,7 @@ class SignUpPage extends Component {
         name: "",
         email: "",
         password: "",
+        rePassword: "",
         category: "customer",
         isLoading: false,
         error: undefined
@@ -22,6 +23,11 @@ class SignUpPage extends Component {
 
     onSubmit = event => {
         event.preventDefault();
+        if (event.target.password.value !== event.target.rePassword.value) {
+            return this.setState({
+                error: "Passwords do not match"
+            });
+        }
         this.setState({
             isLoading: true,
             error: undefined
@@ -92,6 +98,7 @@ class SignUpPage extends Component {
                         <div className="login-component__form__item">
                             <label htmlFor="email">Email</label>
                             <input
+                                autoComplete="new-password"
                                 required
                                 type="email"
                                 id="email"
@@ -103,11 +110,25 @@ class SignUpPage extends Component {
                         <div className="login-component__form__item">
                             <label htmlFor="password">Password</label>
                             <input
+                                autoComplete="new-password"
                                 required
                                 type="password"
                                 id="password"
                                 name="password"
                                 value={this.state.password}
+                                onChange={this.onChange}
+                            />
+                        </div>
+                        <div className="login-component__form__item">
+                            <label htmlFor="rePassword">
+                                Re-enter Password
+                            </label>
+                            <input
+                                required
+                                type="password"
+                                id="rePassword"
+                                name="rePassword"
+                                value={this.state.rePassword}
                                 onChange={this.onChange}
                             />
                         </div>

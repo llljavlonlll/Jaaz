@@ -67,7 +67,7 @@ class App extends Component {
                 <NavBar />
                 <Header />
                 <div className="container">{routes}</div>
-                {/*<Footer />*/}
+                <Footer />
             </Router>
         );
     }

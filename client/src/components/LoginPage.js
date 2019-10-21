@@ -10,19 +10,12 @@ class LoginPage extends Component {
         email: "",
         password: "",
         isLoading: false,
-        error: undefined,
-        remember: true
+        error: undefined
     };
 
     onChange = event => {
         this.setState({
             [event.target.name]: event.target.value
-        });
-    };
-
-    onChangeRemember = () => {
-        this.setState({
-            remember: !this.state.remember
         });
     };
 
@@ -86,20 +79,6 @@ class LoginPage extends Component {
                                 <p>
                                     <Link to="/">Forgot password?</Link>
                                 </p>
-                                {
-                                    <div>
-                                        <input
-                                            type="checkbox"
-                                            id="remember"
-                                            name="remember"
-                                            checked={this.state.remember}
-                                            onChange={this.onChangeRemember}
-                                        />
-                                        <label htmlFor="remember">
-                                            Remember me
-                                        </label>
-                                    </div>
-                                }
                             </div>
                         </div>
                         <button>

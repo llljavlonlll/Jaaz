@@ -28,7 +28,10 @@ export default class MyProfilePage extends Component {
     render() {
         return (
             <div className="profile-box">
-                <h3 className="profile-box__title">My Profile</h3>
+                <div className="profile-box__header">
+                    <h3 className="profile-box__header__title">My Profile</h3>
+                    <button>Edit</button>
+                </div>
                 <div className="profile-box__container">
                     {this.state.isLoading ? (
                         <ReactLoading color={"#8357c5"} type={"spin"} />
