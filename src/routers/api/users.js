@@ -5,9 +5,42 @@ const router = new express.Router();
 const jwtDecode = require("jwt-decode");
 const nodemailer = require("nodemailer");
 
+// Emailing configurations
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "jbutabaev@gmail.com",
+        pass: "Turkiston27b"
+    }
+});
+
 // Test email sending with nodemailer
 // GET /user/emailTest/:id
-router.get("/emailTest/:id", (req, res) => {});
+router.get("/emailTest/:id", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+        const hash = user.activationHash;
+        const verificationUrl = `http://www.jbtrucker.com/api/user/verify/${hash}`;
+        const html = `<h1 style="background-color: purple; display: inline-block; padding: 5px;"><a style="color: white; text-decoration: none;" href=${verificationUrl}>Click here to verify your email</a></h1>`;
+        const mailOptions = {
+            from: "jbutabaev@gmail.com",
+            to: "butabaev.javlon@gmail.com", // Change to req.user.email after testing
+            subject: "noCheat | Email verification",
+            html
+        };
+
+        transporter
+            .sendMail(mailOptions)
+            .then(info => {
+                return res.send({ msg: info.response });
+            })
+            .catch(err => {
+                return res.status(400).send(err);
+            });
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
+    }
+});
 
 // Verify email
 // GET /user/verify/:id
