@@ -54,10 +54,10 @@ router.post("/sign-up", async (req, res) => {
         transporter
             .sendMail(mailOptions)
             .then(info => {
-                return res.send({ msg: info.response });
+                console.log(info.response);
             })
             .catch(err => {
-                return res.status(400).send(err);
+                console.log(err);
             });
     } catch (err) {
         res.status(400).send({ msg: err.message });
