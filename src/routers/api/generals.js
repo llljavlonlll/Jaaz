@@ -1,6 +1,7 @@
 // General routes
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
+const jwt = require("jsonwebtoken");
 
 const router = new require("express").Router();
 

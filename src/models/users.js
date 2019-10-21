@@ -4,13 +4,19 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSchema = mongoose.Schema({
+    isVerified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    activationHash: String,
     category: {
         type: String,
         required: true,
         trim: true,
         validate(value) {
             if (!["customer", "instructor"].includes(value)) {
-                throw new Error("Invalid category. Select ");
+                throw new Error("Invalid category");
             }
         }
     },
@@ -66,6 +72,13 @@ userSchema.methods.generateAuthToken = async function() {
         process.env.JWT_SECRET
     );
 
+    // Hash to send via link to verify user email
+    const activationHash = jwt.sign(
+        { _id: this._id.toString() },
+        process.env.JWT_SECRET
+    );
+
+    this.activationHash = activationHash;
     this.tokens = this.tokens.concat({ token });
     await this.save();
 

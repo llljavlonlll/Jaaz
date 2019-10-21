@@ -7,6 +7,7 @@ export default class MyProfilePage extends Component {
         name: "",
         email: "",
         account_type: "",
+        isVerified: true,
         isLoading: true
     };
 
@@ -17,6 +18,7 @@ export default class MyProfilePage extends Component {
                     name: res.data.name,
                     email: res.data.email,
                     account_type: res.data.category,
+                    isVerified: res.data.isVerified,
                     isLoading: false
                 });
             } else {
@@ -39,7 +41,34 @@ export default class MyProfilePage extends Component {
                         <div className="profile-info">
                             <h4>Full Name</h4>
                             <div>{this.state.name}</div>
-                            <h4>Email</h4>
+                            <h4>
+                                Email{" "}
+                                {this.state.isVerified ? (
+                                    <span
+                                        style={{
+                                            color: "white",
+                                            fontWeight: "500",
+                                            background: "green",
+                                            borderRadius: "3px",
+                                            padding: "0 4px"
+                                        }}
+                                    >
+                                        verified
+                                    </span>
+                                ) : (
+                                    <span
+                                        style={{
+                                            color: "white",
+                                            fontWeight: "500",
+                                            background: "red",
+                                            borderRadius: "3px",
+                                            padding: "0 4px"
+                                        }}
+                                    >
+                                        unverified
+                                    </span>
+                                )}
+                            </h4>
                             <div>{this.state.email}</div>
                             <h4>Account Type</h4>
                             <div>{this.state.account_type}</div>

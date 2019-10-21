@@ -2,7 +2,38 @@ const express = require("express");
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
 const router = new express.Router();
-const upload = require("./tools/question-uploader");
+const jwtDecode = require("jwt-decode");
+const nodemailer = require("nodemailer");
+
+// Test email sending with nodemailer
+// GET /user/emailTest/:id
+router.get("/emailTest/:id", (req, res) => {});
+
+// Verify email
+// GET /user/verify/:id
+router.get("/verify/:id", auth, async (req, res) => {
+    const activationHash = req.params.id;
+
+    try {
+        const userId = await jwtDecode(activationHash)._id;
+
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res
+                .status(400)
+                .send({ msg: "Invalid link. User not found" });
+        }
+
+        user.isVerified = true;
+        user.activationHash = "";
+        await user.save();
+
+        res.send({ msg: "User verified successfully" });
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
+    }
+});
 
 // Read my account
 // GET /user/me
