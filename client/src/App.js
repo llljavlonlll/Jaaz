@@ -22,6 +22,7 @@ import Footer from "./components/Footer";
 
 // Integrate Redux
 import { connect } from "react-redux";
+import VerifyEmail from "./components/VerifyEmail";
 
 class App extends Component {
     render() {
@@ -35,6 +36,7 @@ class App extends Component {
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/profile" component={MyProfilePage} />
                     <Route path="/question/:id" component={QuestionPage} />
+                    <Route path="/verify/:id" component={VerifyEmail} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             );
@@ -49,6 +51,7 @@ class App extends Component {
                         path="/question/:id"
                         component={InstructorQuestion}
                     />
+                    <Route path="/verify/:id" component={VerifyEmail} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             );
@@ -58,6 +61,7 @@ class App extends Component {
                     <Route exact path="/" component={DashboardPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
+                    <Route path="/verify/:id" component={VerifyEmail} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             );

@@ -1,7 +1,6 @@
 // General routes
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
-const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 const router = new require("express").Router();
@@ -32,7 +31,7 @@ router.post("/sign-up", async (req, res) => {
             });
 
         const hash = user.activationHash;
-        const verificationUrl = `http://www.jbtrucker.com/api/user/verify/${hash}`;
+        const verificationUrl = `http://www.jbtrucker.com/verify/${hash}`;
         const html = `<h2>Thanks for signing up for noCheat! Please click the link below to confirm your email address.</h2>
                         <br>
                         <h1 style="background-color: purple; display: inline-block; padding: 5px;">
