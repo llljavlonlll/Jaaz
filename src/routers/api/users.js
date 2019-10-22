@@ -44,7 +44,7 @@ router.get("/emailTest/:id", auth, async (req, res) => {
 
 // Verify email
 // GET /user/verify/:id
-router.get("/verify/:id", auth, async (req, res) => {
+router.get("/verify/:id", async (req, res) => {
     const activationHash = req.params.id;
 
     try {
