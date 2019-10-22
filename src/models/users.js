@@ -59,7 +59,7 @@ const userSchema = mongoose.Schema({
 });
 
 // Generating authorization token
-userSchema.methods.generateAuthToken = async function() {
+userSchema.methods.generateAuthToken = async function(action) {
     const token = jwt.sign(
         {
             _id: this._id.toString(),
@@ -72,13 +72,16 @@ userSchema.methods.generateAuthToken = async function() {
         process.env.JWT_SECRET
     );
 
-    // Hash to send via link to verify user email
-    const activationHash = jwt.sign(
-        { _id: this._id.toString() },
-        process.env.JWT_SECRET
-    );
+    if (action === "signup") {
+        // Hash to send via link to verify user email
+        const activationHash = jwt.sign(
+            { _id: this._id.toString() },
+            process.env.JWT_SECRET
+        );
 
-    this.activationHash = activationHash;
+        this.activationHash = activationHash;
+    }
+
     this.tokens = this.tokens.concat({ token });
     await this.save();
 

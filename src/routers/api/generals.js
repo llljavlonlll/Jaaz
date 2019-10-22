@@ -1,18 +1,9 @@
 // General routes
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
-const nodemailer = require("nodemailer");
+const transporter = require("./tools/email-transporter");
 
 const router = new require("express").Router();
-
-// Nodemailer configurations
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "jbutabaev@gmail.com",
-        pass: "Turkiston27b"
-    }
-});
 
 // Create a user
 // POST /sign-up
@@ -20,7 +11,7 @@ router.post("/sign-up", async (req, res) => {
     const user = new User(req.body);
 
     try {
-        const token = await user.generateAuthToken();
+        const token = await user.generateAuthToken("signup");
 
         res.cookie("token", token)
             .status(201)
@@ -44,7 +35,7 @@ router.post("/sign-up", async (req, res) => {
                         <br>
                         ${verificationUrl}`;
         const mailOptions = {
-            from: "jbutabaev@gmail.com",
+            from: "no-reply@jbtruckers.com",
             to: req.body.email,
             subject: "noCheat | Email verification",
             html
@@ -72,7 +63,7 @@ router.post("/login", async (req, res) => {
             req.body.password
         );
 
-        const token = await user.generateAuthToken();
+        const token = await user.generateAuthToken("login");
 
         res.cookie("token", token).send({
             name: user.name,
