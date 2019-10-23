@@ -6,7 +6,7 @@ const router = new require("express").Router();
 const jwt = require("jsonwebtoken");
 
 // Reset password email
-// POST /password_reset
+// POST /api/password_reset
 router.post("/password_reset", async (req, res) => {
     const email = req.body.email;
     try {
@@ -15,13 +15,17 @@ router.post("/password_reset", async (req, res) => {
         if (!user) {
             return res
                 .status(404)
-                .send({ msg: "Can't find that email, sorry." });
+                .send({
+                    status: "error",
+                    msg: "Can't find that email, sorry.",
+                    err: "User not found"
+                });
         }
 
         const hash = jwt.sign(
             {
                 id: user._id,
-                name: user.name
+                email: user.email
             },
             process.env.JWT_SECRET
         );
@@ -30,16 +34,25 @@ router.post("/password_reset", async (req, res) => {
             from: "no-reply@jbtruckers.com",
             to: email,
             subject: "noCheat | Password Reset",
-            text: `<p>To reset your password go here: ${pass_reset_url}</p>`
+            html: `<p>To reset your password go here: </p><br>${pass_reset_url}`
         };
 
         transporter
             .sendMail(mailOptions)
             .then(info => {
                 console.log(info.response);
+                res.send({
+                    status: "ok",
+                    msg: `Email with password reset instructions has been sent to ${email}`
+                });
             })
             .catch(err => {
                 console.log(err);
+                res.status(500).send({
+                    status: "error",
+                    msg: `Error sending instructions`,
+                    err
+                });
             });
     } catch (err) {
         res.status(400).send({ err });
@@ -47,7 +60,7 @@ router.post("/password_reset", async (req, res) => {
 });
 
 // Create a user
-// POST /sign-up
+// POST /api/sign-up
 router.post("/sign-up", async (req, res) => {
     const user = new User(req.body);
 
@@ -96,7 +109,7 @@ router.post("/sign-up", async (req, res) => {
 });
 
 // Login
-// POST /login
+// POST /api/login
 router.post("/login", async (req, res) => {
     try {
         const user = await User.findByCredentials(
@@ -117,7 +130,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Logout
-// POST /logout
+// POST /api/logout
 router.post("/logout", auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter(token => {
@@ -133,7 +146,7 @@ router.post("/logout", auth, async (req, res) => {
 });
 
 // Logout all instances
-// POST /logoutall
+// POST /api/logoutall
 router.post("/logoutall", auth, async (req, res) => {
     try {
         req.user.tokens = [];
@@ -146,7 +159,7 @@ router.post("/logoutall", auth, async (req, res) => {
 });
 
 // Check if current token is valid
-// GET /checkToken
+// GET /api/checkToken
 router.get("/checkToken", auth, (req, res) => {
     res.sendStatus(200);
 });

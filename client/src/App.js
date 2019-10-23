@@ -24,6 +24,7 @@ import Footer from "./components/Footer";
 import { connect } from "react-redux";
 import VerifyEmail from "./components/VerifyEmail";
 import ForgotPassword from "./components/ForgotPassword";
+import NewPassword from "./NewPassword";
 
 class App extends Component {
     render() {
@@ -38,7 +39,12 @@ class App extends Component {
                     <Route path="/profile" component={MyProfilePage} />
                     <Route path="/question/:id" component={QuestionPage} />
                     <Route path="/verify/:id" component={VerifyEmail} />
-                    <Route path="/password_reset" component={ForgotPassword} />
+                    <Route
+                        exact
+                        path="/password_reset"
+                        component={ForgotPassword}
+                    />
+                    <Route path="/password_reset/:id" component={NewPassword} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             );
@@ -54,7 +60,12 @@ class App extends Component {
                         component={InstructorQuestion}
                     />
                     <Route path="/verify/:id" component={VerifyEmail} />
-                    <Route path="/password_reset" component={ForgotPassword} />
+                    <Route
+                        exact
+                        path="/password_reset"
+                        component={ForgotPassword}
+                    />
+                    <Route path="/password_reset/:id" component={NewPassword} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             );
@@ -65,7 +76,12 @@ class App extends Component {
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/verify/:id" component={VerifyEmail} />
-                    <Route path="/password_reset" component={ForgotPassword} />
+                    <Route
+                        exact
+                        path="/password_reset"
+                        component={ForgotPassword}
+                    />
+                    <Route path="/password_reset/:id" component={NewPassword} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             );
