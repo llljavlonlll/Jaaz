@@ -11,7 +11,8 @@ const storage = multer.diskStorage({
             "..",
             "..",
             "..",
-            "questions"
+            "questions",
+            "raw"
         );
 
         cb(null, imageRoute);
@@ -31,19 +32,22 @@ const storage = multer.diskStorage({
 
 // Accept only JPG or PNG
 const fileFilter = (req, file, cb) => {
-    if (!file.mimetype === "image/jpeg" || !file.mimetype === "image/png") {
-        return cb(new Error("Please upload a .jpg or .png image"));
+    if (
+        file.originalname.endsWith(".jpg") ||
+        file.originalname.endsWith(".png")
+    ) {
+        return cb(undefined, true);
     }
 
-    cb(undefined, true);
+    cb(new Error("Please upload a .jpg or .png image"));
 };
 
 const upload = multer({
-    fileFilter,
     storage,
     limits: {
         fileSize: 5000000 // 5MB
-    }
+    },
+    fileFilter
 });
 
 module.exports = upload;

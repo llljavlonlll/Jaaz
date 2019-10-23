@@ -2,24 +2,44 @@ const Question = require("../../../models/questions");
 const auth = require("../../../middleware/auth");
 const upload = require("../tools/question-uploader");
 const router = new require("express").Router();
+const sharp = require("sharp");
 const path = require("path");
+const fs = require("fs");
 
 // Create a question
 // POST /question/create
-router.post("/create", auth, upload.single("question"), async (req, res) => {
-    const question = new Question({
-        ...req.body,
-        owner: req.user._id,
-        image_name: req.file.filename
-    });
+router.post(
+    "/create",
+    auth,
+    upload.single("question"),
+    async (req, res) => {
+        const question = new Question({
+            ...req.body,
+            owner: req.user._id,
+            image_name: req.file.filename
+        });
 
-    try {
-        await question.save();
-        res.send(question);
-    } catch (err) {
-        res.status(400).send(err.message);
+        try {
+            await sharp(req.file.path)
+                .rotate()
+                .resize({ width: 600 })
+                .png({ quality: 80 })
+                .jpeg({ quality: 80 })
+                .toFile(
+                    path.resolve(req.file.destination, "..", req.file.filename)
+                );
+            fs.unlinkSync(req.file.path);
+
+            await question.save();
+            res.send(question);
+        } catch (err) {
+            res.status(400).send(err.message);
+        }
+    },
+    (err, req, res, next) => {
+        res.status(400).send({ msg: err.message });
     }
-});
+);
 
 // Get all questions of authorized user
 // GET /question/
