@@ -490,6 +490,52 @@ button:disabled {
 }
 /* ------------------- End Email verification box--------------------- */
 
+/* ------------------- Password Reset Form --------------------------- */
+.password-reset-box {
+    background-color: #464b5e;
+    margin: 0 auto 3.6rem auto;
+    max-width: 50rem;
+    border: 5px solid #3c4251;
+    flex-grow: 1;
+    box-shadow: 0 1px 6px rgb(29, 29, 29);
+}
+
+.password-reset-box__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.password-reset-box__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 2.5rem;
+    overflow: auto;
+    overflow-wrap: break-word;
+}
+
+.password-reset-box__container button {
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    padding: 1.6rem 5rem;
+    margin-top: 1.6rem;
+}
+
+.password-reset-box__container button:hover {
+    background: #9160da;
+    border-bottom: 0.3rem solid #724bad;
+}
+
+/* ------------------- End Password Reset Form --------------------------- */
+
 @media (min-width: 1185px) {
     /* Dashboard */
     .container {
@@ -625,4 +671,20 @@ button:disabled {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #51367a;
+}
+
+/*-------------------- Placeholder ---------------------*/
+
+::-webkit-input-placeholder {
+    /* Edge */
+    color: #636981;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #636981;
+}
+
+::placeholder {
+    color: #636981;
 }

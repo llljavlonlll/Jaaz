@@ -2,8 +2,49 @@
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
 const transporter = require("./tools/email-transporter");
-
 const router = new require("express").Router();
+const jwt = require("jsonwebtoken");
+
+// Reset password email
+// POST /password_reset
+router.post("/password_reset", async (req, res) => {
+    const email = req.body.email;
+    try {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res
+                .status(404)
+                .send({ msg: "Can't find that email, sorry." });
+        }
+
+        const hash = jwt.sign(
+            {
+                id: user._id,
+                name: user.name
+            },
+            process.env.JWT_SECRET
+        );
+        const pass_reset_url = `http://www.jbtruckers.com/password_reset/${hash}`;
+        const mailOptions = {
+            from: "no-reply@jbtruckers.com",
+            to: email,
+            subject: "noCheat | Password Reset",
+            text: `<p>To reset your password go here: ${pass_reset_url}</p>`
+        };
+
+        transporter
+            .sendMail(mailOptions)
+            .then(info => {
+                console.log(info.response);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } catch (err) {
+        res.status(400).send({ err });
+    }
+});
 
 // Create a user
 // POST /sign-up

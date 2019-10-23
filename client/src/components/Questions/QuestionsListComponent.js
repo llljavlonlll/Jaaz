@@ -24,7 +24,6 @@ class QuestionsListComponent extends Component {
                 this.setState({
                     isLoading: false
                 });
-                console.log(err);
             });
     }
 

@@ -13,10 +13,17 @@ class UploaderComponent extends Component {
     };
 
     handleInputChange = event => {
-        this.setState({
-            filePreview: URL.createObjectURL(event.target.files[0]),
-            file: event.target.files[0]
-        });
+        if (event.target.files[0]) {
+            this.setState({
+                filePreview: URL.createObjectURL(event.target.files[0]),
+                file: event.target.files[0]
+            });
+        } else {
+            this.setState({
+                filePreview: undefined,
+                file: ""
+            });
+        }
     };
 
     onSubmit = event => {
@@ -95,12 +102,12 @@ class UploaderComponent extends Component {
                                 name="question"
                                 key={this.state.inputKey}
                             />
-                            {this.state.filePreview && (
+                            {/*this.state.filePreview && (
                                 <img
                                     src={this.state.filePreview}
                                     alt="Uploaded question"
                                 />
-                            )}
+                            )*/}
                         </div>
                         <button>Upload Question</button>
                     </div>

@@ -77,7 +77,9 @@ class LoginPage extends Component {
                             />
                             <div className="password-options">
                                 <p>
-                                    <Link to="/">Forgot password?</Link>
+                                    <Link to="/password_reset">
+                                        Forgot password?
+                                    </Link>
                                 </p>
                             </div>
                         </div>
