@@ -5,6 +5,15 @@ const transporter = require("./tools/email-transporter");
 const router = new require("express").Router();
 const jwt = require("jsonwebtoken");
 
+// Renew password
+// POST /api/new_password
+router.post("/new_password", async (req, res) => {
+    try {
+    } catch (err) {
+        res.status(400).send({ status: "error", msg: err.message });
+    }
+});
+
 // Reset password email
 // POST /api/password_reset
 router.post("/password_reset", async (req, res) => {
@@ -13,13 +22,11 @@ router.post("/password_reset", async (req, res) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res
-                .status(404)
-                .send({
-                    status: "error",
-                    msg: "Can't find that email, sorry.",
-                    err: "User not found"
-                });
+            return res.status(404).send({
+                status: "error",
+                msg: "Can't find that email, sorry.",
+                err: "User not found"
+            });
         }
 
         const hash = jwt.sign(
