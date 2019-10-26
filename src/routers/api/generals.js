@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 // POST /api/new_password
 router.post("/new_password", async (req, res) => {
     try {
+        const user = await User.findById(req.body.user_id);
     } catch (err) {
         res.status(400).send({ status: "error", msg: err.message });
     }
