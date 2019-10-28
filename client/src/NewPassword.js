@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import jwtDecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 export default class NewPassword extends Component {
     state = {
@@ -8,12 +8,25 @@ export default class NewPassword extends Component {
         rePassword: "",
         error: undefined,
         sendingUpdate: false,
-        updated: false
+        updated: false,
+        email: ""
     };
+
+    componentDidMount() {
+        try {
+            const email = jwtDecode(this.props.match.params.id).email;
+            this.setState({
+                email
+            });
+        } catch (err) {
+            this.setState({
+                error: "Invalid password reset link"
+            });
+        }
+    }
 
     onSubmit = event => {
         event.preventDefault();
-        // const user_id = jwtDecode(this.props.match.params.id).id;
 
         this.setState({
             sendingUpdate: true
@@ -41,11 +54,34 @@ export default class NewPassword extends Component {
 
     render() {
         return (
-            <div>
+            <div className="password-reset-box">
+                <h3 className="password-reset-box__title">
+                    Reset password for {this.state.email}
+                </h3>
                 <form onSubmit={this.onSubmit}>
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Confirm Password" />
-                    <button>Update password</button>
+                    <div className="password-reset-box__container">
+                        {this.state.error && (
+                            <div className="login-error">
+                                <p>{this.state.error}</p>
+                            </div>
+                        )}
+                        <div className="login-component__form__item">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="e.g. john.doe@example.com"
+                            />
+                        </div>
+                        <div className="login-component__form__item">
+                            <label htmlFor="password">Confirm password</label>
+                            <input
+                                type="password"
+                                placeholder="e.g. john.doe@example.com"
+                            />
+                        </div>
+                        <button>Update password</button>
+                    </div>
                 </form>
             </div>
         );

@@ -558,6 +558,52 @@ button:disabled {
 }
 /* ------------------- End Uploading overlay --------------------------- */
 
+/* ------------------- New Password Component --------------------------- */
+.new-password {
+    background-color: #464b5e;
+    margin: 0 auto 3.6rem auto;
+    max-width: 100%;
+    border: 5px solid #3c4251;
+    flex-grow: 1;
+    box-shadow: 0 1px 6px rgb(29, 29, 29);
+}
+
+.new-password__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.new-password__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 2.5rem;
+    overflow: auto;
+    overflow-wrap: break-word;
+    height: 46rem;
+}
+
+.new-password__container button {
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    padding: 1.6rem 5rem;
+    margin-top: 3.2rem;
+}
+
+.new-password__container button:hover {
+    background: #9160da;
+    border-bottom: 0.3rem solid #724bad;
+}
+/* ------------------- New Password Component --------------------------- */
+
 @media (min-width: 1185px) {
     /* Dashboard */
     .container {

@@ -20,7 +20,8 @@ export default class ForgotPassword extends Component {
     onSubmit = event => {
         event.preventDefault();
         this.setState({
-            sendLoading: true
+            sendLoading: true,
+            error: undefined
         });
         axios
             .post("/api/password_reset", { email: this.state.email })
