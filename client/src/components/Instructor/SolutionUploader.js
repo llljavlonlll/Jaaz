@@ -10,7 +10,6 @@ export default class SolutionUploader extends Component {
 
     handleInputChange = event => {
         this.setState({
-            filePreview: URL.createObjectURL(event.target.files[0]),
             file: event.target.files[0]
         });
     };
@@ -23,6 +22,7 @@ export default class SolutionUploader extends Component {
 
     onSubmit = event => {
         event.preventDefault();
+        this.props.handleUploadAnimation();
         const { file, description } = this.state;
 
         const data = new FormData();
@@ -49,9 +49,11 @@ export default class SolutionUploader extends Component {
                     this.props.handleStatusUpdate("Completed");
                     // this.props.dispatch(addQuestion(res.data));
                 }
+                this.props.handleUploadAnimation();
             })
             .catch(err => {
                 console.error(err);
+                this.props.handleUploadAnimation();
             });
     };
 
@@ -78,12 +80,6 @@ export default class SolutionUploader extends Component {
                                 name="question"
                                 key={this.state.inputKey}
                             />
-                            {this.state.filePreview && (
-                                <img
-                                    src={this.state.filePreview}
-                                    alt="Uploaded question"
-                                />
-                            )}
                         </div>
                         <button>Upload Solution</button>
                     </div>

@@ -16,7 +16,8 @@ export default class QuestionPage extends Component {
         solution: [],
         bookModalIsOpen: false,
         unbookModalIsOpen: false,
-        isLoading: true
+        isLoading: true,
+        isUploading: false
     };
     componentDidMount() {
         axios
@@ -99,6 +100,12 @@ export default class QuestionPage extends Component {
         });
     };
 
+    handleUploadAnimation = () => {
+        this.setState({
+            isUploading: !this.state.isUploading
+        });
+    };
+
     render() {
         const { solution } = this.state;
 
@@ -108,6 +115,11 @@ export default class QuestionPage extends Component {
 
         return (
             <div className="instructor-question-page">
+                {this.state.isUploading && (
+                    <div className="upload-overlay">
+                        <ReactLoading color={"#8357c5"} type={"spin"} />
+                    </div>
+                )}
                 {this.state.status === "Pending" ? (
                     <div className="action-box">
                         <h3 className="action-box__title">Action</h3>
@@ -216,6 +228,7 @@ export default class QuestionPage extends Component {
                             // as "solution-(quesiton_image_name)"
                             question_image_name={this.state.image_name}
                             handleStatusUpdate={this.handleStatusUpdate}
+                            handleUploadAnimation={this.handleUploadAnimation}
                         />
                         <div className="action-box">
                             <h3 className="action-box__title">Action</h3>

@@ -28,6 +28,7 @@ class UploaderComponent extends Component {
 
     onSubmit = event => {
         event.preventDefault();
+        this.props.handleUploadAnimation();
         const { file, description, subject } = this.state;
 
         const data = new FormData();
@@ -54,9 +55,11 @@ class UploaderComponent extends Component {
                     });
                     this.props.dispatch(addQuestion(res.data));
                 }
+                this.props.handleUploadAnimation();
             })
             .catch(err => {
                 console.error(err);
+                this.props.handleUploadAnimation();
             });
     };
 
@@ -97,6 +100,7 @@ class UploaderComponent extends Component {
                         </div>
                         <div className="image-preview">
                             <input
+                                required
                                 type="file"
                                 onChange={this.handleInputChange}
                                 name="question"
