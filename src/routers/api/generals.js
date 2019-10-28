@@ -23,6 +23,8 @@ router.post("/new_password", async (req, res) => {
         user.emailVerHash = "";
         user.password = password;
         await user.save();
+
+        res.send({ status: "ok", msg: "Password updated" });
     } catch (err) {
         res.status(400).send({ status: "error", msg: err.message });
     }
