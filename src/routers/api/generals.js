@@ -10,7 +10,7 @@ const jwtDecode = require("jwt-decode");
 // POST /api/new_password
 router.post("/new_password", async (req, res) => {
     const { password, emailVerHash } = req.body;
-    const user_id = jwtDecode(this.props.match.params.id).id;
+    const user_id = jwtDecode(emailVerHash).id;
     try {
         const user = await User.findById(user_id);
 

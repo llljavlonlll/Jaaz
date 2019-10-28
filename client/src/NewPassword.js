@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import ReactLoading from "react-loading";
 
 export default class NewPassword extends Component {
     state = {
@@ -9,7 +10,8 @@ export default class NewPassword extends Component {
         error: undefined,
         sendingUpdate: false,
         updated: false,
-        email: ""
+        email: "",
+        isLoading: false
     };
 
     componentDidMount() {
@@ -29,7 +31,8 @@ export default class NewPassword extends Component {
         event.preventDefault();
 
         this.setState({
-            sendingUpdate: true
+            sendingUpdate: true,
+            isLoading: true
         });
 
         axios
@@ -47,8 +50,29 @@ export default class NewPassword extends Component {
             .catch(err => {
                 this.setState({
                     sendingUpdate: false,
-                    error: err.response.data.msg
+                    error: err.response.data.msg,
+                    isLoading: false
                 });
+            });
+    };
+
+    onChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    };
+
+    onRePasswordChange = event => {
+        this.setState({
+            rePassword: event.target.value
+        });
+        if (event.target.value !== this.state.password) {
+            this.setState({
+                error: "Passwords do not match"
+            });
+        } else
+            this.setState({
+                error: undefined
             });
     };
 
@@ -70,17 +94,36 @@ export default class NewPassword extends Component {
                             <input
                                 type="password"
                                 id="password"
-                                placeholder="e.g. john.doe@example.com"
+                                name="password"
+                                placeholder="Your new password"
+                                onChange={this.onChange}
+                                value={this.state.password}
                             />
                         </div>
                         <div className="login-component__form__item">
-                            <label htmlFor="password">Confirm password</label>
+                            <label htmlFor="rePassword">Confirm password</label>
                             <input
                                 type="password"
-                                placeholder="e.g. john.doe@example.com"
+                                id="rePassword"
+                                name="rePassword"
+                                placeholder="Confirm password"
+                                onChange={this.onRePasswordChange}
+                                value={this.state.rePassword}
                             />
                         </div>
-                        <button>Update password</button>
+                        <button>
+                            {this.state.isLoading ? (
+                                <ReactLoading
+                                    color={"white"}
+                                    type={"spin"}
+                                    height={"4%"}
+                                    width={"4%"}
+                                    className="spinner"
+                                />
+                            ) : (
+                                "Reset password"
+                            )}
+                        </button>
                     </div>
                 </form>
             </div>
