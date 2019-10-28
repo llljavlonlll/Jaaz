@@ -43,7 +43,8 @@ export default class NewPassword extends Component {
             .then(res => {
                 if (res.status === 200) {
                     this.setState({
-                        updated: true
+                        updated: true,
+                        error: undefined
                     });
                 }
             })
@@ -76,6 +77,11 @@ export default class NewPassword extends Component {
             });
     };
 
+    returnToLogin = event => {
+        event.preventDefault();
+        this.props.history.push("/");
+    };
+
     render() {
         return (
             <div className="password-reset-box">
@@ -89,41 +95,60 @@ export default class NewPassword extends Component {
                                 <p>{this.state.error}</p>
                             </div>
                         )}
-                        <div className="login-component__form__item">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Your new password"
-                                onChange={this.onChange}
-                                value={this.state.password}
-                            />
-                        </div>
-                        <div className="login-component__form__item">
-                            <label htmlFor="rePassword">Confirm password</label>
-                            <input
-                                type="password"
-                                id="rePassword"
-                                name="rePassword"
-                                placeholder="Confirm password"
-                                onChange={this.onRePasswordChange}
-                                value={this.state.rePassword}
-                            />
-                        </div>
-                        <button>
-                            {this.state.isLoading ? (
-                                <ReactLoading
-                                    color={"white"}
-                                    type={"spin"}
-                                    height={"4%"}
-                                    width={"4%"}
-                                    className="spinner"
-                                />
-                            ) : (
-                                "Reset password"
-                            )}
-                        </button>
+                        {this.state.updated ? (
+                            <label style={{ margin: "0 auto" }}>
+                                Password successfully updated!
+                            </label>
+                        ) : (
+                            <React.Fragment>
+                                <div className="login-component__form__item">
+                                    <label htmlFor="password">Password</label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Your new password"
+                                        onChange={this.onChange}
+                                        value={this.state.password}
+                                    />
+                                </div>
+                                <div className="login-component__form__item">
+                                    <label htmlFor="rePassword">
+                                        Confirm password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="rePassword"
+                                        name="rePassword"
+                                        placeholder="Confirm password"
+                                        onChange={this.onRePasswordChange}
+                                        value={this.state.rePassword}
+                                    />
+                                </div>
+                            </React.Fragment>
+                        )}
+                        {this.state.updated ? (
+                            <button
+                                onClick={this.returnToLogin}
+                                style={{ marginTop: "2rem" }}
+                            >
+                                Return to login
+                            </button>
+                        ) : (
+                            <button>
+                                {this.state.isLoading ? (
+                                    <ReactLoading
+                                        color={"white"}
+                                        type={"spin"}
+                                        height={"4%"}
+                                        width={"4%"}
+                                        className="spinner"
+                                    />
+                                ) : (
+                                    "Reset password"
+                                )}
+                            </button>
+                        )}
                     </div>
                 </form>
             </div>
