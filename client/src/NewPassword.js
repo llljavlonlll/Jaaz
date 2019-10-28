@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 
 export default class NewPassword extends Component {
     state = {
@@ -13,7 +13,7 @@ export default class NewPassword extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        const user_id = jwtDecode(this.props.match.params.id).id;
+        // const user_id = jwtDecode(this.props.match.params.id).id;
 
         this.setState({
             sendingUpdate: true
@@ -22,7 +22,7 @@ export default class NewPassword extends Component {
         axios
             .post("/api/new_password", {
                 password: this.state.password,
-                user_id
+                emailVerHash: this.props.match.params.id
             })
             .then(res => {
                 if (res.status === 200) {

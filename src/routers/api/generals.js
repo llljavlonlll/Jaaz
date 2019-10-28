@@ -4,12 +4,25 @@ const auth = require("../../middleware/auth");
 const transporter = require("./tools/email-transporter");
 const router = new require("express").Router();
 const jwt = require("jsonwebtoken");
+const jwtDecode = require("jwt-decode");
 
 // Renew password
 // POST /api/new_password
 router.post("/new_password", async (req, res) => {
+    const { password, emailVerHash } = req.body;
+    const user_id = jwtDecode(this.props.match.params.id).id;
     try {
-        const user = await User.findById(req.body.user_id);
+        const user = await User.findById(user_id);
+
+        if (emailVerHash !== user.emailVerHash) {
+            return res
+                .status(400)
+                .send({ status: "error", msg: "Invalid or expired link" });
+        }
+
+        user.emailVerHash = "";
+        user.password = password;
+        await user.save();
     } catch (err) {
         res.status(400).send({ status: "error", msg: err.message });
     }
@@ -37,6 +50,13 @@ router.post("/password_reset", async (req, res) => {
             },
             process.env.JWT_SECRET
         );
+
+        // Save token for the user to user for
+        // verification later when creating new password
+        user.emailVerHash = hash;
+        await user.save();
+
+        // Send email with a link + token to create a new password
         const pass_reset_url = `http://www.jbtruckers.com/password_reset/${hash}`;
         const mailOptions = {
             from: "no-reply@jbtruckers.com",

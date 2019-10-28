@@ -75,6 +75,7 @@ export default class SolutionUploader extends Component {
                         </div>
                         <div className="image-preview">
                             <input
+                                required
                                 type="file"
                                 onChange={this.handleInputChange}
                                 name="question"

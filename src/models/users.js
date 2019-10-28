@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
         default: false
     },
     activationHash: String,
+    emailVerHash: String,
     category: {
         type: String,
         required: true,
