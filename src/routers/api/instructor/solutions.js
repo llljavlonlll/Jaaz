@@ -50,7 +50,7 @@ router.post("/unbook/:id", auth, async (req, res) => {
     }
 });
 
-// Add solution to the question selected by id
+// Add solution to the question, selected by id
 // POST /api/solution/:id
 router.post(
     "/:id",
