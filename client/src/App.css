@@ -602,7 +602,41 @@ button:disabled {
     background: #9160da;
     border-bottom: 0.3rem solid #724bad;
 }
-/* ------------------- New Password Component --------------------------- */
+
+/* ------------------- End New Password Component --------------------------- */
+
+/* ------------------- Solution Component --------------------------- */
+
+.solution-box {
+    background-color: #464b5e;
+    margin: 0 auto 3.6rem auto;
+    max-width: 100%;
+    border: 5px solid #3c4251;
+    flex-grow: 1;
+    box-shadow: 0 1px 6px rgb(29, 29, 29);
+}
+
+.solution-box__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.solution-box__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 2.5rem;
+    overflow: auto;
+    overflow-wrap: break-word;
+    height: 46rem;
+}
+
+/* ------------------- End Solution Component --------------------------- */
 
 @media (min-width: 1185px) {
     /* Dashboard */
@@ -635,7 +669,7 @@ button:disabled {
     /* End Customer Question Page */
 
     /* Question details */
-    #student-question-details {
+    .solution-box {
         max-width: 50%;
     }
     /* ENd Question details */

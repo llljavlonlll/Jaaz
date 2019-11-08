@@ -19,12 +19,12 @@ import NavBar from "./components/MobileMenu";
 import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
 import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
 import Footer from "./components/Footer";
+import NewPassword from "./components/NewPassword";
 
 // Integrate Redux
 import { connect } from "react-redux";
 import VerifyEmail from "./components/VerifyEmail";
 import ForgotPassword from "./components/ForgotPassword";
-import NewPassword from "./NewPassword";
 
 class App extends Component {
     render() {

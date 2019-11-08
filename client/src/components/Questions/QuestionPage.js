@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import moment from "moment";
 import ReactLoading from "react-loading";
 import Modal from "react-modal";
 import QuestionDetails from "./QuestionDetails";
@@ -67,30 +68,45 @@ export default class QuestionPage extends Component {
         return (
             <div>
                 <div className="question-page-container">
-                    <div id="student-question-details">
-                        <QuestionDetails {...this.state} />
-                    </div>
-
-                    <div className="box">
-                        <h3 className="box__title">Solution</h3>
-                        <div className="box__container">
+                    <QuestionDetails {...this.state} />
+                    <div className="solution-box">
+                        <h3 className="solution-box__title">Solution</h3>
+                        <div className="solution-box__container">
                             {solution.length > 0 ? (
-                                <ul>
-                                    <li>
-                                        Description: {solution[0].description}
-                                    </li>
-                                    <li>Solved by: {solution[0].solved_by}</li>
-                                    <li>Solved at: {solution[0].solved_at}</li>
-                                    <li>
-                                        <a href="google.com">
+                                <div className="details">
+                                    <div className="details-img">
+                                        <a
+                                            href={`/images/solutions/${solution[0].image}`}
+                                        >
                                             <img
                                                 src={`/images/solutions/${solution[0].image}`}
                                                 alt="Solution"
                                                 width="200"
                                             />
                                         </a>
-                                    </li>
-                                </ul>
+                                    </div>
+                                    <div className="details-info">
+                                        <p>
+                                            Description:{" "}
+                                            {solution[0].description}
+                                        </p>
+                                        <p>
+                                            Uploaded at:{" "}
+                                            {moment(
+                                                solution[0].uploaded_at
+                                            ).format("DD/MM/YYYY")}
+                                        </p>
+                                        <p>
+                                            Solved by: {solution[0].solved_by}
+                                        </p>
+                                        <p>
+                                            Solved at:{" "}
+                                            {moment(
+                                                solution[0].solved_at
+                                            ).format("DD/MM/YYYY")}
+                                        </p>
+                                    </div>
+                                </div>
                             ) : (
                                 <div
                                     style={{
