@@ -29,7 +29,7 @@ class QuestionsListComponent extends Component {
 
     render() {
         return (
-            <div className="box">
+            <div className="box question-list-box">
                 <h3 className="box__title">{this.props.title}</h3>
                 <div className="box__container">
                     {this.state.isLoading ? (

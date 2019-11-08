@@ -361,6 +361,7 @@ button:disabled {
     padding: 1.2rem;
     margin-bottom: 1.6rem;
     border-bottom: 0.3rem solid #272a35;
+    max-width: 100%;
 }
 
 .question-tile:hover {
@@ -372,7 +373,7 @@ button:disabled {
 
 .question-image-container {
     height: 10rem;
-    width: 20rem;
+    min-width: 20rem;
     background-color: #464b5e;
     margin-right: 2rem;
     text-align: center;
@@ -638,6 +639,10 @@ button:disabled {
 
 /* ------------------- End Solution Component --------------------------- */
 
+/* ------------------- Question List Component --------------------------- */
+
+/* ------------------- End Question List Component --------------------------- */
+
 @media (min-width: 1185px) {
     /* Dashboard */
     .container {
@@ -673,6 +678,11 @@ button:disabled {
         max-width: 50%;
     }
     /* ENd Question details */
+
+    /* Question List Box */
+    .question-list-box {
+        max-width: 55%;
+    }
 }
 
 @media (max-width: 530px) {
@@ -720,19 +730,13 @@ button:disabled {
         background-color: #3c4251;
         margin-right: 0;
         text-align: center;
-        width: 100%;
+        min-width: 100%;
         height: 15rem;
         margin-bottom: 1.2rem;
     }
 
     .question-image-container img {
-        border: 1px solid #8357c5;
         max-width: 100%;
-    }
-
-    .question-details {
-        background-color: #464b5e;
-        padding: 1rem 2.5rem 1rem 2.5rem;
     }
 
     .question-details h3 {
