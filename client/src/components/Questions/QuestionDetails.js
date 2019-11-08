@@ -3,7 +3,7 @@ import moment from "moment";
 
 export default function QuestionDetails(props) {
     return (
-        <div className="box">
+        <div className="box question-details-box">
             <h3 className="box__title">Question details</h3>
             <div className="box__container">
                 <div className="details">

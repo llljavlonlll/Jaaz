@@ -675,13 +675,13 @@ button:disabled {
 
     /* Question details */
     .solution-box {
-        max-width: 50%;
+        width: 50%;
     }
     /* ENd Question details */
 
-    /* Question List Box */
-    .question-list-box {
-        max-width: 55%;
+    /* Question Details Box */
+    .question-details-box {
+        width: 50%;
     }
 }
 

@@ -17,10 +17,10 @@ export default function QuestionTileComponent(props) {
                 </div>
                 <div className="question-details">
                     <h3>
-                        {props.description}
-                        {/*props.description.length >= 22
-                        ? props.description.substring(0, 21) + "..."
-                    : props.description*/}
+                        {/*props.description*/}
+                        {props.description.length >= 22
+                            ? props.description.substring(0, 21) + "..."
+                            : props.description}
                     </h3>
                     <div className="question-bullets">
                         <ul>
