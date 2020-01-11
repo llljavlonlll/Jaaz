@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import Cookies from "js-cookie";
 import ReactLoading from "react-loading";
-import UploaderComponent from "./UploaderComponent";
-import QuestionsListComponent from "../Questions/QuestionsListComponent.js";
+import UploaderComponent from "../components/UploaderComponent/UploaderComponent";
+import QuestionsListComponent from "../components/Questions/QuestionsListComponent.js";
 
-class DashboardPage extends Component {
+class StudentPage extends Component {
     state = {
         isUploading: false
     };
@@ -45,4 +45,4 @@ class DashboardPage extends Component {
     }
 }
 
-export default DashboardPage;
+export default StudentPage;

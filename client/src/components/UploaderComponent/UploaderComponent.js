@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { addQuestion } from "../../actions/questionsActions";
 import { connect } from "react-redux";
+import "./UploaderComponent.css";
 
 class UploaderComponent extends Component {
     state = {
@@ -71,11 +72,13 @@ class UploaderComponent extends Component {
 
     render() {
         return (
-            <div className="box box__customer">
-                <h3 className="box__title">Upload your question</h3>
+            <div className="question-uploader">
+                <h3 className="question-uploader__title">
+                    Upload your question
+                </h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="box__container">
-                        <div className="login-component__form__item">
+                    <div className="question-uploader__container">
+                        <div className="question-uploader__input">
                             <label htmlFor="description">Description</label>
                             <input
                                 type="text"
@@ -85,7 +88,7 @@ class UploaderComponent extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <div className="login-component__form__item">
+                        <div className="question-uploader__input">
                             <label htmlFor="subject">Subject</label>
                             <select
                                 value={this.state.subject}

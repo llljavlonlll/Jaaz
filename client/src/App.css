@@ -590,7 +590,7 @@ button:disabled {
 
 /* ------------------- End Solution Component --------------------------- */
 
-@media (min-width: 1185px) {
+@media (min-width: 1150px) {
     /* Dashboard */
     .container {
         max-width: 135rem;

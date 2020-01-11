@@ -1,0 +1,118 @@
+.question-uploader {
+    background-color: #464b5e;
+    margin: 0 auto 3.6rem auto;
+    max-width: 100%;
+    border: 5px solid #3c4251;
+    flex-grow: 1;
+    box-shadow: 0 1px 6px rgb(29, 29, 29);
+}
+
+.question-uploader__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.question-uploader__container {
+    display: flex;
+    flex-direction: column;
+    color: #a5afd7;
+    padding: 2.5rem;
+    overflow: auto;
+    overflow-wrap: break-word;
+    height: 46rem;
+}
+
+.question-uploader__container button {
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    padding: 1.6rem 5rem;
+    margin-top: 3.2rem;
+}
+
+.question-uploader__container button:hover {
+    background: #9160da;
+    border-bottom: 0.3rem solid #724bad;
+}
+
+.question-uploader__input {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1.6rem 0;
+}
+
+.question-uploader__input label {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.question-uploader__input input,
+.question-uploader__input select {
+    background: #333745;
+    border: none;
+    color: #a5afd7;
+    border-bottom: 0.3rem solid #272a35;
+    flex-grow: 1;
+    padding: 1.2rem;
+}
+
+.image-preview {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #333745;
+    padding: 2.5rem;
+    border-bottom: 0.3rem solid #272a35;
+}
+
+.image-preview input {
+    padding: 5rem;
+    border: 2px dashed #8357c5;
+}
+
+.image-preview img {
+    max-width: 60rem;
+    max-height: 30rem;
+    margin: 3rem auto 0 auto;
+    border: 2px solid #8357c5;
+}
+
+@media (min-width: 1150px) {
+    .container {
+        max-width: 135rem;
+    }
+    .dash-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .question-uploader {
+        max-width: 40rem;
+        margin-right: 2rem;
+    }
+}
+
+@media (max-width: 530px) {
+    .question-uploader__container {
+        padding: 1.3rem;
+        font-size: 1.2rem;
+        height: auto;
+    }
+    .image-preview input {
+        padding: 3rem;
+    }
+    .question-uploader__input label {
+        font-size: 1.5rem;
+    }
+    .question-uploader__title {
+        font-size: 2rem;
+        padding: 1.3rem;
+    }
+}

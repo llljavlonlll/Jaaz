@@ -12,7 +12,7 @@ import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import MyProfilePage from "./components/MyProfilePage/MyProfilePage";
 import SignUpPage from "./components/SignUpPage";
-import DashboardPage from "./components/Dashboard/DashboardPage";
+import StudentPage from "./screens/StudentPage";
 import QuestionPage from "./components/Questions/QuestionPage";
 import NotFound from "./components/NotFound";
 import NavBar from "./components/MobileMenu";
@@ -33,7 +33,7 @@ class App extends Component {
         if (this.props.category === "customer") {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={DashboardPage} />
+                    <Route exact path="/" component={StudentPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/profile" component={MyProfilePage} />
@@ -72,7 +72,7 @@ class App extends Component {
         } else {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={DashboardPage} />
+                    <Route exact path="/" component={StudentPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/verify/:id" component={VerifyEmail} />

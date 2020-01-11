@@ -81,3 +81,51 @@
     border: none;
     border-bottom: 0.3rem solid #66439b;
 }
+
+@media (max-width: 530px) {
+    .profile-box__content__field {
+        padding: 0;
+    }
+    .profile-box__content__field h4 {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+        font-weight: 800;
+    }
+
+    .profile-box__content__field p {
+        font-size: 1.1rem;
+    }
+
+    .profile-box__content__field input {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .verification {
+        font-size: 1rem;
+    }
+    .profile-box__container {
+        padding: 1.3rem;
+    }
+    .profile-box__header {
+        padding: 1.3rem;
+    }
+    .profile-box__header__title {
+        font-size: 2rem;
+    }
+    .profile-box__header button {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .profile-box__container {
+        padding: 0.8rem;
+    }
+    .profile-box__header {
+        padding: 0.8rem;
+    }
+    .profile-box__content__field input {
+        padding: 0.8rem;
+    }
+}

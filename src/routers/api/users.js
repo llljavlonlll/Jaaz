@@ -88,7 +88,11 @@ router.patch("/me", auth, async (req, res) => {
             user[update] = req.body[update];
         });
         await user.save();
-        res.send({ name: user.name, email: user.email });
+        res.send({
+            name: user.name,
+            email: user.email,
+            isVerified: user.isVerified
+        });
     } catch (e) {
         res.status(400).send();
     }

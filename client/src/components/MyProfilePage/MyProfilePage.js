@@ -9,18 +9,27 @@ export default class MyProfilePage extends Component {
         email: "",
         account_type: "",
         balance: "",
-        isVerified: true,
+        isVerified: false,
         isLoading: true,
+        isSaving: false,
         editMode: false
     };
 
-    componentDidMount() {
+    fetchData = () => {
+        this.setState({
+            isLoading: true
+        });
         axios.get("/api/user/me").then(res => {
             if (res.status === 200) {
                 this.setState({
                     name: res.data.name,
                     email: res.data.email,
-                    account_type: res.data.category,
+                    account_type:
+                        res.data.category[0].toUpperCase() +
+                        res.data.category.substring(
+                            1,
+                            res.data.category.length
+                        ),
                     balance: res.data.balance,
                     isVerified: res.data.isVerified,
                     isLoading: false
@@ -29,6 +38,10 @@ export default class MyProfilePage extends Component {
                 throw new Error(res.error);
             }
         });
+    };
+
+    componentDidMount() {
+        this.fetchData();
     }
 
     inputChangeHandler = event => {
@@ -62,6 +75,8 @@ export default class MyProfilePage extends Component {
                     editMode: false
                 });
             });
+
+        this.fetchData();
     };
 
     render() {
@@ -78,96 +93,148 @@ export default class MyProfilePage extends Component {
                     )}
                 </div>
                 <div className="profile-box__container">
-                    {this.state.isLoading ? (
-                        <ReactLoading color={"#8357c5"} type={"spin"} />
-                    ) : (
-                        <div className="profile-box__content">
-                            <div className="profile-box__content__field">
-                                <h4>Full Name</h4>
-                                {this.state.editMode ? (
-                                    <input
-                                        type="text"
-                                        value={this.state.name}
-                                        onChange={this.inputChangeHandler}
-                                        name="name"
-                                    />
-                                ) : (
-                                    <div>{this.state.name}</div>
-                                )}
-                            </div>
-
-                            <div className="profile-box__content__field">
+                    <div className="profile-box__content">
+                        <div className="profile-box__content__field">
+                            <p>Full Name</p>
+                            {this.state.editMode ? (
+                                <input
+                                    type="text"
+                                    value={this.state.name}
+                                    onChange={this.inputChangeHandler}
+                                    name="name"
+                                />
+                            ) : (
                                 <h4>
-                                    Email{" "}
-                                    {this.state.isVerified ? (
-                                        <span
-                                            style={{
-                                                color: "white",
-                                                fontWeight: "500",
-                                                background: "green",
-                                                borderRadius: "3px",
-                                                padding: "0 4px"
-                                            }}
-                                        >
-                                            verified
-                                        </span>
+                                    {this.state.isLoading ? (
+                                        <ReactLoading
+                                            color="#8357c5"
+                                            type="spin"
+                                            width={"1.8rem"}
+                                            height={"1.8rem"}
+                                        />
                                     ) : (
-                                        <span
-                                            style={{
-                                                color: "white",
-                                                fontWeight: "500",
-                                                background: "red",
-                                                borderRadius: "3px",
-                                                padding: "0 4px"
-                                            }}
-                                        >
-                                            unverified
-                                        </span>
+                                        this.state.name
                                     )}
                                 </h4>
-
-                                {this.state.editMode ? (
-                                    <input
-                                        type="email"
-                                        value={this.state.email}
-                                        onChange={this.inputChangeHandler}
-                                        name="email"
-                                    />
-                                ) : (
-                                    <div>{this.state.email}</div>
-                                )}
-                            </div>
-
-                            <div className="profile-box__content__field">
-                                <h4>Account Type</h4>
-                                <div>{this.state.account_type}</div>
-                            </div>
-
-                            <div className="profile-box__content__field">
-                                <h4>Balance</h4>
-                                <div>{this.state.balance} NP</div>
-                            </div>
-
-                            {this.state.editMode && (
-                                <div className="profile-box__content__buttons-container">
-                                    <button
-                                        className="button-cancel"
-                                        onClick={() =>
-                                            this.setState({ editMode: false })
-                                        }
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        className="button-save"
-                                        onClick={this.onSaveChanges}
-                                    >
-                                        Save
-                                    </button>
-                                </div>
                             )}
                         </div>
-                    )}
+
+                        <div className="profile-box__content__field">
+                            <p>
+                                Email{" "}
+                                {this.state.isVerified ? (
+                                    <span
+                                        style={{
+                                            color: "white",
+                                            fontWeight: "500",
+                                            background: "green",
+                                            borderRadius: "3px",
+                                            padding: "0 4px"
+                                        }}
+                                        className="verification"
+                                    >
+                                        verified
+                                    </span>
+                                ) : (
+                                    <span
+                                        style={{
+                                            color: "white",
+                                            fontWeight: "500",
+                                            background: "red",
+                                            borderRadius: "3px",
+                                            padding: "0 4px"
+                                        }}
+                                        className="verification"
+                                    >
+                                        unverified
+                                    </span>
+                                )}
+                            </p>
+
+                            {this.state.editMode ? (
+                                <input
+                                    type="email"
+                                    value={this.state.email}
+                                    onChange={this.inputChangeHandler}
+                                    name="email"
+                                />
+                            ) : (
+                                <h4>
+                                    {this.state.isLoading ? (
+                                        <ReactLoading
+                                            color="#8357c5"
+                                            type="spin"
+                                            width={"1.8rem"}
+                                            height={"1.8rem"}
+                                        />
+                                    ) : (
+                                        this.state.email
+                                    )}
+                                </h4>
+                            )}
+                        </div>
+
+                        <div className="profile-box__content__field">
+                            <p>Account Type</p>
+                            <h4>
+                                {this.state.isLoading ? (
+                                    <ReactLoading
+                                        color="#8357c5"
+                                        type="spin"
+                                        width={"1.8rem"}
+                                        height={"1.8rem"}
+                                    />
+                                ) : (
+                                    this.state.account_type
+                                )}
+                            </h4>
+                        </div>
+
+                        <div className="profile-box__content__field">
+                            <p>Balance</p>
+                            <h4>
+                                {this.state.isLoading ? (
+                                    <ReactLoading
+                                        color="#8357c5"
+                                        type="spin"
+                                        width={"1.8rem"}
+                                        height={"1.8rem"}
+                                    />
+                                ) : (
+                                    `${this.state.balance} NP`
+                                )}
+                            </h4>
+                        </div>
+
+                        {this.state.editMode && (
+                            <div className="profile-box__content__buttons-container">
+                                <button
+                                    className="button-cancel"
+                                    onClick={() =>
+                                        this.setState({ editMode: false })
+                                    }
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    className="button-save"
+                                    onClick={this.onSaveChanges}
+                                >
+                                    {this.state.isSaving ? (
+                                        <ReactLoading
+                                            color="white"
+                                            type={"spin"}
+                                            height={"13%"}
+                                            width={"13%"}
+                                            className="spinner"
+                                        />
+                                    ) : (
+                                        "Save"
+                                    )}
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         );
