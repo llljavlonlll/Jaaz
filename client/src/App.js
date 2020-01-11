@@ -10,7 +10,7 @@ import "./App.css";
 // Components
 import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
-import MyProfilePage from "./components/MyProfilePage";
+import MyProfilePage from "./components/MyProfilePage/MyProfilePage";
 import SignUpPage from "./components/SignUpPage";
 import DashboardPage from "./components/Dashboard/DashboardPage";
 import QuestionPage from "./components/Questions/QuestionPage";

@@ -49,6 +49,11 @@ const userSchema = mongoose.Schema({
         minlength: 5,
         maxlength: 255
     },
+    balance: {
+        type: Number,
+        required: true,
+        default: 0.0
+    },
     tokens: [
         {
             token: {
@@ -67,7 +72,8 @@ userSchema.methods.generateAuthToken = async function(action) {
             user: {
                 name: this.name,
                 email: this.email,
-                category: this.category
+                category: this.category,
+                balance: this.balance
             }
         },
         process.env.JWT_SECRET

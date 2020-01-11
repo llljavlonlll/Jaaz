@@ -102,7 +102,8 @@ router.post("/sign-up", async (req, res) => {
             .send({
                 name: user.name,
                 email: user.email,
-                category: user.category
+                category: user.category,
+                balance: user.balance
             });
 
         const hash = user.activationHash;
@@ -152,7 +153,8 @@ router.post("/login", async (req, res) => {
         res.cookie("token", token).send({
             name: user.name,
             email: user.email,
-            category: user.category
+            category: user.category,
+            balance: user.balance
         });
     } catch (err) {
         res.status(400).send({ err: err.message });

@@ -302,55 +302,6 @@ button:disabled {
 
 /* ----------------- End QUestion Uploader Component ---------------------- */
 
-/* ----------------- Profile Page Box ---------------------- */
-.profile-box {
-    background-color: #464b5e;
-    margin: 0 auto 3.6rem auto;
-    max-width: 70rem;
-    border: 5px solid #3c4251;
-    box-shadow: 0 1px 6px rgb(29, 29, 29);
-}
-
-.profile-box__header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #3c4251;
-    margin: 0;
-    padding: 1.6rem 2.5rem;
-    color: #a5afd7;
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.profile-box__header__title {
-    margin: 0;
-}
-
-.profile-box__header button {
-    background: none;
-    border: none;
-    color: #a5afd7;
-}
-
-.profile-box__container {
-    display: flex;
-    flex-direction: column;
-    color: #a5afd7;
-    padding: 2.5rem;
-    overflow: auto;
-    overflow-wrap: break-word;
-}
-
-.profile-info h4 {
-    margin: 1.6rem 0;
-}
-
-.profile-info div {
-    color: white;
-}
-/*----------------- Profile Page Box -----------------*/
-
 /* ----------------- Question Tiles Component ---------------------- */
 
 .question-tile {
@@ -638,10 +589,6 @@ button:disabled {
 }
 
 /* ------------------- End Solution Component --------------------------- */
-
-/* ------------------- Question List Component --------------------------- */
-
-/* ------------------- End Question List Component --------------------------- */
 
 @media (min-width: 1185px) {
     /* Dashboard */

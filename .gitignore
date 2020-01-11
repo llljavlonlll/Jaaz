@@ -3,5 +3,6 @@ package-lock.json
 .env
 /questions
 /solutions
+/postman
 keys
 Technologies used.txt

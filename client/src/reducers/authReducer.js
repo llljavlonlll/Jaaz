@@ -8,7 +8,8 @@ let initialState = {
     userData: {
         name: "",
         email: "",
-        category: ""
+        category: "",
+        balance: 0
     }
 };
 
@@ -42,7 +43,8 @@ export default (state = initialState, action) => {
                 userData: {
                     name: "",
                     email: "",
-                    category: ""
+                    category: "",
+                    balance: 0
                 }
             };
         default:
