@@ -109,12 +109,12 @@ class UploaderComponent extends Component {
                                 name="question"
                                 key={this.state.inputKey}
                             />
-                            {/*this.state.filePreview && (
+                            {this.state.filePreview && (
                                 <img
                                     src={this.state.filePreview}
                                     alt="Uploaded question"
                                 />
-                            )*/}
+                            )}
                         </div>
                         <button>Upload Question</button>
                     </div>

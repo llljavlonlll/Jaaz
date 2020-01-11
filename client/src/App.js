@@ -18,7 +18,7 @@ import NotFound from "./components/NotFound";
 import NavBar from "./components/MobileMenu";
 import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
 import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import NewPassword from "./components/NewPassword";
 
 // Integrate Redux

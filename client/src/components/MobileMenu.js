@@ -29,6 +29,7 @@ class NavBar extends Component {
             .catch(err => {
                 console.log(err);
             });
+        this.props.dispatch(toggleMenu(false));
     };
 
     render() {

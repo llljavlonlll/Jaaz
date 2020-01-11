@@ -32,6 +32,10 @@ button:disabled {
     cursor: default;
 }
 
+:focus {
+    outline: none;
+}
+
 .container {
     max-width: 70rem;
     margin: 0 auto;
@@ -55,6 +59,7 @@ button:disabled {
 .navbar__title {
     margin: 0;
     font-size: 3rem;
+    cursor: pointer;
 }
 
 .header a {
@@ -325,13 +330,14 @@ button:disabled {
 .question-image-container {
     height: 10rem;
     min-width: 20rem;
+    max-width: 20rem;
     background-color: #464b5e;
     margin-right: 2rem;
     text-align: center;
 }
 
 .question-image-container img {
-    max-height: 100%;
+    max-width: 100%;
 }
 
 .question-details {

@@ -127,7 +127,7 @@ export default class MyProfilePage extends Component {
                                         style={{
                                             color: "white",
                                             fontWeight: "500",
-                                            background: "green",
+                                            background: "#00b894",
                                             borderRadius: "3px",
                                             padding: "0 4px"
                                         }}
@@ -140,7 +140,7 @@ export default class MyProfilePage extends Component {
                                         style={{
                                             color: "white",
                                             fontWeight: "500",
-                                            background: "red",
+                                            background: "#963f3f",
                                             borderRadius: "3px",
                                             padding: "0 4px"
                                         }}
