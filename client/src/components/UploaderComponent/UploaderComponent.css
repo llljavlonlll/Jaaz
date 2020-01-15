@@ -55,7 +55,7 @@
 
 .question-uploader__input input,
 .question-uploader__input select {
-    background: #333745;
+    background-color: #333745;
     border: none;
     color: #a5afd7;
     border-bottom: 0.3rem solid #272a35;
