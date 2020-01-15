@@ -1,0 +1,27 @@
+/* ------------------- Email verification box--------------------- */
+
+.verification-box {
+    background-color: #464b5e;
+    margin: 0 auto 3.6rem auto;
+    max-width: 100%;
+    border: 5px solid #3c4251;
+    flex-grow: 1;
+    box-shadow: 0 1px 6px rgb(29, 29, 29);
+}
+
+.verification-box__title {
+    background-color: #3c4251;
+    margin: 0;
+    text-align: center;
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.verification-box__container {
+    text-align: center;
+    color: #a5afd7;
+    padding: 2.5rem;
+}
+/* ------------------- End Email verification box--------------------- */

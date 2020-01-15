@@ -1,0 +1,37 @@
+.header {
+    color: white;
+    background: #20222b;
+    margin-bottom: 3.6rem;
+    padding: 1.6rem 0;
+    box-shadow: 0 1px 6px black;
+}
+
+.navbar__title {
+    margin: 0;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.header a {
+    text-decoration: none;
+    color: #a5afd7;
+    margin: 0 0.5rem;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar__links {
+    padding: 0.9rem;
+}
+
+.navbar__links > button {
+    color: #a5afd7;
+    background: none;
+    border: none;
+    margin: 0 0.5rem;
+    padding: 0;
+}

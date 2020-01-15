@@ -18,6 +18,7 @@ router.post(
             owner: req.user._id,
             image_name: req.file.filename
         });
+        const user = req.user;
 
         try {
             await sharp(req.file.path)
@@ -30,7 +31,13 @@ router.post(
                 );
             fs.unlinkSync(req.file.path);
 
+            // Charge user account for the question
+            user.balance = user.balance - 3000;
+            await user.save();
+
+            // Post question
             await question.save();
+
             res.send(question);
         } catch (err) {
             res.status(400).send(err.message);

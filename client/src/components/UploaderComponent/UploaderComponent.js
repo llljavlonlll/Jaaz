@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { addQuestion } from "../../actions/questionsActions";
+import { addQuestion } from "../../store/actions/questionsActions";
 import { connect } from "react-redux";
 import "./UploaderComponent.css";
 
@@ -110,10 +110,12 @@ class UploaderComponent extends Component {
                                 key={this.state.inputKey}
                             />
                             {this.state.filePreview && (
-                                <img
-                                    src={this.state.filePreview}
-                                    alt="Uploaded question"
-                                />
+                                <div className="image-preview__image-container">
+                                    <img
+                                        src={this.state.filePreview}
+                                        alt="Uploaded question"
+                                    />
+                                </div>
                             )}
                         </div>
                         <button>Upload Question</button>

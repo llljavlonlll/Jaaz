@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import axios from "axios";
 
-export default class VerifyEmail extends Component {
+import "./VerifyEmailPage.css";
+
+export default class VerifyEmailPage extends Component {
     state = {
         isVerified: false,
         error: undefined
@@ -20,7 +22,7 @@ export default class VerifyEmail extends Component {
             })
             .catch(err => {
                 this.setState({
-                    error: "Error verifying you email"
+                    error: "Error verifying your email"
                 });
             });
     }

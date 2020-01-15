@@ -1,0 +1,26 @@
+.pagination {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination__button {
+    background-color: transparent;
+    border: none;
+    color: #a5afd7;
+    padding: 0.8rem;
+}
+
+.pagination__button--selected {
+    background-color: #8357c5;
+    border: none;
+    color: white;
+    padding: 0.8rem;
+}
+
+/* .pagination__direction-button {
+    background-color: transparent;
+    border: none;
+    color: #a5afd7;
+    margin: 0 2.5rem;
+} */

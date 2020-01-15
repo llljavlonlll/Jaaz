@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { userLogout } from "../actions/authActions";
+import { userLogout } from "../../store/actions/authActions";
 import { withRouter } from "react-router-dom";
 
 class NavBar extends Component {

@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from "redux";
 import { reducer as burgerMenu } from "redux-burger-menu";
-import authReducer from "../reducers/authReducer";
-import questionsReducer from "../reducers/questionsReducer";
+import authReducer from "./reducers/authReducer";
+import questionsReducer from "./reducers/questionsReducer";
 
-const appReducer = combineReducers({
+const rootReducer = combineReducers({
     auth: authReducer,
     questions: questionsReducer,
     burgerMenu
@@ -11,7 +11,7 @@ const appReducer = combineReducers({
 
 export default () => {
     const store = createStore(
-        appReducer,
+        rootReducer,
         window.__REDUX_DEVTOOLS_EXTENSION__ &&
             window.__REDUX_DEVTOOLS_EXTENSION__()
     );

@@ -33,8 +33,8 @@ const storage = multer.diskStorage({
 // Accept only JPG or PNG
 const fileFilter = (req, file, cb) => {
     if (
-        file.originalname.endsWith(".jpg") ||
-        file.originalname.endsWith(".png")
+        file.originalname.toLowerCase().endsWith(".jpg") ||
+        file.originalname.toLowerCase().endsWith(".png")
     ) {
         return cb(undefined, true);
     }

@@ -10,7 +10,7 @@ body {
     color: white;
     min-height: 100%;
     position: relative;
-    padding-bottom: 10rem;
+    padding-bottom: 6rem;
 }
 
 .footer {
@@ -59,151 +59,9 @@ select {
     border-bottom: 3px solid #8357c5;
 }
 
-/* ----------------- Header ---------------------- */
-.header {
-    color: white;
-    background: #20222b;
-    margin-bottom: 3.6rem;
-    padding: 1.6rem 0;
-    box-shadow: 0 1px 6px black;
-}
-
-.navbar__title {
-    margin: 0;
-    font-size: 3rem;
-    cursor: pointer;
-}
-
-.header a {
-    text-decoration: none;
-    color: #a5afd7;
-    margin: 0 0.5rem;
-}
-
-.navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.navbar__links {
-    padding: 0.9rem;
-}
-
-.navbar__links > button {
-    color: #a5afd7;
-    background: none;
-    border: none;
-    margin: 0 0.5rem;
-    padding: 0;
-}
-
-/* ----------------- End Header ---------------------- */
-
-/* ----------------- Login Page ---------------------- */
-.login-component {
-    background-color: #464b5e;
-    margin: 0 auto;
-    max-width: 45rem;
-}
-
-.login-component__title {
-    background-color: #3c4251;
-    margin: 0;
-    text-align: center;
-    padding: 1.6rem;
-    color: #a5afd7;
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.login-component__container {
-    display: flex;
-    flex-direction: column;
-    color: #a5afd7;
-    padding: 3.2rem;
-}
-
-.login-error {
-    background-color: #333745;
-    text-align: center;
-    color: #ff8080;
-    border: 1px solid #ff8080;
-    border-radius: 0.5rem;
-    margin-bottom: 1.6rem;
-}
-
-.login-error p {
-    margin: 0.5rem;
-}
-
-.login-component__form__item {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 1.6rem 0;
-}
-
-.login-component__form__item label {
-    font-size: 2rem;
-    margin-bottom: 0.3rem;
-}
-
-.login-component__form__item input,
-.login-component__form__item select {
-    background-color: #333745;
-    border: none;
-    color: #a5afd7;
-    border-bottom: 0.3rem solid #272a35;
-    flex-grow: 1;
-    padding: 1.2rem;
-}
-
-.password-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-
-.password-options p,
-.password-options label {
-    font-size: 1.3rem;
-    margin: 0;
-}
-
-.password-options p {
-    text-decoration: underline;
-}
-
-.password-options p > a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.password-options input {
-    margin-right: 0.5rem;
-}
-
-.login-component__container button {
-    margin-top: 3.2rem;
-    background: #8357c5;
-    border: none;
-    border-bottom: 0.3rem solid #66439b;
-    color: white;
-    font-weight: 500;
-    padding: 1.6rem;
-}
-
-.login-component__container button:hover {
-    background: #9160da;
-    border-bottom: 0.3rem solid #724bad;
-}
-
 .spinner {
     margin: 0 auto;
 }
-
-/* ----------------- End Login Page ---------------------- */
 
 /* ----------------- Action Box ---------------------- */
 .action-box {
@@ -294,27 +152,6 @@ select {
 .box__container button:hover {
     background: #9160da;
     border-bottom: 0.3rem solid #724bad;
-}
-
-.image-preview {
-    margin-top: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    background-color: #333745;
-    padding: 2.5rem;
-    border-bottom: 0.3rem solid #272a35;
-}
-
-.image-preview input {
-    padding: 5rem;
-    border: 2px dashed #8357c5;
-}
-
-.image-preview img {
-    max-width: 60rem;
-    max-height: 30rem;
-    margin: 3rem auto 0 auto;
-    border: 2px solid #8357c5;
 }
 
 /* ----------------- End QUestion Uploader Component ---------------------- */
@@ -433,149 +270,6 @@ select {
 }
 /* ----------------- End Solution Component ---------------------- */
 
-/* ------------------- Email verification box--------------------- */
-
-.verification-box {
-    background-color: #464b5e;
-    margin: 0 auto 3.6rem auto;
-    max-width: 100%;
-    border: 5px solid #3c4251;
-    flex-grow: 1;
-    box-shadow: 0 1px 6px rgb(29, 29, 29);
-}
-
-.verification-box__title {
-    background-color: #3c4251;
-    margin: 0;
-    text-align: center;
-    padding: 1.6rem;
-    color: #a5afd7;
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.verification-box__container {
-    text-align: center;
-    color: #a5afd7;
-    padding: 2.5rem;
-}
-/* ------------------- End Email verification box--------------------- */
-
-/* ------------------- Password Reset Form --------------------------- */
-.password-reset-box {
-    background-color: #464b5e;
-    margin: 0 auto 3.6rem auto;
-    max-width: 50rem;
-    border: 5px solid #3c4251;
-    flex-grow: 1;
-    box-shadow: 0 1px 6px rgb(29, 29, 29);
-}
-
-.password-reset-box__title {
-    background-color: #3c4251;
-    margin: 0;
-    text-align: center;
-    padding: 1.6rem;
-    color: #a5afd7;
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.password-reset-box__container {
-    display: flex;
-    flex-direction: column;
-    color: #a5afd7;
-    padding: 2.5rem;
-    overflow: auto;
-    overflow-wrap: break-word;
-}
-
-.password-reset-box__container button {
-    background: #8357c5;
-    border: none;
-    border-bottom: 0.3rem solid #66439b;
-    color: white;
-    font-weight: 500;
-    padding: 1.6rem 5rem;
-    margin-top: 1.6rem;
-}
-
-.password-reset-box__container button:hover {
-    background: #9160da;
-    border-bottom: 0.3rem solid #724bad;
-}
-
-/* ------------------- End Password Reset Form --------------------------- */
-
-/* ------------------- Uploading overlay --------------------------- */
-.upload-overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: block; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-}
-
-.upload-overlay div {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-/* ------------------- End Uploading overlay --------------------------- */
-
-/* ------------------- New Password Component --------------------------- */
-.new-password {
-    background-color: #464b5e;
-    margin: 0 auto 3.6rem auto;
-    max-width: 100%;
-    border: 5px solid #3c4251;
-    flex-grow: 1;
-    box-shadow: 0 1px 6px rgb(29, 29, 29);
-}
-
-.new-password__title {
-    background-color: #3c4251;
-    margin: 0;
-    text-align: center;
-    padding: 1.6rem;
-    color: #a5afd7;
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.new-password__container {
-    display: flex;
-    flex-direction: column;
-    color: #a5afd7;
-    padding: 2.5rem;
-    overflow: auto;
-    overflow-wrap: break-word;
-    height: 46rem;
-}
-
-.new-password__container button {
-    background: #8357c5;
-    border: none;
-    border-bottom: 0.3rem solid #66439b;
-    color: white;
-    font-weight: 500;
-    padding: 1.6rem 5rem;
-    margin-top: 3.2rem;
-}
-
-.new-password__container button:hover {
-    background: #9160da;
-    border-bottom: 0.3rem solid #724bad;
-}
-
-/* ------------------- End New Password Component --------------------------- */
-
 /* ------------------- Solution Component --------------------------- */
 
 .solution-box {
@@ -617,6 +311,7 @@ select {
     .dash-container {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
     }
 
     .box__customer {

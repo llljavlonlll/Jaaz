@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { loginSuccess } from "../actions/authActions";
-import { connect } from "react-redux";
 import ReactLoading from "react-loading";
+import { connect } from "react-redux";
+import axios from "axios";
 
-class SignUpPage extends Component {
+import { loginSuccess } from "../../store/actions/authActions";
+
+class SignupPage extends Component {
     state = {
         name: "",
         email: "",
@@ -165,4 +166,4 @@ class SignUpPage extends Component {
     }
 }
 
-export default connect()(SignUpPage);
+export default connect()(SignupPage);

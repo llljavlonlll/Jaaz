@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import Cookies from "js-cookie";
 import ReactLoading from "react-loading";
-import UploaderComponent from "../components/UploaderComponent/UploaderComponent";
-import QuestionsListComponent from "../components/Questions/QuestionsListComponent.js";
+import UploaderComponent from "../../components/UploaderComponent/UploaderComponent";
+import QuestionsListComponent from "../../components/QuestionsListComponent/QuestionsListComponent";
+import "./StudentMainPage.css";
 
 class StudentPage extends Component {
     state = {

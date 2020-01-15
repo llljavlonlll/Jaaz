@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-import { loginSuccess } from "../actions/authActions";
+import { loginSuccess } from "../../store/actions/authActions";
 import ReactLoading from "react-loading";
+
+import "./LoginPage.css";
 
 class LoginPage extends Component {
     state = {

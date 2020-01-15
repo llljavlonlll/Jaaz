@@ -8,23 +8,23 @@ import "normalize.css/normalize.css";
 import "./App.css";
 
 // Components
-import Header from "./components/Header";
-import LoginPage from "./components/LoginPage";
-import MyProfilePage from "./components/MyProfilePage/MyProfilePage";
-import SignUpPage from "./components/SignUpPage";
-import StudentPage from "./screens/StudentPage";
+import Header from "./components/Header/Header";
+import LoginPage from "./screens/LoginPage/LoginPage";
+import MyProfilePage from "./screens/MyProfilePage/MyProfilePage";
+import SignupPage from "./screens/SignupPage/SignupPage";
+import StudentPage from "./screens/StudentMainPage/StudentMainPage";
 import QuestionPage from "./components/Questions/QuestionPage";
-import NotFound from "./components/NotFound";
-import NavBar from "./components/MobileMenu";
+import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
+import NavBar from "./components/BurgerMenu/MobileMenu";
 import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
 import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
 import Footer from "./components/Footer/Footer";
-import NewPassword from "./components/NewPassword";
+import NewPassword from "./screens/NewPasswordPage/NewPassword";
 
 // Integrate Redux
 import { connect } from "react-redux";
-import VerifyEmail from "./components/VerifyEmail";
-import ForgotPassword from "./components/ForgotPassword";
+import VerifyEmailPage from "./screens/VerifyEmailPage/VerifyEmailPage";
+import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage";
 
 class App extends Component {
     render() {
@@ -35,17 +35,17 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={StudentPage} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/signup" component={SignUpPage} />
+                    <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />
                     <Route path="/question/:id" component={QuestionPage} />
-                    <Route path="/verify/:id" component={VerifyEmail} />
+                    <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route
                         exact
                         path="/password_reset"
-                        component={ForgotPassword}
+                        component={ForgotPasswordPage}
                     />
                     <Route path="/password_reset/:id" component={NewPassword} />
-                    <Route path="/*" component={NotFound} />
+                    <Route path="/*" component={NotFoundPage} />
                 </Switch>
             );
         } else if (this.props.category === "instructor") {
@@ -53,20 +53,20 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={InstructorDashboard} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/signup" component={SignUpPage} />
+                    <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />
                     <Route
                         path="/question/:id"
                         component={InstructorQuestion}
                     />
-                    <Route path="/verify/:id" component={VerifyEmail} />
+                    <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route
                         exact
                         path="/password_reset"
-                        component={ForgotPassword}
+                        component={ForgotPasswordPage}
                     />
                     <Route path="/password_reset/:id" component={NewPassword} />
-                    <Route path="/*" component={NotFound} />
+                    <Route path="/*" component={NotFoundPage} />
                 </Switch>
             );
         } else {
@@ -74,15 +74,15 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={StudentPage} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/signup" component={SignUpPage} />
-                    <Route path="/verify/:id" component={VerifyEmail} />
+                    <Route path="/signup" component={SignupPage} />
+                    <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route
                         exact
                         path="/password_reset"
-                        component={ForgotPassword}
+                        component={ForgotPasswordPage}
                     />
                     <Route path="/password_reset/:id" component={NewPassword} />
-                    <Route path="/*" component={NotFound} />
+                    <Route path="/*" component={NotFoundPage} />
                 </Switch>
             );
         }

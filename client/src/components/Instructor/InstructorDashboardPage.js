@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Cookies from "js-cookie";
 import { Redirect } from "react-router";
-import QuestionsListComponent from "../Questions/QuestionsListComponent";
+import QuestionsListComponent from "../QuestionsListComponent/QuestionsListComponent";
 import BookedQuestionsList from "./BookedQuestionsList";
 import CompletedQuestionsList from "./CompletedQuestionsList";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";

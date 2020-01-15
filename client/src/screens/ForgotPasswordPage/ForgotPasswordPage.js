@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
 
-export default class ForgotPassword extends Component {
+import "./ForgotPasswordPage.css";
+
+export default class ForgotPasswordPage extends Component {
     state = {
         email: "",
         sendLoading: false,
