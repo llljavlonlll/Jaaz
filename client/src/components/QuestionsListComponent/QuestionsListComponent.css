@@ -10,7 +10,7 @@
 
 .questions-list__content {
     display: flex;
-    height: 83rem;
+    height: 87rem;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -40,5 +40,8 @@
     }
     .questions-list__content {
         height: 100%;
+    }
+    .questions-list__container {
+        padding: 0 1.6rem;
     }
 }
