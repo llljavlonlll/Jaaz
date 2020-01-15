@@ -47,6 +47,22 @@
     padding: 0 10px;
 }
 
+.profile-box__content__field--balance {
+    display: flex;
+    flex-direction: row;
+}
+.profile-box__content__field--balance button {
+    align-self: center;
+    background: #8357c5;
+    border: none;
+    border-bottom: 0.3rem solid #66439b;
+    color: white;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-right: 1.6rem;
+    padding: 0.8rem 1.6rem;
+}
+
 .profile-box__content__field input {
     background: #333745;
     border: none;
@@ -115,6 +131,11 @@
     }
     .profile-box__header button {
         font-size: 1.3rem;
+    }
+    .profile-box__content__field--balance button {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+        margin-right: 0.8rem;
     }
 }
 

@@ -26,7 +26,7 @@
     overflow-wrap: break-word;
 }
 
-.question-uploader__container button {
+.question-uploader__container__button {
     background: #8357c5;
     border: none;
     border-bottom: 0.3rem solid #66439b;
@@ -34,11 +34,17 @@
     font-weight: 500;
     padding: 1.6rem 5rem;
     margin-top: 3.2rem;
+    cursor: pointer;
 }
 
-.question-uploader__container button:hover {
+.question-uploader__container__button:hover {
     background: #9160da;
     border-bottom: 0.3rem solid #724bad;
+}
+
+.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
 }
 
 .question-uploader__input {

@@ -127,7 +127,7 @@ export default class MyProfilePage extends Component {
                                         style={{
                                             color: "white",
                                             fontWeight: "500",
-                                            background: "#00b894",
+                                            background: "green",
                                             borderRadius: "3px",
                                             padding: "0 4px"
                                         }}
@@ -192,18 +192,21 @@ export default class MyProfilePage extends Component {
 
                         <div className="profile-box__content__field">
                             <p>Balance</p>
-                            <h4>
-                                {this.state.isLoading ? (
-                                    <ReactLoading
-                                        color="#8357c5"
-                                        type="spin"
-                                        width={"1.8rem"}
-                                        height={"1.8rem"}
-                                    />
-                                ) : (
-                                    `${this.state.balance} NP`
-                                )}
-                            </h4>
+                            <div className="profile-box__content__field--balance">
+                                <button>Buy credit</button>
+                                <h4>
+                                    {this.state.isLoading ? (
+                                        <ReactLoading
+                                            color="#8357c5"
+                                            type="spin"
+                                            width={"1.8rem"}
+                                            height={"1.8rem"}
+                                        />
+                                    ) : (
+                                        `${this.state.balance} NP`
+                                    )}
+                                </h4>
+                            </div>
                         </div>
 
                         {this.state.editMode && (
