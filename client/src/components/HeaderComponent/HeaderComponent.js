@@ -6,9 +6,9 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { userLogout } from "../../store/actions/authActions";
 
-import "./Header.css";
+import "./HeaderComponent.css";
 
-const Header = props => {
+const HeaderComponent = props => {
     let links = null;
 
     const handleLogout = () => {
@@ -74,4 +74,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps)(withRouter(HeaderComponent));

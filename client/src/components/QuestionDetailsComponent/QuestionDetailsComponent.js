@@ -1,13 +1,15 @@
-import React from "react";
 import moment from "moment";
+import React from "react";
 
-export default function QuestionDetails(props) {
+import "./QuestionDetailsComponent.css";
+
+export default function QuestionDetailsComponent(props) {
     return (
-        <div className="box question-details-box">
-            <h3 className="box__title">Question details</h3>
-            <div className="box__container">
-                <div className="details">
-                    <div className="details-img">
+        <div className="question-details">
+            <h3 className="question-details__title">Question details</h3>
+            <div className="question-details__container">
+                <div className="question-details__content">
+                    <div className="question-details__img">
                         <a href={`/images/questions/${props.image_name}`}>
                             <img
                                 src={`/images/questions/${props.image_name}`}
@@ -16,7 +18,7 @@ export default function QuestionDetails(props) {
                             />
                         </a>
                     </div>
-                    <div className="details-info">
+                    <div className="question-details__info">
                         <p>Description: {props.description}</p>
                         <p>Status: {props.status}</p>
                         <p>

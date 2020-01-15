@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
-import moment from "moment";
 import ReactLoading from "react-loading";
 import Modal from "react-modal";
-import QuestionDetails from "./QuestionDetails";
+import moment from "moment";
+import axios from "axios";
+
+import QuestionDetailsComponent from "../QuestionDetailsComponent/QuestionDetailsComponent";
 
 export default class QuestionPage extends Component {
     state = {
@@ -68,7 +69,7 @@ export default class QuestionPage extends Component {
         return (
             <div>
                 <div className="question-page-container">
-                    <QuestionDetails {...this.state} />
+                    <QuestionDetailsComponent {...this.state} />
                     <div className="solution-box">
                         <h3 className="solution-box__title">Solution</h3>
                         <div className="solution-box__container">

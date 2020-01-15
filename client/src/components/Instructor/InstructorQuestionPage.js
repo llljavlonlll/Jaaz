@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ReactLoading from "react-loading";
 import Modal from "react-modal";
+import axios from "axios";
+
+import QuestionDetailsComponent from "../QuestionDetailsComponent/QuestionDetailsComponent";
 import SolutionUploader from "./SolutionUploader";
-import QuestionsDetails from "../Questions/QuestionDetails";
 
 export default class QuestionPage extends Component {
     state = {
@@ -195,7 +196,7 @@ export default class QuestionPage extends Component {
                     </div>
                 ) : null}
 
-                <QuestionsDetails {...this.state} />
+                <QuestionDetailsComponent {...this.state} />
 
                 {solution.length > 0 && (
                     <div className="box">

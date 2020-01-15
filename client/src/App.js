@@ -8,7 +8,7 @@ import "normalize.css/normalize.css";
 import "./App.css";
 
 // Components
-import Header from "./components/Header/Header";
+import HeaderComponent from "./components/HeaderComponent/HeaderComponent";
 import LoginPage from "./screens/LoginPage/LoginPage";
 import MyProfilePage from "./screens/MyProfilePage/MyProfilePage";
 import SignupPage from "./screens/SignupPage/SignupPage";
@@ -18,7 +18,7 @@ import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
 import NavBar from "./components/BurgerMenu/MobileMenu";
 import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
 import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
-import Footer from "./components/Footer/Footer";
+import FooterComponent from "./components/FooterComponent/FooterComponent";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
 
 // Integrate Redux
@@ -89,9 +89,9 @@ class App extends Component {
         return (
             <Router>
                 <NavBar />
-                <Header />
+                <HeaderComponent />
                 <div className="container">{routes}</div>
-                <Footer />
+                <FooterComponent />
             </Router>
         );
     }

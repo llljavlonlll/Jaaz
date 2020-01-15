@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import QuestionTileComponent from "../Questions/QuestionTileComponent";
+import QuestionTileComponent from "../QuestionTileComponent/QuestionTileComponent";
 import axios from "axios";
 import QuestionTileLoadingAnimation from "../Questions/QuestionTileLoadingAnimation";
 

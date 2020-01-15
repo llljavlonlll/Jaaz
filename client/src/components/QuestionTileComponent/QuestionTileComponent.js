@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+import "./QuestionTileComponent.css";
+
 export default function QuestionTileComponent(props) {
     return (
         <Link
@@ -9,20 +11,19 @@ export default function QuestionTileComponent(props) {
             style={{ textDecoration: "none", color: "#a5afd7" }}
         >
             <div className="question-tile">
-                <div className="question-image-container">
+                <div className="question-tile__image-container">
                     <img
                         src={`/images/questions/${props.image_name}`}
                         alt="Question"
                     />
                 </div>
-                <div className="question-details">
+                <div className="question-tile__content">
                     <h3>
-                        {/*props.description*/}
                         {props.description.length >= 22
                             ? props.description.substring(0, 21) + "..."
                             : props.description}
                     </h3>
-                    <div className="question-bullets">
+                    <div className="question-tile__bullets">
                         <ul>
                             <li>Subject: {props.subject}</li>
                             <li>
