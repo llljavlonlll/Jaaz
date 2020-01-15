@@ -59,44 +59,56 @@ const QuestionsListComponent = props => {
     return (
         <div className="questions-list">
             <h3 className="questions-list__title">{props.title}</h3>
-            <div className="questions-list__container">
-                {isLoading ? (
-                    <div>{loadingAnimations}</div>
-                ) : currentQuestions.length > 0 ? (
-                    currentQuestions.map(question => {
-                        return (
-                            <QuestionTileComponent
-                                key={question._id}
-                                {...question}
-                            />
-                        );
-                    })
-                ) : (
-                    <div
-                        style={{
-                            display: "table",
-                            height: "400px",
-                            overflow: "hidden"
-                        }}
-                    >
+            <div className="questions-list__content">
+                <div className="questions-list__container">
+                    {questions.length > questionsPerPage && (
+                        <Pagination
+                            totalQuesitons={questions.length}
+                            questionsPerPage={questionsPerPage}
+                            changePage={changePage}
+                            currentPage={currentPage}
+                            className="questions-list__pagination"
+                        />
+                    )}
+                    {isLoading ? (
+                        <div>{loadingAnimations}</div>
+                    ) : currentQuestions.length > 0 ? (
+                        currentQuestions.map(question => {
+                            return (
+                                <QuestionTileComponent
+                                    key={question._id}
+                                    {...question}
+                                />
+                            );
+                        })
+                    ) : (
                         <div
                             style={{
-                                display: "table-cell",
-                                verticalAlign: "middle"
+                                display: "table",
+                                height: "400px",
+                                overflow: "hidden"
                             }}
                         >
-                            <div style={{ textAlign: "center" }}>
-                                {props.no_content}
+                            <div
+                                style={{
+                                    display: "table-cell",
+                                    verticalAlign: "middle"
+                                }}
+                            >
+                                <div style={{ textAlign: "center" }}>
+                                    {props.no_content}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
                 {questions.length > questionsPerPage && (
                     <Pagination
                         totalQuesitons={questions.length}
                         questionsPerPage={questionsPerPage}
                         changePage={changePage}
                         currentPage={currentPage}
+                        className="questions-list__pagination"
                     />
                 )}
             </div>

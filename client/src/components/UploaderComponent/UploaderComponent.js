@@ -3,6 +3,7 @@ import axios from "axios";
 import { addQuestion } from "../../store/actions/questionsActions";
 import { useDispatch, useSelector } from "react-redux";
 import "./UploaderComponent.css";
+import { updateBalance } from "../../store/actions/authActions";
 
 const UploaderComponent = props => {
     const [filePreview, setFilePreview] = useState(undefined);
@@ -49,6 +50,8 @@ const UploaderComponent = props => {
                     setInputKey(Date.now());
                     setDescription("");
                     setSubject("Math");
+
+                    dispatch(updateBalance(balance - 3000));
 
                     dispatch(addQuestion(res.data));
                 }

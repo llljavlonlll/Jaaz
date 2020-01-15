@@ -5,6 +5,14 @@
     border: 5px solid #3c4251;
     flex-grow: 1;
     box-shadow: 0 1px 6px rgb(29, 29, 29);
+    min-height: 86rem;
+}
+
+.questions-list__content {
+    display: flex;
+    height: 83rem;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .questions-list__title {
@@ -21,8 +29,16 @@
     display: flex;
     flex-direction: column;
     color: #a5afd7;
-    padding: 2.5rem;
-    padding-bottom: 1.6rem;
+    padding: 0 2.5rem;
     overflow: auto;
     overflow-wrap: break-word;
+}
+
+@media (max-width: 738px) {
+    .questions-list {
+        min-height: 100%;
+    }
+    .questions-list__content {
+        height: 100%;
+    }
 }

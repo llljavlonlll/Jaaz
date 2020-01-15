@@ -61,6 +61,7 @@
     font-size: 1.4rem;
     margin-right: 1.6rem;
     padding: 0.8rem 1.6rem;
+    width: 10rem;
 }
 
 .profile-box__content__field input {
@@ -136,6 +137,7 @@
         font-size: 1rem;
         padding: 0.4rem 0.8rem;
         margin-right: 0.8rem;
+        width: 7rem;
     }
 }
 

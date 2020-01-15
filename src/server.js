@@ -11,6 +11,7 @@ const solutionRouter = require("./routers/api/instructor/solutions");
 const pendingQuestionsRouter = require("./routers/api/instructor/pending");
 const bookedQuestionsRouter = require("./routers/api/instructor/booked");
 const completedQuestionsRouter = require("./routers/api/instructor/completed");
+const balanceRouter = require("./routers/api/student/balance");
 const cors = require("cors");
 
 const app = express();
@@ -42,14 +43,16 @@ app.use("/api/user", userRouter);
 // Admin routes
 app.use("/api/admin", adminRouter);
 
-// Student questions route
+// Student routes
 app.use("/api/question", questionRouter);
+app.use("/api/balance", balanceRouter);
 
 // Instructor routes
 app.use("/api/solution", solutionRouter);
 app.use("/api/pending", pendingQuestionsRouter);
 app.use("/api/booked", bookedQuestionsRouter);
 app.use("/api/completed", completedQuestionsRouter);
+
 // Fallback to index.html
 app.get("*", (req, res) => {
     res.sendFile(

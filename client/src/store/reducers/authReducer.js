@@ -1,4 +1,9 @@
-import { LOGIN_SUCCESS, USER_LOADED, USER_LOGOUT } from "../actions/types";
+import {
+    LOGIN_SUCCESS,
+    USER_LOADED,
+    USER_LOGOUT,
+    UPDATE_BALANCE
+} from "../actions/types";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 
@@ -45,6 +50,14 @@ export default (state = initialState, action) => {
                     email: "",
                     category: "",
                     balance: 0
+                }
+            };
+        case UPDATE_BALANCE:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    balance: action.payload.balance
                 }
             };
         default:

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
-import "./MyProfilePage.css";
+import { connect } from "react-redux";
 
-export default class MyProfilePage extends Component {
+import "./MyProfilePage.css";
+import { updateBalance } from "../../store/actions/authActions";
+
+class MyProfilePage extends Component {
     state = {
         name: "",
         email: "",
@@ -12,7 +15,8 @@ export default class MyProfilePage extends Component {
         isVerified: false,
         isLoading: true,
         isSaving: false,
-        editMode: false
+        editMode: false,
+        isBuying: false
     };
 
     fetchData = () => {
@@ -77,6 +81,29 @@ export default class MyProfilePage extends Component {
             });
 
         this.fetchData();
+    };
+
+    handleBuyCredit = () => {
+        this.setState({
+            isBuying: true
+        });
+        axios
+            .post("/api/balance/me", {
+                amount: "3000"
+            })
+            .then(res => {
+                this.setState({
+                    isBuying: false,
+                    balance: res.data.balance
+                });
+                this.props.dispatch(updateBalance(res.data.balance));
+            })
+            .catch(err => {
+                console.log(err.message);
+                this.setState({
+                    isBuying: false
+                });
+            });
     };
 
     render() {
@@ -193,7 +220,19 @@ export default class MyProfilePage extends Component {
                         <div className="profile-box__content__field">
                             <p>Balance</p>
                             <div className="profile-box__content__field--balance">
-                                <button>Buy credit</button>
+                                <button onClick={this.handleBuyCredit}>
+                                    {this.state.isBuying ? (
+                                        <ReactLoading
+                                            color="white"
+                                            type="spin"
+                                            width={"15%"}
+                                            height={"15%"}
+                                            className="spinner"
+                                        />
+                                    ) : (
+                                        "Buy credit"
+                                    )}
+                                </button>
                                 <h4>
                                     {this.state.isLoading ? (
                                         <ReactLoading
@@ -243,3 +282,5 @@ export default class MyProfilePage extends Component {
         );
     }
 }
+
+export default connect()(MyProfilePage);
