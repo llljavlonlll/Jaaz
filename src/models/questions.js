@@ -59,7 +59,8 @@ const questionSchema = mongoose.Schema({
                 required: true
             }
         }
-    ]
+    ],
+    chat: mongoose.Schema.Types.ObjectId
 });
 
 module.exports = Question = mongoose.model("Question", questionSchema);

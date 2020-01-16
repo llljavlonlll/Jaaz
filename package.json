@@ -7,7 +7,7 @@
         "start": "node src/server.js",
         "server": "nodemon src/server.js",
         "build": "cd client & npm run build",
-        "dev": "concurrently \"npm run server\" \"cd client & npm start\""
+        "client": "cd client & npm start"
     },
     "keywords": [
         "test",
@@ -17,7 +17,6 @@
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^3.0.6",
-        "concurrently": "^4.1.2",
         "cookie-parser": "^1.4.4",
         "cors": "^2.8.5",
         "dotenv": "^8.1.0",
