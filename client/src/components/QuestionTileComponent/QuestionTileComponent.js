@@ -7,7 +7,8 @@ import "./QuestionTileComponent.css";
 export default function QuestionTileComponent(props) {
     return (
         <Link
-            to={`/question/${props._id}`}
+            // to={`/question/${props._id}`}
+            to={`/${props._id}`}
             style={{ textDecoration: "none", color: "#a5afd7" }}
         >
             <div className="question-tile">

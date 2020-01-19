@@ -7,28 +7,62 @@ export default function QuestionDetailsComponent(props) {
     return (
         <div className="question-details">
             <h3 className="question-details__title">Question details</h3>
-            <div className="question-details__container">
-                <div className="question-details__content">
-                    <div className="question-details__img">
-                        <a href={`/images/questions/${props.image_name}`}>
+            <div
+                className="question__container"
+                style={{ borderBottom: "1px solid #a5afd74f" }}
+            >
+                <div className="question__img">
+                    <a href={`/images/questions/${props.image_name}`}>
+                        <img
+                            src={`/images/questions/${props.image_name}`}
+                            alt="Question"
+                            width="200"
+                        />
+                    </a>
+                </div>
+                <div className="question__info">
+                    <p>{props.description}</p>
+                    <p>{props.status}</p>
+                    <p>{moment(props.uploaded_at).format("DD/MM/YYYY")}</p>
+                    <p>{props.subject}</p>
+                </div>
+            </div>
+
+            {props.solution.length > 0 ? (
+                <div className="question__container">
+                    <div className="question__img">
+                        <a
+                            href={`/images/solutions/${props.solution[0].image}`}
+                        >
                             <img
-                                src={`/images/questions/${props.image_name}`}
-                                alt="Question"
+                                src={`/images/solutions/${props.solution[0].image}`}
+                                alt="Solution"
                                 width="200"
                             />
                         </a>
                     </div>
-                    <div className="question-details__info">
-                        <p>Description: {props.description}</p>
-                        <p>Status: {props.status}</p>
+                    <div className="question__info">
+                        <p>{props.solution[0].description}</p>
                         <p>
-                            Uploaded at:{" "}
-                            {moment(props.uploaded_at).format("DD/MM/YYYY")}
+                            {moment(props.solution[0].uploaded_at).format(
+                                "DD/MM/YYYY"
+                            )}
                         </p>
-                        <p>Subject: {props.subject}</p>
+                        <p>{props.solution[0].solved_by}</p>
+                        <p>
+                            {moment(props.solution[0].solved_at).format(
+                                "DD/MM/YYYY"
+                            )}
+                        </p>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <div className="question__container">
+                    <div className="question__content">
+                        <p>{props.status}</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

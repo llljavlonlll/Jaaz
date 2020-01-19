@@ -12,7 +12,7 @@ const QuestionsListComponent = props => {
     const [isLoading, setIsLoading] = useState(true);
     const [isMobile] = useState(window.innerWidth <= 738);
     const [currentPage, setCurrentPage] = useState(1);
-    const [questionsPerPage, setQuestionsPerPage] = useState(5);
+    const [questionsPerPage] = useState(5);
 
     // Grab questions from redux store
     const questions = useSelector(state => state.questions);

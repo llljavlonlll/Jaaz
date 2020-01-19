@@ -4,7 +4,9 @@ import Modal from "react-modal";
 import moment from "moment";
 import axios from "axios";
 
-import QuestionDetailsComponent from "../QuestionDetailsComponent/QuestionDetailsComponent";
+import QuestionDetailsComponent from "../../components/QuestionDetailsComponent/QuestionDetailsComponent";
+
+import "./QuestionPage.css";
 
 export default class QuestionPage extends Component {
     state = {
@@ -144,58 +146,56 @@ export default class QuestionPage extends Component {
                         >
                             Delete question
                         </button>
-                        <Modal
-                            isOpen={this.state.modalIsOpen}
-                            onAfterOpen={this.afterOpenModal}
-                            onRequestClose={this.closeModal}
-                            style={{
-                                content: {
-                                    color: "white",
-                                    background: "#464b5e",
-                                    textAlign: "center",
-                                    padding: "3.2rem",
-                                    top: "50%",
-                                    left: "50%",
-                                    right: "auto",
-                                    bottom: "auto",
-                                    marginRight: "-50%",
-                                    transform: "translate(-50%, -50%)"
-                                }
-                            }}
-                            contentLabel="Example Modal"
-                        >
-                            <h2 style={{ margin: "0 0 2.4rem 0" }}>
-                                Are you sure?
-                            </h2>
-                            <div>
-                                <button
-                                    onClick={this.handleQuestionDelete}
-                                    style={{
-                                        background: "#963f3f",
-                                        border: "none",
-                                        borderBottom: "0.3rem solid #6b2c2c",
-                                        color: "white",
-                                        padding: "0.8rem",
-                                        marginRight: "2rem"
-                                    }}
-                                >
-                                    Yes, delete
-                                </button>
-                                <button
-                                    onClick={this.closeModal}
-                                    style={{
-                                        color: "#a5afd7",
-                                        background: "none",
-                                        border: "none",
-                                        padding: "0.8rem"
-                                    }}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </Modal>
                     </div>
                 </div>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={{
+                        content: {
+                            color: "white",
+                            background: "#464b5e",
+                            textAlign: "center",
+                            padding: "3.2rem",
+                            top: "50%",
+                            left: "50%",
+                            right: "auto",
+                            bottom: "auto",
+                            marginRight: "-50%",
+                            transform: "translate(-50%, -50%)"
+                        }
+                    }}
+                    contentLabel="Example Modal"
+                >
+                    <h2 style={{ margin: "0 0 2.4rem 0" }}>Are you sure?</h2>
+                    <div>
+                        <button
+                            onClick={this.handleQuestionDelete}
+                            style={{
+                                background: "#963f3f",
+                                border: "none",
+                                borderBottom: "0.3rem solid #6b2c2c",
+                                color: "white",
+                                padding: "0.8rem",
+                                marginRight: "2rem"
+                            }}
+                        >
+                            Yes, delete
+                        </button>
+                        <button
+                            onClick={this.closeModal}
+                            style={{
+                                color: "#a5afd7",
+                                background: "none",
+                                border: "none",
+                                padding: "0.8rem"
+                            }}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </Modal>
             </div>
         );
     }

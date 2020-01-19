@@ -112,7 +112,7 @@ userSchema.statics.findByCredentials = async function(email, password) {
     return user;
 };
 
-// encrypt the password
+// Encrypt the password
 userSchema.pre("save", async function(next) {
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 8);

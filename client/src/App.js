@@ -13,12 +13,12 @@ import LoginPage from "./screens/LoginPage/LoginPage";
 import MyProfilePage from "./screens/MyProfilePage/MyProfilePage";
 import SignupPage from "./screens/SignupPage/SignupPage";
 import StudentPage from "./screens/StudentMainPage/StudentMainPage";
-import QuestionPage from "./components/Questions/QuestionPage";
+import QuestionPage from "./screens/QuestionPage/QuestionPage";
 import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
 import NavBar from "./components/BurgerMenu/MobileMenu";
 import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
 import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
-import FooterComponent from "./components/FooterComponent/FooterComponent";
+// import FooterComponent from "./components/FooterComponent/FooterComponent";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
 
 // Integrate Redux
@@ -34,6 +34,7 @@ class App extends Component {
             routes = (
                 <Switch>
                     <Route exact path="/" component={StudentPage} />
+                    <Route path="/:id" component={StudentPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />
@@ -91,7 +92,6 @@ class App extends Component {
                 <NavBar />
                 <HeaderComponent />
                 <div className="container">{routes}</div>
-                <FooterComponent />
             </Router>
         );
     }

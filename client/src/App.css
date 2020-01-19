@@ -8,9 +8,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
     color: white;
-    min-height: 100%;
     position: relative;
-    padding-bottom: 6rem;
 }
 
 .footer {
@@ -240,10 +238,7 @@ select {
     /* End Dashboard */
 
     /* Customer Question Page */
-    .question-page-container {
-        display: flex;
-        flex-direction: row;
-    }
+
     .mw50 {
         min-width: 50%;
     }

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const moment = require("moment");
+const Chat = require("./chat");
 
 const questionSchema = mongoose.Schema({
     owner: {
@@ -61,6 +61,16 @@ const questionSchema = mongoose.Schema({
         }
     ],
     chat: mongoose.Schema.Types.ObjectId
+});
+
+questionSchema.pre("save", async function(next) {
+    const chat = new Chat({
+        owner: this.owner
+    });
+
+    const savedChat = await chat.save();
+    this.chat = savedChat._id;
+    next();
 });
 
 module.exports = Question = mongoose.model("Question", questionSchema);

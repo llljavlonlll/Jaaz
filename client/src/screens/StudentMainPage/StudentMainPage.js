@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import Cookies from "js-cookie";
 import ReactLoading from "react-loading";
+
 import UploaderComponent from "../../components/UploaderComponent/UploaderComponent";
 import QuestionsListComponent from "../../components/QuestionsListComponent/QuestionsListComponent";
+import StudentQuestionComponent from "../../components/StudentQuestionComponent/StudentQuestionComponent";
 import "./StudentMainPage.css";
 
 class StudentPage extends Component {
@@ -30,12 +32,18 @@ class StudentPage extends Component {
                     <UploaderComponent
                         handleUploadAnimation={this.handleUploadAnimation}
                     />
-                    <QuestionsListComponent
-                        key={"allMyQuestions"}
-                        api_path={"/api/question"}
-                        title={"Your questions"}
-                        no_content={"You don't have any questions yet"}
-                    />
+                    {this.props.match.params.id ? (
+                        <StudentQuestionComponent
+                            questionId={this.props.match.params.id}
+                        />
+                    ) : (
+                        <QuestionsListComponent
+                            key={"allMyQuestions"}
+                            api_path={"/api/question"}
+                            title={"Your questions"}
+                            no_content={"You don't have any questions yet"}
+                        />
+                    )}
                 </div>
             );
         } else {
