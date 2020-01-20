@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 import { loadQuestions } from "../../store/actions/questionsActions";
-import QuestionTileLoadingAnimation from "../Questions/QuestionTileLoadingAnimation";
+import QuestionTileLoadingAnimation from "../QuestionTileLoadingAnimation/QuestionTileLoadingAnimation";
 import QuestionTileComponent from "../QuestionTileComponent/QuestionTileComponent";
 import Pagination from "../PaginationComponent/PaginationComponent";
 import "./QuestionsListComponent.css";

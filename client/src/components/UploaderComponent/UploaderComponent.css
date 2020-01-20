@@ -109,9 +109,13 @@
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 738px) {
+    .question-uploader__title {
+        padding: 1rem;
+        font-size: 1.6rem;
+    }
     .question-uploader__container {
-        padding: 1.3rem;
+        padding: 1rem;
         font-size: 1.2rem;
         height: auto;
     }
@@ -120,9 +124,5 @@
     }
     .question-uploader__input label {
         font-size: 1.5rem;
-    }
-    .question-uploader__title {
-        font-size: 2rem;
-        padding: 1.3rem;
     }
 }

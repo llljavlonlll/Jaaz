@@ -1,11 +1,11 @@
 .questions-list {
     background-color: #464b5e;
     margin: 0 auto 3.6rem auto;
-    max-width: 100%;
     border: 5px solid #3c4251;
-    flex-grow: 1;
     box-shadow: 0 1px 6px rgb(29, 29, 29);
     min-height: 86rem;
+    flex-grow: 1;
+    max-width: 65%;
 }
 
 .questions-list__content {
@@ -34,14 +34,24 @@
     overflow-wrap: break-word;
 }
 
+@media (max-width: 1150px) {
+    .questions-list {
+        max-width: 100%;
+    }
+}
+
 @media (max-width: 738px) {
     .questions-list {
         min-height: 100%;
+    }
+    .questions-list__title {
+        padding: 1rem;
+        font-size: 1.6rem;
     }
     .questions-list__content {
         height: 100%;
     }
     .questions-list__container {
-        padding: 0 1.6rem;
+        padding: 0 1rem;
     }
 }

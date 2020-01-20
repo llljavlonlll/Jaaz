@@ -11,6 +11,10 @@ body {
     position: relative;
 }
 
+a {
+    text-decoration: none;
+}
+
 .footer {
     position: absolute;
     left: 0;

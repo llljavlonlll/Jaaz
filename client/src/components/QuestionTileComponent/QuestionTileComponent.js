@@ -9,7 +9,7 @@ export default function QuestionTileComponent(props) {
         <Link
             // to={`/question/${props._id}`}
             to={`/${props._id}`}
-            style={{ textDecoration: "none", color: "#a5afd7" }}
+            style={{ textDecoration: "none", color: "#a5afd7", width: "100%" }}
         >
             <div className="question-tile">
                 <div className="question-tile__image-container">
@@ -19,11 +19,7 @@ export default function QuestionTileComponent(props) {
                     />
                 </div>
                 <div className="question-tile__content">
-                    <h3>
-                        {props.description.length >= 22
-                            ? props.description.substring(0, 21) + "..."
-                            : props.description}
-                    </h3>
+                    <h3>{props.description ? props.description : "---"}</h3>
                     <div className="question-tile__bullets">
                         <ul>
                             <li>Subject: {props.subject}</li>

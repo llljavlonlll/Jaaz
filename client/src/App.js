@@ -34,10 +34,10 @@ class App extends Component {
             routes = (
                 <Switch>
                     <Route exact path="/" component={StudentPage} />
-                    <Route path="/:id" component={StudentPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />
+                    <Route exact path="/:id" component={StudentPage} />
                     <Route path="/question/:id" component={QuestionPage} />
                     <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route

@@ -13,7 +13,6 @@ const questionSchema = mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
         trim: true,
         maxLength: 255,
         minLength: 1

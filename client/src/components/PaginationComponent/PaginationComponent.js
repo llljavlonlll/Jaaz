@@ -1,7 +1,7 @@
 import React from "react";
 import "./PaginationComponent.css";
 
-const Pagination = ({
+const PaginationComponent = ({
     totalQuesitons,
     questionsPerPage,
     changePage,
@@ -52,4 +52,4 @@ const Pagination = ({
     );
 };
 
-export default Pagination;
+export default PaginationComponent;
