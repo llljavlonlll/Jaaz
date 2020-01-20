@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { addQuestion } from "../../store/actions/questionsActions";
 import { useDispatch, useSelector } from "react-redux";
+
+import { addQuestion } from "../../../store/actions/questionsActions";
+import { updateBalance } from "../../../store/actions/authActions";
+
 import "./UploaderComponent.css";
-import { updateBalance } from "../../store/actions/authActions";
 
 const UploaderComponent = props => {
     const [filePreview, setFilePreview] = useState(undefined);

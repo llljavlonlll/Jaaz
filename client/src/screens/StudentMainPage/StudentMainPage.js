@@ -3,12 +3,12 @@ import { Redirect } from "react-router";
 import Cookies from "js-cookie";
 import ReactLoading from "react-loading";
 
-import UploaderComponent from "../../components/UploaderComponent/UploaderComponent";
+import UploaderComponent from "../../components/Student/UploaderComponent/UploaderComponent";
 import QuestionsListComponent from "../../components/QuestionsListComponent/QuestionsListComponent";
 import StudentQuestionComponent from "../../components/StudentQuestionComponent/StudentQuestionComponent";
 import "./StudentMainPage.css";
 
-class StudentPage extends Component {
+class StudentMainPage extends Component {
     state = {
         isUploading: false
     };
@@ -54,4 +54,4 @@ class StudentPage extends Component {
     }
 }
 
-export default StudentPage;
+export default StudentMainPage;

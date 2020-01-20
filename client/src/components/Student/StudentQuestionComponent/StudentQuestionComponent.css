@@ -74,7 +74,7 @@
 
 .student-question__content__item__details-container {
     width: 60%;
-    height: 100%;
+    height: 18rem;
 }
 
 .student-question__content__item__details {
@@ -179,6 +179,7 @@
     }
     .student-question__content__item__details-container {
         width: 60%;
+        max-height: 9rem;
     }
     .student-question__content__item__details__description {
         height: 7rem;

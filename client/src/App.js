@@ -16,8 +16,8 @@ import StudentPage from "./screens/StudentMainPage/StudentMainPage";
 import QuestionPage from "./screens/QuestionPage/QuestionPage";
 import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
 import NavBar from "./components/BurgerMenu/MobileMenu";
-import InstructorDashboard from "./components/Instructor/InstructorDashboardPage";
-import InstructorQuestion from "./components/Instructor/InstructorQuestionPage";
+import InstructorMainPage from "./screens/InstructorMainPage/InstructorMainPage";
+import InstructorQuestion from "./screens/InstructorQuestionPage/InstructorQuestionPage";
 // import FooterComponent from "./components/FooterComponent/FooterComponent";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
 
@@ -52,7 +52,7 @@ class App extends Component {
         } else if (this.props.category === "instructor") {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={InstructorDashboard} />
+                    <Route exact path="/" component={InstructorMainPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />

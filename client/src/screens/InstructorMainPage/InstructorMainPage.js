@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import Cookies from "js-cookie";
-import { Redirect } from "react-router";
-import QuestionsListComponent from "../QuestionsListComponent/QuestionsListComponent";
-import BookedQuestionsList from "./BookedQuestionsList";
-import CompletedQuestionsList from "./CompletedQuestionsList";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Redirect } from "react-router";
+import Cookies from "js-cookie";
+
+// import QuestionsListComponent from "../../components/QuestionsListComponent/QuestionsListComponent";
+import AvailableQuestionsComponent from "../../components/Instructor/AvailableQuestionsComponent/AvailableQuestionsComponent";
+import CompletedQuestionsList from "../../components/Instructor/CompletedQuestionsListComponent/CompletedQuestionsListComponent";
+import BookedQuestionsList from "../../components/Instructor/BookedQuestionsListComponent/BookedQuestionsListComponent.js.js";
+
 import "react-tabs/style/react-tabs.css";
 
-export default class InstructorDashboardPage extends Component {
+export default class InstructorMainPage extends Component {
     state = {
         showDetails: window.innerWidth >= 1353
     };
@@ -35,7 +38,7 @@ export default class InstructorDashboardPage extends Component {
                         </TabList>
 
                         <TabPanel>
-                            <QuestionsListComponent
+                            <AvailableQuestionsComponent
                                 key={"allAvailableQuestions"}
                                 api_path={"/api/pending"}
                                 title={"Available questions"}

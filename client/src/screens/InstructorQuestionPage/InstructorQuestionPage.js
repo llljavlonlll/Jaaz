@@ -3,8 +3,8 @@ import ReactLoading from "react-loading";
 import Modal from "react-modal";
 import axios from "axios";
 
-import QuestionDetailsComponent from "../QuestionDetailsComponent/QuestionDetailsComponent";
-import SolutionUploader from "./SolutionUploader";
+import QuestionDetailsComponent from "../../components/QuestionDetailsComponent/QuestionDetailsComponent";
+import SolutionUploader from "../../components/Instructor/SolutionUploaderComponent/SolutionUploaderComponent";
 
 export default class QuestionPage extends Component {
     state = {
