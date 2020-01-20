@@ -39,7 +39,7 @@ export default function StudentQuestionComponent(props) {
                 </h3>
                 <div className="student-question__loading">
                     <div className="student-question__loading-content">
-                        <p>Loading</p>
+                        <p style={{ color: "#a5afd7" }}>Loading</p>
                     </div>
                 </div>
             </div>
@@ -86,6 +86,8 @@ export default function StudentQuestionComponent(props) {
                         ? "We are searching for qualified instructor"
                         : question.status === "Booked"
                         ? "Instructor working on your question"
+                        : question.status === "Rejected"
+                        ? "Your question was rejected because photo was low quality or it contains more than one question"
                         : ""}
                 </div>
             </div>
@@ -93,11 +95,13 @@ export default function StudentQuestionComponent(props) {
     }
 
     const statusStyle =
-        question.status === "Pending"
+        question.status === "Rejected"
             ? { color: "red" }
             : question.status === "Booked"
             ? { color: "yellow" }
-            : { color: "green" };
+            : question.status === "Completed"
+            ? { color: "green" }
+            : null;
 
     return (
         <div className="student-question">

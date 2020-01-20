@@ -26,6 +26,12 @@ const UploaderComponent = props => {
         }
     };
 
+    const onChangeDescription = event => {
+        if (event.target.value.length <= 100) {
+            setDescription(event.target.value);
+        }
+    };
+
     const onSubmit = event => {
         event.preventDefault();
         props.handleUploadAnimation();
@@ -69,15 +75,18 @@ const UploaderComponent = props => {
             <form onSubmit={onSubmit}>
                 <div className="question-uploader__container">
                     <div className="question-uploader__input">
-                        <label htmlFor="description">Description</label>
+                        <label htmlFor="description">
+                            Description{" "}
+                            <span style={{ fontSize: "1rem" }}>
+                                (max. 100 characters)
+                            </span>
+                        </label>
                         <input
                             type="text"
                             id="description"
                             name="description"
                             value={description}
-                            onChange={event =>
-                                setDescription(event.target.value)
-                            }
+                            onChange={onChangeDescription}
                         />
                     </div>
                     <div className="question-uploader__input">

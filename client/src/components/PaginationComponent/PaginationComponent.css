@@ -17,3 +17,9 @@
     color: white;
     padding: 0.8rem;
 }
+
+@media (max-width: 530px) {
+    .pagination {
+        justify-content: space-between;
+    }
+}

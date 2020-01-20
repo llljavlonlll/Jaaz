@@ -133,19 +133,19 @@ class SignupPage extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        <div className="login-component__form__item">
-                            <label htmlFor="category">Account Type</label>
-                            <select
-                                required
-                                value={this.state.category}
-                                onChange={this.onChange}
-                                name="category"
-                                id="category"
-                            >
-                                <option value="customer">Customer</option>
-                                <option value="instructor">Instructor</option>
-                            </select>
-                        </div>
+                        {/*<div className="login-component__form__item">
+                        <label htmlFor="category">Account Type</label>
+                        <select
+                            required
+                            value={this.state.category}
+                            onChange={this.onChange}
+                            name="category"
+                            id="category"
+                        >
+                            <option value="customer">Customer</option>
+                            <option value="instructor">Instructor</option>
+                        </select>
+                        </div>*/}
                         <button>
                             {this.state.isLoading ? (
                                 <ReactLoading

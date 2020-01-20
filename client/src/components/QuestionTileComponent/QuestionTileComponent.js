@@ -27,11 +27,13 @@ export default function QuestionTileComponent(props) {
                                 Status:{" "}
                                 <span
                                     style={
-                                        props.status === "Pending"
+                                        props.status === "Rejected"
                                             ? { color: "red" }
                                             : props.status === "Booked"
                                             ? { color: "yellow" }
-                                            : { color: "green" }
+                                            : props.status === "Completed"
+                                            ? { color: "green" }
+                                            : null
                                     }
                                 >
                                     {props.status}
