@@ -198,29 +198,6 @@ export default class QuestionPage extends Component {
 
                 <QuestionDetailsComponent {...this.state} />
 
-                {/*solution.length > 0 && (
-                    <div className="box">
-                        <h3 className="box__title">Solution</h3>
-                        <div className="box__container">
-                            {solution.length > 0 ? (
-                                <ul>
-                                    <li>
-                                        Description: {solution[0].description}
-                                    </li>
-                                    <li>Solved by: {solution[0].solved_by}</li>
-                                    <li>Solved at: {solution[0].solved_at}</li>
-                                    <li>
-                                        <img
-                                            src={`/images/solutions/${solution[0].image}`}
-                                            alt="Solution"
-                                            width="200"
-                                        />
-                                    </li>
-                                </ul>
-                            ) : null}
-                        </div>
-                    </div>
-                            )*/}
                 {this.state.status === "Booked" ? (
                     <React.Fragment>
                         <SolutionUploader

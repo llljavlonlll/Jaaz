@@ -1,32 +1,26 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-export default class SolutionUploader extends Component {
-    state = {
-        filePreview: undefined,
-        file: "",
-        inputKey: Date.now(), // this value is to force file input field to re-render
-        description: ""
+
+const SolutionUploader = props => {
+    const [filePreview, setFilePreview] = useState(undefined);
+    const [file, setFile] = useState("");
+    const [inputKey, setInputKey] = useState(Date.now());
+    const [description, setDescription] = useState("");
+
+    const handleInputChange = event => {
+        setFile(event.target.files[0]);
     };
 
-    handleInputChange = event => {
-        this.setState({
-            file: event.target.files[0]
-        });
+    const onChangeDescription = event => {
+        setDescription(event.target.value);
     };
 
-    onChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    };
-
-    onSubmit = event => {
+    const onSubmit = event => {
         event.preventDefault();
-        this.props.handleUploadAnimation();
-        const { file, description } = this.state;
+        props.handleUploadAnimation();
 
         const data = new FormData();
-        data.append("questionName", this.props.question_image_name);
+        data.append("questionName", props.question_image_name);
         data.append("solution", file);
         data.append("description", description);
 
@@ -40,52 +34,49 @@ export default class SolutionUploader extends Component {
             .post(`/api/solution/${this.props.question_id}`, data, config)
             .then(res => {
                 if (res.status === 200) {
-                    this.setState({
-                        filePreview: null,
-                        file: "",
-                        inputKey: Date.now(), // Update key to force re-render
-                        description: ""
-                    });
-                    this.props.handleStatusUpdate("Completed");
-                    // this.props.dispatch(addQuestion(res.data));
+                    setFilePreview(null);
+                    setFilePreview("");
+                    setInputKey(Date.now());
+                    setDescription("");
+
+                    props.handleStatusUpdate("Completed");
                 }
-                this.props.handleUploadAnimation();
+                props.handleUploadAnimation();
             })
             .catch(err => {
-                console.error(err);
-                this.props.handleUploadAnimation();
+                props.handleUploadAnimation();
             });
     };
 
-    render() {
-        return (
-            <div className="box" style={{ maxWidth: "70rem", height: "48rem" }}>
-                <h3 className="box__title">Upload your solution</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="box__container">
-                        <div className="login-component__form__item">
-                            <label htmlFor="description">Description</label>
-                            <input
-                                type="text"
-                                id="description"
-                                name="description"
-                                value={this.state.description}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <div className="image-preview">
-                            <input
-                                required
-                                type="file"
-                                onChange={this.handleInputChange}
-                                name="question"
-                                key={this.state.inputKey}
-                            />
-                        </div>
-                        <button>Upload Solution</button>
+    return (
+        <div className="box" style={{ maxWidth: "70rem", height: "48rem" }}>
+            <h3 className="box__title">Upload your solution</h3>
+            <form onSubmit={onSubmit}>
+                <div className="box__container">
+                    <div className="login-component__form__item">
+                        <label htmlFor="description">Description</label>
+                        <input
+                            type="text"
+                            id="description"
+                            name="description"
+                            value={description}
+                            onChange={onChangeDescription}
+                        />
                     </div>
-                </form>
-            </div>
-        );
-    }
-}
+                    <div className="image-preview">
+                        <input
+                            required
+                            type="file"
+                            onChange={handleInputChange}
+                            name="question"
+                            key={inputKey}
+                        />
+                    </div>
+                    <button>Upload Solution</button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default SolutionUploader;
