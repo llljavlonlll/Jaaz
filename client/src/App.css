@@ -93,7 +93,7 @@ select {
     padding: 2.5rem;
     overflow: auto;
     overflow-wrap: break-word;
-    height: 46rem;
+    /* height: 46rem; */
 }
 
 .box__container button {

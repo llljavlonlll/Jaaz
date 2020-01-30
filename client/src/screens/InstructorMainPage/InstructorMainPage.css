@@ -1,11 +1,12 @@
 .instructor-dash {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .react-tabs {
-    width: 49%;
+    width: 45%;
 }
 
 .react-tabs__tab-list {

@@ -1,3 +1,12 @@
+.available-questions {
+    background-color: #464b5e;
+    margin: 0;
+    border: 5px solid #3c4251;
+    box-shadow: 0 1px 6px rgb(29, 29, 29);
+    min-height: 86rem;
+    width: 45%;
+}
+
 .available-questions__title {
     display: flex;
     margin: 0;
@@ -15,15 +24,6 @@
 .available-questions__title__subject {
     width: 100%;
     text-align: center;
-}
-
-.available-questions {
-    background-color: #464b5e;
-    margin: 0 auto 3.6rem auto;
-    border: 5px solid #3c4251;
-    box-shadow: 0 1px 6px rgb(29, 29, 29);
-    min-height: 86rem;
-    width: 49%;
 }
 
 .available-questions__content {
@@ -44,8 +44,7 @@
 
 @media (max-width: 1150px) {
     .available-questions {
-        max-width: 100%;
-        width: auto;
+        width: 98%;
         margin: 0;
         margin-bottom: 5rem;
     }

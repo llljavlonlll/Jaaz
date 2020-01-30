@@ -110,8 +110,6 @@ export default class QuestionPage extends Component {
     };
 
     render() {
-        const { solution } = this.state;
-
         if (this.state.isLoading) {
             return <ReactLoading color={"#8357c5"} type={"spin"} />;
         }

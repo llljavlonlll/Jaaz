@@ -4,6 +4,7 @@
     border: 5px solid #3c4251;
     flex-grow: 1;
     box-shadow: 0 1px 6px rgb(29, 29, 29);
+    margin-bottom: 3.6rem;
 }
 
 .question-details__title {

@@ -1,3 +1,9 @@
+.subjects {
+    margin-bottom: 3.6rem;
+    min-height: 50rem;
+    width: 45%;
+}
+
 .subject-tile {
     display: inline-flex;
     align-items: center;
@@ -14,12 +20,6 @@
     background-color: rgb(131, 87, 197);
     border-bottom: 0.3rem solid #66439b;
     color: white;
-}
-
-.subjects {
-    margin: 0 auto 3.6rem auto;
-    min-height: 50rem;
-    width: 45%;
 }
 
 .subjects__title {
