@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import "./SolutionUploaderComponent.css";
+
 const SolutionUploader = props => {
     const [filePreview, setFilePreview] = useState(undefined);
     const [file, setFile] = useState("");
@@ -49,11 +51,14 @@ const SolutionUploader = props => {
     };
 
     return (
-        <div className="box" style={{ maxWidth: "70rem", height: "48rem" }}>
-            <h3 className="box__title">Upload your solution</h3>
+        <div
+            className="sol-uploader"
+            style={{ maxWidth: "70rem", height: "48rem" }}
+        >
+            <h3 className="sol-uploader__title">Upload your solution</h3>
             <form onSubmit={onSubmit}>
-                <div className="box__container">
-                    <div className="login-component__form__item">
+                <div className="sol-uploader__container">
+                    <div className="sol-uploader__input">
                         <label htmlFor="description">Description</label>
                         <input
                             type="text"

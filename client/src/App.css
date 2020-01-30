@@ -241,15 +241,6 @@ select {
         padding: 1.6rem;
         height: 60vh;
     }
-
-    .image-preview {
-        padding: 1rem;
-    }
-
-    .image-preview img {
-        margin-top: 1rem;
-        max-width: 17.5rem;
-    }
 }
 
 @media (max-width: 738px) {
