@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Redirect } from "react-router";
 
 import AvailableQuestionsComponent from "../../components/Instructor/AvailableQuestionsComponent/AvailableQuestionsComponent";
-import CompletedQuestionsList from "../../components/Instructor/CompletedQuestionsListComponent/CompletedQuestionsListComponent";
+// import CompletedQuestionsList from "../../components/Instructor/CompletedQuestionsListComponent/CompletedQuestionsListComponent";
 import BookedQuestionsList from "../../components/Instructor/BookedQuestionsListComponent/BookedQuestionsListComponent";
 
 import "react-tabs/style/react-tabs.css";
@@ -32,10 +32,11 @@ const InstructorMainPage = () => {
                     </TabList>
 
                     <TabPanel>
-                        <BookedQuestionsList />
+                        <BookedQuestionsList apiPath="/api/booked" />
                     </TabPanel>
                     <TabPanel>
-                        <CompletedQuestionsList />
+                        <BookedQuestionsList apiPath="/api/completed" />
+                        {/*<CompletedQuestionsList />*/}
                     </TabPanel>
                 </Tabs>
             </div>
