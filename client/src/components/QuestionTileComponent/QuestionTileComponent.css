@@ -33,6 +33,7 @@
 .question-tile__content {
     flex-grow: 1;
     min-width: 20rem;
+    overflow: hidden;
 }
 
 .question-tile__content h3 {

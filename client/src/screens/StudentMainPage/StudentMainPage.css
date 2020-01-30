@@ -21,10 +21,6 @@
 /* ------------------- End Uploading overlay --------------------------- */
 
 @media (min-width: 1150px) {
-    /* Dashboard */
-    .container {
-        max-width: 135rem;
-    }
     .dash-container {
         display: flex;
         flex-direction: row;

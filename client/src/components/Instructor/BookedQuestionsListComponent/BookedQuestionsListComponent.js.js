@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import QuestionTileComponent from "../../QuestionTileComponent/QuestionTileComponent";
 import axios from "axios";
+import React, { Component } from "react";
+
+import QuestionTileComponent from "../../QuestionTileComponent/QuestionTileComponent";
 import QuestionTileLoadingAnimation from "../../QuestionTileLoadingAnimation/QuestionTileLoadingAnimation";
 
 export default class BookedQuestionsList extends Component {
@@ -24,13 +25,11 @@ export default class BookedQuestionsList extends Component {
                 this.setState({
                     isLoading: false
                 });
-                console.log(err);
             });
     }
     render() {
         return (
             <div className="box">
-                <h3 className="box__title">Booked questions</h3>
                 <div className="box__container">
                     {this.state.isLoading ? (
                         <div>

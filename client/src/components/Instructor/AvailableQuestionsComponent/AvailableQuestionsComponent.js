@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
 
-import { loadQuestions } from "../../../store/actions/questionsActions";
+import {
+    loadQuestions,
+    filterQuestions
+} from "../../../store/actions/questionsActions";
+import { setSelectedSubject } from "../../../store/actions/instructorActions";
 import QuestionTileLoadingAnimation from "../../QuestionTileLoadingAnimation/QuestionTileLoadingAnimation";
 import QuestionTileComponent from "../../QuestionTileComponent/QuestionTileComponent";
 import Pagination from "../../PaginationComponent/PaginationComponent";
@@ -15,9 +20,6 @@ const AvailableQuestionsComponent = props => {
     const [currentPage, setCurrentPage] = useState(1);
     const [questionsPerPage] = useState(5);
 
-    // Grab questions from redux store
-    const questions = useSelector(state => state.questions);
-
     //Initialize dispatch function
     const dispatch = useDispatch();
 
@@ -25,8 +27,9 @@ const AvailableQuestionsComponent = props => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const { data } = await axios.get(props.api_path);
+                const { data } = await axios.get("/api/pending");
                 dispatch(loadQuestions(data));
+                dispatch(filterQuestions(props.subject.toLowerCase()));
                 setIsLoading(false);
             } catch (err) {
                 setIsLoading(false);
@@ -35,7 +38,10 @@ const AvailableQuestionsComponent = props => {
         };
 
         fetchPosts();
-    }, [dispatch, props.api_path]);
+    }, [dispatch, props.api_path, props.subject]);
+
+    // Grab questions from redux store
+    const questions = useSelector(state => state.questions.filteredQuestions);
 
     // Array of animations
     const loadingAnimations = [];
@@ -58,17 +64,31 @@ const AvailableQuestionsComponent = props => {
     };
 
     return (
-        <div className="questions-list">
-            <h3 className="questions-list__title">{props.title}</h3>
-            <div className="questions-list__content">
-                <div className="questions-list__container">
-                    {questions.length > questionsPerPage && (
+        <div className="available-questions">
+            <div className="available-questions__title">
+                <div className="available-questions__title__back">
+                    <a
+                        href="/#"
+                        className="back-button__container"
+                        onClick={() => dispatch(setSelectedSubject())}
+                    >
+                        <FiArrowLeft />
+                        <button className="back-button">Back</button>
+                    </a>
+                </div>
+                <div className="available-questions__title__subject">
+                    {props.subject}
+                </div>
+            </div>
+            <div className="available-questions__content">
+                <div className="available-questions__container">
+                    {questions.length > 0 && (
                         <Pagination
                             totalQuesitons={questions.length}
                             questionsPerPage={questionsPerPage}
                             changePage={changePage}
                             currentPage={currentPage}
-                            className="questions-list__pagination"
+                            className="available-questions__pagination"
                         />
                     )}
                     {isLoading ? (
@@ -97,19 +117,19 @@ const AvailableQuestionsComponent = props => {
                                 }}
                             >
                                 <div style={{ textAlign: "center" }}>
-                                    {props.no_content}
+                                    Currently, there are no questions left
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
-                {questions.length > questionsPerPage && (
+                {questions.length > 0 && (
                     <Pagination
                         totalQuesitons={questions.length}
                         questionsPerPage={questionsPerPage}
                         changePage={changePage}
                         currentPage={currentPage}
-                        className="questions-list__pagination"
+                        className="available-questions__pagination"
                     />
                 )}
             </div>

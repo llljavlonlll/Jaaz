@@ -15,7 +15,7 @@ const QuestionsListComponent = props => {
     const [questionsPerPage] = useState(5);
 
     // Grab questions from redux store
-    const questions = useSelector(state => state.questions);
+    const questions = useSelector(state => state.questions.questions);
 
     //Initialize dispatch function
     const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const QuestionsListComponent = props => {
             <h3 className="questions-list__title">{props.title}</h3>
             <div className="questions-list__content">
                 <div className="questions-list__container">
-                    {questions.length > questionsPerPage && (
+                    {questions.length > 0 && (
                         <Pagination
                             totalQuesitons={questions.length}
                             questionsPerPage={questionsPerPage}
@@ -102,7 +102,7 @@ const QuestionsListComponent = props => {
                         </div>
                     )}
                 </div>
-                {questions.length > questionsPerPage && (
+                {questions.length > 0 && (
                     <Pagination
                         totalQuesitons={questions.length}
                         questionsPerPage={questionsPerPage}

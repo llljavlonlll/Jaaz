@@ -12,8 +12,8 @@ import HeaderComponent from "./components/HeaderComponent/HeaderComponent";
 import LoginPage from "./screens/LoginPage/LoginPage";
 import MyProfilePage from "./screens/MyProfilePage/MyProfilePage";
 import SignupPage from "./screens/SignupPage/SignupPage";
-import StudentPage from "./screens/StudentMainPage/StudentMainPage";
-import QuestionPage from "./screens/QuestionPage/QuestionPage";
+import StudentMainPage from "./screens/StudentMainPage/StudentMainPage";
+// import QuestionPage from "./screens/QuestionPage (Deprecated)/QuestionPage";
 import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
 import NavBar from "./components/BurgerMenu/MobileMenu";
 import InstructorMainPage from "./screens/InstructorMainPage/InstructorMainPage";
@@ -33,12 +33,12 @@ class App extends Component {
         if (this.props.category === "customer") {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={StudentPage} />
+                    <Route exact path="/" component={StudentMainPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />
-                    <Route exact path="/:id" component={StudentPage} />
-                    <Route path="/question/:id" component={QuestionPage} />
+                    <Route exact path="/:id" component={StudentMainPage} />
+                    {/*<Route path="/question/:id" component={QuestionPage} /> */}
                     <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route
                         exact
@@ -56,10 +56,7 @@ class App extends Component {
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/profile" component={MyProfilePage} />
-                    <Route
-                        path="/question/:id"
-                        component={InstructorQuestion}
-                    />
+                    <Route path="/:id" component={InstructorQuestion} />
                     <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route
                         exact
@@ -73,7 +70,7 @@ class App extends Component {
         } else {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={StudentPage} />
+                    <Route exact path="/" component={StudentMainPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/verify/:id" component={VerifyEmailPage} />

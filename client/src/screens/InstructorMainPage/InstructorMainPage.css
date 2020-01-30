@@ -1,0 +1,27 @@
+.instructor-dash {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.react-tabs {
+    width: 49%;
+}
+
+.react-tabs__tab-list {
+    display: flex;
+}
+.react-tabs__tab {
+    width: 50%;
+    text-align: center;
+}
+
+@media (max-width: 1150px) {
+    .instructor-dash {
+        flex-direction: column;
+    }
+
+    .react-tabs {
+        width: 100%;
+    }
+}

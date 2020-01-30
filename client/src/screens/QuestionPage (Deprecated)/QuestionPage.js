@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import moment from "moment";
 import axios from "axios";
 
-import QuestionDetailsComponent from "../../components/QuestionDetailsComponent/QuestionDetailsComponent";
+import QuestionDetailsComponent from "../../components/Instructor/QuestionDetailsComponent/QuestionDetailsComponent";
 
 import "./QuestionPage.css";
 

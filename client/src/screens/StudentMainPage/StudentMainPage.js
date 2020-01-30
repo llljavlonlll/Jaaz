@@ -5,7 +5,7 @@ import ReactLoading from "react-loading";
 
 import UploaderComponent from "../../components/Student/UploaderComponent/UploaderComponent";
 import QuestionsListComponent from "../../components/QuestionsListComponent/QuestionsListComponent";
-import StudentQuestionComponent from "../../components/StudentQuestionComponent/StudentQuestionComponent";
+import StudentQuestionComponent from "../../components/Student/StudentQuestionComponent/StudentQuestionComponent";
 import "./StudentMainPage.css";
 
 class StudentMainPage extends Component {

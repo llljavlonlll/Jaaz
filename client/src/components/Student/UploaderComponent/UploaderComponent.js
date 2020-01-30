@@ -102,6 +102,11 @@ const UploaderComponent = props => {
                             <option value="Math">Math</option>
                             <option value="English">English</option>
                             <option value="History">History</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Computer Science">
+                                Computer Science
+                            </option>
                         </select>
                     </div>
                     <div className="image-preview">

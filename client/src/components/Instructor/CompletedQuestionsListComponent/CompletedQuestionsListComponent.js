@@ -30,7 +30,6 @@ export default class BookedQuestionsList extends Component {
     render() {
         return (
             <div className="box box__tabs">
-                <h3 className="box__title">Completed questions</h3>
                 <div className="box__container">
                     {this.state.isLoading ? (
                         <div>

@@ -3,8 +3,10 @@ import ReactLoading from "react-loading";
 import Modal from "react-modal";
 import axios from "axios";
 
-import QuestionDetailsComponent from "../../components/QuestionDetailsComponent/QuestionDetailsComponent";
+import QuestionDetailsComponent from "../../components/Instructor/QuestionDetailsComponent/QuestionDetailsComponent";
 import SolutionUploader from "../../components/Instructor/SolutionUploaderComponent/SolutionUploaderComponent";
+
+import "./InstructorQuestionPage.css";
 
 export default class QuestionPage extends Component {
     state = {
@@ -198,7 +200,7 @@ export default class QuestionPage extends Component {
 
                 <QuestionDetailsComponent {...this.state} />
 
-                {solution.length > 0 && (
+                {/*solution.length > 0 && (
                     <div className="box">
                         <h3 className="box__title">Solution</h3>
                         <div className="box__container">
@@ -220,7 +222,7 @@ export default class QuestionPage extends Component {
                             ) : null}
                         </div>
                     </div>
-                )}
+                            )*/}
                 {this.state.status === "Booked" ? (
                     <React.Fragment>
                         <SolutionUploader
