@@ -13,18 +13,17 @@ import LoginPage from "./screens/LoginPage/LoginPage";
 import MyProfilePage from "./screens/MyProfilePage/MyProfilePage";
 import SignupPage from "./screens/SignupPage/SignupPage";
 import StudentMainPage from "./screens/StudentMainPage/StudentMainPage";
-// import QuestionPage from "./screens/QuestionPage (Deprecated)/QuestionPage";
 import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
 import NavBar from "./components/BurgerMenu/MobileMenu";
 import InstructorMainPage from "./screens/InstructorMainPage/InstructorMainPage";
 import InstructorQuestion from "./screens/InstructorQuestionPage/InstructorQuestionPage";
-// import FooterComponent from "./components/FooterComponent/FooterComponent";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
 
 // Integrate Redux
 import { connect } from "react-redux";
 import VerifyEmailPage from "./screens/VerifyEmailPage/VerifyEmailPage";
 import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage";
+import { checkIfLoggedIn } from "./store/actions/authActions";
 
 class App extends Component {
     render() {

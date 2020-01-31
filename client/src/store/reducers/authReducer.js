@@ -2,7 +2,10 @@ import {
     LOGIN_SUCCESS,
     USER_LOADED,
     USER_LOGOUT,
-    UPDATE_BALANCE
+    UPDATE_BALANCE,
+    UPDATE_USER_EMAIL,
+    UPDATE_USER_NAME,
+    LOAD_USER
 } from "../actions/types";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
@@ -14,18 +17,19 @@ let initialState = {
         name: "",
         email: "",
         category: "",
-        balance: 0
+        balance: 0,
+        isVerified: false
     }
 };
 
-if (Cookies.get("token")) {
-    const decoded = jwtDecode(Cookies.get("token"));
-    initialState = {
-        ...initialState,
-        isAuthorized: true,
-        userData: decoded.user
-    };
-}
+// if (Cookies.get("token")) {
+//     const decoded = jwtDecode(Cookies.get("token"));
+//     initialState = {
+//         ...initialState,
+//         isAuthorized: true,
+//         userData: decoded.user
+//     };
+// }
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -36,6 +40,29 @@ export default (state = initialState, action) => {
                 isLoading: false,
                 userData: action.userData
             };
+        case LOAD_USER:
+            return {
+                ...state,
+                userData: action.payload
+            };
+        case UPDATE_USER_NAME:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    name: action.payload
+                }
+            };
+
+        case UPDATE_USER_EMAIL:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    email: action.payload
+                }
+            };
+
         case USER_LOADED:
             return {
                 ...state,

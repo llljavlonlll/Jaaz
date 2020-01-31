@@ -154,7 +154,8 @@ router.post("/login", async (req, res) => {
             name: user.name,
             email: user.email,
             category: user.category,
-            balance: user.balance
+            balance: user.balance,
+            isVerified: user.isVerified
         });
     } catch (err) {
         res.status(400).send({ err: err.message });
@@ -193,7 +194,13 @@ router.post("/logoutall", auth, async (req, res) => {
 // Check if current token is valid
 // GET /api/checkToken
 router.get("/checkToken", auth, (req, res) => {
-    res.sendStatus(200);
+    res.send({
+        isVerified: req.user.isVerified,
+        balance: req.user.balance,
+        name: req.user.name,
+        email: req.user.email,
+        category: req.user.category
+    });
 });
 
 module.exports = router;
