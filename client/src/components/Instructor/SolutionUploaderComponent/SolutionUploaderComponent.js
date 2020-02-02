@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaUpload } from "react-icons/fa";
+import { IconContext } from "react-icons";
 import axios from "axios";
 
 import "./SolutionUploaderComponent.css";
@@ -10,7 +12,13 @@ const SolutionUploader = props => {
     const [description, setDescription] = useState("");
 
     const handleInputChange = event => {
-        setFile(event.target.files[0]);
+        if (event.target.files[0]) {
+            setFilePreview(URL.createObjectURL(event.target.files[0]));
+            setFile(event.target.files[0]);
+        } else {
+            setFilePreview(undefined);
+            setFile("");
+        }
     };
 
     const onChangeDescription = event => {
@@ -51,10 +59,7 @@ const SolutionUploader = props => {
     };
 
     return (
-        <div
-            className="sol-uploader"
-            style={{ maxWidth: "70rem", height: "48rem" }}
-        >
+        <div className="sol-uploader" style={{ maxWidth: "70rem" }}>
             <h3 className="sol-uploader__title">Upload your solution</h3>
             <form onSubmit={onSubmit}>
                 <div className="sol-uploader__container">
@@ -68,7 +73,7 @@ const SolutionUploader = props => {
                             onChange={onChangeDescription}
                         />
                     </div>
-                    <div className="image-preview">
+                    <div className="sol-uploader__image-preview">
                         <input
                             required
                             type="file"
@@ -76,7 +81,27 @@ const SolutionUploader = props => {
                             name="question"
                             key={inputKey}
                         />
+                        <div className="sol-uploader__thumbnail">
+                            <IconContext.Provider
+                                value={{
+                                    size: "4rem",
+                                    className: "sol-uploader__thumbnail__icon"
+                                }}
+                            >
+                                <div>
+                                    <FaUpload />
+                                </div>
+                            </IconContext.Provider>
+                            <div className="sol-uploader__thumbnail__text">
+                                Upload a solution image
+                            </div>
+                        </div>
                     </div>
+                    {filePreview && (
+                        <div className="sol-uploader__image-preview__image-container">
+                            <img src={filePreview} alt="Uploaded question" />
+                        </div>
+                    )}
                     <button>Upload Solution</button>
                 </div>
             </form>

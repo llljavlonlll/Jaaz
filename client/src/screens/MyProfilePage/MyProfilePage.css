@@ -68,7 +68,6 @@
     background: #333745;
     border: none;
     color: #a5afd7;
-    border-bottom: 0.3rem solid #272a35;
     padding: 1.2rem 1.5rem;
 }
 
@@ -89,7 +88,7 @@
     background-color: #963f3f;
     color: white;
     border: none;
-    border-bottom: 0.3rem solid #6b2c2c;
+    border-bottom: 0.3rem solid #7e3535;
 }
 
 .button-save {
