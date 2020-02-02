@@ -65,6 +65,8 @@ router.post(
             solutionEntries.includes(update)
         );
 
+        const user = req.user;
+
         if (!allowSolution) {
             return res.status(400).send({ msg: "Invalid solution" });
         }
@@ -76,6 +78,7 @@ router.post(
                 return res.status(404).send({ msg: "Question not found!" });
             }
 
+            // Add solution and save
             question.solution.push({
                 ...req.body,
                 image: req.file.filename,
@@ -83,8 +86,11 @@ router.post(
                 solved_at: Date.now()
             });
             question.status = "Completed";
-
             await question.save();
+
+            // Deposit credit to instructor balance and save
+            user.balance = user.balance + 3000;
+            await user.save();
 
             res.send({
                 status: question.status,

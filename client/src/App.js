@@ -26,6 +26,10 @@ import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage"
 import { checkIfLoggedIn } from "./store/actions/authActions";
 
 class App extends Component {
+    componentDidMount() {
+        this.props.dispatch(checkIfLoggedIn());
+    }
+
     render() {
         let routes = null;
 
@@ -69,7 +73,7 @@ class App extends Component {
         } else {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={StudentMainPage} />
+                    <Route exact path="/" component={LoginPage} />
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/verify/:id" component={VerifyEmailPage} />

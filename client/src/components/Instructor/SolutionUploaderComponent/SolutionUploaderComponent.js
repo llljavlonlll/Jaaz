@@ -28,12 +28,12 @@ const SolutionUploader = props => {
 
         const config = {
             headers: {
-                "content-type": "multipart/form-data"
+                "Content-Type": "multipart/form-data"
             }
         };
 
         axios
-            .post(`/api/solution/${this.props.question_id}`, data, config)
+            .post(`/api/solution/${props.question_id}`, data, config)
             .then(res => {
                 if (res.status === 200) {
                     setFilePreview(null);

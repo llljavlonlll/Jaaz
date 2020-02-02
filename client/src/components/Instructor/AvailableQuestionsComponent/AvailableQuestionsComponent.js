@@ -82,7 +82,7 @@ const AvailableQuestionsComponent = props => {
             </div>
             <div className="available-questions__content">
                 <div className="available-questions__container">
-                    {questions.length > 0 && (
+                    {!isLoading && questions.length > 0 && (
                         <Pagination
                             totalQuesitons={questions.length}
                             questionsPerPage={questionsPerPage}
@@ -92,7 +92,11 @@ const AvailableQuestionsComponent = props => {
                         />
                     )}
                     {isLoading ? (
-                        <div>{loadingAnimations}</div>
+                        <React.Fragment>
+                            <div style={{ height: "5rem" }}></div>
+                            <div>{loadingAnimations}</div>
+                            <div style={{ height: "5rem" }}></div>
+                        </React.Fragment>
                     ) : currentQuestions.length > 0 ? (
                         currentQuestions.map(question => {
                             return (
@@ -123,7 +127,7 @@ const AvailableQuestionsComponent = props => {
                         </div>
                     )}
                 </div>
-                {questions.length > 0 && (
+                {!isLoading && questions.length > 0 && (
                     <Pagination
                         totalQuesitons={questions.length}
                         questionsPerPage={questionsPerPage}
