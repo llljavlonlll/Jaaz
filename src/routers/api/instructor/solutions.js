@@ -50,6 +50,26 @@ router.post("/unbook/:id", auth, async (req, res) => {
     }
 });
 
+// Reject question
+// POST /api/solution/reject/:id
+router.post("/reject/:id", auth, async (req, res) => {
+    try {
+        const question = await Question.findById(req.params.id);
+
+        if (!question) {
+            return res.status(404).send({ msg: "Question not found!" });
+        }
+
+        question.status = "Rejected";
+
+        await question.save();
+
+        res.send({ status: question.status });
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
+    }
+});
+
 // Add solution to the question, selected by id
 // POST /api/solution/:id
 router.post(

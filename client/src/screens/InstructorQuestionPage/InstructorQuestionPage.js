@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
-import Modal from "react-modal";
 import axios from "axios";
 
 import QuestionDetailsComponent from "../../components/Instructor/QuestionDetailsComponent/QuestionDetailsComponent";
 import SolutionUploader from "../../components/Instructor/SolutionUploaderComponent/SolutionUploaderComponent";
+import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
 import "./InstructorQuestionPage.css";
 
@@ -19,6 +19,7 @@ export default class QuestionPage extends Component {
         solution: [],
         bookModalIsOpen: false,
         unbookModalIsOpen: false,
+        rejectModalIsOpen: false,
         isLoading: true,
         isUploading: false
     };
@@ -60,6 +61,10 @@ export default class QuestionPage extends Component {
         this.setState({ unbookModalIsOpen: true });
     };
 
+    openRejectModal = () => {
+        this.setState({ rejectModalIsOpen: true });
+    };
+
     handleQuestionBook = () => {
         axios
             .post(`/api/solution/book/${this.props.match.params.id}`)
@@ -93,8 +98,29 @@ export default class QuestionPage extends Component {
             });
     };
 
+    handleQuestionReject = () => {
+        axios
+            .post(`/api/solution/reject/${this.props.match.params.id}`)
+            .then(res => {
+                if (res.status === 200) {
+                    this.setState({
+                        status: "Rejected",
+                        bookModalIsOpen: false,
+                        unbookModalIsOpen: false
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err.response.data.msg);
+            });
+    };
+
     closeModal = () => {
-        this.setState({ bookModalIsOpen: false, unbookModalIsOpen: false });
+        this.setState({
+            bookModalIsOpen: false,
+            unbookModalIsOpen: false,
+            rejectModalIsOpen: false
+        });
     };
 
     handleStatusUpdate = status => {
@@ -126,72 +152,50 @@ export default class QuestionPage extends Component {
                         <h3 className="action-box__title">Action</h3>
                         <div className="action-box__container">
                             {this.state.status === "Pending" ? (
-                                <button
-                                    style={{
-                                        marginTop: 0,
-                                        background: "#8357c5",
-                                        borderBottom: "0.3rem solid #66439b"
-                                    }}
-                                    onClick={this.openBookModal}
-                                >
-                                    Book this question
-                                </button>
-                            ) : this.state.status === "Completed" ? (
-                                <h1>Solved!</h1>
-                            ) : null}
-                            <Modal
-                                ariaHideApp={false}
-                                id="bookModal"
-                                isOpen={this.state.bookModalIsOpen}
-                                onAfterOpen={this.afterOpenModal}
-                                onRequestClose={this.closeModal}
-                                style={{
-                                    content: {
-                                        color: "white",
-                                        background: "#464b5e",
-                                        textAlign: "center",
-                                        padding: "3.2rem",
-                                        top: "50%",
-                                        left: "50%",
-                                        right: "auto",
-                                        bottom: "auto",
-                                        marginRight: "-50%",
-                                        transform: "translate(-50%, -50%)"
-                                    }
-                                }}
-                                contentLabel="Example Modal"
-                            >
-                                <h2 style={{ margin: "0 0 2.4rem 0" }}>
-                                    Are you sure?
-                                </h2>
-                                <div>
+                                <React.Fragment>
                                     <button
-                                        onClick={this.handleQuestionBook}
                                         style={{
+                                            marginTop: 0,
                                             background: "#8357c5",
-                                            border: "none",
                                             borderBottom:
                                                 "0.3rem solid #66439b",
-                                            color: "white",
-                                            padding: "0.8rem 2rem",
-                                            marginRight: "2rem"
+                                            width: "30%"
                                         }}
+                                        onClick={this.openBookModal}
                                     >
                                         Book
                                     </button>
                                     <button
-                                        onClick={this.closeModal}
                                         style={{
-                                            color: "#a5afd7",
-                                            background: "none",
-                                            border: "none",
-                                            padding: "0.8rem"
+                                            marginTop: 0,
+                                            background: "#963f3f",
+                                            borderBottom:
+                                                "0.3rem solid #6b2c2c",
+                                            width: "30%"
                                         }}
+                                        onClick={this.openRejectModal}
                                     >
-                                        Cancel
+                                        Reject
                                     </button>
-                                </div>
-                            </Modal>
+                                </React.Fragment>
+                            ) : this.state.status === "Completed" ? (
+                                <h1>Solved!</h1>
+                            ) : null}
+                            <ModalComponent
+                                isOpen={this.state.bookModalIsOpen}
+                                closeModal={this.closeModal}
+                                acceptAction={this.handleQuestionBook}
+                                acceptTitle="Book"
+                                rejectTitle="Cancel"
+                            />
+                            <ModalComponent
+                                isOpen={this.state.rejectModalIsOpen}
+                                closeModal={this.closeModal}
+                                acceptAction={this.handleQuestionReject}
+                                acceptTitle="Reject"
+                                rejectTitle="Cancel"
+                                redStyle={true}
+                            />
                         </div>
                     </div>
                 ) : null}
@@ -223,58 +227,14 @@ export default class QuestionPage extends Component {
                                 </button>
                             </div>
                         </div>
-                        <Modal
-                            ariaHideApp={false}
-                            id="unbookModal"
+                        <ModalComponent
                             isOpen={this.state.unbookModalIsOpen}
-                            onAfterOpen={this.afterOpenModal}
-                            onRequestClose={this.closeModal}
-                            style={{
-                                content: {
-                                    color: "white",
-                                    background: "#464b5e",
-                                    textAlign: "center",
-                                    padding: "3.2rem",
-                                    top: "50%",
-                                    left: "50%",
-                                    right: "auto",
-                                    bottom: "auto",
-                                    marginRight: "-50%",
-                                    transform: "translate(-50%, -50%)"
-                                }
-                            }}
-                            contentLabel="Example Modal"
-                        >
-                            <h2 style={{ margin: "0 0 2.4rem 0" }}>
-                                Are you sure?
-                            </h2>
-                            <div>
-                                <button
-                                    onClick={this.handleQuestionUnbook}
-                                    style={{
-                                        background: "#963f3f",
-                                        border: "none",
-                                        borderBottom: "0.3rem solid #6b2c2c",
-                                        color: "white",
-                                        padding: "0.8rem 2rem",
-                                        marginRight: "2rem"
-                                    }}
-                                >
-                                    Unook
-                                </button>
-                                <button
-                                    onClick={this.closeModal}
-                                    style={{
-                                        color: "#a5afd7",
-                                        background: "none",
-                                        border: "none",
-                                        padding: "0.8rem"
-                                    }}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </Modal>
+                            closeModal={this.closeModal}
+                            acceptAction={this.handleQuestionUnbook}
+                            acceptTitle="Unbook"
+                            rejectTitle="Cancel"
+                            redStyle={true}
+                        />
                     </React.Fragment>
                 ) : null}
             </div>

@@ -13,7 +13,7 @@ import {
 } from "../../store/actions/authActions";
 
 const MyProfilePage = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [isBuyingOrWithdrawing, setIsBuyingOrWithdrawig] = useState(false);
@@ -22,7 +22,7 @@ const MyProfilePage = () => {
 
     useEffect(() => {
         dispatch(loadUser());
-    }, []);
+    }, [dispatch]);
 
     // Fetch user data state from redux store
     const { name, email, balance, category, isVerified } = useSelector(

@@ -31,7 +31,7 @@ const questionSchema = mongoose.Schema({
         required: true,
         default: "Pending",
         validate(value) {
-            const statuses = ["Pending", "Booked", "Completed"];
+            const statuses = ["Pending", "Booked", "Completed", "Rejected"];
             if (!statuses.includes(value)) {
                 throw new Error("Invalid status");
             }

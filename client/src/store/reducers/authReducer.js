@@ -7,8 +7,6 @@ import {
     UPDATE_USER_NAME,
     LOAD_USER
 } from "../actions/types";
-import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
 
 let initialState = {
     isAuthorized: false,
@@ -21,15 +19,6 @@ let initialState = {
         isVerified: false
     }
 };
-
-// if (Cookies.get("token")) {
-//     const decoded = jwtDecode(Cookies.get("token"));
-//     initialState = {
-//         ...initialState,
-//         isAuthorized: true,
-//         userData: decoded.user
-//     };
-// }
 
 export default (state = initialState, action) => {
     switch (action.type) {
