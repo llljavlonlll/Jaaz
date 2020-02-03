@@ -9,6 +9,8 @@ import ModalComponent from "../../components/ModalComponent/ModalComponent";
 import "./InstructorQuestionPage.css";
 
 export default class QuestionPage extends Component {
+    _isMounted = false;
+
     state = {
         status: "",
         uploaded_at: "",
@@ -24,22 +26,29 @@ export default class QuestionPage extends Component {
         isUploading: false
     };
     componentDidMount() {
+        this._isMounted = true;
         axios
             .get(`/api/pending/${this.props.match.params.id}`)
             .then(res => {
-                this.setState({
-                    status: res.data.status,
-                    uploaded_at: res.data.uploaded_at,
-                    description: res.data.description,
-                    subject: res.data.subject,
-                    owner: res.data.owner,
-                    image_name: res.data.image_name,
-                    solution: res.data.solution,
-                    isLoading: false,
-                    alreadyBooked: false
-                });
+                if (this._isMounted) {
+                    this.setState({
+                        status: res.data.status,
+                        uploaded_at: res.data.uploaded_at,
+                        description: res.data.description,
+                        subject: res.data.subject,
+                        owner: res.data.owner,
+                        image_name: res.data.image_name,
+                        solution: res.data.solution,
+                        isLoading: false,
+                        alreadyBooked: false
+                    });
+                }
             })
             .catch(err => console.log(err));
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     componentDidUpdate() {
@@ -159,7 +168,7 @@ export default class QuestionPage extends Component {
                                             background: "#8357c5",
                                             borderBottom:
                                                 "0.3rem solid #66439b",
-                                            width: "30%"
+                                            width: "40%"
                                         }}
                                         onClick={this.openBookModal}
                                     >
@@ -171,7 +180,7 @@ export default class QuestionPage extends Component {
                                             background: "#963f3f",
                                             borderBottom:
                                                 "0.3rem solid #6b2c2c",
-                                            width: "30%"
+                                            width: "40%"
                                         }}
                                         onClick={this.openRejectModal}
                                     >

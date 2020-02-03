@@ -38,10 +38,8 @@ const questionSchema = mongoose.Schema({
         }
     },
     booked_by: mongoose.Schema.Types.ObjectId,
-    solved_by: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
+    solved_by: mongoose.Schema.Types.ObjectId,
+    rejected_by: mongoose.Schema.Types.ObjectId,
     solution: [
         {
             image: {

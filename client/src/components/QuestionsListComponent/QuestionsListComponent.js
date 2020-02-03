@@ -22,7 +22,7 @@ const QuestionsListComponent = props => {
 
     // Fetch questions from database on initial render
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchQuestions = async () => {
             try {
                 const { data } = await axios.get(props.api_path);
                 dispatch(loadQuestions(data));
@@ -33,7 +33,7 @@ const QuestionsListComponent = props => {
             }
         };
 
-        fetchPosts();
+        fetchQuestions();
     }, [dispatch, props.api_path]);
 
     // Array of animations

@@ -57,9 +57,13 @@ router.post(
 router.get("/", auth, async (req, res) => {
     try {
         // Find authorized user's questions
-        const questions = await Question.find({
-            owner: req.user._id
-        });
+        const questions = await Question.find(
+            {
+                owner: req.user._id
+            },
+            null,
+            { sort: { uploaded_at: -1 } }
+        );
 
         if (questions.length === 0) {
             return res.status(404).send({ msg: "No questions found" });

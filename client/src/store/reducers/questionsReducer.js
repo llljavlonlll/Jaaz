@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
         case ADD_QUESTION:
             return {
                 ...state,
-                questions: [...state.questions, action.question]
+                questions: [action.question, ...state.questions]
             };
         case FILTER_QUESTIONS:
             const filteredQuestions = state.questions.filter(

@@ -60,6 +60,7 @@ router.post("/reject/:id", auth, async (req, res) => {
             return res.status(404).send({ msg: "Question not found!" });
         }
 
+        question.rejected_by = req.user._id;
         question.status = "Rejected";
 
         await question.save();
