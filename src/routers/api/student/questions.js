@@ -32,7 +32,7 @@ router.post(
             fs.unlinkSync(req.file.path);
 
             // Charge user account for the question
-            if (user.balance > 3000) {
+            if (user.balance >= 3000) {
                 user.balance = user.balance - 3000;
                 await user.save();
             } else {
