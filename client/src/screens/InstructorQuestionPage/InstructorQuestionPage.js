@@ -25,6 +25,7 @@ export default class QuestionPage extends Component {
         isLoading: true,
         isUploading: false
     };
+
     componentDidMount() {
         this._isMounted = true;
         axios
@@ -52,14 +53,14 @@ export default class QuestionPage extends Component {
     }
 
     componentDidUpdate() {
-        axios
-            .get(`/api/pending/${this.props.match.params.id}`)
-            .then(res => {
-                this.setState({
-                    solution: res.data.solution
-                });
-            })
-            .catch(err => console.log(err));
+        // axios
+        //     .get(`/api/pending/${this.props.match.params.id}`)
+        //     .then(res => {
+        //         this.setState({
+        //             solution: res.data.solution
+        //         });
+        //     })
+        //     .catch(err => console.log(err));
     }
 
     openBookModal = () => {
@@ -144,6 +145,12 @@ export default class QuestionPage extends Component {
         });
     };
 
+    handleReceiveSolution = solution => {
+        this.setState({
+            solution
+        });
+    };
+
     render() {
         if (this.state.isLoading) {
             return <ReactLoading color={"#8357c5"} type={"spin"} />;
@@ -220,6 +227,7 @@ export default class QuestionPage extends Component {
                             question_image_name={this.state.image_name}
                             handleStatusUpdate={this.handleStatusUpdate}
                             handleUploadAnimation={this.handleUploadAnimation}
+                            handleReceiveSolution={this.handleReceiveSolution}
                         />
                         <div className="action-box">
                             <h3 className="action-box__title">Action</h3>

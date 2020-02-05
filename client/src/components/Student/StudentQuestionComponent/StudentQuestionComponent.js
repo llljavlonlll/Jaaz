@@ -87,7 +87,7 @@ export default function StudentQuestionComponent(props) {
                         : question.status === "Booked"
                         ? "Instructor working on your question"
                         : question.status === "Rejected"
-                        ? "Your question was rejected because photo was low quality or it contains more than one question"
+                        ? "Your question was rejected because photo was low quality or it contains more than one question. We credited your account for a refund"
                         : ""}
                 </div>
             </div>

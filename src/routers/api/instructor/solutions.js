@@ -2,7 +2,11 @@ const express = require("express");
 const router = new express.Router();
 const auth = require("../../../middleware/auth");
 const Question = require("../../../models/questions");
+const User = require("../../../models/users");
 const solutionUpload = require("../tools/solution-uploader");
+const sharp = require("sharp");
+const path = require("path");
+const fs = require("fs");
 
 // Book an available question
 // POST /api/solution/book/:id
@@ -60,10 +64,15 @@ router.post("/reject/:id", auth, async (req, res) => {
             return res.status(404).send({ msg: "Question not found!" });
         }
 
+        // Update status of the question to "Rejected"
         question.rejected_by = req.user._id;
         question.status = "Rejected";
-
         await question.save();
+
+        // Refund credits to the questions owner
+        const student = await User.findById(question.owner);
+        student.balance = student.balance + 3000;
+        await student.save();
 
         res.send({ status: question.status });
     } catch (err) {
@@ -81,7 +90,7 @@ router.post(
         const solutionEntries = ["solution", "description", "questionName"];
         const updates = Object.keys(req.body);
 
-        // Check if solution has only allowed fields
+        // Check if solution request has only allowed fields
         const allowSolution = updates.every(update =>
             solutionEntries.includes(update)
         );
@@ -89,7 +98,7 @@ router.post(
         const user = req.user;
 
         if (!allowSolution) {
-            return res.status(400).send({ msg: "Invalid solution" });
+            return res.status(400).send({ msg: "Invalid solution request" });
         }
 
         try {
@@ -98,6 +107,16 @@ router.post(
             if (!question) {
                 return res.status(404).send({ msg: "Question not found!" });
             }
+
+            await sharp(req.file.path)
+                .rotate()
+                .resize({ width: 600 })
+                .png({ quality: 80 })
+                .jpeg({ quality: 80 })
+                .toFile(
+                    path.resolve(req.file.destination, "..", req.file.filename)
+                );
+            fs.unlinkSync(req.file.path);
 
             // Add solution and save
             question.solution.push({

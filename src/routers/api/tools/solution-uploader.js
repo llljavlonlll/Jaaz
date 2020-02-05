@@ -9,7 +9,8 @@ const storage = multer.diskStorage({
             "..",
             "..",
             "..",
-            "solutions"
+            "solutions",
+            "raw"
         );
 
         cb(null, imageRoute);
@@ -20,7 +21,10 @@ const storage = multer.diskStorage({
         cb(
             null,
             "solution-" +
-                req.body.questionName +
+                req.body.questionName.substr(
+                    0,
+                    req.body.questionName.length - 4
+                ) +
                 file.originalname
                     .substr(file.originalname.length - 4)
                     .toLocaleLowerCase()
@@ -30,11 +34,14 @@ const storage = multer.diskStorage({
 
 // Accept only JPG or PNG
 const fileFilter = (req, file, cb) => {
-    if (!file.mimetype === "image/jpeg" || !file.mimetype === "image/png") {
-        return cb(new Error("Please upload a .jpg or .png image"));
+    if (
+        file.originalname.toLowerCase().endsWith(".jpg") ||
+        file.originalname.toLowerCase().endsWith(".png")
+    ) {
+        return cb(undefined, true);
     }
 
-    cb(undefined, true);
+    cb(new Error("Please upload a .jpg or .png image"));
 };
 
 const upload = multer({

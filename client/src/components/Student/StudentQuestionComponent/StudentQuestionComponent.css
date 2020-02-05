@@ -168,6 +168,7 @@
     }
     .student-question__content__item__no-solution {
         height: 9rem;
+        font-size: 1rem;
     }
 
     .student-question__content__item__image-container {

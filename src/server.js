@@ -33,6 +33,7 @@ app.use(express.static(frontEndDir));
 // Parsers
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: 5000000 }));
 
 // General routes
 app.use("/api/", generalRouter);

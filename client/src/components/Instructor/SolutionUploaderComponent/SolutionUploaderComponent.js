@@ -31,8 +31,8 @@ const SolutionUploader = props => {
 
         const data = new FormData();
         data.append("questionName", props.question_image_name);
-        data.append("solution", file);
         data.append("description", description);
+        data.append("solution", file);
 
         const config = {
             headers: {
@@ -49,6 +49,7 @@ const SolutionUploader = props => {
                     setInputKey(Date.now());
                     setDescription("");
 
+                    props.handleReceiveSolution(res.data.solution);
                     props.handleStatusUpdate("Completed");
                 }
                 props.handleUploadAnimation();
