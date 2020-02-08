@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FiArrowLeft } from "react-icons/fi";
 import axios from "axios";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import {
     loadQuestions,
@@ -22,6 +23,7 @@ const AvailableQuestionsComponent = props => {
 
     //Initialize dispatch function
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     // Fetch questions from database on initial render
     useEffect(() => {
@@ -73,11 +75,31 @@ const AvailableQuestionsComponent = props => {
                         onClick={() => dispatch(setSelectedSubject())}
                     >
                         <FiArrowLeft />
-                        <button className="back-button">Back</button>
+                        <button className="back-button">
+                            <FormattedMessage
+                                id="navigation.back"
+                                defaultMessage="Back"
+                            />
+                        </button>
                     </a>
                 </div>
                 <div className="available-questions__title__subject">
-                    {props.subject}
+                    {/* check what subject was passed and assign "id" accordingly */}
+                    {intl.formatMessage({
+                        id:
+                            props.subject === "Math"
+                                ? "math"
+                                : props.subject === "English"
+                                ? "english"
+                                : props.subject === "History"
+                                ? "history"
+                                : props.subject === "Physics"
+                                ? "physics"
+                                : props.subject === "Chemistry"
+                                ? "chemistry"
+                                : "computer",
+                        defaultMessage: "{props.subject}"
+                    })}
                 </div>
             </div>
             <div className="available-questions__content">
@@ -121,7 +143,10 @@ const AvailableQuestionsComponent = props => {
                                 }}
                             >
                                 <div style={{ textAlign: "center" }}>
-                                    Currently, there are no questions left
+                                    <FormattedMessage
+                                        id="teacher.avail-quest.no-quest"
+                                        defaultMessage="Currently, there are no questions left"
+                                    />
                                 </div>
                             </div>
                         </div>

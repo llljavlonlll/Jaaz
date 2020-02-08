@@ -30,10 +30,6 @@ import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage"
 import { checkIfLoggedIn } from "./store/actions/authActions";
 
 class App extends Component {
-    componentDidMount() {
-        this.props.dispatch(checkIfLoggedIn());
-    }
-
     render() {
         let routes = null;
 

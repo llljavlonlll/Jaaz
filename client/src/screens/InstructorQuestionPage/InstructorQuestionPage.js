@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import axios from "axios";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 import QuestionDetailsComponent from "../../components/Instructor/QuestionDetailsComponent/QuestionDetailsComponent";
 import SolutionUploader from "../../components/Instructor/SolutionUploaderComponent/SolutionUploaderComponent";
@@ -9,7 +9,7 @@ import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
 import "./InstructorQuestionPage.css";
 
-export default class QuestionPage extends Component {
+class QuestionPage extends Component {
     _isMounted = false;
 
     state = {
@@ -261,3 +261,5 @@ export default class QuestionPage extends Component {
         );
     }
 }
+
+export default injectIntl(QuestionPage);

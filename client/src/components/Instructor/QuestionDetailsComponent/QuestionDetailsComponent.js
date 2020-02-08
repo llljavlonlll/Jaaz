@@ -1,12 +1,18 @@
 import moment from "moment";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import "./QuestionDetailsComponent.css";
 
 export default function QuestionDetailsComponent(props) {
     return (
         <div className="question-details">
-            <h3 className="question-details__title">Question details</h3>
+            <h3 className="question-details__title">
+                <FormattedMessage
+                    id="teacher.question-details.title"
+                    defaultMessage="Question details"
+                />
+            </h3>
             <div
                 className="question__container"
                 style={{ borderBottom: "1px solid #a5afd74f" }}

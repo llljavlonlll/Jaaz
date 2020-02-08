@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 import Pagination from "../../PaginationComponent/PaginationComponent";
 import QuestionTileComponent from "../../QuestionTileComponent/QuestionTileComponent";
@@ -92,7 +93,10 @@ const BookedQuestionsList = props => {
                                         color: "#a5afd7"
                                     }}
                                 >
-                                    You have not booked any question yet
+                                    <FormattedMessage
+                                        id="teacher.booked.no-quest"
+                                        defaultMessage="You have not booked any question yet"
+                                    />
                                 </div>
                             </div>
                         </div>

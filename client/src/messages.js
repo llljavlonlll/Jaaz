@@ -44,6 +44,8 @@ export default {
         "student.upload.button.active": "Upload question",
         "student.upload.button.low": "Low balance!",
         "student.questions.title": "Your questions",
+        "student.questions.no-questions":
+            "You don't have any questions yet. Upload your first question",
         "pagination.prev": "Prev",
         "pagination.next": "Next",
         "student.question.pending":
@@ -71,6 +73,13 @@ export default {
         "profile.button.withdraw": "Withdraw",
         "teacher.subjects.title": "Choose a subject",
         "teacher.question-details.title": "Question details",
+        "teacher.avail-quest.no-quest":
+            "Currently, there are no questions left",
+        "teacher.booked.title": "Booked",
+        "teacher.booked.no-quest": "You have not booked any questions yet",
+        "teacher.completed.title": "Completed",
+        "teacher.completed.no-quest":
+            "You have not completed any questions yet",
         "teacher.upload.title": "Upload your solution",
         "teacher.upload.description": "Description",
         "teacher.upload.msg": "Upload a solution image",
@@ -141,6 +150,8 @@ export default {
         "student.upload.button.active": "Загрузить вопрос",
         "student.upload.button.low": "Недостаточно средств!",
         "student.questions.title": "Ваши вопросы",
+        "student.questions.no-questions":
+            "Здесь будут отображаться ваши вопросы. Загрузите свой первый вопрос",
         "pagination.prev": "Пред",
         "pagination.next": "След",
         "student.question.pending":
@@ -155,7 +166,7 @@ export default {
         "tile.status": "Статус:",
         "tile.upload-time": "Загружён:",
         "profile.title": "Ваш профиль",
-        "profile.edit": "Редактировать",
+        "profile.edit": "Изменить",
         "profile.edit.save": "Сохранить",
         "profile.edit.cancel": "Отменить",
         "profile.name": "Полное имя",
@@ -168,6 +179,14 @@ export default {
         "profile.button.withdraw": "Снять",
         "teacher.subjects.title": "Выберите предмет",
         "teacher.question-details.title": "Детали вопроса",
+        "teacher.avail-quest.no-quest":
+            "Вопросов пока нет. Проверьте заново через некоторое время.",
+        "teacher.booked.title": "Забронированные",
+        "teacher.booked.no-quest":
+            "Здесь будут отображаться забронированные вопросы.",
+        "teacher.completed.title": "Завершённые",
+        "teacher.completed.no-quest":
+            "Здесь будут отображаться завершённые вопросы.",
         "teacher.upload.title": "Загрузите ваш ответ",
         "teacher.upload.description": "Описание",
         "teacher.upload.msg": "Загрузите фото-ответ",
@@ -190,7 +209,7 @@ export default {
         history: "История",
         physics: "Физика",
         chemistry: "Химия",
-        computer: "Программирование"
+        computer: "IT"
     },
     uz: {
         "login.title": "Tizimga kirish",
