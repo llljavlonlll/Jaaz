@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import ReactLoading from "react-loading";
+import { FormattedMessage, injectIntl } from "react-intl";
 
-export default class NewPassword extends Component {
+class NewPassword extends Component {
     state = {
         password: "",
         rePassword: "",
@@ -22,7 +23,10 @@ export default class NewPassword extends Component {
             });
         } catch (err) {
             this.setState({
-                error: "Invalid password reset link"
+                error: this.props.intl.formatMessage({
+                    id: "new-pass.error.inv-link",
+                    defaultMrssage: "Invalid password reset link"
+                })
             });
         }
     }
@@ -69,7 +73,10 @@ export default class NewPassword extends Component {
         });
         if (event.target.value !== this.state.password) {
             this.setState({
-                error: "Passwords do not match"
+                error: this.props.intl.formatMessage({
+                    id: "new-pass.error.no-match",
+                    defaultMrssage: "Passwords do not match"
+                })
             });
         } else
             this.setState({
@@ -86,7 +93,11 @@ export default class NewPassword extends Component {
         return (
             <div className="password-reset-box">
                 <h3 className="password-reset-box__title">
-                    Reset password for {this.state.email}
+                    <FormattedMessage
+                        id="new-pass.title"
+                        defaultMessage="Reset password for "
+                    />
+                    {this.state.email}
                 </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="password-reset-box__container">
@@ -97,12 +108,20 @@ export default class NewPassword extends Component {
                         )}
                         {this.state.updated ? (
                             <label style={{ margin: "0 auto" }}>
-                                Password successfully updated!
+                                <FormattedMessage
+                                    id="new-pass-success.description"
+                                    defaultMessage="Password successfully updated!"
+                                />
                             </label>
                         ) : (
                             <React.Fragment>
                                 <div className="login-component__form__item">
-                                    <label htmlFor="password">Password</label>
+                                    <label htmlFor="password">
+                                        <FormattedMessage
+                                            id="new-pass.pass"
+                                            defaultMessage="New password"
+                                        />
+                                    </label>
                                     <input
                                         type="password"
                                         id="password"
@@ -114,7 +133,10 @@ export default class NewPassword extends Component {
                                 </div>
                                 <div className="login-component__form__item">
                                     <label htmlFor="rePassword">
-                                        Confirm password
+                                        <FormattedMessage
+                                            id="new-pass.re-pass"
+                                            defaultMessage="Confirm password"
+                                        />
                                     </label>
                                     <input
                                         type="password"
@@ -132,7 +154,10 @@ export default class NewPassword extends Component {
                                 onClick={this.returnToLogin}
                                 style={{ marginTop: "2rem" }}
                             >
-                                Return to login
+                                <FormattedMessage
+                                    id="new-pass-success.button"
+                                    defaultMessage="Return to login"
+                                />
                             </button>
                         ) : (
                             <button>
@@ -145,7 +170,10 @@ export default class NewPassword extends Component {
                                         className="spinner"
                                     />
                                 ) : (
-                                    "Reset password"
+                                    <FormattedMessage
+                                        id="new-pass.button"
+                                        defaultMessage="Reset password"
+                                    />
                                 )}
                             </button>
                         )}
@@ -155,3 +183,5 @@ export default class NewPassword extends Component {
         );
     }
 }
+
+export default injectIntl(NewPassword);

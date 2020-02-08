@@ -1,15 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { FormattedMessage } from "react-intl";
 import Cookies from "js-cookie";
 import axios from "axios";
+
 import { userLogout } from "../../store/actions/authActions";
+import { setLocale } from "../../store/actions/localeActions";
 
 import "./HeaderComponent.css";
 
 const HeaderComponent = props => {
-    let links = null;
+    const isAuthorized = useSelector(state => state.auth.isAuthorized);
+    const dispatch = useDispatch();
 
     const handleLogout = () => {
         axios
@@ -18,7 +22,7 @@ const HeaderComponent = props => {
                 if (res.status === 200) {
                     Cookies.remove("token");
                     if (!Cookies.get("token")) {
-                        props.dispatch(userLogout());
+                        dispatch(userLogout());
 
                         props.history.push("/");
                     }
@@ -29,26 +33,42 @@ const HeaderComponent = props => {
             });
     };
 
-    if (props.isAuthorized) {
+    let links = null;
+
+    if (isAuthorized) {
         links = (
             <div className="navbar__links">
                 <NavLink exact to="/" activeClassName="selected">
-                    Dashboard
+                    <FormattedMessage
+                        id="nav.dash"
+                        defaultMessage="Dashboard"
+                    />
                 </NavLink>
                 <NavLink to="/profile" activeClassName="selected">
-                    My Profile
+                    <FormattedMessage
+                        id="nav.profile"
+                        defaultMessage="My profile"
+                    />
                 </NavLink>
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout}>
+                    <FormattedMessage
+                        id="nav.logout"
+                        defaultMessage="Log out"
+                    />
+                </button>
             </div>
         );
     } else {
         links = (
             <div className="navbar__links">
                 <NavLink to="/login" activeClassName="selected">
-                    Login
+                    <FormattedMessage id="nav.login" defaultMessage="Log in" />
                 </NavLink>
                 <NavLink to="/signup" activeClassName="selected">
-                    Sign Up
+                    <FormattedMessage
+                        id="nav.signup"
+                        defaultMessage="Sign Up"
+                    />
                 </NavLink>
             </div>
         );
@@ -61,6 +81,28 @@ const HeaderComponent = props => {
                     <NavLink to="/" style={{ margin: 0, color: "white" }}>
                         <h3 className="navbar__title">noCheat</h3>
                     </NavLink>
+                    <div>
+                        <a
+                            role="button"
+                            onClick={() => dispatch(setLocale("en"))}
+                        >
+                            EN
+                        </a>{" "}
+                        |
+                        <a
+                            role="button"
+                            onClick={() => dispatch(setLocale("ru"))}
+                        >
+                            РУ
+                        </a>{" "}
+                        |
+                        <a
+                            role="button"
+                            onClick={() => dispatch(setLocale("uz"))}
+                        >
+                            O'Z
+                        </a>
+                    </div>
                     {links}
                 </div>
             </div>
@@ -68,10 +110,4 @@ const HeaderComponent = props => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        isAuthorized: state.auth.isAuthorized
-    };
-};
-
-export default connect(mapStateToProps)(withRouter(HeaderComponent));
+export default withRouter(HeaderComponent);

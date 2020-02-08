@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import axios from "axios";
+import { FormattedMessage } from "react-intl";
 
 import QuestionDetailsComponent from "../../components/Instructor/QuestionDetailsComponent/QuestionDetailsComponent";
 import SolutionUploader from "../../components/Instructor/SolutionUploaderComponent/SolutionUploaderComponent";
@@ -50,17 +51,6 @@ export default class QuestionPage extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
-    }
-
-    componentDidUpdate() {
-        // axios
-        //     .get(`/api/pending/${this.props.match.params.id}`)
-        //     .then(res => {
-        //         this.setState({
-        //             solution: res.data.solution
-        //         });
-        //     })
-        //     .catch(err => console.log(err));
     }
 
     openBookModal = () => {
@@ -165,38 +155,43 @@ export default class QuestionPage extends Component {
                 )}
                 {this.state.status === "Pending" ? (
                     <div className="action-box">
-                        <h3 className="action-box__title">Action</h3>
+                        <h3 className="action-box__title">
+                            <FormattedMessage
+                                id="teacher.action.title"
+                                defaultMessage="Action"
+                            />
+                        </h3>
                         <div className="action-box__container">
-                            {this.state.status === "Pending" ? (
-                                <React.Fragment>
-                                    <button
-                                        style={{
-                                            marginTop: 0,
-                                            background: "#8357c5",
-                                            borderBottom:
-                                                "0.3rem solid #66439b",
-                                            width: "40%"
-                                        }}
-                                        onClick={this.openBookModal}
-                                    >
-                                        Book
-                                    </button>
-                                    <button
-                                        style={{
-                                            marginTop: 0,
-                                            background: "#963f3f",
-                                            borderBottom:
-                                                "0.3rem solid #6b2c2c",
-                                            width: "40%"
-                                        }}
-                                        onClick={this.openRejectModal}
-                                    >
-                                        Reject
-                                    </button>
-                                </React.Fragment>
-                            ) : this.state.status === "Completed" ? (
-                                <h1>Solved!</h1>
-                            ) : null}
+                            <React.Fragment>
+                                <button
+                                    style={{
+                                        marginTop: 0,
+                                        background: "#8357c5",
+                                        borderBottom: "0.3rem solid #66439b",
+                                        width: "40%"
+                                    }}
+                                    onClick={this.openBookModal}
+                                >
+                                    <FormattedMessage
+                                        id="teacher.action.button.book"
+                                        defaultMessage="Book"
+                                    />
+                                </button>
+                                <button
+                                    style={{
+                                        marginTop: 0,
+                                        background: "#963f3f",
+                                        borderBottom: "0.3rem solid #6b2c2c",
+                                        width: "40%"
+                                    }}
+                                    onClick={this.openRejectModal}
+                                >
+                                    <FormattedMessage
+                                        id="teacher.action.button.reject"
+                                        defaultMessage="Reject"
+                                    />
+                                </button>
+                            </React.Fragment>
                             <ModalComponent
                                 isOpen={this.state.bookModalIsOpen}
                                 closeModal={this.closeModal}
@@ -230,7 +225,12 @@ export default class QuestionPage extends Component {
                             handleReceiveSolution={this.handleReceiveSolution}
                         />
                         <div className="action-box">
-                            <h3 className="action-box__title">Action</h3>
+                            <h3 className="action-box__title">
+                                <FormattedMessage
+                                    id="teacher.action.title"
+                                    defaultMessage="Action"
+                                />
+                            </h3>
                             <div className="action-box__container">
                                 <button
                                     style={{
@@ -240,7 +240,10 @@ export default class QuestionPage extends Component {
                                     }}
                                     onClick={this.openUnbookModal}
                                 >
-                                    Unbook this question
+                                    <FormattedMessage
+                                        id="teacher.action.button.unbook"
+                                        defaultMessage="Unbook this question"
+                                    />
                                 </button>
                             </div>
                         </div>

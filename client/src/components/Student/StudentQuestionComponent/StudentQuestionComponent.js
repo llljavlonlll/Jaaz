@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
+import { FormattedMessage } from "react-intl";
 import axios from "axios";
 import moment from "moment";
 
@@ -10,7 +11,9 @@ const BackButton = () => {
     return (
         <Link to="/" className="back-button__container">
             <FiArrowLeft />
-            <button className="back-button">Back</button>
+            <button className="back-button">
+                <FormattedMessage id="navigation.back" defaultMessage="Back" />
+            </button>
         </Link>
     );
 };
@@ -35,7 +38,33 @@ export default function StudentQuestionComponent(props) {
             <div className="student-question">
                 <h3 className="student-question__title">
                     <BackButton />
-                    {isLoading ? <p>Loading...</p> : <p>{question.status}</p>}
+                    {isLoading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <p>
+                            {question.status === "Pending" ? (
+                                <FormattedMessage
+                                    id="status.pending"
+                                    defaultMessage="Pending"
+                                />
+                            ) : question.status === "Booked" ? (
+                                <FormattedMessage
+                                    id="status.booked"
+                                    defaultMessage="Booked"
+                                />
+                            ) : question.status === "Completed" ? (
+                                <FormattedMessage
+                                    id="status.completed"
+                                    defaultMessage="Completed"
+                                />
+                            ) : (
+                                <FormattedMessage
+                                    id="status.rejected"
+                                    defaultMessage="Rejected"
+                                />
+                            )}
+                        </p>
+                    )}
                 </h3>
                 <div className="student-question__loading">
                     <div className="student-question__loading-content">
@@ -64,12 +93,20 @@ export default function StudentQuestionComponent(props) {
                 <div className="student-question__content__item__details-container">
                     <div className="student-question__content__item__details">
                         <div className="student-question__content__item__details__description">
-                            {question.solution[0].description
-                                ? question.solution[0].description
-                                : "No description"}
+                            {question.solution[0].description ? (
+                                question.solution[0].description
+                            ) : (
+                                <FormattedMessage
+                                    id="student.question.no-desc"
+                                    defaultMessage="No description"
+                                />
+                            )}
                         </div>
                         <div className="student-question__content__item__details__time">
-                            Answered on{" "}
+                            <FormattedMessage
+                                id="student.question.answered-on"
+                                defaultMessage="Answered on"
+                            />{" "}
                             {moment(question.solution[0].solved_at).format(
                                 "DD/MM/YYYY"
                             )}
@@ -82,13 +119,24 @@ export default function StudentQuestionComponent(props) {
         solution = (
             <div className="student-question__content__item">
                 <div className="student-question__content__item__no-solution">
-                    {question.status === "Pending"
-                        ? "We are searching for qualified instructor"
-                        : question.status === "Booked"
-                        ? "Instructor working on your question"
-                        : question.status === "Rejected"
-                        ? "Your question was rejected because photo was low quality or it contains more than one question. We credited your account for a refund"
-                        : ""}
+                    {question.status === "Pending" ? (
+                        <FormattedMessage
+                            id="student.question.pending"
+                            defaultMessage="We are searching for qualified instructor"
+                        />
+                    ) : question.status === "Booked" ? (
+                        <FormattedMessage
+                            id="student.question.booked"
+                            defaultMessage="Instructor working on your question"
+                        />
+                    ) : question.status === "Rejected" ? (
+                        <FormattedMessage
+                            id="student.question.rejected"
+                            defaultMessage="Your question was rejected because photo was low quality or it contains more than one question. We credited your account for a refund"
+                        />
+                    ) : (
+                        ""
+                    )}
                 </div>
             </div>
         );
@@ -144,12 +192,18 @@ export default function StudentQuestionComponent(props) {
                                             margin: "0"
                                         }}
                                     >
-                                        No description
+                                        <FormattedMessage
+                                            id="student.question.no-desc"
+                                            defaultMessage="No description"
+                                        />
                                     </span>
                                 )}
                             </div>
                             <div className="student-question__content__item__details__time">
-                                Asked on{" "}
+                                <FormattedMessage
+                                    id="student.question.asked-on"
+                                    defaultMessage="Asked on"
+                                />{" "}
                                 {moment(question.uploaded_at).format(
                                     "DD/MM/YYYY"
                                 )}

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Redirect } from "react-router";
+import { FormattedMessage } from "react-intl";
 
 import AvailableQuestionsComponent from "../../components/Instructor/AvailableQuestionsComponent/AvailableQuestionsComponent";
 // import CompletedQuestionsList from "../../components/Instructor/CompletedQuestionsListComponent/CompletedQuestionsListComponent";
@@ -27,8 +28,18 @@ const InstructorMainPage = () => {
                 )}
                 <Tabs>
                     <TabList>
-                        <Tab>Booked</Tab>
-                        <Tab>Completed</Tab>
+                        <Tab>
+                            <FormattedMessage
+                                id="status.booked"
+                                defaultMessage="Booked"
+                            />
+                        </Tab>
+                        <Tab>
+                            <FormattedMessage
+                                id="status.completed"
+                                defaultMessage="Completed"
+                            />
+                        </Tab>
                     </TabList>
 
                     <TabPanel>

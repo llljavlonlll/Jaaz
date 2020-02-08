@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import { FormattedMessage } from "react-intl";
 
 import "./ForgotPasswordPage.css";
 
@@ -51,7 +52,10 @@ export default class ForgotPasswordPage extends Component {
         return (
             <div className="password-reset-box">
                 <h3 className="password-reset-box__title">
-                    Reset your password
+                    <FormattedMessage
+                        id="pass-reset-request.title"
+                        defaultMessage="Reset your password"
+                    />
                 </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="password-reset-box__container">
@@ -67,8 +71,11 @@ export default class ForgotPasswordPage extends Component {
                                         htmlFor="email"
                                         style={{ marginBottom: "2rem" }}
                                     >
-                                        Enter your email address and we will
-                                        send you a link to reset your password.
+                                        <FormattedMessage
+                                            id="pass-reset-request.description"
+                                            defaultMessage="Enter your email address and we will
+                                    send you a link to reset your password."
+                                        />
                                     </label>
                                     <input
                                         type="text"
@@ -81,9 +88,12 @@ export default class ForgotPasswordPage extends Component {
                                 </React.Fragment>
                             ) : (
                                 <label style={{ marginBottom: "2rem" }}>
-                                    Check your email for a link to reset your
-                                    password. If it doesn’t appear within a few
-                                    minutes, check your spam folder.
+                                    <FormattedMessage
+                                        id="pass-reset-done.description"
+                                        defaultMessage="Check your email for a link to reset your
+                                password. If it doesn’t appear within a few
+                                minutes, check your spam folder."
+                                    />
                                 </label>
                             )}
                         </div>
@@ -98,12 +108,18 @@ export default class ForgotPasswordPage extends Component {
                                         className="spinner"
                                     />
                                 ) : (
-                                    "Send password reset email"
+                                    <FormattedMessage
+                                        id="pass-reset-request.button"
+                                        defaultMessage="Send password reset email"
+                                    />
                                 )}
                             </button>
                         ) : (
                             <button onClick={this.returnToLogin}>
-                                Return to login
+                                <FormattedMessage
+                                    id="pass-reset-done.button"
+                                    defaultMessage="Return to login"
+                                />
                             </button>
                         )}
                     </div>

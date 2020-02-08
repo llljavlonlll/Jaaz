@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import { connect } from "react-redux";
 import axios from "axios";
+import { injectIntl } from "react-intl";
 
 import { loginSuccess } from "../../store/actions/authActions";
+import { FormattedMessage } from "react-intl";
 
 class SignupPage extends Component {
     state = {
@@ -77,7 +79,12 @@ class SignupPage extends Component {
     render() {
         return (
             <section className="login-component">
-                <h3 className="login-component__title">Create an Account</h3>
+                <h3 className="login-component__title">
+                    <FormattedMessage
+                        id="signup.title"
+                        defaultMessage="Create an account"
+                    />
+                </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="login-component__container">
                         {this.state.error && (
@@ -86,7 +93,12 @@ class SignupPage extends Component {
                             </div>
                         )}
                         <div className="login-component__form__item">
-                            <label htmlFor="name">Full Name</label>
+                            <label htmlFor="name">
+                                <FormattedMessage
+                                    id="signup.name"
+                                    defaultMessage="Full name"
+                                />
+                            </label>
                             <input
                                 required
                                 type="text"
@@ -109,7 +121,14 @@ class SignupPage extends Component {
                             />
                         </div>
                         <div className="login-component__form__item">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">
+                                <label htmlFor="name">
+                                    <FormattedMessage
+                                        id="signup.pass"
+                                        defaultMessage="Password"
+                                    />
+                                </label>
+                            </label>
                             <input
                                 autoComplete="new-password"
                                 required
@@ -122,7 +141,10 @@ class SignupPage extends Component {
                         </div>
                         <div className="login-component__form__item">
                             <label htmlFor="rePassword">
-                                Re-enter Password
+                                <FormattedMessage
+                                    id="signup.re-pass"
+                                    defaultMessage="Confirm password"
+                                />
                             </label>
                             <input
                                 required
@@ -133,19 +155,34 @@ class SignupPage extends Component {
                                 onChange={this.onChange}
                             />
                         </div>
-                        {/*<div className="login-component__form__item">
-                        <label htmlFor="category">Account Type</label>
-                        <select
-                            required
-                            value={this.state.category}
-                            onChange={this.onChange}
-                            name="category"
-                            id="category"
-                        >
-                            <option value="customer">Customer</option>
-                            <option value="instructor">Instructor</option>
-                        </select>
-                        </div>*/}
+                        <div className="login-component__form__item">
+                            <label htmlFor="category">
+                                <FormattedMessage
+                                    id="signup.acc"
+                                    defaultMessage="Account type"
+                                />
+                            </label>
+                            <select
+                                required
+                                value={this.state.category}
+                                onChange={this.onChange}
+                                name="category"
+                                id="category"
+                            >
+                                <option value="customer">
+                                    {this.props.intl.formatMessage({
+                                        id: "signup.acc.student",
+                                        defaultMessage: "Student"
+                                    })}
+                                </option>
+                                <option value="instructor">
+                                    {this.props.intl.formatMessage({
+                                        id: "signup.acc.teacher",
+                                        defaultMessage: "Teacher"
+                                    })}
+                                </option>
+                            </select>
+                        </div>
                         <button>
                             {this.state.isLoading ? (
                                 <ReactLoading
@@ -156,7 +193,10 @@ class SignupPage extends Component {
                                     className="spinner"
                                 />
                             ) : (
-                                "Sign up"
+                                <FormattedMessage
+                                    id="signup"
+                                    defaultMessage="Sign up"
+                                />
                             )}
                         </button>
                     </div>
@@ -166,4 +206,4 @@ class SignupPage extends Component {
     }
 }
 
-export default connect()(SignupPage);
+export default connect()(injectIntl(SignupPage));

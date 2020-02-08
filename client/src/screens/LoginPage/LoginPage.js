@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { loginSuccess } from "../../store/actions/authActions";
 import ReactLoading from "react-loading";
+import { FormattedMessage } from "react-intl";
 
 import "./LoginPage.css";
 
@@ -49,7 +50,10 @@ class LoginPage extends Component {
         return (
             <section className="login-component">
                 <h3 className="login-component__title">
-                    Log in to Your Dashboard
+                    <FormattedMessage
+                        id="login.title"
+                        defaultMessage="Log into dashboard"
+                    />
                 </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="login-component__container">
@@ -69,7 +73,12 @@ class LoginPage extends Component {
                             />
                         </div>
                         <div className="login-component__form__item">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">
+                                <FormattedMessage
+                                    id="login.pass"
+                                    defaultMessage="Password"
+                                />
+                            </label>
                             <input
                                 type="password"
                                 id="password"
@@ -80,7 +89,10 @@ class LoginPage extends Component {
                             <div className="password-options">
                                 <p>
                                     <Link to="/password_reset">
-                                        Forgot password?
+                                        <FormattedMessage
+                                            id="login.forgot"
+                                            defaultMessage="Forgot password?"
+                                        />
                                     </Link>
                                 </p>
                             </div>
@@ -95,7 +107,10 @@ class LoginPage extends Component {
                                     className="spinner"
                                 />
                             ) : (
-                                "Log in"
+                                <FormattedMessage
+                                    id="login"
+                                    defaultMessage="Log in"
+                                />
                             )}
                         </button>
                     </div>

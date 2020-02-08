@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import axios from "axios";
+import { FormattedMessage } from "react-intl";
 
 import "./VerifyEmailPage.css";
 
@@ -30,10 +31,20 @@ export default class VerifyEmailPage extends Component {
     render() {
         return (
             <div className="verification-box">
-                <h3 className="verification-box__title">Email Verification</h3>
+                <h3 className="verification-box__title">
+                    <FormattedMessage
+                        id="email-verification.title"
+                        defaultMessag="Email verification"
+                    />
+                </h3>
                 <div className="verification-box__container">
                     {this.state.isVerified ? (
-                        <p>Your email has been successfully verified!</p>
+                        <p>
+                            <FormattedMessage
+                                id="email-verification.description"
+                                defaultMessag="Your email has been successfully verified!"
+                            />
+                        </p>
                     ) : this.state.error ? (
                         <p>{this.state.error}</p>
                     ) : (

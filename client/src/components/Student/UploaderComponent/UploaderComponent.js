@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 
 import { addQuestion } from "../../../store/actions/questionsActions";
 import { updateBalance } from "../../../store/actions/authActions";
@@ -17,6 +18,7 @@ const UploaderComponent = props => {
     const balance = useSelector(state => state.auth.userData.balance);
 
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     const handleInputChange = event => {
         if (event.target.files[0]) {
@@ -73,15 +75,20 @@ const UploaderComponent = props => {
 
     return (
         <div className="question-uploader">
-            <h3 className="question-uploader__title">Upload your question</h3>
+            <h3 className="question-uploader__title">
+                <FormattedMessage
+                    id="student.upload.title"
+                    defaultMessage="Upload your question"
+                />
+            </h3>
             <form onSubmit={onSubmit}>
                 <div className="question-uploader__container">
                     <div className="question-uploader__input">
                         <label htmlFor="description">
-                            Description{" "}
-                            <span style={{ fontSize: "1rem" }}>
-                                (max. 100 characters)
-                            </span>
+                            <FormattedHTMLMessage
+                                id="student.upload.description"
+                                defaultMessage="Description <span style={{ fontSize: '1rem' }}>(max. 100 characters)</span>"
+                            />
                         </label>
                         <input
                             type="text"
@@ -92,20 +99,53 @@ const UploaderComponent = props => {
                         />
                     </div>
                     <div className="question-uploader__input">
-                        <label htmlFor="subject">Subject</label>
+                        <label htmlFor="subject">
+                            <FormattedMessage
+                                id="student.upload.subject"
+                                defaultMessage="Subject"
+                            />
+                        </label>
                         <select
                             value={subject}
                             onChange={event => setSubject(event.target.value)}
                             name="subject"
                             id="subject"
                         >
-                            <option value="Math">Math</option>
-                            <option value="English">English</option>
-                            <option value="History">History</option>
-                            <option value="Physics">Physics</option>
-                            <option value="Chemistry">Chemistry</option>
+                            <option value="Math">
+                                {intl.formatMessage({
+                                    id: "math",
+                                    defaultMessage: "Math"
+                                })}
+                            </option>
+                            <option value="English">
+                                {intl.formatMessage({
+                                    id: "english",
+                                    defaultMessage: "English"
+                                })}
+                            </option>
+                            <option value="History">
+                                {intl.formatMessage({
+                                    id: "history",
+                                    defaultMessage: "History"
+                                })}
+                            </option>
+                            <option value="Physics">
+                                {intl.formatMessage({
+                                    id: "physics",
+                                    defaultMessage: "Physics"
+                                })}
+                            </option>
+                            <option value="Chemistry">
+                                {intl.formatMessage({
+                                    id: "chemistry",
+                                    defaultMessage: "Chemistry"
+                                })}
+                            </option>
                             <option value="Computer Science">
-                                Computer Science
+                                {intl.formatMessage({
+                                    id: "computer",
+                                    defaultMessage: "Computer Science"
+                                })}
                             </option>
                         </select>
                     </div>
@@ -132,11 +172,17 @@ const UploaderComponent = props => {
                             disabled
                             className="question-uploader__container__button disabled"
                         >
-                            Low balance!
+                            <FormattedMessage
+                                id="student.upload.button.low"
+                                defaultMessage="Low balance!"
+                            />
                         </button>
                     ) : (
                         <button className="question-uploader__container__button">
-                            Upload Question
+                            <FormattedMessage
+                                id="student.upload.button.active"
+                                defaultMessage="Upload Question"
+                            />
                         </button>
                     )}
                 </div>

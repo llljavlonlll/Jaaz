@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
 import { action as toggleMenu } from "redux-burger-menu";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
@@ -101,14 +102,20 @@ class NavBar extends Component {
                         className="menu-item"
                         onClick={this.handleMenuClose}
                     >
-                        Dashboard
+                        <FormattedMessage
+                            id="nav.dash"
+                            defaultMessage="Dashboard"
+                        />
                     </Link>
                     <Link
                         to="/profile"
                         className="menu-item"
                         onClick={this.handleMenuClose}
                     >
-                        My Profile
+                        <FormattedMessage
+                            id="nav.profile"
+                            defaultMessage="My profile"
+                        />
                     </Link>
                     <button
                         className="menu-item"
@@ -119,7 +126,10 @@ class NavBar extends Component {
                             border: "none"
                         }}
                     >
-                        Logout
+                        <FormattedMessage
+                            id="nav.logout"
+                            defaultMessage="Log out"
+                        />
                     </button>
                 </Menu>
             );
@@ -135,14 +145,20 @@ class NavBar extends Component {
                         className="menu-item"
                         onClick={this.handleMenuClose}
                     >
-                        Login
+                        <FormattedMessage
+                            id="nav.login"
+                            defaultMessage="Log in"
+                        />
                     </Link>
                     <Link
                         to="/signup"
                         className="menu-item"
                         onClick={this.handleMenuClose}
                     >
-                        Sign Up
+                        <FormattedMessage
+                            id="nav.signup"
+                            defaultMessage="Sign Up"
+                        />
                     </Link>
                 </Menu>
             );

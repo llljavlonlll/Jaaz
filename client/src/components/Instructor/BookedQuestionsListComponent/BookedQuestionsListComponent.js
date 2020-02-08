@@ -86,7 +86,12 @@ const BookedQuestionsList = props => {
                                     verticalAlign: "middle"
                                 }}
                             >
-                                <div style={{ textAlign: "center" }}>
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        color: "#a5afd7"
+                                    }}
+                                >
                                     You have not booked any question yet
                                 </div>
                             </div>

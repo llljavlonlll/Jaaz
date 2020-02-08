@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+// React internationalization
+import { IntlProvider } from "react-intl";
+import messages from "./messages";
+
 // React Router implementation
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -88,18 +92,24 @@ class App extends Component {
             );
         }
         return (
-            <Router>
-                <NavBar />
-                <HeaderComponent />
-                <div className="container">{routes}</div>
-            </Router>
+            <IntlProvider
+                locale={this.props.lang}
+                messages={messages[this.props.lang]}
+            >
+                <Router>
+                    <NavBar />
+                    <HeaderComponent />
+                    <div className="container">{routes}</div>
+                </Router>
+            </IntlProvider>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        category: state.auth.userData.category
+        category: state.auth.userData.category,
+        lang: state.locale.lang
     };
 };
 

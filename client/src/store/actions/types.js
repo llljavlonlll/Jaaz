@@ -9,3 +9,4 @@ export const SET_SELECTED_SUBJECT = "SET_SELECTED_SUBJECT";
 export const UPDATE_USER_NAME = "UPDATE_USER_NAME";
 export const UPDATE_USER_EMAIL = "UPDATE_USER_EMAIL";
 export const LOAD_USER = "LOAD_USER";
+export const SET_LOCALE = "SET_LOCALE";

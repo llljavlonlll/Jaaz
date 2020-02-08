@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
+import { FormattedMessage, FormattedHTMLMessage, useIntl } from "react-intl";
 import _ from "lodash";
 
 import "./MyProfilePage.css";
@@ -19,6 +20,7 @@ const MyProfilePage = () => {
     const [isBuyingOrWithdrawing, setIsBuyingOrWithdrawig] = useState(false);
 
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     useEffect(() => {
         dispatch(loadUser());
@@ -75,15 +77,30 @@ const MyProfilePage = () => {
     return (
         <div className="profile-box">
             <div className="profile-box__header">
-                <h3 className="profile-box__header__title">Your Profile</h3>
+                <h3 className="profile-box__header__title">
+                    <FormattedMessage
+                        id="profile.title"
+                        defaultMessage="Your Profile"
+                    />
+                </h3>
                 {!editMode && (
-                    <button onClick={() => setEditMode(true)}>Edit</button>
+                    <button onClick={() => setEditMode(true)}>
+                        <FormattedMessage
+                            id="profile.edit"
+                            defaultMessage="Edit"
+                        />
+                    </button>
                 )}
             </div>
             <div className="profile-box__container">
                 <div className="profile-box__content">
                     <div className="profile-box__content__field">
-                        <p>Full Name</p>
+                        <p>
+                            <FormattedMessage
+                                id="profile.name"
+                                defaultMessage="Full name"
+                            />
+                        </p>
                         {editMode ? (
                             <input
                                 type="text"
@@ -161,7 +178,12 @@ const MyProfilePage = () => {
                         )}
                     </div>
                     <div className="profile-box__content__field">
-                        <p>Account Type</p>
+                        <p>
+                            <FormattedMessage
+                                id="profile.acc"
+                                defaultMessage="Account Type"
+                            />
+                        </p>
                         <h4>
                             {isLoading ? (
                                 <ReactLoading
@@ -171,12 +193,28 @@ const MyProfilePage = () => {
                                     height={"1.8rem"}
                                 />
                             ) : (
-                                _.capitalize(category)
+                                <FormattedHTMLMessage
+                                    id="profile.acc.type"
+                                    defaultMessage="{type}"
+                                    values={{
+                                        type: intl.formatMessage({
+                                            id:
+                                                category === "customer"
+                                                    ? "profile.acc.student"
+                                                    : "profile.acc.teacher"
+                                        })
+                                    }}
+                                />
                             )}
                         </h4>
                     </div>
                     <div className="profile-box__content__field">
-                        <p>Balance</p>
+                        <p>
+                            <FormattedMessage
+                                id="profile.balance"
+                                defaultMessage="Balance"
+                            />
+                        </p>
                         <div className="profile-box__content__field--balance">
                             <button onClick={handleBalanceAction}>
                                 {isBuyingOrWithdrawing ? (
@@ -188,9 +226,15 @@ const MyProfilePage = () => {
                                         className="spinner"
                                     />
                                 ) : category === "customer" ? (
-                                    "Buy credit"
+                                    <FormattedMessage
+                                        id="profile.button.buy"
+                                        defaultMessage="Buy credit"
+                                    />
                                 ) : (
-                                    "Withdraw"
+                                    <FormattedMessage
+                                        id="profile.button.withdraw"
+                                        defaultMessage="Withdraw"
+                                    />
                                 )}
                             </button>
                             <h4>
@@ -213,7 +257,10 @@ const MyProfilePage = () => {
                                 className="button-cancel"
                                 onClick={() => setEditMode(false)}
                             >
-                                Cancel
+                                <FormattedMessage
+                                    id="profile.edit.cancel"
+                                    defaultMessage="Cancel"
+                                />
                             </button>
                             <button
                                 className="button-save"
@@ -228,7 +275,10 @@ const MyProfilePage = () => {
                                         className="spinner"
                                     />
                                 ) : (
-                                    "Save"
+                                    <FormattedMessage
+                                        id="profile.edit.save"
+                                        defaultMessage="Save"
+                                    />
                                 )}
                             </button>
                         </div>
