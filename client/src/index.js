@@ -12,6 +12,9 @@ const store = configureStore();
 
 if (localStorage.language) {
     store.dispatch(setLocale(localStorage.language));
+} else {
+    var language = window.navigator.userLanguage || window.navigator.language;
+    store.dispatch(setLocale(language));
 }
 if (Cookies.get("token")) {
     store.dispatch(checkIfLoggedIn());

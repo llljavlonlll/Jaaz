@@ -12,6 +12,7 @@ import {
     updateUserEmail,
     loadUser
 } from "../../store/actions/authActions";
+import { setLocale } from "../../store/actions/localeActions";
 
 const MyProfilePage = () => {
     const [isLoading] = useState(false);
@@ -213,6 +214,55 @@ const MyProfilePage = () => {
                                 />
                             )}
                         </h4>
+                    </div>
+                    <div className="profile-box__content__field">
+                        <p>
+                            <FormattedMessage
+                                id="profile.lang"
+                                defaultMessage="Language"
+                            />
+                        </p>
+                        <div>
+                            <div>
+                                <span
+                                    role="button"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => dispatch(setLocale("en"))}
+                                >
+                                    EN
+                                </span>{" "}
+                                <span
+                                    style={{
+                                        margin: "0 1rem",
+                                        userSelect: "none"
+                                    }}
+                                >
+                                    |
+                                </span>
+                                <span
+                                    role="button"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => dispatch(setLocale("ru"))}
+                                >
+                                    РУ
+                                </span>{" "}
+                                <span
+                                    style={{
+                                        margin: "0 1rem",
+                                        userSelect: "none"
+                                    }}
+                                >
+                                    |
+                                </span>
+                                <span
+                                    role="button"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => dispatch(setLocale("uz"))}
+                                >
+                                    O'Z
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div className="profile-box__content__field">
                         <p>

@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 import { userLogout } from "../../store/actions/authActions";
-import { setLocale } from "../../store/actions/localeActions";
 
 import "./HeaderComponent.css";
 
@@ -81,31 +80,7 @@ const HeaderComponent = props => {
                     <NavLink to="/" style={{ margin: 0, color: "white" }}>
                         <h3 className="navbar__title">noCheat</h3>
                     </NavLink>
-                    <div>
-                        <a
-                            href="/#"
-                            role="button"
-                            onClick={() => dispatch(setLocale("en"))}
-                        >
-                            EN
-                        </a>{" "}
-                        |
-                        <a
-                            href="/#"
-                            role="button"
-                            onClick={() => dispatch(setLocale("ru"))}
-                        >
-                            РУ
-                        </a>{" "}
-                        |
-                        <a
-                            href="/#"
-                            role="button"
-                            onClick={() => dispatch(setLocale("uz"))}
-                        >
-                            O'Z
-                        </a>
-                    </div>
+
                     {links}
                 </div>
             </div>
