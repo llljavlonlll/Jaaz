@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaUpload } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { FormattedMessage } from "react-intl";
 import axios from "axios";
 
 import "./SolutionUploaderComponent.css";
@@ -61,11 +62,21 @@ const SolutionUploader = props => {
 
     return (
         <div className="sol-uploader" style={{ maxWidth: "70rem" }}>
-            <h3 className="sol-uploader__title">Upload your solution</h3>
+            <h3 className="sol-uploader__title">
+                <FormattedMessage
+                    id="teacher.upload.title"
+                    defaultMessage="Upload your solution"
+                />
+            </h3>
             <form onSubmit={onSubmit}>
                 <div className="sol-uploader__container">
                     <div className="sol-uploader__input">
-                        <label htmlFor="description">Description</label>
+                        <label htmlFor="description">
+                            <FormattedMessage
+                                id="teacher.upload.description"
+                                defaultMessage="Description"
+                            />
+                        </label>
                         <input
                             type="text"
                             id="description"
@@ -94,7 +105,10 @@ const SolutionUploader = props => {
                                 </div>
                             </IconContext.Provider>
                             <div className="sol-uploader__thumbnail__text">
-                                Upload a solution image
+                                <FormattedMessage
+                                    id="teacher.upload.msg"
+                                    defaultMessage="Upload a solution image"
+                                />
                             </div>
                         </div>
                     </div>
@@ -103,7 +117,12 @@ const SolutionUploader = props => {
                             <img src={filePreview} alt="Uploaded question" />
                         </div>
                     )}
-                    <button>Upload Solution</button>
+                    <button>
+                        <FormattedMessage
+                            id="teacher.upload.button"
+                            defaultMessage="Upload Solution"
+                        />
+                    </button>
                 </div>
             </form>
         </div>

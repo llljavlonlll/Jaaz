@@ -1,5 +1,6 @@
 import React from "react";
 import "./PaginationComponent.css";
+import { FormattedMessage } from "react-intl";
 
 const PaginationComponent = ({
     totalQuesitons,
@@ -23,7 +24,8 @@ const PaginationComponent = ({
                     }
                 }}
             >
-                &#60; Prev
+                &#60;{" "}
+                <FormattedMessage id="pagination.prev" defaultMessage="Prev" />
             </button>
             {pageNumbers.map(num => (
                 <button
@@ -46,7 +48,8 @@ const PaginationComponent = ({
                     }
                 }}
             >
-                Next &#62;
+                <FormattedMessage id="pagination.next" defaultMessage="Next" />{" "}
+                &#62;
             </button>
         </div>
     );

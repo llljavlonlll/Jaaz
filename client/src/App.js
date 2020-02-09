@@ -27,7 +27,7 @@ import NewPassword from "./screens/NewPasswordPage/NewPassword";
 import { connect } from "react-redux";
 import VerifyEmailPage from "./screens/VerifyEmailPage/VerifyEmailPage";
 import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage";
-import { checkIfLoggedIn } from "./store/actions/authActions";
+// import { checkIfLoggedIn } from "./store/actions/authActions";
 
 class App extends Component {
     render() {

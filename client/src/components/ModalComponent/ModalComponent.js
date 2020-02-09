@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 
 import styles from "./ModalComponentStyles";
+import { FormattedMessage } from "react-intl";
 
 export default function BookModalComponent(props) {
     return (
@@ -12,7 +13,12 @@ export default function BookModalComponent(props) {
             style={styles.modalStyle}
             contentLabel="Example Modal"
         >
-            <h2 style={styles.modalTitleStyle}>Are you sure?</h2>
+            <h2 style={styles.modalTitleStyle}>
+                <FormattedMessage
+                    id="modal.title"
+                    defaultMessage="Are you sure?"
+                />
+            </h2>
             <div>
                 <button
                     onClick={props.acceptAction}

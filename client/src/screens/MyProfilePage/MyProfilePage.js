@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage, FormattedHTMLMessage, useIntl } from "react-intl";
-import _ from "lodash";
+// import _ from "lodash";
 
 import "./MyProfilePage.css";
 import {
@@ -137,7 +137,10 @@ const MyProfilePage = () => {
                                     }}
                                     className="verification"
                                 >
-                                    verified
+                                    <FormattedMessage
+                                        id="profile.email.verified"
+                                        defaultMessage="verified"
+                                    />
                                 </span>
                             ) : (
                                 <span
@@ -150,7 +153,10 @@ const MyProfilePage = () => {
                                     }}
                                     className="verification"
                                 >
-                                    unverified
+                                    <FormattedMessage
+                                        id="profile.email.unverified"
+                                        defaultMessage="unverified"
+                                    />
                                 </span>
                             )}
                         </p>

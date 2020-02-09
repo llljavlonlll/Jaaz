@@ -65,7 +65,29 @@ export default function QuestionDetailsComponent(props) {
             ) : (
                 <div className="question__container">
                     <div className="question__content">
-                        <p>{props.status}</p>
+                        <p>
+                            {props.status === "Booked" ? (
+                                <FormattedMessage
+                                    id="status.booked"
+                                    defaultMessage="Booked"
+                                />
+                            ) : props.status === "Pending" ? (
+                                <FormattedMessage
+                                    id="status.pending"
+                                    defaultMessage="Pending"
+                                />
+                            ) : props.status === "Rejected" ? (
+                                <FormattedMessage
+                                    id="status.rejected"
+                                    defaultMessage="Rejected"
+                                />
+                            ) : (
+                                <FormattedMessage
+                                    id="status.completed"
+                                    defaultMessage="Completed"
+                                />
+                            )}
+                        </p>
                     </div>
                 </div>
             )}

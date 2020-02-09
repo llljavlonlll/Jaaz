@@ -146,6 +146,8 @@ class QuestionPage extends Component {
             return <ReactLoading color={"#8357c5"} type={"spin"} />;
         }
 
+        const { intl } = this.props;
+
         return (
             <div className="instructor-question-page">
                 {this.state.isUploading && (
@@ -196,15 +198,27 @@ class QuestionPage extends Component {
                                 isOpen={this.state.bookModalIsOpen}
                                 closeModal={this.closeModal}
                                 acceptAction={this.handleQuestionBook}
-                                acceptTitle="Book"
-                                rejectTitle="Cancel"
+                                acceptTitle={intl.formatMessage({
+                                    id: "modal.book",
+                                    defaultMessage: "Book"
+                                })}
+                                rejectTitle={intl.formatMessage({
+                                    id: "modal.cancel",
+                                    defaultMessage: "Cancel"
+                                })}
                             />
                             <ModalComponent
                                 isOpen={this.state.rejectModalIsOpen}
                                 closeModal={this.closeModal}
                                 acceptAction={this.handleQuestionReject}
-                                acceptTitle="Reject"
-                                rejectTitle="Cancel"
+                                acceptTitle={intl.formatMessage({
+                                    id: "modal.reject",
+                                    defaultMessage: "Reject"
+                                })}
+                                rejectTitle={intl.formatMessage({
+                                    id: "modal.cancel",
+                                    defaultMessage: "Cancel"
+                                })}
                                 redStyle={true}
                             />
                         </div>
@@ -251,8 +265,14 @@ class QuestionPage extends Component {
                             isOpen={this.state.unbookModalIsOpen}
                             closeModal={this.closeModal}
                             acceptAction={this.handleQuestionUnbook}
-                            acceptTitle="Unbook"
-                            rejectTitle="Cancel"
+                            acceptTitle={intl.formatMessage({
+                                id: "modal.unbook",
+                                defaultMessage: "Unbook"
+                            })}
+                            rejectTitle={intl.formatMessage({
+                                id: "modal.cancel",
+                                defaultMessage: "Cancel"
+                            })}
                             redStyle={true}
                         />
                     </React.Fragment>

@@ -83,6 +83,7 @@ const HeaderComponent = props => {
                     </NavLink>
                     <div>
                         <a
+                            href="/#"
                             role="button"
                             onClick={() => dispatch(setLocale("en"))}
                         >
@@ -90,6 +91,7 @@ const HeaderComponent = props => {
                         </a>{" "}
                         |
                         <a
+                            href="/#"
                             role="button"
                             onClick={() => dispatch(setLocale("ru"))}
                         >
@@ -97,6 +99,7 @@ const HeaderComponent = props => {
                         </a>{" "}
                         |
                         <a
+                            href="/#"
                             role="button"
                             onClick={() => dispatch(setLocale("uz"))}
                         >
