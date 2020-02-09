@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import Cookies from "js-cookie";
 import axios from "axios";
 
 import { userLogout } from "../../store/actions/authActions";
+import ModalComponent from "../ModalComponent/ModalComponent";
 
 import "./HeaderComponent.css";
 
 const HeaderComponent = props => {
+    const [modalOpen, setModalOpen] = useState(false);
     const isAuthorized = useSelector(state => state.auth.isAuthorized);
+
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     const handleLogout = () => {
         axios
             .post("/api/logout")
             .then(res => {
                 if (res.status === 200) {
+                    setModalOpen(false);
                     Cookies.remove("token");
                     if (!Cookies.get("token")) {
                         dispatch(userLogout());
@@ -49,7 +54,7 @@ const HeaderComponent = props => {
                         defaultMessage="My profile"
                     />
                 </NavLink>
-                <button onClick={handleLogout}>
+                <button onClick={() => setModalOpen(true)}>
                     <FormattedMessage
                         id="nav.logout"
                         defaultMessage="Log out"
@@ -78,10 +83,23 @@ const HeaderComponent = props => {
             <div className="container">
                 <div className="navbar">
                     <NavLink to="/" style={{ margin: 0, color: "white" }}>
-                        <h3 className="navbar__title">noCheat</h3>
+                        <h3 className="navbar__title">Jaaz</h3>
                     </NavLink>
-
                     {links}
+                    <ModalComponent
+                        isOpen={modalOpen}
+                        closeModal={() => setModalOpen(false)}
+                        acceptAction={handleLogout}
+                        acceptTitle={intl.formatMessage({
+                            id: "modal.logout",
+                            defaultMessage: "Log out"
+                        })}
+                        rejectTitle={intl.formatMessage({
+                            id: "modal.cancel",
+                            defaultMessage: "Cancel"
+                        })}
+                        redStyle={true}
+                    />
                 </div>
             </div>
         </div>
