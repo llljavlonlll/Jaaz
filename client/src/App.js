@@ -29,7 +29,17 @@ import VerifyEmailPage from "./screens/VerifyEmailPage/VerifyEmailPage";
 import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage";
 // import { checkIfLoggedIn } from "./store/actions/authActions";
 
+// Install Google Analytics
+import ReactGA from "react-ga";
+
 class App extends Component {
+    componentDidMount() {
+        // Initialize GA
+        ReactGA.initialize("UA-131112574-2");
+
+        // Report page views to GA
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }
     render() {
         let routes = null;
 
