@@ -1,5 +1,6 @@
 export default {
     en: {
+        "nav.slogan": "Student and teachers portal",
         "nav.dash": "Dashboard",
         "nav.profile": "My profile",
         "nav.logout": "Log out",
@@ -109,6 +110,7 @@ export default {
         computer: "Computer Science"
     },
     ru: {
+        "nav.slogan": "Портал для студентов и преподавателей",
         "nav.dash": "Главная",
         "nav.profile": "Мой профиль",
         "nav.logout": "Выйти",
@@ -219,6 +221,7 @@ export default {
         computer: "IT"
     },
     uz: {
+        "nav.slogan": "Talabalar va o'qituvchilar portali",
         "nav.dash": "Asosiy",
         "nav.profile": "Profil",
         "nav.logout": "Chiqish",
@@ -258,7 +261,7 @@ export default {
         "new-pass-success.button": "Asosiy sahifaga o'tish",
         "student.upload.title": "Savolni yuklash",
         "student.upload.description":
-            "Ta'rif <span style={{ fontSize: '1rem' }}>(maks. 100 harf)</span>",
+            "Tarif <span style={{ fontSize: '1rem' }}>(maks. 100 harf)</span>",
         "student.upload.subject": "Fanni tanlang",
         "student.upload.button.active": "Savolni yuklash",
         "student.upload.button.low": "Mablag' yetarli emas!",
