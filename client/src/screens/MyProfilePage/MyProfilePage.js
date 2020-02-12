@@ -3,6 +3,7 @@ import axios from "axios";
 import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage, FormattedHTMLMessage, useIntl } from "react-intl";
+import { MdEdit } from "react-icons/md";
 // import _ from "lodash";
 
 import "./MyProfilePage.css";
@@ -86,10 +87,11 @@ const MyProfilePage = () => {
                 </h3>
                 {!editMode && (
                     <button onClick={() => setEditMode(true)}>
-                        <FormattedMessage
+                        {/*<FormattedMessage
                             id="profile.edit"
                             defaultMessage="Edit"
-                        />
+                        />*/}
+                        <MdEdit style={{ fontSize: "24px" }} />
                     </button>
                 )}
             </div>

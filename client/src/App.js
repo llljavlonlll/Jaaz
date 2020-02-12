@@ -5,7 +5,12 @@ import { IntlProvider } from "react-intl";
 import messages from "./messages";
 
 // React Router implementation
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect
+} from "react-router-dom";
 
 // CSS
 import "normalize.css/normalize.css";
@@ -83,7 +88,9 @@ class App extends Component {
         } else {
             routes = (
                 <Switch>
-                    <Route exact path="/" component={LoginPage} />
+                    <Route exact path="/">
+                        <Redirect to="/login" />
+                    </Route>
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/verify/:id" component={VerifyEmailPage} />

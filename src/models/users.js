@@ -52,7 +52,7 @@ const userSchema = mongoose.Schema({
     balance: {
         type: Number,
         required: true,
-        default: 0.0
+        default: 0
     },
     tokens: [
         {
@@ -120,6 +120,10 @@ userSchema.pre("save", async function(next) {
 
     if (this.isModified("email")) {
         this.isVerified = false;
+    }
+
+    if (this.category === "customer") {
+        this.balance = 300000;
     }
 });
 

@@ -86,17 +86,18 @@ const HeaderComponent = props => {
                         to="/"
                         style={{
                             margin: 0,
-                            color: "white",
-                            display: "flex"
+                            color: "white"
                         }}
                     >
-                        <h3 className="navbar__title">Jaaz</h3>
-                        <span>
-                            <FormattedMessage
-                                id="nav.slogan"
-                                defaultMessage="Student and teachers portal"
-                            />
-                        </span>
+                        <h3 className="navbar__title">
+                            Jaaz{" "}
+                            <span className="navbar__title__slogan">
+                                <FormattedMessage
+                                    id="nav.slogan"
+                                    defaultMessage="Student and teachers portal"
+                                />
+                            </span>
+                        </h3>
                     </NavLink>
                     {links}
                     <ModalComponent

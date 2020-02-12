@@ -71,6 +71,10 @@
     padding: 1.2rem 1.5rem;
 }
 
+.profile-box__content__field span {
+    font-weight: 700;
+}
+
 .profile-box__content__buttons-container {
     display: flex;
     justify-content: flex-end;
@@ -103,6 +107,12 @@
         padding: 0;
     }
     .profile-box__content__field h4 {
+        margin: 1rem 0;
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
+
+    .profile-box__content__field span {
         margin: 1rem 0;
         font-size: 1.1rem;
         font-weight: 800;
