@@ -25,7 +25,7 @@ const frontEndDir = path.join(__dirname, "..", "client", "build");
 
 app.use(cors());
 
-// Static routers.
+// Static routers...
 app.use("/images/questions", express.static(questionsDir));
 app.use("/images/solutions", express.static(solutionsDir));
 app.use(express.static(frontEndDir));
