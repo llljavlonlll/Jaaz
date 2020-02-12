@@ -63,7 +63,7 @@ router.post("/password_reset", async (req, res) => {
         const mailOptions = {
             from: "no-reply@jbtruckers.com",
             to: email,
-            subject: "noCheat | Password Reset",
+            subject: "Jaaz | Password Reset",
             html: `<p>To reset your password go here: </p><br>${pass_reset_url}`
         };
 
@@ -108,7 +108,7 @@ router.post("/sign-up", async (req, res) => {
 
         const hash = user.activationHash;
         const verificationUrl = `http://www.jbtruckers.com/verify/${hash}`;
-        const html = `<h2>Thanks for signing up for noCheat! Please click the link below to confirm your email address.</h2>
+        const html = `<h2>Thanks for signing up for Jaaz.uz! Please click the link below to confirm your email address.</h2>
                         <br>
                         <h1 style="background-color: purple; display: inline-block; padding: 5px;">
                             <a style="color: white; text-decoration: none;" href=${verificationUrl}>
@@ -122,7 +122,7 @@ router.post("/sign-up", async (req, res) => {
         const mailOptions = {
             from: "no-reply@jbtruckers.com",
             to: req.body.email,
-            subject: "noCheat | Email verification",
+            subject: "Jaaz.uz | Email verification",
             html
         };
 

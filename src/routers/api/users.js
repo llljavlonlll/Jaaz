@@ -15,7 +15,7 @@ const jwtDecode = require("jwt-decode");
 //         const mailOptions = {
 //             from: "jbutabaev@gmail.com",
 //             to: "butabaev.javlon@gmail.com", // Change to req.user.email after testing
-//             subject: "noCheat | Email verification",
+//             subject: "Jaaz.uz | Email verification",
 //             html
 //         };
 
