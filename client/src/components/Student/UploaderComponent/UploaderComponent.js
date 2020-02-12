@@ -87,7 +87,7 @@ const UploaderComponent = props => {
                         <label htmlFor="description">
                             <FormattedHTMLMessage
                                 id="student.upload.description"
-                                defaultMessage="Description <span style={{ fontSize: '1rem' }}>(max. 100 characters)</span>"
+                                defaultMessage="Description (max. 100 characters)"
                             />
                         </label>
                         <input

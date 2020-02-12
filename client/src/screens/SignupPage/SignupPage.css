@@ -5,6 +5,7 @@
     margin: 0 auto;
     max-width: 45rem;
     box-shadow: 0 1px 6px rgb(29, 29, 29);
+    margin-bottom: 5rem;
 }
 
 .login-component__title {
@@ -99,4 +100,8 @@
     border-bottom: 0.3rem solid #724bad;
 }
 
-/* ----------------- End Login Page ---------------------- */
+@media (max-width: 738px) {
+    .login-component__container {
+        padding: 2rem;
+    }
+}

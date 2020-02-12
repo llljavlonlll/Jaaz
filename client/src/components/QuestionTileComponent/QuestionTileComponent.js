@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 import "./QuestionTileComponent.css";
+import { FormattedMessage } from "react-intl";
 
 export default function QuestionTileComponent(props) {
     return (
@@ -22,9 +23,19 @@ export default function QuestionTileComponent(props) {
                     <h3>{props.description ? props.description : "---"}</h3>
                     <div className="question-tile__bullets">
                         <ul>
-                            <li>Subject: {props.subject}</li>
                             <li>
-                                Status:{" "}
+                                <FormattedMessage
+                                    id="question-tile.subject"
+                                    defaultMessage="Subject"
+                                />
+                                : {props.subject}
+                            </li>
+                            <li>
+                                <FormattedMessage
+                                    id="question-tile.status"
+                                    defaultMessage="Status"
+                                />
+                                :{" "}
                                 <span
                                     style={
                                         props.status === "Rejected"
@@ -42,7 +53,11 @@ export default function QuestionTileComponent(props) {
                         </ul>
                         <ul>
                             <li>
-                                Uploaded at:{" "}
+                                <FormattedMessage
+                                    id="question-tile.uploaded-at"
+                                    defaultMessage="Uploaded at"
+                                />
+                                :{" "}
                                 {moment(props.uploaded_at).format("DD/MM/YYYY")}
                             </li>
                             {/*<li>Solved by: Javlonbek B.</li>*/}

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-import { loginSuccess } from "../../store/actions/authActions";
 import ReactLoading from "react-loading";
 import { FormattedMessage } from "react-intl";
 
+import { loginSuccess } from "../../store/actions/authActions";
 import "./LoginPage.css";
 
 class LoginPage extends Component {
@@ -47,6 +47,9 @@ class LoginPage extends Component {
     };
 
     render() {
+        if (this.props.isAuthorized) {
+            return <Redirect to="/" />;
+        }
         return (
             <section className="login-component">
                 <h3 className="login-component__title">
@@ -120,4 +123,10 @@ class LoginPage extends Component {
     }
 }
 
-export default connect()(LoginPage);
+const mapStateToProps = state => {
+    return {
+        isAuthorized: state.auth.isAuthorized
+    };
+};
+
+export default connect(mapStateToProps)(LoginPage);
