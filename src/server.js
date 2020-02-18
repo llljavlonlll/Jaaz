@@ -4,7 +4,8 @@ const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routers/api/users");
-const adminRouter = require("./routers/api/admin/admins");
+const adminUsersRouter = require("./routers/api/admin/users");
+const adminQuestionsRouter = require("./routers/api/admin/questions");
 const generalRouter = require("./routers/api/generals");
 const questionRouter = require("./routers/api/student/questions");
 const solutionRouter = require("./routers/api/instructor/solutions");
@@ -42,7 +43,8 @@ app.use("/api/", generalRouter);
 app.use("/api/user", userRouter);
 
 // Admin routes
-app.use("/api/admin", adminRouter);
+app.use("/api/admin", adminUsersRouter);
+app.use("/api/admin", adminQuestionsRouter);
 
 // Student routes
 app.use("/api/question", questionRouter);

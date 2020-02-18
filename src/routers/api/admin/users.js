@@ -17,7 +17,7 @@ router.get("/user", auth, isAdmin, async (req, res) => {
 
 // Read a single user
 // GET /admin/user/:id
-router.get("/user/:id", async (req, res) => {
+router.get("/user/:id", auth, isAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         res.send(user);
@@ -28,7 +28,7 @@ router.get("/user/:id", async (req, res) => {
 
 // Update a user
 // PATCH /admin/user/:id
-router.patch("/user/:id", async (req, res) => {
+router.patch("/user/:id", auth, isAdmin, async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["name", "email"];
     const isValidUpdate = updates.every(update => {
@@ -53,7 +53,7 @@ router.patch("/user/:id", async (req, res) => {
 
 // Delete a user
 // DELETE /admin/user/:id
-router.delete("/user/:id", async (req, res) => {
+router.delete("/user/:id", auth, isAdmin, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         res.send(user);
