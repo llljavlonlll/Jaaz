@@ -54,7 +54,10 @@ const HeaderComponent = props => {
                         defaultMessage="My profile"
                     />
                 </NavLink>
-                <button onClick={() => setModalOpen(true)}>
+                <button
+                    onClick={() => setModalOpen(true)}
+                    style={{ color: "rgb(200, 120, 120)" }}
+                >
                     <FormattedMessage
                         id="nav.logout"
                         defaultMessage="Log out"

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { injectIntl } from "react-intl";
@@ -77,6 +78,9 @@ class SignupPage extends Component {
     };
 
     render() {
+        if (this.props.isAuthorized) {
+            return <Redirect to="/" />;
+        }
         return (
             <section className="login-component">
                 <h3 className="login-component__title">
@@ -206,4 +210,10 @@ class SignupPage extends Component {
     }
 }
 
-export default connect()(injectIntl(SignupPage));
+const mapStateToProps = state => {
+    return {
+        isAuthorized: state.auth.isAuthorized
+    };
+};
+
+export default connect(mapStateToProps)(injectIntl(SignupPage));

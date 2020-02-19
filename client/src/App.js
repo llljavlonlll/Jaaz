@@ -27,6 +27,7 @@ import NavBar from "./components/BurgerMenu/MobileMenu";
 import InstructorMainPage from "./screens/InstructorMainPage/InstructorMainPage";
 import InstructorQuestion from "./screens/InstructorQuestionPage/InstructorQuestionPage";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
+import AdminMainPage from "./screens/AdminMainPage/AdminMainPage";
 
 // Integrate Redux
 import { connect } from "react-redux";
@@ -76,6 +77,24 @@ class App extends Component {
                     <Route path="/profile" component={MyProfilePage} />
                     <Route path="/:id" component={InstructorQuestion} />
                     <Route path="/verify/:id" component={VerifyEmailPage} />
+                    <Route
+                        exact
+                        path="/password_reset"
+                        component={ForgotPasswordPage}
+                    />
+                    <Route path="/password_reset/:id" component={NewPassword} />
+                    <Route path="/*" component={NotFoundPage} />
+                </Switch>
+            );
+        } else if (this.props.category === "admin") {
+            routes = (
+                <Switch>
+                    <Route exact path="/" component={AdminMainPage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/signup" component={SignupPage} />
+                    <Route path="/profile" component={MyProfilePage} />
+                    {/*<Route path="/:id" component={InstructorQuestion} />
+            <Route path="/verify/:id" component={VerifyEmailPage} />*/}
                     <Route
                         exact
                         path="/password_reset"
