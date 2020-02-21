@@ -1,15 +1,27 @@
-import React, { Component } from "react";
-import Menu from "./Menu";
-import { action as toggleMenu } from "redux-burger-menu";
-import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { userLogout } from "../../store/actions/authActions";
+
+import React, { Component } from "react";
+import { action as toggleMenu } from "redux-burger-menu";
 import { withRouter } from "react-router-dom";
+import { FormattedMessage, injectIntl } from "react-intl";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import Menu from "./Menu";
+import { userLogout } from "../../store/actions/authActions";
+import ModalComponent from "../ModalComponent/ModalComponent";
 
 class NavBar extends Component {
+    state = {
+        modalOpen: false
+    };
+
+    closeModal = () => {
+        this.setState({
+            modalOpen: false
+        });
+    };
     handleMenuClose = () => {
         this.props.dispatch(toggleMenu(false));
     };
@@ -19,10 +31,10 @@ class NavBar extends Component {
             .post("/api/logout")
             .then(res => {
                 if (res.status === 200) {
+                    this.setState({ modalOpen: false });
                     Cookies.remove("token");
                     if (!Cookies.get("token")) {
                         this.props.dispatch(userLogout());
-
                         this.props.history.push("/");
                     }
                 }
@@ -30,7 +42,6 @@ class NavBar extends Component {
             .catch(err => {
                 console.log(err);
             });
-        this.props.dispatch(toggleMenu(false));
     };
 
     render() {
@@ -119,7 +130,10 @@ class NavBar extends Component {
                     </Link>
                     <button
                         className="menu-item"
-                        onClick={this.handleLogout}
+                        onClick={() => {
+                            this.setState({ modalOpen: true });
+                            this.props.dispatch(toggleMenu(false));
+                        }}
                         style={{
                             background: "none",
                             margin: "0 auto",
@@ -164,7 +178,25 @@ class NavBar extends Component {
             );
         }
 
-        return menu;
+        return (
+            <React.Fragment>
+                {menu}
+                <ModalComponent
+                    isOpen={this.state.modalOpen}
+                    closeModal={() => this.closeModal()}
+                    acceptAction={this.handleLogout}
+                    acceptTitle={this.props.intl.formatMessage({
+                        id: "modal.logout",
+                        defaultMessage: "Log out"
+                    })}
+                    rejectTitle={this.props.intl.formatMessage({
+                        id: "modal.cancel",
+                        defaultMessage: "Cancel"
+                    })}
+                    redStyle={true}
+                />
+            </React.Fragment>
+        );
     }
 }
 
@@ -174,4 +206,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(withRouter(NavBar));
+export default connect(mapStateToProps)(withRouter(injectIntl(NavBar)));

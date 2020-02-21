@@ -30,7 +30,13 @@
 }
 
 .navbar__links {
-    padding: 0.9rem;
+    padding: 0.5rem;
+    display: flex;
+}
+
+.navbar__links__item {
+    display: flex;
+    align-items: center;
 }
 
 .navbar__links > button {
@@ -45,5 +51,11 @@
     .navbar__title__slogan {
         font-size: 1rem;
         display: block;
+    }
+}
+
+@media (max-width: 530px) {
+    .navbar__links {
+        display: none;
     }
 }

@@ -1,10 +1,12 @@
+import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useState } from "react";
+import { IconContext } from "react-icons";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage, useIntl } from "react-intl";
-import Cookies from "js-cookie";
-import axios from "axios";
+import { MdAccountBox, MdExitToApp, MdDashboard } from "react-icons/md";
 
 import { userLogout } from "../../store/actions/authActions";
 import ModalComponent from "../ModalComponent/ModalComponent";
@@ -43,25 +45,76 @@ const HeaderComponent = props => {
         links = (
             <div className="navbar__links">
                 <NavLink exact to="/" activeClassName="selected">
-                    <FormattedMessage
-                        id="nav.dash"
-                        defaultMessage="Dashboard"
-                    />
+                    <div className="navbar__links__item">
+                        <IconContext.Provider
+                            value={{
+                                style: {
+                                    display: "inline"
+                                },
+                                size: "1.1em",
+                                className: "global-class-name"
+                            }}
+                        >
+                            <div style={{ display: "inline" }}>
+                                <MdDashboard />
+                            </div>
+                        </IconContext.Provider>
+                        <span style={{ marginLeft: "0.2rem" }}>
+                            <FormattedMessage
+                                id="nav.dash"
+                                defaultMessage="Dashboard"
+                            />
+                        </span>
+                    </div>
                 </NavLink>
                 <NavLink to="/profile" activeClassName="selected">
-                    <FormattedMessage
-                        id="nav.profile"
-                        defaultMessage="My profile"
-                    />
+                    <div className="navbar__links__item">
+                        <IconContext.Provider
+                            value={{
+                                style: {
+                                    display: "inline"
+                                },
+                                size: "1.1em",
+                                className: "global-class-name"
+                            }}
+                        >
+                            <div style={{ display: "inline" }}>
+                                <MdAccountBox />
+                            </div>
+                        </IconContext.Provider>
+                        <span style={{ marginLeft: "0.2rem" }}>
+                            <FormattedMessage
+                                id="nav.profile"
+                                defaultMessage="My profile"
+                            />
+                        </span>
+                    </div>
                 </NavLink>
                 <button
                     onClick={() => setModalOpen(true)}
                     style={{ color: "rgb(200, 120, 120)" }}
                 >
-                    <FormattedMessage
-                        id="nav.logout"
-                        defaultMessage="Log out"
-                    />
+                    <div className="navbar__links__item">
+                        <IconContext.Provider
+                            value={{
+                                style: {
+                                    display: "inline"
+                                },
+                                size: "1.1em",
+                                className: "global-class-name"
+                            }}
+                        >
+                            <div style={{ display: "inline" }}>
+                                <MdExitToApp />
+                            </div>
+                        </IconContext.Provider>
+                        <span style={{ marginLeft: "0.2rem" }}>
+                            <FormattedMessage
+                                id="nav.logout"
+                                defaultMessage="Log out"
+                            />
+                        </span>
+                    </div>
                 </button>
             </div>
         );

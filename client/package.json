@@ -1,8 +1,9 @@
 {
-    "name": "mern-no-cheat",
+    "name": "jaaz.uz--client",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@material-ui/core": "^4.9.3",
         "axios": "^0.19.0",
         "js-cookie": "^2.2.1",
         "jsonwebtoken": "^8.5.1",

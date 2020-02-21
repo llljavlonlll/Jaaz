@@ -23,7 +23,7 @@ import MyProfilePage from "./screens/MyProfilePage/MyProfilePage";
 import SignupPage from "./screens/SignupPage/SignupPage";
 import StudentMainPage from "./screens/StudentMainPage/StudentMainPage";
 import NotFoundPage from "./screens/NotFoundPage/NotFoundPage";
-import NavBar from "./components/BurgerMenu/MobileMenu";
+import MobileMenu from "./components/BurgerMenu/MobileMenu";
 import InstructorMainPage from "./screens/InstructorMainPage/InstructorMainPage";
 import InstructorQuestion from "./screens/InstructorQuestionPage/InstructorQuestionPage";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
@@ -129,7 +129,7 @@ class App extends Component {
                 messages={messages[this.props.lang]}
             >
                 <Router>
-                    <NavBar />
+                    <MobileMenu />
                     <HeaderComponent />
                     <div className="container">{routes}</div>
                 </Router>

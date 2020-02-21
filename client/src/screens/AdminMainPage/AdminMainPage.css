@@ -1,0 +1,32 @@
+.admin__container {
+    display: flex;
+}
+
+.admin__side-nav {
+    margin-right: 5rem;
+    background-color: #20222b;
+    width: 25rem;
+}
+
+.admin__side-nav__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin__side-nav__links__button {
+    width: 100%;
+    height: 6rem;
+    background-color: transparent;
+    border: none;
+    color: #a1afd2;
+}
+
+.admin__side-nav__links__button-active {
+    background-color: #8357c5;
+    color: white;
+}
+
+.admin__side-nav__links button:hover {
+    color: white;
+}
