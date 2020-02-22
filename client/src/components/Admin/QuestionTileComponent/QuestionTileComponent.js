@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-
-import "./QuestionTileComponent.css";
+import { useIntl } from "react-intl";
 import Axios from "axios";
+
+import ModalComponent from "../../ModalComponent/ModalComponent";
+import "./QuestionTileComponent.css";
 
 const QuestionTileComponent = props => {
     const [modalOpen, setModalOpen] = useState(false);
+
+    const intl = useIntl();
 
     const {
         status,
@@ -42,23 +46,23 @@ const QuestionTileComponent = props => {
                 <li>Booked by: {booked_by}</li>
                 <li>Chat ID: {chat}</li>
                 <li>
-                    <button onClick={() => deleteQuestion(_id)}>Delete</button>
+                    <button onClick={() => setModalOpen(true)}>Delete</button>
                 </li>
             </ul>
-            {/*            <ModalComponent
+            <ModalComponent
                 isOpen={modalOpen}
                 closeModal={() => setModalOpen(false)}
-                acceptAction={deleteQuestion}
+                acceptAction={() => deleteQuestion(_id)}
                 acceptTitle={intl.formatMessage({
-                    id: "modal.logout",
-                    defaultMessage: "Log out"
+                    id: "modal.delete",
+                    defaultMessage: "Delete"
                 })}
                 rejectTitle={intl.formatMessage({
                     id: "modal.cancel",
                     defaultMessage: "Cancel"
                 })}
                 redStyle={true}
-            />*/}
+            />
 
             {
                 //             "status": "Booked",

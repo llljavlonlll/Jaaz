@@ -4,6 +4,7 @@ import { MdQuestionAnswer } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 
 import QuestionTileComponent from "../../components/Admin/QuestionTileComponent/QuestionTileComponent";
+import UserTileComponent from "../../components/Admin/UserTileComponent/UserTileComponent";
 
 import "./AdminMainPage.css";
 
@@ -13,7 +14,12 @@ const Users = props => {
             <h1>Users</h1>
             <ul>
                 {props.data.map((user, index) => (
-                    <li key={index}>{user.name}</li>
+                    <UserTileComponent
+                        key={index}
+                        {...user}
+                        users={props.data}
+                        setUsers={props.setState}
+                    />
                 ))}
             </ul>
         </div>
