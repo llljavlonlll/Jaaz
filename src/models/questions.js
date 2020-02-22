@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Chat = require("./chat");
 
 const questionSchema = mongoose.Schema({
+    question_id: Number,
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -61,6 +62,8 @@ const questionSchema = mongoose.Schema({
 });
 
 questionSchema.pre("save", async function(next) {
+    this.question_id = this._id.getTimestamp() / 1000;
+
     const chat = new Chat({
         owner: this.owner
     });

@@ -37,15 +37,21 @@ const QuestionTileComponent = props => {
             <td>{_id}</td>
             <td>{description}</td>
             <td>{subject}</td>
-            <td>{status}</td>
-            <td>{owner}</td>
-            <td>
-                <a href={`/images/questions/${image_name}`}>Image</a>
+            <td
+                style={{
+                    color:
+                        status === "Completed"
+                            ? "green"
+                            : status === "Booked"
+                            ? "yellow"
+                            : status === "Rejected"
+                            ? "red"
+                            : "white"
+                }}
+            >
+                {status}
             </td>
             <td>{uploaded_at}</td>
-            {/*<td>{solution[0]}</td>*/}
-            <td>{booked_by}</td>
-            <td>{chat}</td>
             <td>
                 <button onClick={() => setModalOpen(true)}>Delete</button>
             </td>

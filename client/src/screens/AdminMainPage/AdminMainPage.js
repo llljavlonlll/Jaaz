@@ -51,11 +51,7 @@ const Questions = props => {
                         <th>Description</th>
                         <th>Subject</th>
                         <th>Status</th>
-                        <th>Owner</th>
-                        <th>Image</th>
                         <th>Created</th>
-                        <th>Booked by</th>
-                        <th>Chat</th>
                         <th>Action</th>
                     </tr>
                 </thead>
