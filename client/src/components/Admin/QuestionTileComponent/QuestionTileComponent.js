@@ -33,22 +33,23 @@ const QuestionTileComponent = props => {
         });
     };
     return (
-        <div className="admin-question-tile">
-            <ul className="admin-question-tile__list">
-                <li>Status: {status}</li>
-                <li>ID: {_id}</li>
-                <li>Description: {description}</li>
-                <li>Subject: {subject}</li>
-                <li>Owner: {owner}</li>
-                <li>Image: {image_name}</li>
-                <li>Uploaded on: {uploaded_at}</li>
-                {/*<li>Solution: {solution[0]}</li>*/}
-                <li>Booked by: {booked_by}</li>
-                <li>Chat ID: {chat}</li>
-                <li>
-                    <button onClick={() => setModalOpen(true)}>Delete</button>
-                </li>
-            </ul>
+        <tr className="admin-question-tile">
+            <td>{_id}</td>
+            <td>{description}</td>
+            <td>{subject}</td>
+            <td>{status}</td>
+            <td>{owner}</td>
+            <td>
+                <a href={`/images/questions/${image_name}`}>Image</a>
+            </td>
+            <td>{uploaded_at}</td>
+            {/*<td>{solution[0]}</td>*/}
+            <td>{booked_by}</td>
+            <td>{chat}</td>
+            <td>
+                <button onClick={() => setModalOpen(true)}>Delete</button>
+            </td>
+
             <ModalComponent
                 isOpen={modalOpen}
                 closeModal={() => setModalOpen(false)}
@@ -83,7 +84,7 @@ const QuestionTileComponent = props => {
                 // "booked_by": "5dbc2ea17d62754ae05ba615",
                 // "chat": "5e3fe1b75df2752058ffb8ca"
             }
-        </div>
+        </tr>
     );
 };
 

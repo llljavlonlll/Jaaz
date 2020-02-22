@@ -1,0 +1,8 @@
+.admin-user-tile {
+}
+.admin-user-tile__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}

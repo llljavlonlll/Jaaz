@@ -39,6 +39,10 @@
     align-items: center;
 }
 
+.navbar__links__item:hover {
+    color: white;
+}
+
 .navbar__links > button {
     color: #a5afd7;
     background: none;

@@ -9,6 +9,10 @@ const userSchema = mongoose.Schema({
         required: true,
         default: false
     },
+    created: {
+        type: Date,
+        default: new Date()
+    },
     activationHash: String,
     emailVerHash: String,
     category: {

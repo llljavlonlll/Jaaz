@@ -10,7 +10,16 @@ const UserTileComponent = props => {
 
     const intl = useIntl();
 
-    const { isVerified, _id, balance, name, email, category, tokens } = props;
+    const {
+        isVerified,
+        _id,
+        created,
+        balance,
+        name,
+        email,
+        category,
+        tokens
+    } = props;
 
     const deleteUser = id => {
         Axios.delete(`/api/admin/user/${id}`).then(res => {
@@ -21,19 +30,20 @@ const UserTileComponent = props => {
         });
     };
     return (
-        <div className="admin-question-tile">
-            <ul className="admin-question-tile__list">
-                <li>Verified: {isVerified.toString()}</li>
-                <li>ID: {_id}</li>
-                <li>Balance: {balance}</li>
-                <li>Name: {name}</li>
-                <li>Email: {email}</li>
-                <li>Category: {category}</li>
-                {/*<li>Tokens: {tokens}</li>*/}
-                <li>
-                    <button onClick={() => setModalOpen(true)}>Delete</button>
-                </li>
-            </ul>
+        <tr className="admin-user-tile">
+            <td>{_id}</td>
+            <td>{name}</td>
+            <td>{email}</td>
+            <td>{category}</td>
+            <td style={{ color: isVerified ? "green" : "red" }}>
+                {isVerified.toString()}
+            </td>
+            <td>{created}</td>
+            <td>{balance}</td>
+            {/*<td>Tokens: {tokens}</td>*/}
+            <td>
+                <button onClick={() => setModalOpen(true)}>Delete</button>
+            </td>
             <ModalComponent
                 isOpen={modalOpen}
                 closeModal={() => setModalOpen(false)}
@@ -118,7 +128,7 @@ const UserTileComponent = props => {
                 // "activationHash": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGJjMmVhMTdkNjI3NTRhZTA1YmE2MTUiLCJpYXQiOjE1NzI2MTM3OTN9.7s95QrJTU4Un7BD-J_xkQNlF0sIVpvOV9iWadPaoo54",
                 // "__v": 257
             }
-        </div>
+        </tr>
     );
 };
 

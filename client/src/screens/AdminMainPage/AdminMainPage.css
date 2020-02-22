@@ -30,3 +30,37 @@
 .admin__side-nav__links button:hover {
     color: white;
 }
+
+.admin-users__table {
+    width: 100%;
+    border: 1px solid black;
+    padding: 2rem;
+    border-collapse: collapse;
+}
+
+.admin-questions__table {
+    width: 100%;
+    border: 1px solid black;
+    padding: 2rem;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #20222b;
+    text-align: left;
+    padding: 1.6rem;
+}
+
+td a {
+    color: white;
+    border-bottom: 2px solid #8357c5;
+}
+
+td a:hover {
+    color: #8357c5;
+}
+
+tr:nth-child(even) {
+    background-color: #734dac3f;
+}

@@ -12,16 +12,30 @@ const Users = props => {
     return (
         <div>
             <h1>Users</h1>
-            <ul>
-                {props.data.map((user, index) => (
-                    <UserTileComponent
-                        key={index}
-                        {...user}
-                        users={props.data}
-                        setUsers={props.setState}
-                    />
-                ))}
-            </ul>
+            <table className="admin-users__table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Category</th>
+                        <th>Verified</th>
+                        <th>Created</th>
+                        <th>Balance</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.data.map((user, index) => (
+                        <UserTileComponent
+                            key={index}
+                            {...user}
+                            users={props.data}
+                            setUsers={props.setState}
+                        />
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
@@ -30,16 +44,32 @@ const Questions = props => {
     return (
         <div>
             <h1>Questions</h1>
-            <div>
-                {props.data.map((question, index) => (
-                    <QuestionTileComponent
-                        key={index}
-                        {...question}
-                        questions={props.data}
-                        setQuestions={props.setState}
-                    />
-                ))}
-            </div>
+            <table className="admin-questions__table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>Image</th>
+                        <th>Created</th>
+                        <th>Booked by</th>
+                        <th>Chat</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.data.map((question, index) => (
+                        <QuestionTileComponent
+                            key={index}
+                            {...question}
+                            questions={props.data}
+                            setQuestions={props.setState}
+                        />
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
