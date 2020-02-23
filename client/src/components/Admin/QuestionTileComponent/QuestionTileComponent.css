@@ -1,6 +1,15 @@
-.admin-question-tile {
-}
 .admin-question-tile__list {
     list-style: none;
     padding: 0;
+}
+
+.admin-del-btn {
+    text-align: center;
+}
+
+.admin-del-btn button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import { useIntl } from "react-intl";
 import moment from "moment";
+import { MdDeleteForever } from "react-icons/md";
 
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import "./UserTileComponent.css";
@@ -43,8 +44,10 @@ const UserTileComponent = props => {
             <td>{moment(created).format("L")}</td>
             <td>{balance}</td>
             {/*<td>Tokens: {tokens}</td>*/}
-            <td>
-                <button onClick={() => setModalOpen(true)}>Delete</button>
+            <td className="admin-del-btn">
+                <button onClick={() => setModalOpen(true)}>
+                    <MdDeleteForever size="2rem" />
+                </button>
             </td>
             <ModalComponent
                 isOpen={modalOpen}

@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { MdQuestionAnswer } from "react-icons/md";
+import { MdQuestionAnswer, MdSearch, MdClear } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 
 import QuestionTileComponent from "../../components/Admin/QuestionTileComponent/QuestionTileComponent";
 import UserTileComponent from "../../components/Admin/UserTileComponent/UserTileComponent";
 
 import "./AdminMainPage.css";
+import SearchComponent from "../../components/Admin/SearchComponent/SearchComponent";
 
 const Users = props => {
     return (
         <div>
-            <h1>Users</h1>
+            <div className="admin-users__header">
+                <h1>Users</h1>
+                <SearchComponent
+                    filter={props.filter}
+                    placeholder="Search by ID, Name or Email"
+                />
+            </div>
             <table className="admin-users__table">
                 <thead>
                     <tr>
@@ -43,7 +50,13 @@ const Users = props => {
 const Questions = props => {
     return (
         <div>
-            <h1>Questions</h1>
+            <div className="admin-users__header">
+                <h1>Questions</h1>
+                <SearchComponent
+                    filter={props.filter}
+                    placeholder="Search by ID"
+                />
+            </div>
             <table className="admin-questions__table">
                 <thead>
                     <tr>
@@ -73,6 +86,8 @@ const Questions = props => {
 export default function AdminMainPage() {
     const [questions, setQuestions] = useState([]);
     const [users, setUsers] = useState([]);
+    const [filteredQuestions, setFilteredQuestions] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState("users");
 
     useEffect(() => {
@@ -82,19 +97,72 @@ export default function AdminMainPage() {
         axios.all([getUsers(), getQuestions()]).then(
             axios.spread((users, questions) => {
                 setQuestions(questions.data);
+                setFilteredQuestions(questions.data);
                 setUsers(users.data);
+                setFilteredUsers(users.data);
             })
         );
     }, []);
+
+    //Will pass this function to QuestionTileComponent
+    const filterQuestions = search_term => {
+        if (!search_term) {
+            return setFilteredQuestions(questions);
+        }
+        setFilteredQuestions(
+            questions.filter(question => {
+                if (question.qid === parseInt(search_term)) {
+                    return true;
+                }
+
+                return false;
+            })
+        );
+    };
+
+    const filterUsers = search_term => {
+        if (!search_term) {
+            return setFilteredUsers(users);
+        }
+        setFilteredUsers(
+            users.filter(user => {
+                if (user.uid === parseInt(search_term)) {
+                    return true;
+                }
+
+                if (user.name.toLowerCase().includes(search_term)) {
+                    return true;
+                }
+
+                if (user.email.toLowerCase().includes(search_term)) {
+                    return true;
+                }
+
+                return false;
+            })
+        );
+    };
 
     let page = null;
 
     switch (currentPage) {
         case "users":
-            page = <Users data={users} setState={setUsers} />;
+            page = (
+                <Users
+                    data={filteredUsers}
+                    setState={setFilteredUsers}
+                    filter={filterUsers}
+                />
+            );
             break;
         case "questions":
-            page = <Questions data={questions} setState={setQuestions} />;
+            page = (
+                <Questions
+                    data={filteredQuestions}
+                    setState={setFilteredQuestions}
+                    filter={filterQuestions}
+                />
+            );
             break;
         default:
             page = "Select tab";

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useIntl } from "react-intl";
 import Axios from "axios";
 import moment from "moment";
+import { MdDeleteForever } from "react-icons/md";
+
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import "./QuestionTileComponent.css";
 
@@ -53,8 +55,10 @@ const QuestionTileComponent = props => {
                 {status}
             </td>
             <td>{moment(uploaded_at).format("L")}</td>
-            <td>
-                <button onClick={() => setModalOpen(true)}>Delete</button>
+            <td className="admin-del-btn">
+                <button onClick={() => setModalOpen(true)}>
+                    <MdDeleteForever size="2rem" />
+                </button>
             </td>
 
             <ModalComponent

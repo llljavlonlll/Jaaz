@@ -51,7 +51,7 @@ const HeaderComponent = props => {
                                 style: {
                                     display: "inline"
                                 },
-                                size: "1.1em",
+                                size: "2.5rem",
                                 className: "global-class-name"
                             }}
                         >
@@ -59,7 +59,7 @@ const HeaderComponent = props => {
                                 <MdDashboard />
                             </div>
                         </IconContext.Provider>
-                        <span style={{ marginLeft: "0.2rem" }}>
+                        <span style={{ marginLeft: "0.3rem" }}>
                             <FormattedMessage
                                 id="nav.dash"
                                 defaultMessage="Dashboard"
@@ -74,7 +74,7 @@ const HeaderComponent = props => {
                                 style: {
                                     display: "inline"
                                 },
-                                size: "1.1em",
+                                size: "2.5rem",
                                 className: "global-class-name"
                             }}
                         >
@@ -82,7 +82,7 @@ const HeaderComponent = props => {
                                 <MdAccountBox />
                             </div>
                         </IconContext.Provider>
-                        <span style={{ marginLeft: "0.2rem" }}>
+                        <span style={{ marginLeft: "0.3rem" }}>
                             <FormattedMessage
                                 id="nav.profile"
                                 defaultMessage="My profile"
@@ -100,7 +100,7 @@ const HeaderComponent = props => {
                                 style: {
                                     display: "inline"
                                 },
-                                size: "1.1em",
+                                size: "2.5rem",
                                 className: "global-class-name"
                             }}
                         >
@@ -108,7 +108,7 @@ const HeaderComponent = props => {
                                 <MdExitToApp />
                             </div>
                         </IconContext.Provider>
-                        <span style={{ marginLeft: "0.2rem" }}>
+                        <span style={{ marginLeft: "0.3rem" }}>
                             <FormattedMessage
                                 id="nav.logout"
                                 defaultMessage="Log out"

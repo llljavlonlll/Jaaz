@@ -6,7 +6,7 @@
 .admin__side-nav {
     margin-right: 5rem;
     background-color: #20222b;
-    width: 25rem;
+    width: 20%;
 }
 
 .admin__side-nav__links {
@@ -30,6 +30,35 @@
 
 .admin__side-nav__links button:hover {
     color: white;
+}
+
+.admin__content {
+    width: 80%;
+}
+
+.admin-users__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-users__header__search {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 30%;
+}
+
+.admin-users__header__search input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #a5afd7;
+    color: #a5afd7;
+    width: 100%;
+}
+
+.admin-users__header__search span {
+    cursor: pointer;
 }
 
 .admin-users__table {
