@@ -38,7 +38,7 @@ const QuestionTileComponent = props => {
     return (
         <tr className="admin-question-tile">
             <td>{qid}</td>
-            <td>{description}</td>
+            <td>{description ? description : "--"}</td>
             <td>{subject}</td>
             <td
                 style={{

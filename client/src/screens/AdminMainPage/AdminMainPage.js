@@ -181,15 +181,21 @@ export default function AdminMainPage() {
                         onClick={() => setCurrentPage("users")}
                         className={activeStyle("users")}
                     >
-                        <FaUsers />
-                        <span style={{ marginLeft: "1rem" }}>Users</span>
+                        <div className="admin__side-nav__button">
+                            <FaUsers size="2.5rem" />
+                            <span style={{ marginLeft: "1rem" }}>Users</span>
+                        </div>
                     </button>
                     <button
                         onClick={() => setCurrentPage("questions")}
                         className={activeStyle("questions")}
                     >
-                        <MdQuestionAnswer />
-                        <span style={{ marginLeft: "1rem" }}>Questions</span>
+                        <div className="admin__side-nav__button">
+                            <MdQuestionAnswer size="2.5rem" />
+                            <span style={{ marginLeft: "1rem" }}>
+                                Questions
+                            </span>
+                        </div>
                     </button>
                 </div>
             </div>

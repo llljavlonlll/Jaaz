@@ -8,7 +8,7 @@ const router = new express.Router();
 // GET /admin/user
 router.get("/user", auth, isAdmin, async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().sort({ created: -1 });
         res.send(users);
     } catch (e) {
         res.status(400).send(e);

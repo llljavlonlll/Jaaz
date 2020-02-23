@@ -32,6 +32,12 @@
     color: white;
 }
 
+.admin__side-nav__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .admin__content {
     width: 80%;
 }
@@ -94,4 +100,8 @@ td a {
 
 td a:hover {
     color: #8357c5;
+}
+
+tr:nth-child(even) {
+    background-color: #8357c538;
 }

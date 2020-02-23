@@ -8,7 +8,7 @@ const router = new express.Router();
 // GET /admin/questions
 router.get("/questions", auth, isAdmin, async (req, res) => {
     try {
-        const questions = await Question.find();
+        const questions = await Question.find().sort({ uploaded_at: -1 });
         res.send(questions);
     } catch (e) {
         res.status(400).send(e);
