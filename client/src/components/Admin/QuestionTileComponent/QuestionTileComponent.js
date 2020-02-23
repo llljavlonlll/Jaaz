@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
 import Axios from "axios";
-
+import moment from "moment";
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import "./QuestionTileComponent.css";
 
@@ -13,6 +13,7 @@ const QuestionTileComponent = props => {
     const {
         status,
         _id,
+        qid,
         description,
         subject,
         owner,
@@ -34,7 +35,7 @@ const QuestionTileComponent = props => {
     };
     return (
         <tr className="admin-question-tile">
-            <td>{_id}</td>
+            <td>{qid}</td>
             <td>{description}</td>
             <td>{subject}</td>
             <td
@@ -51,7 +52,7 @@ const QuestionTileComponent = props => {
             >
                 {status}
             </td>
-            <td>{uploaded_at}</td>
+            <td>{moment(uploaded_at).format("L")}</td>
             <td>
                 <button onClick={() => setModalOpen(true)}>Delete</button>
             </td>

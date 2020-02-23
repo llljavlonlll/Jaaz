@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { useIntl } from "react-intl";
+import moment from "moment";
 
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import "./UserTileComponent.css";
@@ -13,6 +14,7 @@ const UserTileComponent = props => {
     const {
         isVerified,
         _id,
+        uid,
         created,
         balance,
         name,
@@ -31,14 +33,14 @@ const UserTileComponent = props => {
     };
     return (
         <tr className="admin-user-tile">
-            <td>{_id}</td>
+            <td>{uid}</td>
             <td>{name}</td>
             <td>{email}</td>
             <td>{category}</td>
             <td style={{ color: isVerified ? "green" : "red" }}>
                 {isVerified.toString()}
             </td>
-            <td>{created}</td>
+            <td>{moment(created).format("L")}</td>
             <td>{balance}</td>
             {/*<td>Tokens: {tokens}</td>*/}
             <td>

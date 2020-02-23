@@ -103,7 +103,8 @@ router.post("/sign-up", async (req, res) => {
                 name: user.name,
                 email: user.email,
                 category: user.category,
-                balance: user.balance
+                balance: user.balance,
+                uid: user.uid
             });
 
         const hash = user.activationHash;

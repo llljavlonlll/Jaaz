@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const AutoIncrement = require("../db/mongoose");
 
 const userSchema = mongoose.Schema({
     isVerified: {
@@ -10,8 +11,8 @@ const userSchema = mongoose.Schema({
         default: false
     },
     created: {
-        type: Date,
-        default: new Date()
+        type: Number,
+        default: Date.now
     },
     activationHash: String,
     emailVerHash: String,
@@ -67,6 +68,8 @@ const userSchema = mongoose.Schema({
         }
     ]
 });
+
+userSchema.plugin(AutoIncrement, { inc_field: "uid" });
 
 // Generating authorization token
 userSchema.methods.generateAuthToken = async function(action) {

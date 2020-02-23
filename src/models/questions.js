@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const Chat = require("./chat");
+const AutoIncrement = require("../db/mongoose");
+const moment = require("moment");
 
 const questionSchema = mongoose.Schema({
-    question_id: Number,
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -23,7 +24,7 @@ const questionSchema = mongoose.Schema({
         required: true
     },
     uploaded_at: {
-        type: Date,
+        type: Number,
         required: true,
         default: Date.now
     },
@@ -61,9 +62,9 @@ const questionSchema = mongoose.Schema({
     chat: mongoose.Schema.Types.ObjectId
 });
 
-questionSchema.pre("save", async function(next) {
-    this.question_id = this._id.getTimestamp() / 1000;
+questionSchema.plugin(AutoIncrement, { inc_field: "qid" });
 
+questionSchema.pre("save", async function(next) {
     const chat = new Chat({
         owner: this.owner
     });
