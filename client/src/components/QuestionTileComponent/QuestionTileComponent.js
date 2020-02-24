@@ -23,13 +23,8 @@ export default function QuestionTileComponent(props) {
                     <h3>{props.description ? props.description : "---"}</h3>
                     <div className="question-tile__bullets">
                         <ul>
-                            <li>
-                                <FormattedMessage
-                                    id="question-tile.subject"
-                                    defaultMessage="Subject"
-                                />
-                                : {props.subject}
-                            </li>
+                            <li>ID: {props.qid}</li>
+
                             <li>
                                 <FormattedMessage
                                     id="question-tile.status"
@@ -59,6 +54,13 @@ export default function QuestionTileComponent(props) {
                                 />
                                 :{" "}
                                 {moment(props.uploaded_at).format("DD/MM/YYYY")}
+                            </li>
+                            <li>
+                                <FormattedMessage
+                                    id="question-tile.subject"
+                                    defaultMessage="Subject"
+                                />
+                                : {props.subject}
                             </li>
                             {/*<li>Solved by: Javlonbek B.</li>*/}
                         </ul>

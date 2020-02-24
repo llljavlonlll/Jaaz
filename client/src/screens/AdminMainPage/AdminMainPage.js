@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { MdQuestionAnswer, MdSearch, MdClear } from "react-icons/md";
+import { MdQuestionAnswer } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 
 import QuestionTileComponent from "../../components/Admin/QuestionTileComponent/QuestionTileComponent";
