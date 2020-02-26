@@ -82,14 +82,14 @@ const questionSchema = mongoose.Schema({
 
 questionSchema.plugin(AutoIncrement, { inc_field: "qid" });
 
-questionSchema.pre("save", async function(next) {
-    const chat = new Chat({
-        owner: this.owner
-    });
+// questionSchema.pre("save", async function(next) {
+//     const chat = new Chat({
+//         owner: this.owner
+//     });
 
-    const savedChat = await chat.save();
-    this.chat = savedChat._id;
-    next();
-});
+//     const savedChat = await chat.save();
+//     this.chat = savedChat._id;
+//     next();
+// });
 
 module.exports = Question = mongoose.model("Question", questionSchema);

@@ -124,9 +124,12 @@ export default function StudentQuestionComponent(props) {
                     }}
                 ></div>
                 <div className="student-question__actions">
-                    <RatingComponent />
+                    <RatingComponent
+                        rating={question.solution[0].rating}
+                        questionId={question._id}
+                    />
                     <span style={{ color: "#a5afd7" }}>|</span>
-                    <ChatComponent />
+                    <ChatComponent chatId={question.chat} />
                 </div>
             </React.Fragment>
         );

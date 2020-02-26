@@ -7,7 +7,7 @@ const chatSchema = mongoose.Schema({
         ref: "User"
     },
     created_at: {
-        type: Date,
+        type: Number,
         default: Date.now()
     },
     instructor: {
