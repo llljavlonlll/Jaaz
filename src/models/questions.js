@@ -66,6 +66,11 @@ const questionSchema = mongoose.Schema({
             solved_at: {
                 type: Date,
                 required: true
+            },
+            rating: {
+                type: Number,
+                max: 5,
+                min: 1
             }
         }
     ],

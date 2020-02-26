@@ -142,6 +142,12 @@
     overflow-wrap: break-word;
 }
 
+.student-question__actions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 @media (max-width: 1150px) {
     .student-question {
         max-width: 100%;

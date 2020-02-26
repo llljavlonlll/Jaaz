@@ -19,11 +19,12 @@ const adminUsersRouter = require("./routers/api/admin/users");
 const adminQuestionsRouter = require("./routers/api/admin/questions");
 const generalRouter = require("./routers/api/generals");
 const questionRouter = require("./routers/api/student/questions");
+const ratingRouter = require("./routers/api/student/rating");
+const balanceRouter = require("./routers/api/student/balance");
 const solutionRouter = require("./routers/api/instructor/solutions");
 const pendingQuestionsRouter = require("./routers/api/instructor/pending");
 const bookedQuestionsRouter = require("./routers/api/instructor/booked");
 const completedQuestionsRouter = require("./routers/api/instructor/completed");
-const balanceRouter = require("./routers/api/student/balance");
 
 io.on("connection", socket => {
     console.log("We have new connection");
@@ -64,6 +65,7 @@ app.use("/api/admin", adminQuestionsRouter);
 
 // Student routes
 app.use("/api/question", questionRouter);
+app.use("/api/rate", ratingRouter);
 app.use("/api/balance", balanceRouter);
 
 // Instructor routes

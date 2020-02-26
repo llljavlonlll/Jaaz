@@ -6,6 +6,8 @@ import axios from "axios";
 import moment from "moment";
 
 import "./StudentQuestionComponent.css";
+import ChatComponent from "../ChatComponent/ChatComponent";
+import RatingComponent from "../RatingComponent/RatingComponent";
 
 const BackButton = () => {
     return (
@@ -79,41 +81,54 @@ export default function StudentQuestionComponent(props) {
 
     if (question.solution.length > 0) {
         solution = (
-            <div className="student-question__content__item">
-                <a
-                    href={`/images/solutions/${question.solution[0].image}`}
-                    className="student-question__content__item__image-container"
-                >
-                    <img
-                        className="student-question__content__item__image"
-                        src={`/images/solutions/${question.solution[0].image}`}
-                        alt="Question"
-                    />
-                </a>
-                <div className="student-question__content__item__details-container">
-                    <div className="student-question__content__item__details">
-                        <div className="student-question__content__item__details__description">
-                            {question.solution[0].description ? (
-                                question.solution[0].description
-                            ) : (
+            <React.Fragment>
+                <div className="student-question__content__item">
+                    <a
+                        href={`/images/solutions/${question.solution[0].image}`}
+                        className="student-question__content__item__image-container"
+                    >
+                        <img
+                            className="student-question__content__item__image"
+                            src={`/images/solutions/${question.solution[0].image}`}
+                            alt="Question"
+                        />
+                    </a>
+                    <div className="student-question__content__item__details-container">
+                        <div className="student-question__content__item__details">
+                            <div className="student-question__content__item__details__description">
+                                {question.solution[0].description ? (
+                                    question.solution[0].description
+                                ) : (
+                                    <FormattedMessage
+                                        id="student.question.no-desc"
+                                        defaultMessage="No description"
+                                    />
+                                )}
+                            </div>
+                            <div className="student-question__content__item__details__time">
                                 <FormattedMessage
-                                    id="student.question.no-desc"
-                                    defaultMessage="No description"
-                                />
-                            )}
-                        </div>
-                        <div className="student-question__content__item__details__time">
-                            <FormattedMessage
-                                id="student.question.answered-on"
-                                defaultMessage="Answered on"
-                            />{" "}
-                            {moment(question.solution[0].solved_at).format(
-                                "DD/MM/YYYY"
-                            )}
+                                    id="student.question.answered-on"
+                                    defaultMessage="Answered on"
+                                />{" "}
+                                {moment(question.solution[0].solved_at).format(
+                                    "DD/MM/YYYY"
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div
+                    style={{
+                        borderBottom: "1px solid #a5afd75d",
+                        margin: "2.5rem"
+                    }}
+                ></div>
+                <div className="student-question__actions">
+                    <RatingComponent />
+                    <span style={{ color: "#a5afd7" }}>|</span>
+                    <ChatComponent />
+                </div>
+            </React.Fragment>
         );
     } else {
         solution = (
@@ -158,13 +173,6 @@ export default function StudentQuestionComponent(props) {
                 <p style={statusStyle}>{question.status}</p>
             </div>
             <div className="student-question__content">
-                {solution}
-                <div
-                    style={{
-                        borderBottom: "1px solid #a5afd75d",
-                        margin: "2.5rem"
-                    }}
-                ></div>
                 <div className="student-question__content__item">
                     <a
                         href={`/images/questions/${question.image_name}`}
@@ -211,6 +219,13 @@ export default function StudentQuestionComponent(props) {
                         </div>
                     </div>
                 </div>
+                <div
+                    style={{
+                        borderBottom: "1px solid #a5afd75d",
+                        margin: "2.5rem"
+                    }}
+                ></div>
+                {solution}
             </div>
         </div>
     );
