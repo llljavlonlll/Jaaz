@@ -1,0 +1,11 @@
+.chat-button__container {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+    padding: 1rem 0;
+}
+
+.chat-button {
+    align-self: center;
+}

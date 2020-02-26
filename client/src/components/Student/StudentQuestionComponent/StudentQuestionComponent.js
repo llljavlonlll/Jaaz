@@ -6,8 +6,9 @@ import axios from "axios";
 import moment from "moment";
 
 import "./StudentQuestionComponent.css";
-import ChatComponent from "../ChatComponent/ChatComponent";
+import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
 import RatingComponent from "../RatingComponent/RatingComponent";
+import ChatComponent from "../ChatComponent/ChatComponent";
 
 const BackButton = () => {
     return (
@@ -41,7 +42,12 @@ export default function StudentQuestionComponent(props) {
                 <h3 className="student-question__title">
                     <BackButton />
                     {isLoading ? (
-                        <p>Loading...</p>
+                        <p>
+                            <FormattedMessage
+                                id="loading"
+                                defaultMessage="Loading..."
+                            />
+                        </p>
                     ) : (
                         <p>
                             {question.status === "Pending" ? (
@@ -70,7 +76,12 @@ export default function StudentQuestionComponent(props) {
                 </h3>
                 <div className="student-question__loading">
                     <div className="student-question__loading-content">
-                        <p style={{ color: "#a5afd7" }}>Loading</p>
+                        <p style={{ color: "#a5afd7" }}>
+                            <FormattedMessage
+                                id="loading"
+                                defaultMessage="Loading..."
+                            />
+                        </p>
                     </div>
                 </div>
             </div>
@@ -120,7 +131,7 @@ export default function StudentQuestionComponent(props) {
                 <div
                     style={{
                         borderBottom: "1px solid #a5afd75d",
-                        margin: "2.5rem"
+                        margin: "2.5rem 2.5rem 0 2.5rem"
                     }}
                 ></div>
                 <div className="student-question__actions">
@@ -129,8 +140,9 @@ export default function StudentQuestionComponent(props) {
                         questionId={question._id}
                     />
                     <span style={{ color: "#a5afd7" }}>|</span>
-                    <ChatComponent chatId={question.chat} />
+                    <ChatButtonComponent chatId={question.chat} />
                 </div>
+                <ChatComponent />
             </React.Fragment>
         );
     } else {

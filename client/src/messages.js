@@ -113,7 +113,8 @@ export default {
         history: "History",
         physics: "Physics",
         chemistry: "Chemistry",
-        computer: "Computer Science"
+        computer: "Computer Science",
+        loading: "Loading..."
     },
     ru: {
         "nav.slogan": "Портал для студентов и преподавателей",
@@ -230,7 +231,8 @@ export default {
         history: "История",
         physics: "Физика",
         chemistry: "Химия",
-        computer: "IT"
+        computer: "IT",
+        loading: "Загрузка..."
     },
     uz: {
         "nav.slogan": "Talabalar va o'qituvchilar portali",
@@ -347,6 +349,7 @@ export default {
         history: "Tarix",
         physics: "Fizika",
         chemistry: "Kimyo",
-        computer: "IT"
+        computer: "IT",
+        loading: "Yuklanmoqda..."
     }
 };
