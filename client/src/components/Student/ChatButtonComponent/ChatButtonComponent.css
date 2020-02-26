@@ -8,4 +8,13 @@
 
 .chat-button {
     align-self: center;
+    background-color: transparent;
+    color: white;
+    padding: 0.5rem 0rem;
+    border: none;
+    border-bottom: 3px solid #8357c5;
+}
+
+.chat-button--selected {
+    align-self: center;
 }

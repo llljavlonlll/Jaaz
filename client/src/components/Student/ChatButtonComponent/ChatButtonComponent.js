@@ -17,7 +17,7 @@ export default function ChatComponent(props) {
                     />
                 </button>
             ) : (
-                <div className="chat-button">
+                <div className="chat-button--selected">
                     <FormattedMessage id="chat.title" defaultMessage="Chat" />
                 </div>
             )}

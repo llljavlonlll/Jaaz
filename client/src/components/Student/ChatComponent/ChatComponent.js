@@ -1,8 +1,12 @@
 import React from "react";
 
 import "./ChatComponent.css";
+import { FormattedMessage } from "react-intl";
 
-export default function ChatComponent() {
+export default function ChatComponent(props) {
+    if (!props.chatId) {
+        return null;
+    }
     return (
         <div className="chat">
             <div className="chat__container">
@@ -11,7 +15,9 @@ export default function ChatComponent() {
             </div>
             <div className="chat__input">
                 <input type="text" />
-                <button>Send</button>
+                <button>
+                    <FormattedMessage id="chat.send" defaultMessage="Send" />
+                </button>
             </div>
         </div>
     );

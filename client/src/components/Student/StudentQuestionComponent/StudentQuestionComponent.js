@@ -142,7 +142,7 @@ export default function StudentQuestionComponent(props) {
                     <span style={{ color: "#a5afd7" }}>|</span>
                     <ChatButtonComponent chatId={question.chat} />
                 </div>
-                <ChatComponent />
+                <ChatComponent chatId={question.chat} />
             </React.Fragment>
         );
     } else {
