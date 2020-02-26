@@ -10,10 +10,16 @@ const chatSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    instructor: mongoose.Schema.Types.ObjectId,
+    instructor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     messages: [
         {
-            owner: mongoose.Schema.Types.ObjectId,
+            owner: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            },
             created_at: {
                 type: Date,
                 default: Date.now()

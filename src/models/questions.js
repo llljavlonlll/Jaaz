@@ -39,9 +39,18 @@ const questionSchema = mongoose.Schema({
             }
         }
     },
-    booked_by: mongoose.Schema.Types.ObjectId,
-    solved_by: mongoose.Schema.Types.ObjectId,
-    rejected_by: mongoose.Schema.Types.ObjectId,
+    booked_by: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    solved_by: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    rejected_by: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     solution: [
         {
             image: {
@@ -51,6 +60,7 @@ const questionSchema = mongoose.Schema({
             description: String,
             solved_by: {
                 type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
                 require: true
             },
             solved_at: {
@@ -59,7 +69,10 @@ const questionSchema = mongoose.Schema({
             }
         }
     ],
-    chat: mongoose.Schema.Types.ObjectId
+    chat: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Chat"
+    }
 });
 
 questionSchema.plugin(AutoIncrement, { inc_field: "qid" });

@@ -1,8 +1,19 @@
 require("dotenv").config();
 require("./db/mongoose");
+
 const path = require("path");
+const http = require("http");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
+// Setting up Socket.io
+const socketio = require("socket.io");
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
+// Importing routes
 const userRouter = require("./routers/api/users");
 const adminUsersRouter = require("./routers/api/admin/users");
 const adminQuestionsRouter = require("./routers/api/admin/questions");
@@ -13,11 +24,16 @@ const pendingQuestionsRouter = require("./routers/api/instructor/pending");
 const bookedQuestionsRouter = require("./routers/api/instructor/booked");
 const completedQuestionsRouter = require("./routers/api/instructor/completed");
 const balanceRouter = require("./routers/api/student/balance");
-const cors = require("cors");
 
-const app = express();
+io.on("connection", socket => {
+    console.log("We have new connection");
 
-const port = process.env.PORT || 5001;
+    socket.on("message", msg => console.log(msg));
+
+    socket.on("disconnect", () => {
+        console.log("User had left");
+    });
+});
 
 // Static files directory
 const questionsDir = path.join(__dirname, "..", "questions");
@@ -56,6 +72,8 @@ app.use("/api/pending", pendingQuestionsRouter);
 app.use("/api/booked", bookedQuestionsRouter);
 app.use("/api/completed", completedQuestionsRouter);
 
+const port = process.env.PORT || 5001;
+
 // Fallback to index.html
 app.get("*", (req, res) => {
     res.sendFile(
@@ -63,6 +81,6 @@ app.get("*", (req, res) => {
     );
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log("App is running on port: " + port);
 });

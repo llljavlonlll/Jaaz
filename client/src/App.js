@@ -38,6 +38,10 @@ import ForgotPasswordPage from "./screens/ForgotPasswordPage/ForgotPasswordPage"
 // Install Google Analytics
 import ReactGA from "react-ga";
 
+//Socket connection
+import io from "socket.io-client";
+export const socket = io("localhost:5001");
+
 class App extends Component {
     componentDidMount() {
         // Initialize GA

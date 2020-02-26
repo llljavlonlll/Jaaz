@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -11,6 +11,8 @@ import { MdAccountBox, MdExitToApp, MdDashboard } from "react-icons/md";
 import { userLogout } from "../../store/actions/authActions";
 import ModalComponent from "../ModalComponent/ModalComponent";
 
+import { socket } from "../../App";
+
 import "./HeaderComponent.css";
 
 const HeaderComponent = props => {
@@ -19,6 +21,10 @@ const HeaderComponent = props => {
 
     const dispatch = useDispatch();
     const intl = useIntl();
+
+    useEffect(() => {
+        socket.emit("message", { msg: "Hello from react" });
+    }, []);
 
     const handleLogout = () => {
         axios
