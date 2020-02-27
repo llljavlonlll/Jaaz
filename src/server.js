@@ -20,6 +20,7 @@ const adminQuestionsRouter = require("./routers/api/admin/questions");
 const generalRouter = require("./routers/api/generals");
 const questionRouter = require("./routers/api/student/questions");
 const ratingRouter = require("./routers/api/student/rating");
+const chatRouter = require("./routers/api/student/chat");
 const balanceRouter = require("./routers/api/student/balance");
 const solutionRouter = require("./routers/api/instructor/solutions");
 const pendingQuestionsRouter = require("./routers/api/instructor/pending");
@@ -66,6 +67,7 @@ app.use("/api/admin", adminQuestionsRouter);
 // Student routes
 app.use("/api/question", questionRouter);
 app.use("/api/rate", ratingRouter);
+app.use("/api/chat", chatRouter);
 app.use("/api/balance", balanceRouter);
 
 // Instructor routes

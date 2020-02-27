@@ -4,7 +4,7 @@ const auth = require("../../../middleware/auth");
 const router = new require("express").Router();
 
 // Create a chat
-// POST /chat
+// POST /chat/:id
 router.post("/:id", auth, async (req, res) => {
     try {
         const question = await Question.findById(req.params.id);
@@ -14,12 +14,15 @@ router.post("/:id", auth, async (req, res) => {
         }
 
         if (!question.owner.equals(req.user._id)) {
-            return res
-                .status(400)
-                .send({
-                    msg:
-                        "You do not have rights to create chat for this question"
-                });
+            return res.status(400).send({
+                msg: "You do not have rights to create chat for this question"
+            });
+        }
+
+        if (question.chat) {
+            return res.status(400).send({
+                msg: "This question already has chat object created"
+            });
         }
 
         const chat = new Chat({
@@ -30,7 +33,9 @@ router.post("/:id", auth, async (req, res) => {
         question.chat = savedChat._id;
         await question.save();
 
-        return res.send(question.chat);
+        return res.send({
+            chat: question.chat
+        });
     } catch (err) {
         res.status(400).send({ msg: err.message });
     }

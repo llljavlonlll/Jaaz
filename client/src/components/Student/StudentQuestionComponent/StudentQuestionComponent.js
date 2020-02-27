@@ -36,6 +36,14 @@ export default function StudentQuestionComponent(props) {
         fetchQuestion();
     }, [props.questionId]);
 
+    const assignChat = chatId =>
+        setQuestion(prevState => {
+            return {
+                ...prevState,
+                chat: chatId
+            };
+        });
+
     if (isLoading) {
         return (
             <div className="student-question">
@@ -140,7 +148,11 @@ export default function StudentQuestionComponent(props) {
                         questionId={question._id}
                     />
                     <span style={{ color: "#a5afd7" }}>|</span>
-                    <ChatButtonComponent chatId={question.chat} />
+                    <ChatButtonComponent
+                        chatId={question.chat}
+                        questionId={question._id}
+                        assignChat={assignChat}
+                    />
                 </div>
                 <ChatComponent chatId={question.chat} />
             </React.Fragment>
