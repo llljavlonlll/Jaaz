@@ -7,6 +7,20 @@
     margin-bottom: 3.6rem;
 }
 
+.question-details__chat {
+    background-color: #3c4251;
+    border: 5px solid #3c4251;
+    margin-bottom: 2rem;
+}
+
+.question-details__chat__title {
+    padding: 1.6rem;
+    color: #a5afd7;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
 .question-details__title {
     background-color: #3c4251;
     margin: 0;

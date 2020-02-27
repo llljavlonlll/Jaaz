@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 //Socket connection
 import io from "socket.io-client";
 
 import "./ChatComponent.css";
-import { FormattedMessage } from "react-intl";
 
 let socket;
 
@@ -18,8 +18,6 @@ export default function ChatComponent(props) {
             socket = io(ENDPOINT);
             socket.emit("join", { chatId: props.chatId });
         }
-
-        console.log("useEffect1");
 
         return () => {
             if (props.chatId) {
@@ -45,15 +43,13 @@ export default function ChatComponent(props) {
                 setMessage("")
             );
         }
-
-        console.log("sendMessage");
     };
 
     if (!props.chatId) {
         return null;
     }
     return (
-        <div className="chat">
+        <div className="chat" style={props.style}>
             <div className="chat__container">
                 <div className="chat__container__messages">
                     {messages.map((message, index) => (

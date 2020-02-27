@@ -20,6 +20,7 @@ class QuestionPage extends Component {
         owner: "",
         image_name: "",
         solution: [],
+        chat: "",
         bookModalIsOpen: false,
         unbookModalIsOpen: false,
         rejectModalIsOpen: false,
@@ -41,6 +42,7 @@ class QuestionPage extends Component {
                         owner: res.data.owner,
                         image_name: res.data.image_name,
                         solution: res.data.solution,
+                        chat: res.data.chat,
                         isLoading: false,
                         alreadyBooked: false
                     });
