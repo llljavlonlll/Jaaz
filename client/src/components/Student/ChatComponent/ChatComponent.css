@@ -11,8 +11,10 @@
 
 .chat__container__messages {
     flex: 3;
-    margin-right: 1rem;
+    margin-right: 2rem;
     background-color: #464b5e;
+    padding: 1rem;
+    overflow: auto;
 }
 
 .chat__input {

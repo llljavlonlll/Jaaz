@@ -19,18 +19,24 @@ export default function ChatComponent(props) {
             socket.emit("join", { chatId: props.chatId });
         }
 
+        console.log("useEffect1");
+
         return () => {
             if (props.chatId) {
                 socket.disconnect();
                 socket.off();
             }
         };
-    }, [ENDPOINT]);
+    }, [ENDPOINT, props.chatId]);
 
     useEffect(() => {
-        socket.on("message", payload => {
+        socket.on("message", (payload, cb) => {
             setMessages([...messages, payload.message]);
         });
+
+        return () => {
+            socket.removeListener("message");
+        };
     }, [messages]);
 
     const sendMessage = event => {
@@ -39,6 +45,8 @@ export default function ChatComponent(props) {
                 setMessage("")
             );
         }
+
+        console.log("sendMessage");
     };
 
     if (!props.chatId) {
