@@ -11,8 +11,6 @@ import { MdAccountBox, MdExitToApp, MdDashboard } from "react-icons/md";
 import { userLogout } from "../../store/actions/authActions";
 import ModalComponent from "../ModalComponent/ModalComponent";
 
-import { socket } from "../../App";
-
 import "./HeaderComponent.css";
 
 const HeaderComponent = props => {
@@ -21,10 +19,6 @@ const HeaderComponent = props => {
 
     const dispatch = useDispatch();
     const intl = useIntl();
-
-    useEffect(() => {
-        socket.emit("message", { msg: "Hello from react" });
-    }, []);
 
     const handleLogout = () => {
         axios

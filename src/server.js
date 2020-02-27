@@ -12,6 +12,7 @@ const socketio = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+require("./chat/chat")(io);
 
 // Importing routes
 const userRouter = require("./routers/api/users");
@@ -26,16 +27,6 @@ const solutionRouter = require("./routers/api/instructor/solutions");
 const pendingQuestionsRouter = require("./routers/api/instructor/pending");
 const bookedQuestionsRouter = require("./routers/api/instructor/booked");
 const completedQuestionsRouter = require("./routers/api/instructor/completed");
-
-io.on("connection", socket => {
-    console.log("We have new connection");
-
-    socket.on("message", msg => console.log(msg));
-
-    socket.on("disconnect", () => {
-        console.log("User had left");
-    });
-});
 
 // Static files directory
 const questionsDir = path.join(__dirname, "..", "questions");
