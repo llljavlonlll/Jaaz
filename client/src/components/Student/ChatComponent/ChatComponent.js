@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import io from "socket.io-client";
 
 import "./ChatComponent.css";
+import Axios from "axios";
 
 let socket;
 
@@ -15,16 +16,15 @@ export default function ChatComponent(props) {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        if (props.chatId) {
-            socket = io(ENDPOINT);
-            socket.emit("join", { chatId: props.chatId });
-        }
+        Axios.get(`/api/chat/${props.chatId}`).then(res =>
+            setMessages(res.data.chat.messages)
+        );
+        socket = io(ENDPOINT);
+        socket.emit("join", { chatId: props.chatId });
 
         return () => {
-            if (props.chatId) {
-                socket.disconnect();
-                socket.off();
-            }
+            socket.disconnect();
+            socket.off();
         };
     }, [ENDPOINT, props.chatId]);
 
@@ -40,10 +40,17 @@ export default function ChatComponent(props) {
 
     const sendMessage = event => {
         if (message) {
-            socket.emit("userMessage", { chatId: props.chatId, message }, () =>
-                setMessage("")
-            );
         }
+
+        Axios.post(`/api/chat/${props.chatId}/addMessage`, {
+            message
+        }).then(res => {
+            socket.emit(
+                "userMessage",
+                { chatId: props.chatId, message: res.data.newMessage },
+                () => setMessage("")
+            );
+        });
     };
 
     if (!props.chatId) {
@@ -54,7 +61,9 @@ export default function ChatComponent(props) {
             <div className="chat__container">
                 <div className="chat__container__messages">
                     {messages.map((message, index) => (
-                        <p key={index}>{message}</p>
+                        <p key={index}>
+                            {message.owner} - {message.message}
+                        </p>
                     ))}
                 </div>
                 <div className="chat__container__details"></div>

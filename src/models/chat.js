@@ -24,7 +24,7 @@ const chatSchema = mongoose.Schema({
                 type: Date,
                 default: Date.now()
             },
-            text: {
+            message: {
                 type: String,
                 maxlength: 10000
             },

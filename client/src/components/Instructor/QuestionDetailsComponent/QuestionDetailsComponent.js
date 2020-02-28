@@ -11,7 +11,10 @@ export default function QuestionDetailsComponent(props) {
             {props.chat && (
                 <div className="question-details__chat">
                     <div className="question-details__chat__title">
-                        Student needs extra information
+                        <FormattedMessage
+                            id="chat.instr.title"
+                            defaultMessage="Chat with client"
+                        />
                     </div>
                     <ChatComponent chatId={props.chat} />
                 </div>
