@@ -12,6 +12,7 @@ export default function ChatComponent(props) {
     const ENDPOINT = "localhost:5001";
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         if (props.chatId) {

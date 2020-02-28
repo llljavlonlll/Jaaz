@@ -1,5 +1,6 @@
 module.exports = function(io) {
     io.on("connection", socket => {
+        console.log(`${socket.id} has joined`);
         socket.on("join", payload => {
             socket.join(payload.chatId);
             socket.broadcast
