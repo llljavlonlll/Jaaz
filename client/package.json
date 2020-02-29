@@ -6,6 +6,7 @@
         "@material-ui/core": "^4.9.3",
         "@material-ui/lab": "^4.0.0-alpha.44",
         "axios": "^0.19.0",
+        "glamor": "^2.20.40",
         "js-cookie": "^2.2.1",
         "jsonwebtoken": "^8.5.1",
         "jwt-decode": "^2.2.0",

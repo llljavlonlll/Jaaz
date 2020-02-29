@@ -201,7 +201,8 @@ router.get("/checkToken", auth, (req, res) => {
         balance: req.user.balance,
         name: req.user.name,
         email: req.user.email,
-        category: req.user.category
+        category: req.user.category,
+        uid: req.user.uid
     });
 });
 

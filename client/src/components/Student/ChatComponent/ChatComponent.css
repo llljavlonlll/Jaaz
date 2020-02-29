@@ -15,6 +15,7 @@
     background-color: #464b5e;
     padding: 1rem;
     overflow: auto;
+    display: flex;
 }
 
 .chat__input {
@@ -43,4 +44,18 @@
 
 .chat__input button:hover {
     background-color: #a47edf;
+}
+
+.chat__message {
+    padding: 1.6rem;
+    margin: 0.8rem;
+    background-color: #333745;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+.my-message {
+    text-align: right;
+    background-color: #8357c5;
+    align-self: flex-end;
 }

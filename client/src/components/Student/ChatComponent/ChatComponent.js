@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { css } from "glamor";
 
 //Socket connection
 import io from "socket.io-client";
@@ -9,6 +11,40 @@ import "./ChatComponent.css";
 import Axios from "axios";
 
 let socket;
+
+const ROOT_CSS = css({
+    flex: 3,
+    marginRight: "2rem",
+    backgroundColor: "#464b5e",
+    padding: "1rem",
+    overflow: "auto"
+});
+
+const SCROLL_CONTAINER = css({
+    display: "flex",
+    flexDirection: "column"
+});
+
+const DOWN_ARROW = css({
+    height: "3.5rem",
+    width: "3.5rem"
+});
+
+const ChatMessage = props => {
+    const myUID = useSelector(state => state.auth.userData.uid);
+
+    const isThisMessageMine = props.message.owner_uid === myUID;
+
+    return (
+        <div
+            className={`chat__message ${
+                isThisMessageMine ? "my-message" : null
+            }`}
+        >
+            {props.message.owner_uid} - {props.message.message}
+        </div>
+    );
+};
 
 export default function ChatComponent(props) {
     const ENDPOINT = "localhost:5001";
@@ -57,11 +93,13 @@ export default function ChatComponent(props) {
     return (
         <div className="chat" style={props.style}>
             <div className="chat__container">
-                <ScrollToBottom className="chat__container__messages">
+                <ScrollToBottom
+                    className={ROOT_CSS}
+                    scrollViewClassName={SCROLL_CONTAINER}
+                    followButtonClassName={DOWN_ARROW}
+                >
                     {messages.map((message, index) => (
-                        <p key={index}>
-                            {message.owner_uid} - {message.message}
-                        </p>
+                        <ChatMessage message={message} key={index} />
                     ))}
                 </ScrollToBottom>
                 <div className="chat__container__details"></div>
