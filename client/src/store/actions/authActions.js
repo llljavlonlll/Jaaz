@@ -36,7 +36,8 @@ export const loadUser = () => {
                 name: response.data.name,
                 email: response.data.email,
                 category: response.data.category,
-                balance: response.data.balance
+                balance: response.data.balance,
+                uid: response.data.uid
             }
         });
     };

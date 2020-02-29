@@ -16,9 +16,8 @@ const chatSchema = mongoose.Schema({
     },
     messages: [
         {
-            owner: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "User"
+            owner_uid: {
+                type: Number
             },
             created_at: {
                 type: Date,

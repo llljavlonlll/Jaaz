@@ -81,7 +81,7 @@ router.get("/:chatId", auth, async (req, res) => {
 // POST /chat/:chatId/addMessage
 router.post("/:chatId/addMessage", auth, async (req, res) => {
     try {
-        const chat = await Chat.findById(req.params.chatId);
+        const chat = await await Chat.findById(req.params.chatId);
 
         // Return error if no chat was found
         if (!chat) {
@@ -95,7 +95,7 @@ router.post("/:chatId/addMessage", auth, async (req, res) => {
             chat.instructor.equals(req.user._id)
         ) {
             chat.messages.push({
-                owner: req.user._id,
+                owner_uid: req.user.uid,
                 message: req.body.message
             });
             await chat.save();

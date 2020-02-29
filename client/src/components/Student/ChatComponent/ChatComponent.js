@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import ScrollToBottom, {
-    useScrollToBottom,
-    useSticky
-} from "react-scroll-to-bottom";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 //Socket connection
 import io from "socket.io-client";
@@ -18,10 +15,6 @@ export default function ChatComponent(props) {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [users, setUsers] = useState([]);
-
-    // Hooks for scrolling to bottom
-    const scrollToBottom = useScrollToBottom();
-    const [sticky] = useSticky();
 
     useEffect(() => {
         Axios.get(`/api/chat/${props.chatId}`).then(res =>
@@ -67,14 +60,9 @@ export default function ChatComponent(props) {
                 <ScrollToBottom className="chat__container__messages">
                     {messages.map((message, index) => (
                         <p key={index}>
-                            {message.owner} - {message.message}
+                            {message.owner_uid} - {message.message}
                         </p>
                     ))}
-                    {!sticky && (
-                        <button onClick={scrollToBottom}>
-                            Click me to scroll to bottom
-                        </button>
-                    )}
                 </ScrollToBottom>
                 <div className="chat__container__details"></div>
             </div>

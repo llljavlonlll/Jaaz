@@ -156,7 +156,8 @@ router.post("/login", async (req, res) => {
             email: user.email,
             category: user.category,
             balance: user.balance,
-            isVerified: user.isVerified
+            isVerified: user.isVerified,
+            uid: user.uid
         });
     } catch (err) {
         res.status(400).send({ err: err.message });

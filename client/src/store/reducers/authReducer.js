@@ -16,6 +16,7 @@ let initialState = {
         email: "",
         category: "",
         balance: 0,
+        uid: null,
         isVerified: false
     }
 };
