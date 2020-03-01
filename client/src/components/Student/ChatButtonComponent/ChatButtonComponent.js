@@ -11,23 +11,14 @@ export default function ChatComponent(props) {
             .catch(err => console.log(err.message));
     };
 
-    return (
-        <div
-            className="chat-button__container"
-            style={props.chatId && { backgroundColor: "#333745" }}
-        >
-            {!props.chatId ? (
-                <button className="chat-button" onClick={createChat}>
-                    <FormattedMessage
-                        id="chat.button"
-                        defaultMessage="Ask for details"
-                    />
-                </button>
-            ) : (
-                <div className="chat-button--selected">
-                    <FormattedMessage id="chat.title" defaultMessage="Chat" />
-                </div>
-            )}
+    return !props.chatId ? (
+        <div className="chat-button__container">
+            <button className="chat-button" onClick={createChat}>
+                <FormattedMessage
+                    id="chat.button"
+                    defaultMessage="Ask for details"
+                />
+            </button>
         </div>
-    );
+    ) : null;
 }

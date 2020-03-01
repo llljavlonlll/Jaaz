@@ -5,8 +5,15 @@
     padding: 1rem;
 }
 
-.chat__container__details {
-    flex: 1;
+.chat__details {
+    height: 3rem;
+    background-color: #333745;
+    padding: 1.5rem 3rem;
+}
+
+.chat__details__user {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .chat__container__messages {
@@ -14,7 +21,6 @@
     margin-right: 2rem;
     background-color: #464b5e;
     padding: 1rem;
-    overflow: auto;
     display: flex;
 }
 
@@ -37,13 +43,13 @@
 
 .chat__input button {
     flex: 1;
-    background-color: #9160da;
+    background-color: #8357c5;
     color: white;
     border: none;
 }
 
 .chat__input button:hover {
-    background-color: #a47edf;
+    background-color: #9966e6;
 }
 
 .chat__message {

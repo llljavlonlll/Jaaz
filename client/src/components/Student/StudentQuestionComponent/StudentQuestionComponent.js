@@ -8,7 +8,7 @@ import moment from "moment";
 import "./StudentQuestionComponent.css";
 import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
 import RatingComponent from "../RatingComponent/RatingComponent";
-import ChatComponent from "../ChatComponent/ChatComponent";
+import ChatComponent from "../../ChatComponent/ChatComponent";
 
 const BackButton = () => {
     return (
@@ -139,21 +139,25 @@ export default function StudentQuestionComponent(props) {
                 <div
                     style={{
                         borderBottom: "1px solid #a5afd75d",
-                        margin: "2.5rem 2.5rem 0 2.5rem"
+                        margin: "2.5rem 0"
                     }}
                 ></div>
-                <div className="student-question__actions">
-                    <RatingComponent
-                        rating={question.solution[0].rating}
-                        questionId={question._id}
-                    />
-                    <span style={{ color: "#a5afd7" }}>|</span>
-                    <ChatButtonComponent
-                        chatId={question.chat}
-                        questionId={question._id}
-                        assignChat={assignChat}
-                    />
-                </div>
+
+                <RatingComponent
+                    rating={question.solution[0].rating}
+                    questionId={question._id}
+                />
+                <div
+                    style={{
+                        borderBottom: "1px solid #a5afd75d",
+                        margin: "2.5rem 0"
+                    }}
+                ></div>
+                <ChatButtonComponent
+                    chatId={question.chat}
+                    questionId={question._id}
+                    assignChat={assignChat}
+                />
                 <ChatComponent chatId={question.chat} />
             </React.Fragment>
         );
