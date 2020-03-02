@@ -61,16 +61,27 @@ export default function ChatComponent(props) {
     const [room, setRoom] = useState();
     const [status, setStatus] = useState();
 
-    const checkStatus = () => {
-        if (!room) {
-            return;
+    useEffect(() => {
+        if (room) {
+            setStatus(
+                room.users.includes(
+                    userData.category === "customer" ? "instructor" : "customer"
+                )
+            );
         }
-        setStatus(
-            room.users.includes(
-                userData.category === "customer" ? "instructor" : "customer"
-            )
-        );
-    };
+    }, [room]);
+
+    // const checkStatus = () => {
+    //     if (!room) {
+    //         return;
+    //     }
+
+    //     setStatus(
+    //         room.users.includes(
+    //             userData.category === "customer" ? "instructor" : "customer"
+    //         )
+    //     );
+    // };
 
     //Get user data from state
     const userData = useSelector(state => state.auth.userData);
@@ -110,7 +121,7 @@ export default function ChatComponent(props) {
             },
             room => {
                 setRoom(room);
-                checkStatus();
+                // checkStatus();
             }
         );
 
@@ -134,7 +145,7 @@ export default function ChatComponent(props) {
         // Listen for room updates
         socket.on("roomUpdate", (payload, cb) => {
             setRoom(payload.room);
-            checkStatus();
+            // checkStatus();
         });
 
         return () => {
@@ -169,9 +180,9 @@ export default function ChatComponent(props) {
                 </div>
                 <div
                     className="chat__details__status"
-                    style={!status ? { color: "#8357c5" } : null}
+                    style={status ? { color: "#8357c5" } : null}
                 >
-                    {!status ? "Online" : "Offline"}
+                    {status ? "Online" : "Offline"}
                 </div>
             </div>
             <div className="chat__container">
