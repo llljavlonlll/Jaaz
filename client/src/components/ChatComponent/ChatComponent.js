@@ -16,7 +16,10 @@ const ROOT_CSS = css({
     flex: 3,
     // marginRight: "2rem",
     backgroundColor: "#464b5e",
-    padding: "1rem"
+    padding: "1rem",
+    "@media (max-width: 530px)": {
+        padding: "0px"
+    }
 });
 
 const SCROLL_CONTAINER = css({

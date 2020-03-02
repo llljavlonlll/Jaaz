@@ -58,10 +58,45 @@
     background-color: #333745;
     display: inline-block;
     align-self: flex-start;
+    text-align: left;
+    max-width: 70%;
 }
 
 .my-message {
-    text-align: right;
     background-color: #8357c5;
     align-self: flex-end;
+}
+
+@media (max-width: 530px) {
+    .chat__container {
+        height: 35rem;
+    }
+
+    .chat__message {
+        padding: 0.8rem;
+        font-size: 1.3rem;
+    }
+
+    .chat__details {
+        height: 3rem;
+        background-color: #333745;
+        padding: 1.5rem 2rem;
+    }
+
+    .chat__input {
+        display: flex;
+        height: 4rem;
+        padding: 1rem;
+        background-color: #333745;
+        border-top: 1px solid #5b6178;
+    }
+
+    .chat__input input {
+        width: 60%;
+    }
+
+    .chat__input button {
+        width: 40%;
+        font-size: 1.3rem;
+    }
 }
