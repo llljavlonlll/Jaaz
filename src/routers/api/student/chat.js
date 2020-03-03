@@ -64,6 +64,15 @@ router.get("/:chatId", auth, async (req, res) => {
             chat.owner.equals(req.user._id) ||
             chat.instructor.equals(req.user._id)
         ) {
+            // Mark messages of other user as seen
+            chat.messages.forEach(message => {
+                if (message.owner_uid !== req.user.uid && !message.isSeen) {
+                    message.isSeen = true;
+                }
+            });
+
+            await chat.save();
+
             return res.send({ chat });
         }
 

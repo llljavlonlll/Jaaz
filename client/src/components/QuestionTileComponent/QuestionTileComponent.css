@@ -7,6 +7,7 @@
     margin-bottom: 1.6rem;
     border-bottom: 0.3rem solid #272a35;
     max-width: 100%;
+    position: relative;
 }
 
 .question-tile:hover {
@@ -14,6 +15,16 @@
     border-bottom: 0.3rem solid #66439b;
     color: white;
     cursor: pointer;
+}
+
+.question-tile__notification {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    background-color: red;
+    border-radius: 50%;
+    right: -5px;
+    top: -5px;
 }
 
 .question-tile__image-container {

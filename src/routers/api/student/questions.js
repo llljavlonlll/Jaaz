@@ -63,7 +63,9 @@ router.get("/", auth, async (req, res) => {
             },
             null,
             { sort: { uploaded_at: -1 } }
-        );
+        )
+            .populate("chat")
+            .exec();
 
         if (questions.length === 0) {
             return res.status(404).send({ msg: "No questions found" });
