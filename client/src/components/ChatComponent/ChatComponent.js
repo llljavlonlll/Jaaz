@@ -18,8 +18,8 @@ const ROOT_CSS = css({
     backgroundColor: "#464b5e",
     padding: "1rem",
     "@media (max-width: 530px)": {
-        padding: "0px"
-    }
+        padding: "0px",
+    },
 });
 
 const SCROLL_CONTAINER = css({
@@ -28,17 +28,17 @@ const SCROLL_CONTAINER = css({
     overflow: "auto",
     "::-webkit-scrollbar": {
         width: "0px",
-        background: "transparent"
-    }
+        background: "transparent",
+    },
 });
 
 const DOWN_ARROW = css({
     height: "3.5rem",
-    width: "3.5rem"
+    width: "3.5rem",
 });
 
-const ChatMessage = props => {
-    const myUID = useSelector(state => state.auth.userData.uid);
+const ChatMessage = (props) => {
+    const myUID = useSelector((state) => state.auth.userData.uid);
 
     const isThisMessageMine = props.message.owner_uid === myUID;
 
@@ -55,6 +55,7 @@ const ChatMessage = props => {
 };
 
 export default function ChatComponent(props) {
+    const userData = useSelector((state) => state.auth.userData);
     const ENDPOINT = "localhost:5001";
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
@@ -69,7 +70,7 @@ export default function ChatComponent(props) {
                 )
             );
         }
-    }, [room]);
+    }, [room, userData.category]);
 
     // const checkStatus = () => {
     //     if (!room) {
@@ -84,16 +85,15 @@ export default function ChatComponent(props) {
     // };
 
     //Get user data from state
-    const userData = useSelector(state => state.auth.userData);
 
-    const disconnectFromSocket = () => {
+    const disconnectFromSocket = useCallback(() => {
         // Emit event before disconnection
         socket.emit("aboutToDisconnect", {
             chatId: props.chatId,
-            userCategory: userData.category
+            userCategory: userData.category,
         });
         socket.disconnect(true);
-    };
+    }, [props.chatId, userData.category]);
 
     useEffect(() => {
         window.addEventListener("beforeunload", disconnectFromSocket);
@@ -101,11 +101,11 @@ export default function ChatComponent(props) {
         return () => {
             window.removeEventListener("beforeunload", disconnectFromSocket);
         };
-    }, []);
+    }, [disconnectFromSocket]);
 
     useEffect(() => {
         // Fetch messages from DB
-        Axios.get(`/api/chat/${props.chatId}`).then(res =>
+        Axios.get(`/api/chat/${props.chatId}`).then((res) =>
             setMessages(res.data.chat.messages)
         );
 
@@ -117,9 +117,9 @@ export default function ChatComponent(props) {
             "join",
             {
                 chatId: props.chatId,
-                userCategory: userData.category
+                userCategory: userData.category,
             },
-            room => {
+            (room) => {
                 setRoom(room);
                 // checkStatus();
             }
@@ -128,7 +128,7 @@ export default function ChatComponent(props) {
         return () => {
             disconnectFromSocket();
         };
-    }, [ENDPOINT, props.chatId]);
+    }, [ENDPOINT, props.chatId, disconnectFromSocket, userData.category]);
 
     useEffect(() => {
         // Listen for incoming messages
@@ -153,11 +153,11 @@ export default function ChatComponent(props) {
         };
     }, [room]);
 
-    const sendMessage = event => {
+    const sendMessage = (event) => {
         if (message) {
             Axios.post(`/api/chat/${props.chatId}/addMessage`, {
-                message
-            }).then(res => {
+                message,
+            }).then((res) => {
                 socket.emit(
                     "userMessage",
                     { chatId: props.chatId, message: res.data.newMessage },
@@ -200,8 +200,8 @@ export default function ChatComponent(props) {
                 <input
                     type="text"
                     value={message}
-                    onChange={event => setMessage(event.target.value)}
-                    onKeyPress={event =>
+                    onChange={(event) => setMessage(event.target.value)}
+                    onKeyPress={(event) =>
                         event.key === "Enter" ? sendMessage() : null
                     }
                 />

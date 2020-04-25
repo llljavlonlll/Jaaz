@@ -7,7 +7,7 @@ import { MdDeleteForever } from "react-icons/md";
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import "./UserTileComponent.css";
 
-const UserTileComponent = props => {
+const UserTileComponent = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const intl = useIntl();
@@ -21,13 +21,12 @@ const UserTileComponent = props => {
         name,
         email,
         category,
-        tokens
     } = props;
 
-    const deleteUser = id => {
-        Axios.delete(`/api/admin/user/${id}`).then(res => {
+    const deleteUser = (id) => {
+        Axios.delete(`/api/admin/user/${id}`).then((res) => {
             props.setUsers(
-                props.users.filter(user => user._id !== res.data._id)
+                props.users.filter((user) => user._id !== res.data._id)
             );
             setModalOpen(false);
         });
@@ -55,11 +54,11 @@ const UserTileComponent = props => {
                 acceptAction={() => deleteUser(_id)}
                 acceptTitle={intl.formatMessage({
                     id: "modal.delete",
-                    defaultMessage: "Delete"
+                    defaultMessage: "Delete",
                 })}
                 rejectTitle={intl.formatMessage({
                     id: "modal.cancel",
-                    defaultMessage: "Cancel"
+                    defaultMessage: "Cancel",
                 })}
                 redStyle={true}
             />

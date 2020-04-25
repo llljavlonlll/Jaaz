@@ -7,29 +7,18 @@ import { MdDeleteForever } from "react-icons/md";
 import ModalComponent from "../../ModalComponent/ModalComponent";
 import "./QuestionTileComponent.css";
 
-const QuestionTileComponent = props => {
+const QuestionTileComponent = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const intl = useIntl();
 
-    const {
-        status,
-        _id,
-        qid,
-        description,
-        subject,
-        owner,
-        image_name,
-        uploaded_at,
-        booked_by,
-        chat
-    } = props;
+    const { status, _id, qid, description, subject, uploaded_at } = props;
 
-    const deleteQuestion = id => {
-        Axios.delete(`/api/admin/questions/${id}`).then(res => {
+    const deleteQuestion = (id) => {
+        Axios.delete(`/api/admin/questions/${id}`).then((res) => {
             props.setQuestions(
                 props.questions.filter(
-                    question => question._id !== res.data._id
+                    (question) => question._id !== res.data._id
                 )
             );
             setModalOpen(false);
@@ -49,7 +38,7 @@ const QuestionTileComponent = props => {
                             ? "yellow"
                             : status === "Rejected"
                             ? "red"
-                            : "white"
+                            : "white",
                 }}
             >
                 {status}
@@ -67,11 +56,11 @@ const QuestionTileComponent = props => {
                 acceptAction={() => deleteQuestion(_id)}
                 acceptTitle={intl.formatMessage({
                     id: "modal.delete",
-                    defaultMessage: "Delete"
+                    defaultMessage: "Delete",
                 })}
                 rejectTitle={intl.formatMessage({
                     id: "modal.cancel",
-                    defaultMessage: "Cancel"
+                    defaultMessage: "Cancel",
                 })}
                 redStyle={true}
             />

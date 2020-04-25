@@ -13,7 +13,9 @@ export default function QuestionTileComponent(props) {
             style={{ textDecoration: "none", color: "#a5afd7", width: "100%" }}
         >
             <div className="question-tile">
-                {<div className="question-tile__notification"></div>}
+                {props.hasNewMessage && (
+                    <div className="question-tile__notification"></div>
+                )}
                 <div className="question-tile__image-container">
                     <img
                         src={`/images/questions/${props.image_name}`}

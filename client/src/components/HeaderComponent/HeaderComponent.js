@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IconContext } from "react-icons";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -13,9 +13,9 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 
 import "./HeaderComponent.css";
 
-const HeaderComponent = props => {
+const HeaderComponent = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
-    const isAuthorized = useSelector(state => state.auth.isAuthorized);
+    const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
     const dispatch = useDispatch();
     const intl = useIntl();
@@ -23,7 +23,7 @@ const HeaderComponent = props => {
     const handleLogout = () => {
         axios
             .post("/api/logout")
-            .then(res => {
+            .then((res) => {
                 if (res.status === 200) {
                     setModalOpen(false);
                     Cookies.remove("token");
@@ -34,7 +34,7 @@ const HeaderComponent = props => {
                     }
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             });
     };
@@ -49,10 +49,10 @@ const HeaderComponent = props => {
                         <IconContext.Provider
                             value={{
                                 style: {
-                                    display: "inline"
+                                    display: "inline",
                                 },
                                 size: "2.5rem",
-                                className: "global-class-name"
+                                className: "global-class-name",
                             }}
                         >
                             <div style={{ display: "inline" }}>
@@ -72,10 +72,10 @@ const HeaderComponent = props => {
                         <IconContext.Provider
                             value={{
                                 style: {
-                                    display: "inline"
+                                    display: "inline",
                                 },
                                 size: "2.5rem",
-                                className: "global-class-name"
+                                className: "global-class-name",
                             }}
                         >
                             <div style={{ display: "inline" }}>
@@ -98,10 +98,10 @@ const HeaderComponent = props => {
                         <IconContext.Provider
                             value={{
                                 style: {
-                                    display: "inline"
+                                    display: "inline",
                                 },
                                 size: "2.5rem",
-                                className: "global-class-name"
+                                className: "global-class-name",
                             }}
                         >
                             <div style={{ display: "inline" }}>
@@ -142,7 +142,7 @@ const HeaderComponent = props => {
                         to="/"
                         style={{
                             margin: 0,
-                            color: "white"
+                            color: "white",
                         }}
                     >
                         <h3 className="navbar__title">
@@ -162,11 +162,11 @@ const HeaderComponent = props => {
                         acceptAction={handleLogout}
                         acceptTitle={intl.formatMessage({
                             id: "modal.logout",
-                            defaultMessage: "Log out"
+                            defaultMessage: "Log out",
                         })}
                         rejectTitle={intl.formatMessage({
                             id: "modal.cancel",
-                            defaultMessage: "Cancel"
+                            defaultMessage: "Cancel",
                         })}
                         redStyle={true}
                     />

@@ -16,6 +16,8 @@ export const loadQuestions = (questions = []) => {
             })
             .map(questionWithNewMessage => questionWithNewMessage.qid);
 
+        console.log(qidWithNewMessages);
+
         const modifiedQuestions = questions.map(question => {
             if (qidWithNewMessages.includes(question.qid)) {
                 return {
