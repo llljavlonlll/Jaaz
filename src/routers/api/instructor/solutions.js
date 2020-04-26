@@ -71,7 +71,7 @@ router.post("/reject/:id", auth, async (req, res) => {
 
         // Refund credits to the questions owner
         const student = await User.findById(question.owner);
-        student.balance = student.balance + 3000;
+        student.balance = student.balance + 1;
         await student.save();
 
         res.send({ status: question.status });
@@ -91,7 +91,7 @@ router.post(
         const updates = Object.keys(req.body);
 
         // Check if solution request has only allowed fields
-        const allowSolution = updates.every(update =>
+        const allowSolution = updates.every((update) =>
             solutionEntries.includes(update)
         );
 
@@ -123,18 +123,18 @@ router.post(
                 ...req.body,
                 image: req.file.filename,
                 solved_by: req.user._id,
-                solved_at: Date.now()
+                solved_at: Date.now(),
             });
             question.status = "Completed";
             await question.save();
 
             // Deposit credit to instructor balance and save
-            user.balance = user.balance + 3000;
+            user.balance = user.balance + 1;
             await user.save();
 
             res.send({
                 status: question.status,
-                solution: question.solution
+                solution: question.solution,
             });
         } catch (err) {
             res.status(400).send({ msg: err.message });

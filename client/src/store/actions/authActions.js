@@ -5,30 +5,30 @@ import {
     UPDATE_BALANCE,
     UPDATE_USER_EMAIL,
     UPDATE_USER_NAME,
-    LOAD_USER
+    LOAD_USER,
 } from "./types";
 import Axios from "axios";
 import Cookies from "js-cookie";
 
-export const loginSuccess = userData => ({
+export const loginSuccess = (userData) => ({
     type: LOGIN_SUCCESS,
-    userData
+    userData,
 });
 
 export const checkIfLoggedIn = () => {
-    return dispatch => {
+    return (dispatch) => {
         const token = Cookies.get("token");
 
         if (token) {
             return Axios.get("/api/checkToken")
-                .then(res => dispatch(loginSuccess(res.data)))
-                .catch(err => Cookies.remove("token"));
+                .then((res) => dispatch(loginSuccess(res.data)))
+                .catch((err) => Cookies.remove("token"));
         }
     };
 };
 
 export const loadUser = () => {
-    return async dispatch => {
+    return async (dispatch) => {
         const response = await Axios.get("/api/user/me");
         dispatch({
             type: LOAD_USER,
@@ -37,33 +37,33 @@ export const loadUser = () => {
                 email: response.data.email,
                 category: response.data.category,
                 balance: response.data.balance,
-                uid: response.data.uid
-            }
+                uid: response.data.uid,
+            },
         });
     };
 };
 
-export const updateUserName = name => ({
+export const updateUserName = (name) => ({
     type: UPDATE_USER_NAME,
-    payload: name
+    payload: name,
 });
 
-export const updateUserEmail = email => ({
+export const updateUserEmail = (email) => ({
     type: UPDATE_USER_EMAIL,
-    payload: email
+    payload: email,
 });
 
 export const userLoaded = () => ({
-    type: USER_LOADED
+    type: USER_LOADED,
 });
 
 export const userLogout = () => ({
-    type: USER_LOGOUT
+    type: USER_LOGOUT,
 });
 
-export const updateBalance = balance => ({
+export const updateBalance = (balance) => ({
     type: UPDATE_BALANCE,
     payload: {
-        balance
-    }
+        balance,
+    },
 });

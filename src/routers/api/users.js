@@ -74,7 +74,7 @@ router.get("/me", auth, async (req, res) => {
 router.patch("/me", auth, async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ["name", "email"];
-    const isValidUpdate = updates.every(update => {
+    const isValidUpdate = updates.every((update) => {
         return allowedUpdates.includes(update);
     });
 
@@ -84,14 +84,14 @@ router.patch("/me", auth, async (req, res) => {
 
     try {
         const user = req.user;
-        updates.forEach(update => {
+        updates.forEach((update) => {
             user[update] = req.body[update];
         });
         await user.save();
         res.send({
             name: user.name,
             email: user.email,
-            isVerified: user.isVerified
+            isVerified: user.isVerified,
         });
     } catch (e) {
         res.status(400).send();

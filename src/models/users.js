@@ -8,11 +8,11 @@ const userSchema = mongoose.Schema({
     isVerified: {
         type: Boolean,
         required: true,
-        default: false
+        default: false,
     },
     created: {
         type: Number,
-        default: Date.now
+        default: Date.now,
     },
     activationHash: String,
     emailVerHash: String,
@@ -24,14 +24,14 @@ const userSchema = mongoose.Schema({
             if (!["customer", "instructor", "admin"].includes(value)) {
                 throw new Error("Invalid category");
             }
-        }
+        },
     },
     name: {
         type: String,
         required: true,
         trim: true,
         maxlength: 50,
-        minlength: 1
+        minlength: 1,
     },
     email: {
         type: String,
@@ -45,34 +45,34 @@ const userSchema = mongoose.Schema({
             if (!validator.isEmail(value)) {
                 throw new Error("Invalid Email");
             }
-        }
+        },
     },
     password: {
         type: String,
         required: true,
         trim: true,
         minlength: 5,
-        maxlength: 255
+        maxlength: 255,
     },
     balance: {
         type: Number,
         required: true,
-        default: 0
+        default: 0,
     },
     tokens: [
         {
             token: {
                 type: String,
-                required: true
-            }
-        }
-    ]
+                required: true,
+            },
+        },
+    ],
 });
 
 userSchema.plugin(AutoIncrement, { inc_field: "uid" });
 
 // Generating authorization token
-userSchema.methods.generateAuthToken = async function(action) {
+userSchema.methods.generateAuthToken = async function (action) {
     const token = jwt.sign(
         {
             _id: this._id.toString(),
@@ -80,8 +80,8 @@ userSchema.methods.generateAuthToken = async function(action) {
                 name: this.name,
                 email: this.email,
                 category: this.category,
-                balance: this.balance
-            }
+                balance: this.balance,
+            },
         },
         process.env.JWT_SECRET
     );
@@ -94,16 +94,21 @@ userSchema.methods.generateAuthToken = async function(action) {
         );
 
         this.activationHash = activationHash;
+
+        if (this.category === "customer") {
+            this.balance = 3;
+        }
     }
 
     this.tokens = this.tokens.concat({ token });
+
     await this.save();
 
     return token;
 };
 
 // Find user by email and password
-userSchema.statics.findByCredentials = async function(email, password) {
+userSchema.statics.findByCredentials = async function (email, password) {
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -120,17 +125,13 @@ userSchema.statics.findByCredentials = async function(email, password) {
 };
 
 // Encrypt the password
-userSchema.pre("save", async function(next) {
+userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 8);
     }
 
     if (this.isModified("email")) {
         this.isVerified = false;
-    }
-
-    if (this.category === "customer") {
-        this.balance = 300000;
     }
 });
 

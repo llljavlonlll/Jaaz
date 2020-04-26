@@ -16,7 +16,7 @@ router.post(
         const question = new Question({
             ...req.body,
             owner: req.user._id,
-            image_name: req.file.filename
+            image_name: req.file.filename,
         });
         const user = req.user;
 
@@ -32,8 +32,8 @@ router.post(
             fs.unlinkSync(req.file.path);
 
             // Charge user account for the question
-            if (user.balance >= 3000) {
-                user.balance = user.balance - 3000;
+            if (user.balance >= 1) {
+                user.balance = user.balance - 1;
                 await user.save();
             } else {
                 return res.status(400).send({ msg: "Low balance!" });
@@ -59,7 +59,7 @@ router.get("/", auth, async (req, res) => {
         // Find authorized user's questions
         const questions = await Question.find(
             {
-                owner: req.user._id
+                owner: req.user._id,
             },
             null,
             { sort: { uploaded_at: -1 } }
@@ -84,7 +84,7 @@ router.get("/:id", auth, async (req, res) => {
         // Find authorized user's question by id
         const question = await Question.find({
             owner: req.user._id,
-            _id: req.params.id
+            _id: req.params.id,
         });
 
         if (question.length === 0) {
@@ -103,7 +103,7 @@ router.delete("/:id", auth, async (req, res) => {
     try {
         const question = await Question.findOneAndDelete({
             owner: req.user._id,
-            _id: req.params.id
+            _id: req.params.id,
         });
 
         if (!question) {
@@ -122,13 +122,13 @@ router.patch("/:id", auth, async (req, res) => {
     const allowedUpdates = ["status", "description", "subject"];
     const updatesFromUser = Object.keys(req.body);
 
-    const allowUpdate = updatesFromUser.every(update => {
+    const allowUpdate = updatesFromUser.every((update) => {
         return allowedUpdates.includes(update);
     });
 
     if (!allowUpdate) {
         return res.status(400).send({
-            msg: "Invalid updates"
+            msg: "Invalid updates",
         });
     }
 
@@ -136,13 +136,13 @@ router.patch("/:id", auth, async (req, res) => {
         const question = await Question.findOneAndUpdate(
             {
                 owner: req.user._id,
-                _id: req.params.id
+                _id: req.params.id,
             },
             {
-                ...req.body
+                ...req.body,
             },
             {
-                new: true
+                new: true,
             }
         );
 

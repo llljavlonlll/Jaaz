@@ -2,9 +2,16 @@
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
 const transporter = require("./tools/email-transporter");
-const router = new require("express").Router();
-const jwt = require("jsonwebtoken");
+
 const jwtDecode = require("jwt-decode");
+const jwt = require("jsonwebtoken");
+const router = new require("express").Router();
+
+// Schedule a free credit deposit time
+const schedule = require("node-schedule");
+var j = schedule.scheduleJob({ hour: 00, minute: 00 }, async function () {
+    await User.updateMany({ category: "customer" }, { $inc: { balance: 3 } });
+});
 
 // Renew password
 // POST /api/new_password
@@ -41,14 +48,14 @@ router.post("/password_reset", async (req, res) => {
             return res.status(404).send({
                 status: "error",
                 msg: "Can't find that email, sorry.",
-                err: "User not found"
+                err: "User not found",
             });
         }
 
         const hash = jwt.sign(
             {
                 id: user._id,
-                email: user.email
+                email: user.email,
             },
             process.env.JWT_SECRET
         );
@@ -64,24 +71,24 @@ router.post("/password_reset", async (req, res) => {
             from: "no-reply@jbtruckers.com",
             to: email,
             subject: "Jaaz | Password Reset",
-            html: `<p>To reset your password go here: </p><br>${pass_reset_url}`
+            html: `<p>To reset your password go here: </p><br>${pass_reset_url}`,
         };
 
         transporter
             .sendMail(mailOptions)
-            .then(info => {
+            .then((info) => {
                 console.log(info.response);
                 res.send({
                     status: "ok",
-                    msg: `Email with password reset instructions has been sent to ${email}`
+                    msg: `Email with password reset instructions has been sent to ${email}`,
                 });
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
                 res.status(500).send({
                     status: "error",
                     msg: `Error sending instructions`,
-                    err
+                    err,
                 });
             });
     } catch (err) {
@@ -97,15 +104,13 @@ router.post("/sign-up", async (req, res) => {
     try {
         const token = await user.generateAuthToken("signup");
 
-        res.cookie("token", token)
-            .status(201)
-            .send({
-                name: user.name,
-                email: user.email,
-                category: user.category,
-                balance: user.balance,
-                uid: user.uid
-            });
+        res.cookie("token", token).status(201).send({
+            name: user.name,
+            email: user.email,
+            category: user.category,
+            balance: user.balance,
+            uid: user.uid,
+        });
 
         const hash = user.activationHash;
         const verificationUrl = `http://www.jbtruckers.com/verify/${hash}`;
@@ -124,15 +129,15 @@ router.post("/sign-up", async (req, res) => {
             from: "no-reply@jbtruckers.com",
             to: req.body.email,
             subject: "Jaaz.uz | Email verification",
-            html
+            html,
         };
 
         transporter
             .sendMail(mailOptions)
-            .then(info => {
+            .then((info) => {
                 console.log(info.response);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             });
     } catch (err) {
@@ -157,7 +162,7 @@ router.post("/login", async (req, res) => {
             category: user.category,
             balance: user.balance,
             isVerified: user.isVerified,
-            uid: user.uid
+            uid: user.uid,
         });
     } catch (err) {
         res.status(400).send({ err: err.message });
@@ -168,7 +173,7 @@ router.post("/login", async (req, res) => {
 // POST /api/logout
 router.post("/logout", auth, async (req, res) => {
     try {
-        req.user.tokens = req.user.tokens.filter(token => {
+        req.user.tokens = req.user.tokens.filter((token) => {
             return token.token != req.token;
         });
 
@@ -202,7 +207,7 @@ router.get("/checkToken", auth, (req, res) => {
         name: req.user.name,
         email: req.user.email,
         category: req.user.category,
-        uid: req.user.uid
+        uid: req.user.uid,
     });
 });
 

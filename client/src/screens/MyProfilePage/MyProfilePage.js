@@ -11,7 +11,7 @@ import {
     updateBalance,
     updateUserName,
     updateUserEmail,
-    loadUser
+    loadUser,
 } from "../../store/actions/authActions";
 import { setLocale } from "../../store/actions/localeActions";
 
@@ -30,14 +30,14 @@ const MyProfilePage = () => {
 
     // Fetch user data state from redux store
     const { name, email, balance, category, isVerified } = useSelector(
-        state => state.auth.userData
+        (state) => state.auth.userData
     );
 
-    const nameChangeHandler = event => {
+    const nameChangeHandler = (event) => {
         dispatch(updateUserName(event.target.value));
     };
 
-    const emailChangeHandler = event => {
+    const emailChangeHandler = (event) => {
         dispatch(updateUserEmail(event.target.value));
     };
 
@@ -47,13 +47,13 @@ const MyProfilePage = () => {
         axios
             .patch("/api/user/me", {
                 name: name,
-                email: email
+                email: email,
             })
-            .then(res => {
+            .then((res) => {
                 setIsSaving(false);
                 setEditMode(false);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err.message);
                 setIsSaving(false);
                 setEditMode(false);
@@ -64,13 +64,14 @@ const MyProfilePage = () => {
         setIsBuyingOrWithdrawig(true);
         axios
             .post("/api/balance/me", {
-                amount: category === "customer" ? "3000" : `-${balance}`
+                // Add credit
+                amount: 1,
             })
-            .then(res => {
+            .then((res) => {
                 setIsBuyingOrWithdrawig(false);
                 dispatch(updateBalance(res.data.balance));
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err.message);
                 setIsBuyingOrWithdrawig(false);
             });
@@ -136,7 +137,7 @@ const MyProfilePage = () => {
                                         fontWeight: "500",
                                         background: "green",
                                         borderRadius: "3px",
-                                        padding: "0 4px"
+                                        padding: "0 4px",
                                     }}
                                     className="verification"
                                 >
@@ -152,7 +153,7 @@ const MyProfilePage = () => {
                                         fontWeight: "500",
                                         background: "#963f3f",
                                         borderRadius: "3px",
-                                        padding: "0 4px"
+                                        padding: "0 4px",
                                     }}
                                     className="verification"
                                 >
@@ -210,8 +211,8 @@ const MyProfilePage = () => {
                                             id:
                                                 category === "customer"
                                                     ? "profile.acc.student"
-                                                    : "profile.acc.teacher"
-                                        })
+                                                    : "profile.acc.teacher",
+                                        }),
                                     }}
                                 />
                             )}
@@ -236,7 +237,7 @@ const MyProfilePage = () => {
                                 <span
                                     style={{
                                         margin: "0 1rem",
-                                        userSelect: "none"
+                                        userSelect: "none",
                                     }}
                                 >
                                     |
@@ -251,7 +252,7 @@ const MyProfilePage = () => {
                                 <span
                                     style={{
                                         margin: "0 1rem",
-                                        userSelect: "none"
+                                        userSelect: "none",
                                     }}
                                 >
                                     |
@@ -274,27 +275,32 @@ const MyProfilePage = () => {
                             />
                         </p>
                         <div className="profile-box__content__field--balance">
-                            <button onClick={handleBalanceAction}>
-                                {isBuyingOrWithdrawing ? (
-                                    <ReactLoading
-                                        color="white"
-                                        type="spin"
-                                        width={"15%"}
-                                        height={"15%"}
-                                        className="spinner"
-                                    />
-                                ) : category === "customer" ? (
-                                    <FormattedMessage
-                                        id="profile.button.buy"
-                                        defaultMessage="Buy credit"
-                                    />
-                                ) : (
-                                    <FormattedMessage
-                                        id="profile.button.withdraw"
-                                        defaultMessage="Withdraw"
-                                    />
-                                )}
-                            </button>
+                            {category === "customer" && (
+                                <button onClick={handleBalanceAction}>
+                                    {
+                                        isBuyingOrWithdrawing ? (
+                                            <ReactLoading
+                                                color="white"
+                                                type="spin"
+                                                width={"15%"}
+                                                height={"15%"}
+                                                className="spinner"
+                                            />
+                                        ) : category === "customer" ? (
+                                            <FormattedMessage
+                                                id="profile.button.buy"
+                                                defaultMessage="Buy credit"
+                                            />
+                                        ) : null
+                                        // ) : (
+                                        //     <FormattedMessage
+                                        //         id="profile.button.withdraw"
+                                        //         defaultMessage="Withdraw"
+                                        //     />
+                                        // )
+                                    }
+                                </button>
+                            )}
                             <h4>
                                 {isLoading ? (
                                     <ReactLoading
