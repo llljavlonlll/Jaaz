@@ -1,7 +1,9 @@
 const Question = require("../../../models/questions");
+const User = require("../../../models/users");
 const auth = require("../../../middleware/auth");
 const upload = require("../tools/question-uploader");
 const router = new require("express").Router();
+const webpush = require("web-push");
 const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
@@ -41,6 +43,21 @@ router.post(
 
             // Post question
             await question.save();
+
+            // Get all users
+            const users = await User.find({ category: "instructor" });
+
+            // Sending message to all subscribed users
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].subscription) {
+                    // console.log("Sending notification");
+                    webpush
+                        .sendNotification(users[i].subscription)
+                        .catch((error) => {
+                            console.error(error.stack);
+                        });
+                }
+            }
 
             res.send(question);
         } catch (err) {

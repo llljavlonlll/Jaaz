@@ -26,21 +26,25 @@ router.post("/subscribe", auth, async (req, res) => {
 
 // Testing push messages
 router.post("/testMessage", async (req, res) => {
-    const users = await User.find({});
-    const payload = req.body.message;
+    try {
+        const users = await User.find({ category: "instructor" });
+        const payload = req.body.message;
 
-    // Sending message to all subscribed users
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].subscription) {
-            // console.log("Sending notification");
-            webpush
-                .sendNotification(users[i].subscription, payload)
-                .catch((error) => {
-                    console.error(error.stack);
-                });
+        // Sending message to all subscribed users
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].subscription) {
+                // console.log("Sending notification");
+                webpush
+                    .sendNotification(users[i].subscription, payload)
+                    .catch((error) => {
+                        console.error(error.stack);
+                    });
+            }
         }
+        res.send();
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
     }
-    res.send();
 });
 
 module.exports = router;

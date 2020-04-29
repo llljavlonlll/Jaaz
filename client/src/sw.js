@@ -4,7 +4,7 @@ self.addEventListener("push", function (event) {
 
     const title = "Jaaz.uz";
     const options = {
-        body: `There are new question available`,
+        body: `There are new questions available`,
         icon: "images/icon.png",
         badge: "images/badge.png",
     };
