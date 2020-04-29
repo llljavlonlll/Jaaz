@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Redirect } from "react-router";
@@ -12,13 +12,20 @@ import "react-tabs/style/react-tabs.css";
 import "./InstructorMainPage.css";
 import SubjectsComponent from "../../components/Instructor/SubjectsComponent/SubjectsComponent";
 
+// Push notification
+import pushInitialize from "./PushNotification";
+
 const InstructorMainPage = () => {
-    const isAuthorized = useSelector(state => state.auth.isAuthorized);
-    const selectedSubject = useSelector(state => state.instructor.subject);
+    const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+    const selectedSubject = useSelector((state) => state.instructor.subject);
 
     const intl = useIntl();
 
     let dashboard = null;
+
+    useEffect(() => {
+        pushInitialize();
+    }, []);
 
     if (isAuthorized) {
         dashboard = (
@@ -50,7 +57,7 @@ const InstructorMainPage = () => {
                             noQuestion={intl.formatMessage({
                                 id: "teacher.booked.no-quest",
                                 defaultMessage:
-                                    "You have not booked any questions yet"
+                                    "You have not booked any questions yet",
                             })}
                         />
                     </TabPanel>
@@ -60,7 +67,7 @@ const InstructorMainPage = () => {
                             noQuestion={intl.formatMessage({
                                 id: "teacher.completed.no-quest",
                                 defaultMessage:
-                                    "You have not completed any questions yet"
+                                    "You have not completed any questions yet",
                             })}
                         />
                         {/*<CompletedQuestionsList />*/}

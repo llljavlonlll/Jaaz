@@ -14,6 +14,17 @@ const server = http.createServer(app);
 const io = socketio(server);
 require("./chat/chat")(io);
 
+// Setting up Web-push
+const webpush = require("web-push");
+const publicVapid = process.env.PUBLIC_VAPID_KEY;
+const privateVapid = process.env.PRIVATE_VAPID_KEY;
+
+webpush.setVapidDetails(
+    "mailto:jbutabaev@gmail.com",
+    publicVapid,
+    privateVapid
+);
+
 // Importing routes
 const userRouter = require("./routers/api/users");
 const adminUsersRouter = require("./routers/api/admin/users");
@@ -27,6 +38,7 @@ const solutionRouter = require("./routers/api/instructor/solutions");
 const pendingQuestionsRouter = require("./routers/api/instructor/pending");
 const bookedQuestionsRouter = require("./routers/api/instructor/booked");
 const completedQuestionsRouter = require("./routers/api/instructor/completed");
+const notificationsRouter = require("./routers/api/instructor/notifications");
 
 // Static files directory
 const questionsDir = path.join(__dirname, "..", "questions");
@@ -67,7 +79,13 @@ app.use("/api/pending", pendingQuestionsRouter);
 app.use("/api/booked", bookedQuestionsRouter);
 app.use("/api/completed", completedQuestionsRouter);
 
-const port = process.env.PORT || 5001;
+// Push notification route
+app.use("/api/notifications", notificationsRouter);
+
+// Route for service worker
+app.get("/sw.js", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "..", "client", "src", "sw.js"));
+});
 
 // Fallback to index.html
 app.get("*", (req, res) => {
@@ -76,6 +94,7 @@ app.get("*", (req, res) => {
     );
 });
 
+const port = process.env.PORT || 5001;
 server.listen(port, () => {
     console.log("App is running on port: " + port);
 });

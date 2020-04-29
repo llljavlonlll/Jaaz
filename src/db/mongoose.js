@@ -5,7 +5,8 @@ const AutoIncrement = require("mongoose-sequence")(mongoose);
 mongoose.connect(process.env.DB_STRING, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true,
 });
 
 module.exports = AutoIncrement;
