@@ -9,7 +9,7 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Redirect
+    Redirect,
 } from "react-router-dom";
 
 // CSS
@@ -45,6 +45,15 @@ class App extends Component {
 
         // Report page views to GA
         ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+
+    // Simplify language locale "en-US" => "en"
+    getLanguage(locale) {
+        const dash_index = locale.indexOf("-");
+        if (dash_index >= 0) {
+            return locale.substring(0, dash_index);
+        }
+        return locale;
     }
     render() {
         let routes = null;
@@ -125,7 +134,7 @@ class App extends Component {
         }
         return (
             <IntlProvider
-                locale={this.props.lang}
+                locale={this.getLanguage(this.props.lang)}
                 messages={messages[this.props.lang]}
             >
                 <Router>
@@ -138,10 +147,10 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         category: state.auth.userData.category,
-        lang: state.locale.lang
+        lang: state.locale.lang,
     };
 };
 
