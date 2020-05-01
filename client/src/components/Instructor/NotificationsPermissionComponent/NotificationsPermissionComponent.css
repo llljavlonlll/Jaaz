@@ -1,0 +1,21 @@
+.notif-permission {
+    margin: 0 auto;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #8357c5;
+    padding: 0 2rem;
+    font-size: 1.2rem;
+    text-align: center;
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.notif-permission__close-button {
+    justify-self: flex-end;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.3rem;
+    padding: 0.3rem;
+}

@@ -7,10 +7,11 @@ import { FormattedMessage, useIntl } from "react-intl";
 import AvailableQuestionsComponent from "../../components/Instructor/AvailableQuestionsComponent/AvailableQuestionsComponent";
 // import CompletedQuestionsList from "../../components/Instructor/CompletedQuestionsListComponent/CompletedQuestionsListComponent";
 import BookedQuestionsList from "../../components/Instructor/BookedQuestionsListComponent/BookedQuestionsListComponent";
+import SubjectsComponent from "../../components/Instructor/SubjectsComponent/SubjectsComponent";
+import NotificationsPermissionComponent from "../../components/Instructor/NotificationsPermissionComponent/NotificationsPermissionComponent";
 
 import "react-tabs/style/react-tabs.css";
 import "./InstructorMainPage.css";
-import SubjectsComponent from "../../components/Instructor/SubjectsComponent/SubjectsComponent";
 
 // Push notification
 import pushInitialize from "./PushNotification";
@@ -30,6 +31,7 @@ const InstructorMainPage = () => {
     if (isAuthorized) {
         dashboard = (
             <div className="instructor-dash">
+                <NotificationsPermissionComponent />
                 {selectedSubject ? (
                     <AvailableQuestionsComponent subject={selectedSubject} />
                 ) : (

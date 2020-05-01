@@ -6,7 +6,7 @@ import { setSelectedSubject } from "../../../store/actions/instructorActions";
 import "./SubjectsComponent.css";
 import { FormattedMessage } from "react-intl";
 
-const SubjectsComponent = props => {
+const SubjectsComponent = (props) => {
     const dispatch = useDispatch();
     const intl = useIntl();
 
@@ -25,7 +25,7 @@ const SubjectsComponent = props => {
             <div className="subjects__title">
                 <FormattedMessage
                     id="teacher.subjects.title"
-                    defaultMessage="Choose a subject"
+                    defaultMessage="Questions"
                 />
             </div>
             <ul className="subjects__row">
@@ -36,35 +36,35 @@ const SubjectsComponent = props => {
                 {subjectTile(
                     intl.formatMessage({
                         id: "english",
-                        defaultMessage: "English"
+                        defaultMessage: "English",
                     }),
                     "English"
                 )}
                 {subjectTile(
                     intl.formatMessage({
                         id: "physics",
-                        defaultMessage: "Physics"
+                        defaultMessage: "Physics",
                     }),
                     "Physics"
                 )}
                 {subjectTile(
                     intl.formatMessage({
                         id: "chemistry",
-                        defaultMessage: "Chemisry"
+                        defaultMessage: "Chemisry",
                     }),
                     "Chemistry"
                 )}
                 {subjectTile(
                     intl.formatMessage({
                         id: "history",
-                        defaultMessage: "History"
+                        defaultMessage: "History",
                     }),
                     "History"
                 )}
                 {subjectTile(
                     intl.formatMessage({
                         id: "computer",
-                        defaultMessage: "Computer Science"
+                        defaultMessage: "Computer Science",
                     }),
                     "Computer Science"
                 )}

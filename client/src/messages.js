@@ -79,7 +79,7 @@ export default {
         "profile.balance": "Balance",
         "profile.button.buy": "Buy NP",
         "profile.button.withdraw": "Withdraw NP",
-        "teacher.subjects.title": "Choose a subject",
+        "teacher.subjects.title": "Questions",
         "teacher.question-details.title": "Question details",
         "teacher.avail-quest.no-quest":
             "Currently, there are no questions left",
@@ -116,7 +116,7 @@ export default {
         physics: "Physics",
         chemistry: "Chemistry",
         computer: "Computer Science",
-        loading: "Loading..."
+        loading: "Loading...",
     },
     ru: {
         "nav.slogan": "Портал для студентов и преподавателей",
@@ -198,7 +198,7 @@ export default {
         "profile.balance": "Баланс",
         "profile.button.buy": "Купить NP",
         "profile.button.withdraw": "Снять NP",
-        "teacher.subjects.title": "Выберите предмет",
+        "teacher.subjects.title": "Вопросы",
         "teacher.question-details.title": "Детали вопроса",
         "teacher.avail-quest.no-quest":
             "Вопросов пока нет. Проверьте заново через некоторое время.",
@@ -236,7 +236,7 @@ export default {
         physics: "Физика",
         chemistry: "Химия",
         computer: "IT",
-        loading: "Загрузка..."
+        loading: "Загрузка...",
     },
     uz: {
         "nav.slogan": "Talabalar va o'qituvchilar portali",
@@ -319,7 +319,7 @@ export default {
         "profile.balance": "Hisob",
         "profile.button.buy": "NP sotib olish",
         "profile.button.withdraw": "NP yechib olish",
-        "teacher.subjects.title": "Fanni tanlang",
+        "teacher.subjects.title": "Savollar",
         "teacher.question-details.title": "Savolni to'liq ma'lumoti",
         "teacher.avail-quest.no-quest":
             "Hozircha savollar yo'q. Birozdan so'ng qayta tekshiring",
@@ -356,6 +356,6 @@ export default {
         physics: "Fizika",
         chemistry: "Kimyo",
         computer: "IT",
-        loading: "Yuklanmoqda..."
-    }
+        loading: "Yuklanmoqda...",
+    },
 };
