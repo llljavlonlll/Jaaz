@@ -4,6 +4,8 @@ import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage, FormattedHTMLMessage, useIntl } from "react-intl";
 import { MdEdit } from "react-icons/md";
+import NotificationSwitch from "./Components/NotificationSwitch";
+// import Switch from "@material-ui/core/Switch";
 // import _ from "lodash";
 
 import "./MyProfilePage.css";
@@ -314,6 +316,15 @@ const MyProfilePage = () => {
                                 )}
                             </h4>
                         </div>
+                    </div>
+                    <div className="profile-box__content__field--notification">
+                        <p>
+                            <FormattedMessage
+                                id="profile.notifications"
+                                defaultMessage="Notifications"
+                            />
+                        </p>
+                        <NotificationSwitch />
                     </div>
                     {editMode && (
                         <div className="profile-box__content__buttons-container">

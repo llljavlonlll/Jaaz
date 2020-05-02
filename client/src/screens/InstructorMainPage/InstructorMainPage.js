@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Redirect } from "react-router";
@@ -14,24 +14,39 @@ import "react-tabs/style/react-tabs.css";
 import "./InstructorMainPage.css";
 
 // Push notification
-import pushInitialize from "./PushNotification";
+import { pushInitialize } from "../../settings/PushNotification";
 
 const InstructorMainPage = () => {
     const isAuthorized = useSelector((state) => state.auth.isAuthorized);
     const selectedSubject = useSelector((state) => state.instructor.subject);
+    const [showNotifToast, setShowNotifToast] = useState(false);
 
     const intl = useIntl();
 
     let dashboard = null;
 
     useEffect(() => {
-        pushInitialize();
+        if (Notification.permission === "default") {
+            setShowNotifToast(true);
+        }
     }, []);
+
+    const closeToast = (event) => {
+        setShowNotifToast(false);
+        if (event) {
+            event.stopPropagation();
+        }
+    };
 
     if (isAuthorized) {
         dashboard = (
             <div className="instructor-dash">
-                <NotificationsPermissionComponent />
+                {showNotifToast && (
+                    <NotificationsPermissionComponent
+                        askPermission={pushInitialize}
+                        closeToast={closeToast}
+                    />
+                )}
                 {selectedSubject ? (
                     <AvailableQuestionsComponent subject={selectedSubject} />
                 ) : (

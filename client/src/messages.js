@@ -79,6 +79,7 @@ export default {
         "profile.balance": "Balance",
         "profile.button.buy": "Buy NP",
         "profile.button.withdraw": "Withdraw NP",
+        "profile.notifications": "Notifications",
         "teacher.subjects.title": "Questions",
         "teacher.question-details.title": "Question details",
         "teacher.avail-quest.no-quest":
@@ -198,6 +199,7 @@ export default {
         "profile.balance": "Баланс",
         "profile.button.buy": "Купить NP",
         "profile.button.withdraw": "Снять NP",
+        "profile.notifications": "Уведомления",
         "teacher.subjects.title": "Вопросы",
         "teacher.question-details.title": "Детали вопроса",
         "teacher.avail-quest.no-quest":
@@ -319,6 +321,7 @@ export default {
         "profile.balance": "Hisob",
         "profile.button.buy": "NP sotib olish",
         "profile.button.withdraw": "NP yechib olish",
+        "profile.notifications": "Xabarlar",
         "teacher.subjects.title": "Savollar",
         "teacher.question-details.title": "Savolni to'liq ma'lumoti",
         "teacher.avail-quest.no-quest":

@@ -47,6 +47,17 @@
     padding: 0 10px;
 }
 
+.profile-box__content__field--notification {
+    color: #a5afd7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px solid rgba(165, 175, 215, 0.4);
+    padding: 0 10px;
+    font-size: 1.6rem;
+}
+
 .profile-box__content__field--balance {
     display: flex;
     flex-direction: row;
@@ -125,6 +136,11 @@
     .profile-box__content__field input {
         padding: 1rem;
         font-size: 1.1rem;
+    }
+
+    .profile-box__content__field--notification {
+        font-size: 1.1rem;
+        padding: 0;
     }
 
     .verification {
