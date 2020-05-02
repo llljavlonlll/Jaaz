@@ -12,7 +12,7 @@ export default function NotificationsPermissionComponent(props) {
                 props.closeToast();
             }}
         >
-            <MdNotificationsNone size={40} />
+            <MdNotificationsNone size={40} style={{ margin: "0 1rem 0 0" }} />
             <p>Click here to get notified when new questions are available</p>
             <MdClose
                 className="notif-permission__close-button"

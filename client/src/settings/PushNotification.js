@@ -86,6 +86,6 @@ const unsubscribeUser = () => {
         })
         .then(() => {
             updateSubscriptionOnServer(null);
-            console.log("User is unsubscribed.");
+            // console.log("User is unsubscribed.");
         });
 };

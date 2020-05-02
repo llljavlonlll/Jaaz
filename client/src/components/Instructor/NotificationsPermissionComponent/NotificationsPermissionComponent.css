@@ -7,9 +7,10 @@
     background-color: #8357c5;
     padding: 0 2rem;
     font-size: 1.2rem;
-    text-align: center;
+    text-align: left;
     position: relative;
     margin-bottom: 4rem;
+    max-width: 60rem;
 }
 
 .notif-permission__close-button {

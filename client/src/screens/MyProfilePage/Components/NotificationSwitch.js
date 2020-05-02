@@ -19,10 +19,10 @@ const PurpleSwitch = withStyles({
     switchBase: {
         color: purple[0],
         "&$checked": {
-            color: purple[400],
+            color: "#8357c5",
         },
         "&$checked + $track": {
-            backgroundColor: purple[400],
+            backgroundColor: "#8357c5",
         },
     },
     checked: {},
@@ -31,6 +31,7 @@ const PurpleSwitch = withStyles({
 
 export default function NotificationSwitch() {
     const [notifState, setNotifState] = useState(false);
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         navigator.serviceWorker.ready.then((swRegistration) => {
@@ -44,6 +45,9 @@ export default function NotificationSwitch() {
                     }
                 });
         });
+        if (Notification.permission === "denied") {
+            setDisabled(true);
+        }
     }, []);
 
     const handleChange = (event) => {
@@ -61,6 +65,7 @@ export default function NotificationSwitch() {
                     <PurpleSwitch
                         checked={notifState}
                         onChange={handleChange}
+                        disabled={disabled}
                     />
                 }
             />

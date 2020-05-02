@@ -40,57 +40,61 @@ const InstructorMainPage = () => {
 
     if (isAuthorized) {
         dashboard = (
-            <div className="instructor-dash">
+            <React.Fragment>
                 {showNotifToast && (
                     <NotificationsPermissionComponent
                         askPermission={pushInitialize}
                         closeToast={closeToast}
                     />
                 )}
-                {selectedSubject ? (
-                    <AvailableQuestionsComponent subject={selectedSubject} />
-                ) : (
-                    <SubjectsComponent />
-                )}
-                <Tabs>
-                    <TabList>
-                        <Tab>
-                            <FormattedMessage
-                                id="teacher.booked.title"
-                                defaultMessage="Booked"
-                            />
-                        </Tab>
-                        <Tab>
-                            <FormattedMessage
-                                id="teacher.completed.title"
-                                defaultMessage="Completed"
-                            />
-                        </Tab>
-                    </TabList>
+                <div className="instructor-dash">
+                    {selectedSubject ? (
+                        <AvailableQuestionsComponent
+                            subject={selectedSubject}
+                        />
+                    ) : (
+                        <SubjectsComponent />
+                    )}
+                    <Tabs>
+                        <TabList>
+                            <Tab>
+                                <FormattedMessage
+                                    id="teacher.booked.title"
+                                    defaultMessage="Booked"
+                                />
+                            </Tab>
+                            <Tab>
+                                <FormattedMessage
+                                    id="teacher.completed.title"
+                                    defaultMessage="Completed"
+                                />
+                            </Tab>
+                        </TabList>
 
-                    <TabPanel>
-                        <BookedQuestionsList
-                            apiPath="/api/booked"
-                            noQuestion={intl.formatMessage({
-                                id: "teacher.booked.no-quest",
-                                defaultMessage:
-                                    "You have not booked any questions yet",
-                            })}
-                        />
-                    </TabPanel>
-                    <TabPanel>
-                        <BookedQuestionsList
-                            apiPath="/api/completed"
-                            noQuestion={intl.formatMessage({
-                                id: "teacher.completed.no-quest",
-                                defaultMessage:
-                                    "You have not completed any questions yet",
-                            })}
-                        />
-                        {/*<CompletedQuestionsList />*/}
-                    </TabPanel>
-                </Tabs>
-            </div>
+                        <TabPanel>
+                            <BookedQuestionsList
+                                apiPath="/api/booked"
+                                noQuestion={intl.formatMessage({
+                                    id: "teacher.booked.no-quest",
+                                    defaultMessage:
+                                        "You have not booked any questions yet",
+                                })}
+                            />
+                        </TabPanel>
+                        <TabPanel>
+                            <BookedQuestionsList
+                                apiPath="/api/completed"
+                                noQuestion={intl.formatMessage({
+                                    id: "teacher.completed.no-quest",
+                                    defaultMessage:
+                                        "You have not completed any questions yet",
+                                })}
+                            />
+                            {/*<CompletedQuestionsList />*/}
+                        </TabPanel>
+                    </Tabs>
+                </div>
+            </React.Fragment>
         );
     } else {
         dashboard = <Redirect to="/login" />;
