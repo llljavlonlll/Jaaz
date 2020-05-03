@@ -317,15 +317,37 @@ const MyProfilePage = () => {
                             </h4>
                         </div>
                     </div>
-                    <div className="profile-box__content__field--notification">
-                        <p>
-                            <FormattedMessage
-                                id="profile.notifications"
-                                defaultMessage="Notifications"
-                            />
-                        </p>
-                        <NotificationSwitch />
-                    </div>
+                    {category === "instructor" && (
+                        <div className="profile-box__content__field--notification">
+                            <p>
+                                <FormattedMessage
+                                    id="profile.notifications"
+                                    defaultMessage="Notifications"
+                                />
+                            </p>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <h4>
+                                    <FormattedMessage
+                                        id="profile.off"
+                                        defaultMessage="Off"
+                                    />
+                                </h4>
+                                <NotificationSwitch />
+                                <h4>
+                                    <FormattedMessage
+                                        id="profile.on"
+                                        defaultMessage="On"
+                                    />
+                                </h4>
+                            </div>
+                        </div>
+                    )}
                     {editMode && (
                         <div className="profile-box__content__buttons-container">
                             <button

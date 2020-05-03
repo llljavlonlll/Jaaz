@@ -34,18 +34,22 @@ export default function NotificationSwitch() {
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
-        navigator.serviceWorker.ready.then((swRegistration) => {
-            swRegistration.pushManager
-                .getSubscription()
-                .then((subscription) => {
-                    if (subscription) {
-                        setNotifState(true);
-                    } else {
-                        setNotifState(false);
-                    }
-                });
-        });
-        if (Notification.permission === "denied") {
+        if ("serviceWorker" in navigator && "PushManager" in window) {
+            navigator.serviceWorker.ready.then((swRegistration) => {
+                swRegistration.pushManager
+                    .getSubscription()
+                    .then((subscription) => {
+                        if (subscription) {
+                            setNotifState(true);
+                        } else {
+                            setNotifState(false);
+                        }
+                    });
+            });
+            if (Notification.permission === "denied") {
+                setDisabled(true);
+            }
+        } else {
             setDisabled(true);
         }
     }, []);

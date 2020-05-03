@@ -26,8 +26,10 @@ const InstructorMainPage = () => {
     let dashboard = null;
 
     useEffect(() => {
-        if (Notification.permission === "default") {
-            setShowNotifToast(true);
+        if ("Notification" in window) {
+            if (Notification.permission === "default") {
+                setShowNotifToast(true);
+            }
         }
     }, []);
 
