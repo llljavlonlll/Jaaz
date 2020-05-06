@@ -1,6 +1,9 @@
 import React from "react";
 import { MdClose, MdNotificationsNone } from "react-icons/md";
 
+// Push notification
+import { pushInitialize } from "../../../settings/PushNotification";
+
 import "./NotificationsPermissionComponent.css";
 
 export default function NotificationsPermissionComponent(props) {
@@ -8,7 +11,7 @@ export default function NotificationsPermissionComponent(props) {
         <div
             className="notif-permission"
             onClick={() => {
-                props.askPermission();
+                pushInitialize();
                 props.closeToast();
             }}
         >

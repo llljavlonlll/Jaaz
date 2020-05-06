@@ -13,9 +13,6 @@ import NotificationsPermissionComponent from "../../components/Instructor/Notifi
 import "react-tabs/style/react-tabs.css";
 import "./InstructorMainPage.css";
 
-// Push notification
-import { pushInitialize } from "../../settings/PushNotification";
-
 const InstructorMainPage = () => {
     const isAuthorized = useSelector((state) => state.auth.isAuthorized);
     const selectedSubject = useSelector((state) => state.instructor.subject);
@@ -27,7 +24,10 @@ const InstructorMainPage = () => {
 
     useEffect(() => {
         if ("Notification" in window) {
-            if (Notification.permission === "default") {
+            if (
+                Notification.permission !== "granted" &&
+                Notification.permission !== "denied"
+            ) {
                 setShowNotifToast(true);
             }
         }
@@ -44,10 +44,7 @@ const InstructorMainPage = () => {
         dashboard = (
             <React.Fragment>
                 {showNotifToast && (
-                    <NotificationsPermissionComponent
-                        askPermission={pushInitialize}
-                        closeToast={closeToast}
-                    />
+                    <NotificationsPermissionComponent closeToast={closeToast} />
                 )}
                 <div className="instructor-dash">
                     {selectedSubject ? (
