@@ -2,7 +2,18 @@ node_modules
 package-lock.json
 .env
 /questions/*
+/questions/thumbnails/*
+/questions/raw/*
 /solutions/*
+/solutions/raw/*
 /postman
 keys
 Technologies used.txt
+
+# Exceptions
+!/questions/thumbnails
+!/questions/thumbnails/.gitkeep
+!/questions/raw
+!/questions/raw/.gitkeep
+!/solutions/raw/
+!/solutions/raw/.gitkeep

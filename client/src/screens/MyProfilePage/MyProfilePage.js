@@ -209,12 +209,14 @@ const MyProfilePage = () => {
                                     id="profile.acc.type"
                                     defaultMessage="{type}"
                                     values={{
-                                        type: intl.formatMessage({
-                                            id:
-                                                category === "customer"
-                                                    ? "profile.acc.student"
-                                                    : "profile.acc.teacher",
-                                        }),
+                                        type:
+                                            category !== "customer"
+                                                ? intl.formatMessage({
+                                                      id: "profile.acc.teacher",
+                                                  })
+                                                : intl.formatMessage({
+                                                      id: "profile.acc.student",
+                                                  }),
                                     }}
                                 />
                             )}
@@ -332,19 +334,9 @@ const MyProfilePage = () => {
                                     alignItems: "center",
                                 }}
                             >
-                                <h4>
-                                    <FormattedMessage
-                                        id="profile.off"
-                                        defaultMessage="Off"
-                                    />
-                                </h4>
+                                <h4>Off</h4>
                                 <NotificationSwitch />
-                                <h4>
-                                    <FormattedMessage
-                                        id="profile.on"
-                                        defaultMessage="On"
-                                    />
-                                </h4>
+                                <h4>On</h4>
                             </div>
                         </div>
                     )}
