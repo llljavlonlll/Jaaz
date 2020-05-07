@@ -23,6 +23,7 @@ router.post(
         const user = req.user;
 
         try {
+            // Resize the photo and delete original
             await sharp(req.file.path)
                 .rotate()
                 .resize({ width: 600 })
@@ -31,6 +32,20 @@ router.post(
                 .toFile(
                     path.resolve(req.file.destination, "..", req.file.filename)
                 );
+
+            await sharp(req.file.path)
+                .resize({ width: 200 })
+                .png({ quality: 80 })
+                .jpeg({ quality: 80 })
+                .toFile(
+                    path.resolve(
+                        req.file.destination,
+                        "..",
+                        "thumbnails",
+                        req.file.filename
+                    )
+                );
+
             fs.unlinkSync(req.file.path);
 
             // Charge user account for the question
@@ -54,7 +69,9 @@ router.post(
                     webpush
                         .sendNotification(users[i].subscription)
                         .catch((error) => {
-                            console.error(error.stack);
+                            console.log(
+                                "[Push notifications]: " + error.message
+                            );
                         });
                 }
             }

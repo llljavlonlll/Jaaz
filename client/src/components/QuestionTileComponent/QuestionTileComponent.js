@@ -18,7 +18,7 @@ export default function QuestionTileComponent(props) {
                 )}
                 <div className="question-tile__image-container">
                     <img
-                        src={`/images/questions/${props.image_name}`}
+                        src={`/images/questions/thumbnails/${props.image_name}`}
                         alt="Question"
                     />
                 </div>

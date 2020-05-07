@@ -30,40 +30,43 @@ const SubjectsComponent = (props) => {
             </div>
             <ul className="subjects__row">
                 {subjectTile(
-                    intl.formatMessage({ id: "math", defaultMessage: "Math" }),
+                    intl.formatMessage({
+                        id: "general.math",
+                        defaultMessage: "Math",
+                    }),
                     "Math"
                 )}
                 {subjectTile(
                     intl.formatMessage({
-                        id: "english",
+                        id: "general.english",
                         defaultMessage: "English",
                     }),
                     "English"
                 )}
                 {subjectTile(
                     intl.formatMessage({
-                        id: "physics",
+                        id: "general.physics",
                         defaultMessage: "Physics",
                     }),
                     "Physics"
                 )}
                 {subjectTile(
                     intl.formatMessage({
-                        id: "chemistry",
+                        id: "general.chemistry",
                         defaultMessage: "Chemisry",
                     }),
                     "Chemistry"
                 )}
                 {subjectTile(
                     intl.formatMessage({
-                        id: "history",
+                        id: "general.history",
                         defaultMessage: "History",
                     }),
                     "History"
                 )}
                 {subjectTile(
                     intl.formatMessage({
-                        id: "computer",
+                        id: "general.computer",
                         defaultMessage: "Computer Science",
                     }),
                     "Computer Science"

@@ -113,37 +113,37 @@ const UploaderComponent = (props) => {
                         >
                             <option value="Math">
                                 {intl.formatMessage({
-                                    id: "math",
+                                    id: "general.math",
                                     defaultMessage: "Math",
                                 })}
                             </option>
                             <option value="English">
                                 {intl.formatMessage({
-                                    id: "english",
+                                    id: "general.english",
                                     defaultMessage: "English",
                                 })}
                             </option>
                             <option value="History">
                                 {intl.formatMessage({
-                                    id: "history",
+                                    id: "general.history",
                                     defaultMessage: "History",
                                 })}
                             </option>
                             <option value="Physics">
                                 {intl.formatMessage({
-                                    id: "physics",
+                                    id: "general.physics",
                                     defaultMessage: "Physics",
                                 })}
                             </option>
                             <option value="Chemistry">
                                 {intl.formatMessage({
-                                    id: "chemistry",
+                                    id: "general.chemistry",
                                     defaultMessage: "Chemistry",
                                 })}
                             </option>
                             <option value="Computer Science">
                                 {intl.formatMessage({
-                                    id: "computer",
+                                    id: "general.computer",
                                     defaultMessage: "Computer Science",
                                 })}
                             </option>

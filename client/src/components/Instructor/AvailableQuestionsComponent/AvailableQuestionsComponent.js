@@ -6,7 +6,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 
 import {
     loadQuestions,
-    filterQuestions
+    filterQuestions,
 } from "../../../store/actions/questionsActions";
 import { setSelectedSubject } from "../../../store/actions/instructorActions";
 import QuestionTileLoadingAnimation from "../../QuestionTileLoadingAnimation/QuestionTileLoadingAnimation";
@@ -15,7 +15,7 @@ import Pagination from "../../PaginationComponent/PaginationComponent";
 
 import "./AvailableQuestionsComponent.css";
 
-const AvailableQuestionsComponent = props => {
+const AvailableQuestionsComponent = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isMobile] = useState(window.innerWidth <= 738);
     const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +43,7 @@ const AvailableQuestionsComponent = props => {
     }, [dispatch, props.api_path, props.subject]);
 
     // Grab questions from redux store
-    const questions = useSelector(state => state.questions.filteredQuestions);
+    const questions = useSelector((state) => state.questions.filteredQuestions);
 
     // Array of animations
     const loadingAnimations = [];
@@ -61,7 +61,7 @@ const AvailableQuestionsComponent = props => {
         indexOfLastQuestion
     );
 
-    const changePage = pageNum => {
+    const changePage = (pageNum) => {
         setCurrentPage(pageNum);
     };
 
@@ -88,17 +88,17 @@ const AvailableQuestionsComponent = props => {
                     {intl.formatMessage({
                         id:
                             props.subject === "Math"
-                                ? "math"
+                                ? "general.math"
                                 : props.subject === "English"
-                                ? "english"
+                                ? "general.english"
                                 : props.subject === "History"
-                                ? "history"
+                                ? "general.history"
                                 : props.subject === "Physics"
-                                ? "physics"
+                                ? "general.physics"
                                 : props.subject === "Chemistry"
-                                ? "chemistry"
-                                : "computer",
-                        defaultMessage: "{props.subject}"
+                                ? "general.chemistry"
+                                : "general.computer",
+                        defaultMessage: "{props.subject}",
                     })}
                 </div>
             </div>
@@ -120,7 +120,7 @@ const AvailableQuestionsComponent = props => {
                             <div style={{ height: "5rem" }}></div>
                         </React.Fragment>
                     ) : currentQuestions.length > 0 ? (
-                        currentQuestions.map(question => {
+                        currentQuestions.map((question) => {
                             return (
                                 <QuestionTileComponent
                                     key={question._id}
@@ -133,13 +133,13 @@ const AvailableQuestionsComponent = props => {
                             style={{
                                 display: "table",
                                 height: "400px",
-                                overflow: "hidden"
+                                overflow: "hidden",
                             }}
                         >
                             <div
                                 style={{
                                     display: "table-cell",
-                                    verticalAlign: "middle"
+                                    verticalAlign: "middle",
                                 }}
                             >
                                 <div style={{ textAlign: "center" }}>

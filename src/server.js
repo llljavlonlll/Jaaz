@@ -42,6 +42,12 @@ const notificationsRouter = require("./routers/api/instructor/notifications");
 
 // Static files directory
 const questionsDir = path.join(__dirname, "..", "questions");
+const questionsThumbnailsDir = path.join(
+    __dirname,
+    "..",
+    "questions",
+    "thumbnails"
+);
 const solutionsDir = path.join(__dirname, "..", "solutions");
 const frontEndDir = path.join(__dirname, "..", "client", "build");
 
@@ -49,6 +55,7 @@ app.use(cors());
 
 // Static routers...
 app.use("/images/questions", express.static(questionsDir));
+app.use("/images/questions/thumbnails", express.static(questionsThumbnailsDir));
 app.use("/images/solutions", express.static(solutionsDir));
 app.use(express.static(frontEndDir));
 
