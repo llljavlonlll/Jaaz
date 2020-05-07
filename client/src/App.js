@@ -41,7 +41,10 @@ import ReactGA from "react-ga";
 class App extends Component {
     componentDidMount() {
         // Remove splash screen
-        document.getElementById("splash-screen").style.display = "none";
+        document.getElementById("splash-screen").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("splash-screen").style.display = "none";
+        }, 200);
 
         // Initialize GA
         ReactGA.initialize("UA-131112574-2");
