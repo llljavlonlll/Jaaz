@@ -40,6 +40,9 @@ import ReactGA from "react-ga";
 
 class App extends Component {
     componentDidMount() {
+        // Remove splash screen
+        document.getElementById("splash-screen").style.display = "none";
+
         // Initialize GA
         ReactGA.initialize("UA-131112574-2");
 
