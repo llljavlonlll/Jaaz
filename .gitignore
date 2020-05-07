@@ -1,14 +1,16 @@
 node_modules
 package-lock.json
+
+# Security
+keys
 .env
+
+# Exclude local images
 /questions/*
 /questions/thumbnails/*
 /questions/raw/*
 /solutions/*
 /solutions/raw/*
-/postman
-keys
-Technologies used.txt
 
 # Exceptions
 !/questions/thumbnails
@@ -17,3 +19,7 @@ Technologies used.txt
 !/questions/raw/.gitkeep
 !/solutions/raw/
 !/solutions/raw/.gitkeep
+
+# Extra
+/postman
+Technologies used.txt
