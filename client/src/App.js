@@ -141,7 +141,7 @@ class App extends Component {
         return (
             <IntlProvider
                 locale={this.getLanguage(this.props.lang)}
-                messages={messages[this.props.lang]}
+                messages={messages[this.getLanguage(this.props.lang)]}
             >
                 <Router>
                     <MobileMenu />
