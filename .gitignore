@@ -1,11 +1,12 @@
 node_modules
 package-lock.json
+build
 
 # Security
 keys
 .env
 
-# Exclude local images
+# Local images
 /questions/*
 /questions/thumbnails/*
 /questions/raw/*

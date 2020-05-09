@@ -11,7 +11,7 @@ router.get("/", auth, async (req, res) => {
     const subject = req.query.subject;
 
     const query = {
-        status: "Pending"
+        status: "Pending",
     };
 
     let uploadedAtAscDesc = 1;
@@ -30,14 +30,14 @@ router.get("/", auth, async (req, res) => {
 
     try {
         const questions = await Question.find(query, null, {
-            sort: { uploaded_at: uploadedAtAscDesc || 1 }
+            sort: { uploaded_at: uploadedAtAscDesc || 1 },
         });
 
-        if (questions.length === 0) {
-            return res
-                .status(404)
-                .send({ msg: "Currently, there are no available questions" });
-        }
+        // if (questions.length === 0) {
+        //     return res
+        //         .status(404)
+        //         .send({ msg: "Currently, there are no available questions" });
+        // }
         res.send(questions);
     } catch (err) {
         res.status(400).send({ msg: err.message });
@@ -49,7 +49,7 @@ router.get("/", auth, async (req, res) => {
 router.get("/:id", auth, async (req, res) => {
     try {
         const question = await Question.findOne({
-            _id: req.params.id
+            _id: req.params.id,
         });
 
         if (!question) {

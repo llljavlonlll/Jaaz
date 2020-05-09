@@ -8,14 +8,14 @@ import QuestionTileComponent from "../QuestionTileComponent/QuestionTileComponen
 import Pagination from "../PaginationComponent/PaginationComponent";
 import "./QuestionsListComponent.css";
 
-const QuestionsListComponent = props => {
+const QuestionsListComponent = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isMobile] = useState(window.innerWidth <= 738);
     const [currentPage, setCurrentPage] = useState(1);
     const [questionsPerPage] = useState(5);
 
     // Grab questions from redux store
-    const questions = useSelector(state => state.questions.questions);
+    const questions = useSelector((state) => state.questions.questions);
 
     //Initialize dispatch function
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const QuestionsListComponent = props => {
                 setIsLoading(false);
             } catch (err) {
                 setIsLoading(false);
-                console.log(err.message);
+                // console.log(err.message);
             }
         };
 
@@ -52,7 +52,7 @@ const QuestionsListComponent = props => {
         indexOfLastQuestion
     );
 
-    const changePage = pageNum => {
+    const changePage = (pageNum) => {
         setCurrentPage(pageNum);
     };
 
@@ -73,7 +73,7 @@ const QuestionsListComponent = props => {
                     {isLoading ? (
                         <div>{loadingAnimations}</div>
                     ) : currentQuestions.length > 0 ? (
-                        currentQuestions.map(question => {
+                        currentQuestions.map((question) => {
                             return (
                                 <QuestionTileComponent
                                     key={question._id}
@@ -86,13 +86,13 @@ const QuestionsListComponent = props => {
                             style={{
                                 display: "table",
                                 height: "400px",
-                                overflow: "hidden"
+                                overflow: "hidden",
                             }}
                         >
                             <div
                                 style={{
                                     display: "table-cell",
-                                    verticalAlign: "middle"
+                                    verticalAlign: "middle",
                                 }}
                             >
                                 <div style={{ textAlign: "center" }}>

@@ -9,12 +9,12 @@ router.get("/", auth, async (req, res) => {
     try {
         const questions = await Question.find({
             booked_by: req.user._id,
-            status: "Booked"
+            status: "Booked",
         });
 
-        if (questions.length === 0) {
-            return res.status(404).send({ msg: "No questions found!" });
-        }
+        // if (questions.length === 0) {
+        //     return res.status(404).send({ msg: "No questions found!" });
+        // }
 
         res.send(questions);
     } catch (err) {

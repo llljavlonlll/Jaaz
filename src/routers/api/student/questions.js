@@ -101,9 +101,9 @@ router.get("/", auth, async (req, res) => {
             .populate("chat")
             .exec();
 
-        if (questions.length === 0) {
-            return res.status(404).send({ msg: "No questions found" });
-        }
+        // if (questions.length === 0) {
+        //     return res.status(404).send({ msg: "No questions found" });
+        // }
 
         res.send(questions);
     } catch (err) {

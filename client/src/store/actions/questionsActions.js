@@ -7,43 +7,41 @@ export const loadQuestions = (questions = []) => {
         // Check each question if it has new messages in its chat field
         // If yes, then add "newMessages" field to the question
         const qidWithNewMessages = questions
-            .filter(question => question.chat)
-            .filter(questionWithChat => {
+            .filter((question) => question.chat)
+            .filter((questionWithChat) => {
                 const alienMessages = questionWithChat.chat.messages.filter(
-                    message => message.owner_uid !== userData.uid
+                    (message) => message.owner_uid !== userData.uid
                 );
-                return alienMessages.some(message => !message.isSeen);
+                return alienMessages.some((message) => !message.isSeen);
             })
-            .map(questionWithNewMessage => questionWithNewMessage.qid);
+            .map((questionWithNewMessage) => questionWithNewMessage.qid);
 
-        console.log(qidWithNewMessages);
-
-        const modifiedQuestions = questions.map(question => {
+        const modifiedQuestions = questions.map((question) => {
             if (qidWithNewMessages.includes(question.qid)) {
                 return {
                     ...question,
-                    hasNewMessage: true
+                    hasNewMessage: true,
                 };
             } else {
                 return {
                     ...question,
-                    hasNewMessage: false
+                    hasNewMessage: false,
                 };
             }
         });
         dispatch({
             type: LOAD_QUESTIONS,
-            questions: modifiedQuestions
+            questions: modifiedQuestions,
         });
     };
 };
 
-export const addQuestion = question => ({
+export const addQuestion = (question) => ({
     type: ADD_QUESTION,
-    question
+    question,
 });
 
-export const filterQuestions = subject => ({
+export const filterQuestions = (subject) => ({
     type: FILTER_QUESTIONS,
-    payload: subject
+    payload: subject,
 });
