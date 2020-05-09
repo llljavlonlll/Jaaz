@@ -56,7 +56,8 @@ const ChatMessage = (props) => {
 
 export default function ChatComponent(props) {
     const userData = useSelector((state) => state.auth.userData);
-    const ENDPOINT = "localhost:5001";
+    const ENDPOINT =
+        process.env.NODE_ENV === "development" ? "localhost:5001" : "jaaz.uz";
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [room, setRoom] = useState();
