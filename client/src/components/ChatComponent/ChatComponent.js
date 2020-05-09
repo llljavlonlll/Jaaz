@@ -110,7 +110,7 @@ export default function ChatComponent(props) {
         );
 
         // Connect to server socket
-        socket = io(ENDPOINT);
+        socket = io(ENDPOINT, { secure: true });
 
         // Emit join event to join a room
         socket.emit(
