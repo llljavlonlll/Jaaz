@@ -8,10 +8,10 @@ const jwt = require("jsonwebtoken");
 const router = new require("express").Router();
 
 // Schedule a free credit deposit time
-const schedule = require("node-schedule");
-var j = schedule.scheduleJob({ hour: 00, minute: 00 }, async function () {
-    await User.updateMany({ category: "customer" }, { $inc: { balance: 3 } });
-});
+// const schedule = require("node-schedule");
+// var j = schedule.scheduleJob({ hour: 00, minute: 00 }, async function () {
+//     await User.updateMany({ category: "customer" }, { $inc: { balance: 3 } });
+// });
 
 // Renew password
 // POST /api/new_password

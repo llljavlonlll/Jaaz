@@ -97,7 +97,7 @@ userSchema.methods.generateAuthToken = async function (action) {
         this.activationHash = activationHash;
 
         if (this.category === "customer") {
-            this.balance = 3;
+            this.balance = 5;
         }
     }
 
