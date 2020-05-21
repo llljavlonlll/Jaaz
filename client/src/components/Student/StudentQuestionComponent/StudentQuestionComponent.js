@@ -36,11 +36,11 @@ export default function StudentQuestionComponent(props) {
         fetchQuestion();
     }, [props.questionId]);
 
-    const assignChat = chatId =>
-        setQuestion(prevState => {
+    const assignChat = (chatId) =>
+        setQuestion((prevState) => {
             return {
                 ...prevState,
-                chat: chatId
+                chat: chatId,
             };
         });
 
@@ -139,7 +139,7 @@ export default function StudentQuestionComponent(props) {
                 <div
                     style={{
                         borderBottom: "1px solid #a5afd75d",
-                        margin: "2.5rem 0"
+                        margin: "2.5rem 0",
                     }}
                 ></div>
 
@@ -147,7 +147,8 @@ export default function StudentQuestionComponent(props) {
                     rating={question.solution[0].rating}
                     questionId={question._id}
                 />
-                <div
+                {/*Chat component (disabled)*/}
+                {/*<div
                     style={{
                         borderBottom: "1px solid #a5afd75d",
                         margin: "2.5rem 0"
@@ -158,7 +159,7 @@ export default function StudentQuestionComponent(props) {
                     questionId={question._id}
                     assignChat={assignChat}
                 />
-                <ChatComponent chatId={question.chat} />
+                <ChatComponent chatId={question.chat} />*/}
             </React.Fragment>
         );
     } else {
@@ -228,7 +229,7 @@ export default function StudentQuestionComponent(props) {
                                             justifyContent: "center",
                                             alignItems: "center",
                                             opacity: "0.2",
-                                            margin: "0"
+                                            margin: "0",
                                         }}
                                     >
                                         <FormattedMessage
@@ -253,7 +254,7 @@ export default function StudentQuestionComponent(props) {
                 <div
                     style={{
                         borderBottom: "1px solid #a5afd75d",
-                        margin: "2.5rem"
+                        margin: "2.5rem",
                     }}
                 ></div>
                 {solution}

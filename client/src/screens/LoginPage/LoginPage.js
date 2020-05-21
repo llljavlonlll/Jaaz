@@ -13,35 +13,35 @@ class LoginPage extends Component {
         email: "",
         password: "",
         isLoading: false,
-        error: undefined
+        error: undefined,
     };
 
-    onChange = event => {
+    onChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         });
     };
 
-    onSubmit = event => {
+    onSubmit = (event) => {
         event.preventDefault();
         this.setState({
             isLoading: true,
-            error: undefined
+            error: undefined,
         });
 
         axios
             .post("/api/login", this.state)
-            .then(res => {
+            .then((res) => {
                 if (res.status === 200) {
                     this.props.dispatch(loginSuccess({ ...res.data }));
                     this.props.history.push("/");
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 this.setState({
                     isLoading: false,
                     error: err.response.data.err,
-                    password: ""
+                    password: "",
                 });
             });
     };
@@ -123,9 +123,9 @@ class LoginPage extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
-        isAuthorized: state.auth.isAuthorized
+        isAuthorized: state.auth.isAuthorized,
     };
 };
 

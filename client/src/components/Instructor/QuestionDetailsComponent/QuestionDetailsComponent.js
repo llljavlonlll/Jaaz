@@ -8,17 +8,12 @@ import ChatComponent from "../../ChatComponent/ChatComponent";
 export default function QuestionDetailsComponent(props) {
     return (
         <div className="question-details__container">
-            {props.chat && (
+            {/*props.chat && (
                 <div className="question-details__chat">
-                    {/*<div className="question-details__chat__title">
-                        <FormattedMessage
-                            id="chat.instr.title"
-                            defaultMessage="Chat with client"
-                        />
-                    </div>*/}
+
                     <ChatComponent chatId={props.chat} />
                 </div>
-            )}
+            )*/}
             <div className="question-details">
                 <h3 className="question-details__title">
                     <FormattedMessage
