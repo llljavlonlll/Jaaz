@@ -78,7 +78,7 @@ router.post(
 
             res.send(question);
         } catch (err) {
-            res.status(400).send(err.message);
+            res.status(400).send({ msg: err.message });
         }
     },
     (err, req, res, next) => {

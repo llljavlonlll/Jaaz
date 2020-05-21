@@ -55,20 +55,26 @@ const UploaderComponent = (props) => {
             .post("/api/question/create", data, config)
             .then((res) => {
                 if (res.status === 200) {
+                    // Reset the form
                     setFilePreview(null);
                     setFile("");
                     setInputKey(Date.now());
                     setDescription("");
                     setSubject("Math");
 
+                    // Deduct 1 credit
                     dispatch(updateBalance(balance - 1));
 
+                    // Add question to the state
                     dispatch(addQuestion(res.data));
                 }
+
+                // Stop the spinnning animation
                 props.handleUploadAnimation();
             })
             .catch((err) => {
                 console.error(err);
+                alert(err.resposnse);
                 props.handleUploadAnimation();
             });
     };
