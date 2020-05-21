@@ -1,19 +1,37 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useIntl } from "react-intl";
+import axios from "axios";
 
 import { setSelectedSubject } from "../../../store/actions/instructorActions";
 import "./SubjectsComponent.css";
 import { FormattedMessage } from "react-intl";
 
 const SubjectsComponent = (props) => {
+    const questions = useSelector((state) => state.questions.questions);
+    const [subjectCount, setSubjectCount] = useState({});
+
     const dispatch = useDispatch();
     const intl = useIntl();
+
+    useEffect(() => {
+        axios
+            .get("/api/pending/count")
+            .then((res) => {
+                setSubjectCount(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     const subjectTile = (title, subject) => {
         return (
             <li onClick={() => dispatch(setSelectedSubject(subject))}>
                 <div className="subject-tile">
+                    <div className="subject-tile__notification">
+                        {subjectCount[subject] || 0}
+                    </div>
                     <div className="subject-tile__title">{title}</div>
                 </div>
             </li>

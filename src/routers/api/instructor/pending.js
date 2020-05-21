@@ -44,6 +44,30 @@ router.get("/", auth, async (req, res) => {
     }
 });
 
+//Get a number of question in each subject
+// GET /api/pending/count
+router.get("/count", auth, async (req, res) => {
+    const countQuestionsPerSubject = (questions) => {
+        const countObj = {};
+        for (const question of questions) {
+            countObj[question.subject] = 0;
+        }
+        for (const question of questions) {
+            countObj[question.subject] += 1;
+        }
+
+        return countObj;
+    };
+
+    try {
+        const questions = await Question.find({ status: "Pending" });
+        const subjectCount = countQuestionsPerSubject(questions);
+        res.send(subjectCount);
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
+    }
+});
+
 // Get pending question by id
 // GET /api/pending/:id
 router.get("/:id", auth, async (req, res) => {
