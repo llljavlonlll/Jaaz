@@ -74,7 +74,6 @@ const UploaderComponent = (props) => {
             })
             .catch((err) => {
                 console.error(err);
-                alert(err.resposnse);
                 props.handleUploadAnimation();
             });
     };

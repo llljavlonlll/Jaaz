@@ -28,7 +28,7 @@ export default function QuestionDetailsComponent(props) {
                     <div className="question__img">
                         <a href={`/images/questions/${props.image_name}`}>
                             <img
-                                src={`/images/questions/${props.image_name}`}
+                                src={`/images/questions/thumbnails/${props.image_name}`}
                                 alt="Question"
                                 width="200"
                             />
@@ -49,7 +49,7 @@ export default function QuestionDetailsComponent(props) {
                                 href={`/images/solutions/${props.solution[0].image}`}
                             >
                                 <img
-                                    src={`/images/solutions/${props.solution[0].image}`}
+                                    src={`/images/solutions/thumbnails/${props.solution[0].image}`}
                                     alt="Solution"
                                     width="200"
                                 />

@@ -49,6 +49,12 @@ const questionsThumbnailsDir = path.join(
     "thumbnails"
 );
 const solutionsDir = path.join(__dirname, "..", "solutions");
+const solutionsThumbnailsDir = path.join(
+    __dirname,
+    "..",
+    "solutions",
+    "thumbnails"
+);
 const frontEndDir = path.join(__dirname, "..", "client", "build");
 
 app.use(cors());
@@ -57,6 +63,7 @@ app.use(cors());
 app.use("/images/questions", express.static(questionsDir));
 app.use("/images/questions/thumbnails", express.static(questionsThumbnailsDir));
 app.use("/images/solutions", express.static(solutionsDir));
+app.use("/images/solutions/thumbnails", express.static(solutionsThumbnailsDir));
 app.use(express.static(frontEndDir));
 
 // Parsers

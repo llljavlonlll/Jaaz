@@ -108,6 +108,7 @@ router.post(
                 return res.status(404).send({ msg: "Question not found!" });
             }
 
+            // Lower image size
             await sharp(req.file.path)
                 .rotate()
                 .resize({ width: 600 })
@@ -116,6 +117,21 @@ router.post(
                 .toFile(
                     path.resolve(req.file.destination, "..", req.file.filename)
                 );
+
+            // Make a thumbnail
+            await sharp(req.file.path)
+                .resize({ width: 200 })
+                .png({ quality: 80 })
+                .jpeg({ quality: 80 })
+                .toFile(
+                    path.resolve(
+                        req.file.destination,
+                        "..",
+                        "thumbnails",
+                        req.file.filename
+                    )
+                );
+
             fs.unlinkSync(req.file.path);
 
             // Add solution and save
