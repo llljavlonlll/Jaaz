@@ -7,26 +7,26 @@ const questionSchema = mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: "User"
+        ref: "User",
     },
     image_name: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
         trim: true,
         maxLength: 255,
-        minLength: 1
+        minLength: 1,
     },
     subject: {
         type: String,
-        required: true
+        required: true,
     },
     uploaded_at: {
         type: Number,
         required: true,
-        default: Date.now
+        default: Date.now,
     },
     status: {
         type: String,
@@ -37,47 +37,53 @@ const questionSchema = mongoose.Schema({
             if (!statuses.includes(value)) {
                 throw new Error("Invalid status");
             }
-        }
+        },
     },
     booked_by: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+    },
+    booked_at: Number,
+    rejected_by: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    rejection_reason: {
+        type: String,
+        minLength: 5,
+        maxLength: 255,
     },
     solved_by: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
-    rejected_by: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
     },
     solution: [
         {
             image: {
                 type: String,
-                require: true
+                require: true,
             },
             description: String,
             solved_by: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "User",
-                require: true
+                require: true,
             },
             solved_at: {
                 type: Date,
-                required: true
+                required: true,
             },
             rating: {
                 type: Number,
                 max: 5,
-                min: 1
-            }
-        }
+                min: 1,
+            },
+        },
     ],
     chat: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Chat"
-    }
+        ref: "Chat",
+    },
 });
 
 questionSchema.plugin(AutoIncrement, { inc_field: "qid" });

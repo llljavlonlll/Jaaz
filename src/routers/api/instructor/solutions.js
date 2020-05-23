@@ -23,11 +23,25 @@ router.post("/book/:id", auth, async (req, res) => {
         }
 
         question.booked_by = req.user._id;
+        question.booked_at = Date.now();
         question.status = "Booked";
 
         await question.save();
 
-        res.send({ booked_by: question.booked_by });
+        setTimeout(async () => {
+            const question = await Question.findById(req.params.id);
+            if (question.status === "Booked") {
+                question.booked_by = undefined;
+                question.booked_at = undefined;
+                question.status = "Pending";
+                await question.save();
+            }
+        }, 1000 * 60 * 20);
+
+        res.send({
+            booked_by: question.booked_by,
+            booked_at: question.booked_at,
+        });
     } catch (err) {
         res.status(400).send({ msg: err.message });
     }
@@ -43,7 +57,8 @@ router.post("/unbook/:id", auth, async (req, res) => {
             return res.status(404).send({ msg: "Question not found!" });
         }
 
-        delete question.booked_by;
+        question.booked_by = undefined;
+        question.booked_at = undefined;
         question.status = "Pending";
 
         await question.save();

@@ -8,6 +8,7 @@ import SolutionUploader from "../../components/Instructor/SolutionUploaderCompon
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
 
 import "./InstructorQuestionPage.css";
+import CountdownComponent from "../../components/CountdownComponent/CountdownComponent";
 
 class QuestionPage extends Component {
     _isMounted = false;
@@ -25,14 +26,15 @@ class QuestionPage extends Component {
         unbookModalIsOpen: false,
         rejectModalIsOpen: false,
         isLoading: true,
-        isUploading: false
+        isUploading: false,
+        booked_at: undefined,
     };
 
     componentDidMount() {
         this._isMounted = true;
         axios
             .get(`/api/pending/${this.props.match.params.id}`)
-            .then(res => {
+            .then((res) => {
                 if (this._isMounted) {
                     this.setState({
                         status: res.data.status,
@@ -44,11 +46,12 @@ class QuestionPage extends Component {
                         solution: res.data.solution,
                         chat: res.data.chat,
                         isLoading: false,
-                        alreadyBooked: false
+                        alreadyBooked: false,
+                        booked_at: res.data.booked_at,
                     });
                 }
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
     componentWillUnmount() {
@@ -70,32 +73,34 @@ class QuestionPage extends Component {
     handleQuestionBook = () => {
         axios
             .post(`/api/solution/book/${this.props.match.params.id}`)
-            .then(res => {
+            .then((res) => {
                 if (res.status === 200) {
                     this.setState({
                         status: "Booked",
                         bookModalIsOpen: false,
-                        unbookModalIsOpen: false
+                        unbookModalIsOpen: false,
+                        booked_at: res.data.booked_at,
                     });
+                    console.log(`[Booked at]: ${res.data.booked_at}`);
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err.response.data.msg);
             });
     };
     handleQuestionUnbook = () => {
         axios
             .post(`/api/solution/unbook/${this.props.match.params.id}`)
-            .then(res => {
+            .then((res) => {
                 if (res.status === 200) {
                     this.setState({
                         status: "Pending",
                         bookModalIsOpen: false,
-                        unbookModalIsOpen: false
+                        unbookModalIsOpen: false,
                     });
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err.response.data.msg);
             });
     };
@@ -103,16 +108,16 @@ class QuestionPage extends Component {
     handleQuestionReject = () => {
         axios
             .post(`/api/solution/reject/${this.props.match.params.id}`)
-            .then(res => {
+            .then((res) => {
                 if (res.status === 200) {
                     this.setState({
                         status: "Rejected",
                         bookModalIsOpen: false,
-                        unbookModalIsOpen: false
+                        unbookModalIsOpen: false,
                     });
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err.response.data.msg);
             });
     };
@@ -121,25 +126,25 @@ class QuestionPage extends Component {
         this.setState({
             bookModalIsOpen: false,
             unbookModalIsOpen: false,
-            rejectModalIsOpen: false
+            rejectModalIsOpen: false,
         });
     };
 
-    handleStatusUpdate = status => {
+    handleStatusUpdate = (status) => {
         this.setState({
-            status
+            status,
         });
     };
 
     handleUploadAnimation = () => {
         this.setState({
-            isUploading: !this.state.isUploading
+            isUploading: !this.state.isUploading,
         });
     };
 
-    handleReceiveSolution = solution => {
+    handleReceiveSolution = (solution) => {
         this.setState({
-            solution
+            solution,
         });
     };
 
@@ -172,7 +177,7 @@ class QuestionPage extends Component {
                                         marginTop: 0,
                                         background: "#8357c5",
                                         borderBottom: "0.3rem solid #66439b",
-                                        width: "40%"
+                                        width: "40%",
                                     }}
                                     onClick={this.openBookModal}
                                 >
@@ -186,7 +191,7 @@ class QuestionPage extends Component {
                                         marginTop: 0,
                                         background: "#963f3f",
                                         borderBottom: "0.3rem solid #6b2c2c",
-                                        width: "40%"
+                                        width: "40%",
                                     }}
                                     onClick={this.openRejectModal}
                                 >
@@ -202,11 +207,11 @@ class QuestionPage extends Component {
                                 acceptAction={this.handleQuestionBook}
                                 acceptTitle={intl.formatMessage({
                                     id: "modal.book",
-                                    defaultMessage: "Book"
+                                    defaultMessage: "Book",
                                 })}
                                 rejectTitle={intl.formatMessage({
                                     id: "modal.cancel",
-                                    defaultMessage: "Cancel"
+                                    defaultMessage: "Cancel",
                                 })}
                             />
                             <ModalComponent
@@ -215,17 +220,22 @@ class QuestionPage extends Component {
                                 acceptAction={this.handleQuestionReject}
                                 acceptTitle={intl.formatMessage({
                                     id: "modal.reject",
-                                    defaultMessage: "Reject"
+                                    defaultMessage: "Reject",
                                 })}
                                 rejectTitle={intl.formatMessage({
                                     id: "modal.cancel",
-                                    defaultMessage: "Cancel"
+                                    defaultMessage: "Cancel",
                                 })}
                                 redStyle={true}
                             />
                         </div>
                     </div>
                 ) : null}
+
+                {/* Countdown component */}
+                {this.state.status === "Booked" && (
+                    <CountdownComponent booking_time={this.state.booked_at} />
+                )}
 
                 <QuestionDetailsComponent {...this.state} />
 
@@ -252,7 +262,7 @@ class QuestionPage extends Component {
                                     style={{
                                         marginTop: 0,
                                         background: "#963f3f",
-                                        borderBottom: "0.3rem solid #6b2c2c"
+                                        borderBottom: "0.3rem solid #6b2c2c",
                                     }}
                                     onClick={this.openUnbookModal}
                                 >
@@ -269,11 +279,11 @@ class QuestionPage extends Component {
                             acceptAction={this.handleQuestionUnbook}
                             acceptTitle={intl.formatMessage({
                                 id: "modal.unbook",
-                                defaultMessage: "Unbook"
+                                defaultMessage: "Unbook",
                             })}
                             rejectTitle={intl.formatMessage({
                                 id: "modal.cancel",
-                                defaultMessage: "Cancel"
+                                defaultMessage: "Cancel",
                             })}
                             redStyle={true}
                         />
