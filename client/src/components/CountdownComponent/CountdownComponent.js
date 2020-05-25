@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import "./CountdownComponent.css";
 
@@ -10,11 +10,12 @@ export default function CountdownComponent(props) {
 
         return timeObj;
     };
-    const calculateTimeLeft = (booking_time) => {
+    const calculateTimeLeft = useCallback((booking_time) => {
         return convertToMinutes(
             ((booking_time + 1200000 - Date.now()) / 1000).toFixed(0)
         );
-    };
+    }, []);
+
     const [timeLeft, setTimeLeft] = useState(
         calculateTimeLeft(props.booking_time)
     );
@@ -26,7 +27,7 @@ export default function CountdownComponent(props) {
         setTimeout(() => {
             setTimeLeft(calculateTimeLeft(props.booking_time));
         }, 1000);
-    }, [timeLeft]);
+    }, [timeLeft, calculateTimeLeft, props.booking_time]);
 
     return (
         <div className="countdown">
@@ -44,7 +45,7 @@ export default function CountdownComponent(props) {
                 className="countdown__time"
                 //Style countdown for the last minute
                 style={
-                    timeLeft.minutes == 0
+                    timeLeft.minutes === 0
                         ? {
                               color: "#8357C5",
                               fontSize: "4.5rem",

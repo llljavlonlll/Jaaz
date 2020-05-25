@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 import Cookies from "js-cookie";
-import ReactLoading from "react-loading";
+// import ReactLoading from "react-loading";
 import { injectIntl } from "react-intl";
 
 import UploaderComponent from "../../components/Student/UploaderComponent/UploaderComponent";

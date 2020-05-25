@@ -3,7 +3,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import "./QuestionDetailsComponent.css";
-import ChatComponent from "../../ChatComponent/ChatComponent";
+// import ChatComponent from "../../ChatComponent/ChatComponent";
 
 export default function QuestionDetailsComponent(props) {
     return (

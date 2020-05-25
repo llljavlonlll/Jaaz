@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import axios from "axios";
 
@@ -8,7 +8,6 @@ import "./SubjectsComponent.css";
 import { FormattedMessage } from "react-intl";
 
 const SubjectsComponent = (props) => {
-    const questions = useSelector((state) => state.questions.questions);
     const [subjectCount, setSubjectCount] = useState({});
 
     const dispatch = useDispatch();

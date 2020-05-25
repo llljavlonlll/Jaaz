@@ -6,9 +6,9 @@ import axios from "axios";
 import moment from "moment";
 
 import "./StudentQuestionComponent.css";
-import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
+// import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
 import RatingComponent from "../RatingComponent/RatingComponent";
-import ChatComponent from "../../ChatComponent/ChatComponent";
+// import ChatComponent from "../../ChatComponent/ChatComponent";
 
 const BackButton = () => {
     return (
@@ -36,13 +36,13 @@ export default function StudentQuestionComponent(props) {
         fetchQuestion();
     }, [props.questionId]);
 
-    const assignChat = (chatId) =>
-        setQuestion((prevState) => {
-            return {
-                ...prevState,
-                chat: chatId,
-            };
-        });
+    // const assignChat = (chatId) =>
+    //     setQuestion((prevState) => {
+    //         return {
+    //             ...prevState,
+    //             chat: chatId,
+    //         };
+    //     });
 
     if (isLoading) {
         return (

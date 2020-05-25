@@ -57,7 +57,7 @@ export default function NotificationSwitch() {
         } else {
             setDisabled(true);
         }
-    }, []);
+    }, [subscriptions.length]);
 
     const handleChange = (event) => {
         setNotifState(event.target.checked);
