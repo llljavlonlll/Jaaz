@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ReactLoading from "react-loading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage, FormattedHTMLMessage, useIntl } from "react-intl";
+import axios from "axios";
+
+// UI imports
+import ReactLoading from "react-loading";
 import { MdEdit } from "react-icons/md";
+
 import NotificationSwitch from "./Components/NotificationSwitch";
 // import Switch from "@material-ui/core/Switch";
 // import _ from "lodash";

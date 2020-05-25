@@ -127,6 +127,9 @@ class App extends Component {
                     </Route>
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignupPage} />
+                    <Route exact path="/profile">
+                        <Redirect to="/login" />
+                    </Route>
                     <Route path="/verify/:id" component={VerifyEmailPage} />
                     <Route
                         exact
