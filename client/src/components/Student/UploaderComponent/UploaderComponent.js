@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import imageCompression from "browser-image-compression";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,8 @@ import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 
 import { addQuestion } from "../../../store/actions/questionsActions";
 import { updateBalance } from "../../../store/actions/authActions";
+
+import ProgressComponent from "../../ProgressComponent/ProgressComponent";
 
 import "./UploaderComponent.css";
 
@@ -16,6 +18,15 @@ const UploaderComponent = (props) => {
     const [description, setDescription] = useState("");
     const [subject, setSubject] = useState("Math");
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [uploadAnimation, setUploadAnimation] = useState(false);
+
+    // useEffect(() => {
+    //     const increaseUpload = () => {
+    //         setUploadProgress((prev) => prev + 1);
+    //     };
+
+    //     setInterval(increaseUpload, 500);
+    // }, []);
 
     const balance = useSelector((state) => state.auth.userData.balance);
 
@@ -53,7 +64,10 @@ const UploaderComponent = (props) => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        props.handleUploadAnimation();
+
+        // Start spinning animation
+        // props.handleUploadAnimation();
+        setUploadAnimation(true);
 
         const data = new FormData();
         data.append("question", file);
@@ -66,9 +80,19 @@ const UploaderComponent = (props) => {
             },
             // Track the progress of uploading image
             onUploadProgress: function (progressEvent) {
-                setUploadProgress(
-                    ((progressEvent.loaded / file.size) * 100).toFixed(0)
-                );
+                setUploadProgress(() => {
+                    if (
+                        ((progressEvent.loaded / file.size) * 100).toFixed(0) <
+                        100
+                    ) {
+                        return (
+                            (progressEvent.loaded / file.size) *
+                            100
+                        ).toFixed(0);
+                    }
+
+                    return 100;
+                });
             },
         };
 
@@ -90,8 +114,10 @@ const UploaderComponent = (props) => {
                     dispatch(addQuestion(res.data));
                 }
 
-                // Stop the spinnning animation
-                props.handleUploadAnimation();
+                // Stop spinnning animation
+                // props.handleUploadAnimation();
+                setUploadAnimation(false);
+                setUploadProgress(0);
             })
             .catch((err) => {
                 console.error(err);
@@ -101,6 +127,14 @@ const UploaderComponent = (props) => {
 
     return (
         <div className="question-uploader">
+            {uploadAnimation && (
+                <div className="question-uploader__progress">
+                    <ProgressComponent value={uploadProgress} />
+                </div>
+            )}
+            {/*<div className="question-uploader__progress">
+                <ProgressComponent value={uploadProgress} />
+            </div>*/}
             <h3 className="question-uploader__title">
                 <FormattedMessage
                     id="student.upload.title"

@@ -10,29 +10,21 @@ import StudentQuestionComponent from "../../components/Student/StudentQuestionCo
 import "./StudentMainPage.css";
 
 class StudentMainPage extends Component {
-    state = {
-        isUploading: false
-    };
-
-    handleUploadAnimation = () => {
-        this.setState({
-            isUploading: !this.state.isUploading
-        });
-    };
     render() {
         let dashboard = null;
 
         if (Cookies.get("token")) {
             dashboard = (
                 <div className="dash-container">
-                    {this.state.isUploading && (
+                    {/*
+                        // Spinning animation blocking entire page
+                        // for uploading 
+                        this.state.isUploading && (
                         <div className="upload-overlay">
                             <ReactLoading color={"#8357c5"} type={"spin"} />
                         </div>
-                    )}
-                    <UploaderComponent
-                        handleUploadAnimation={this.handleUploadAnimation}
-                    />
+                    )*/}
+                    <UploaderComponent />
                     {this.props.match.params.id ? (
                         <StudentQuestionComponent
                             questionId={this.props.match.params.id}
@@ -43,12 +35,12 @@ class StudentMainPage extends Component {
                             api_path={"/api/question"}
                             title={this.props.intl.formatMessage({
                                 id: "student.questions.title",
-                                defaultMessage: "Your questions"
+                                defaultMessage: "Your questions",
                             })}
                             no_content={this.props.intl.formatMessage({
                                 id: "student.questions.no-questions",
                                 defaultMessage:
-                                    "You don't have any questions yet"
+                                    "You don't have any questions yet",
                             })}
                         />
                     )}

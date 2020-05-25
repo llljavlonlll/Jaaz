@@ -5,6 +5,18 @@
     border: 5px solid #3c4251;
     flex-grow: 1;
     box-shadow: 0 1px 6px rgb(29, 29, 29);
+    position: relative;
+}
+
+.question-uploader__progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .question-uploader__title {
