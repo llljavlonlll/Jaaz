@@ -1,0 +1,22 @@
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-modal img {
+    max-width: 100%;
+}
+
+.image-modal__close-button {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+}

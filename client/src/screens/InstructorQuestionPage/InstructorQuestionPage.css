@@ -48,3 +48,13 @@
         margin: 0 auto;
     }
 }
+
+@media (max-width: 530px) {
+    .action-box__container button {
+        padding: 1.6rem 2rem;
+    }
+
+    .action-box__container {
+        padding: 1.5rem;
+    }
+}

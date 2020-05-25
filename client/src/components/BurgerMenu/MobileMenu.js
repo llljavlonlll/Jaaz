@@ -14,12 +14,12 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 
 class NavBar extends Component {
     state = {
-        modalOpen: false
+        modalOpen: false,
     };
 
     closeModal = () => {
         this.setState({
-            modalOpen: false
+            modalOpen: false,
         });
     };
     handleMenuClose = () => {
@@ -29,7 +29,7 @@ class NavBar extends Component {
     handleLogout = () => {
         axios
             .post("/api/logout")
-            .then(res => {
+            .then((res) => {
                 if (res.status === 200) {
                     this.setState({ modalOpen: false });
                     Cookies.remove("token");
@@ -39,7 +39,7 @@ class NavBar extends Component {
                     }
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             });
     };
@@ -48,43 +48,44 @@ class NavBar extends Component {
         var styles = {
             bmBurgerButton: {
                 position: "absolute",
+                zIndex: "2",
                 width: "36px",
                 height: "30px",
                 left: "85%",
-                top: "22px"
+                top: "22px",
             },
             bmBurgerBars: {
-                background: "#a5afd7"
+                background: "#a5afd7",
             },
             bmBurgerBarsHover: {
-                background: "#a90000"
+                background: "#a90000",
             },
             bmCrossButton: {
                 height: "36px",
-                width: "36px"
+                width: "36px",
             },
             bmCross: {
-                background: "#bdc3c7"
+                background: "#bdc3c7",
             },
             bmMenuWrap: {
                 position: "fixed",
                 height: "100%",
-                width: "100%"
+                width: "100%",
             },
             bmMenu: {
                 background: "#373a47",
                 padding: "0",
                 fontSize: "1.15em",
-                overflow: "none"
+                overflow: "none",
             },
             bmMorphShape: {
-                fill: "#373a47"
+                fill: "#373a47",
             },
             bmItemList: {
                 color: "#b8b7ad",
                 paddingTop: "2em",
                 height: "100%",
-                textAlign: "center"
+                textAlign: "center",
             },
             bmItem: {
                 display: "block",
@@ -92,11 +93,11 @@ class NavBar extends Component {
                 textDecoration: "none",
                 padding: "3.6rem",
                 borderTop: "1px solid #8357c5",
-                borderBottom: "1px solid #8357c5"
+                borderBottom: "1px solid #8357c5",
             },
             bmOverlay: {
-                background: "rgba(0, 0, 0, 0.3)"
-            }
+                background: "rgba(0, 0, 0, 0.3)",
+            },
         };
 
         let menu = null;
@@ -137,7 +138,7 @@ class NavBar extends Component {
                         style={{
                             background: "none",
                             margin: "0 auto",
-                            border: "none"
+                            border: "none",
                         }}
                     >
                         <FormattedMessage
@@ -187,11 +188,11 @@ class NavBar extends Component {
                     acceptAction={this.handleLogout}
                     acceptTitle={this.props.intl.formatMessage({
                         id: "modal.logout",
-                        defaultMessage: "Log out"
+                        defaultMessage: "Log out",
                     })}
                     rejectTitle={this.props.intl.formatMessage({
                         id: "modal.cancel",
-                        defaultMessage: "Cancel"
+                        defaultMessage: "Cancel",
                     })}
                     redStyle={true}
                 />
@@ -200,9 +201,9 @@ class NavBar extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
-        isAuthorized: state.auth.isAuthorized
+        isAuthorized: state.auth.isAuthorized,
     };
 };
 

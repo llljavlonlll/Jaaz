@@ -1,3 +1,15 @@
+/*
+    props: {
+        isOpen: Boolean (Modal state) (required)
+        closeModal: function (Function that closes modal) (required)
+        acceptAction: function (Function that tells what to do on modal close) (required)
+        redStyle: Boolean (True if you want action button style to be red. default 'False')
+        acceptTitle: String (String that will show on accept button. Default: 'OK')
+        rejectTitle: String (String that will show on cancel button. Default: 'Cancel)
+    }
+
+*/
+
 import React from "react";
 import Modal from "react-modal";
 
@@ -28,13 +40,13 @@ export default function BookModalComponent(props) {
                             : styles.acceptButtonStyle
                     }
                 >
-                    {props.acceptTitle}
+                    {props.acceptTitle || "Ok"}
                 </button>
                 <button
                     onClick={props.closeModal}
                     style={styles.rejectButtonStyle}
                 >
-                    {props.rejectTitle}
+                    {props.rejectTitle || "Cancel"}
                 </button>
             </div>
         </Modal>

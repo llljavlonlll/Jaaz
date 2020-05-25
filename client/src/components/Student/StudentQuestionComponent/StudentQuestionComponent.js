@@ -8,6 +8,7 @@ import moment from "moment";
 import "./StudentQuestionComponent.css";
 // import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
 import RatingComponent from "../RatingComponent/RatingComponent";
+import ImageMagnifyingComponent from "../../ImageMagnifyingComponent/ImageMagnifyingComponent";
 // import ChatComponent from "../../ChatComponent/ChatComponent";
 
 const BackButton = () => {
@@ -24,6 +25,10 @@ const BackButton = () => {
 export default function StudentQuestionComponent(props) {
     const [question, setQuestion] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [imageModalToggle, setImageModalToggle] = useState({
+        isModalOpen: false,
+        src: "",
+    });
 
     useEffect(() => {
         const fetchQuestion = async () => {
@@ -35,6 +40,13 @@ export default function StudentQuestionComponent(props) {
         };
         fetchQuestion();
     }, [props.questionId]);
+
+    const handleImageModalClose = () => {
+        setImageModalToggle({
+            isModalOpen: false,
+            src: "",
+        });
+    };
 
     // const assignChat = (chatId) =>
     //     setQuestion((prevState) => {
@@ -103,7 +115,14 @@ export default function StudentQuestionComponent(props) {
             <React.Fragment>
                 <div className="student-question__content__item">
                     <a
-                        href={`/images/solutions/${question.solution[0].image}`}
+                        href="/#"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setImageModalToggle({
+                                isModalOpen: true,
+                                src: `/images/solutions/${question.solution[0].image}`,
+                            });
+                        }}
                         className="student-question__content__item__image-container"
                     >
                         <img
@@ -200,6 +219,11 @@ export default function StudentQuestionComponent(props) {
 
     return (
         <div className="student-question">
+            <ImageMagnifyingComponent
+                modalState={imageModalToggle.isModalOpen}
+                url={imageModalToggle.src}
+                closeModal={handleImageModalClose}
+            />
             <div className="student-question__title">
                 <BackButton />
                 <p style={statusStyle}>{question.status}</p>
@@ -207,7 +231,15 @@ export default function StudentQuestionComponent(props) {
             <div className="student-question__content">
                 <div className="student-question__content__item">
                     <a
-                        href={`/images/questions/${question.image_name}`}
+                        // href={`/images/questions/${question.image_name}`}
+                        href="/#"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setImageModalToggle({
+                                isModalOpen: true,
+                                src: `/images/questions/${question.image_name}`,
+                            });
+                        }}
                         className="student-question__content__item__image-container"
                     >
                         <img
