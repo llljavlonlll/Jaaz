@@ -28,6 +28,7 @@ router.post("/book/:id", auth, async (req, res) => {
 
         await question.save();
 
+        // Release the question if not completed in 20 mins
         setTimeout(async () => {
             const question = await Question.findById(req.params.id);
             if (question.status === "Booked") {
