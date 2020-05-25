@@ -62,12 +62,15 @@ router.post(
             // Get all users
             const users = await User.find({ category: "instructor" });
 
-            // Sending message to all subscribed users
+            // Sending message to all subscribed instructors
             for (let i = 0; i < users.length; i++) {
-                if (users[i].subscription) {
-                    // console.log("Sending notification");
+                // Check if a user has any subscriptions
+                if (users[i].subscriptions.length === 0) break;
+
+                // Send push messages to each subscribed device of the user
+                for (let j = 0; j < users[i].subscriptions.length; j++) {
                     webpush
-                        .sendNotification(users[i].subscription)
+                        .sendNotification(users[i].subscriptions[j])
                         .catch((error) => {
                             console.log(
                                 "[Push notifications]: " + error.message

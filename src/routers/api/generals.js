@@ -163,6 +163,7 @@ router.post("/login", async (req, res) => {
             balance: user.balance,
             isVerified: user.isVerified,
             uid: user.uid,
+            subscriptions: user.subscriptions,
         });
     } catch (err) {
         res.status(400).send({ err: err.message });
@@ -208,6 +209,7 @@ router.get("/checkToken", auth, (req, res) => {
         email: req.user.email,
         category: req.user.category,
         uid: req.user.uid,
+        subscriptions: req.user.subscriptions,
     });
 });
 

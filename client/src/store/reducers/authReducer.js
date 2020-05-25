@@ -18,6 +18,7 @@ let initialState = {
         balance: 0,
         uid: null,
         isVerified: false,
+        subscriptions: [],
     },
 };
 

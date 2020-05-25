@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import imageCompression from "browser-image-compression";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
 
@@ -10,10 +11,11 @@ import "./UploaderComponent.css";
 
 const UploaderComponent = (props) => {
     const [filePreview, setFilePreview] = useState(undefined);
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState(undefined);
     const [inputKey, setInputKey] = useState(Date.now());
     const [description, setDescription] = useState("");
     const [subject, setSubject] = useState("Math");
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     const balance = useSelector((state) => state.auth.userData.balance);
 
@@ -21,9 +23,22 @@ const UploaderComponent = (props) => {
     const intl = useIntl();
 
     const handleInputChange = (event) => {
-        if (event.target.files[0]) {
-            setFilePreview(URL.createObjectURL(event.target.files[0]));
-            setFile(event.target.files[0]);
+        const imageFile = event.target.files[0];
+        console.log(imageFile);
+        if (imageFile) {
+            setFilePreview(URL.createObjectURL(imageFile));
+
+            // Decrease image size
+            imageCompression(imageFile, {
+                maxSizeMB: 1,
+            })
+                .then((compressedImage) => {
+                    // Turn compressed image blob to actual image file
+                    setFile(new File([compressedImage], imageFile.name));
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
         } else {
             setFilePreview(undefined);
             setFile("");
@@ -48,6 +63,12 @@ const UploaderComponent = (props) => {
         const config = {
             headers: {
                 "content-type": "multipart/form-data",
+            },
+            // Track the progress of uploading image
+            onUploadProgress: function (progressEvent) {
+                setUploadProgress(
+                    ((progressEvent.loaded / file.size) * 100).toFixed(0)
+                );
             },
         };
 

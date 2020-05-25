@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 // MaterialUI components
 import { withStyles } from "@material-ui/core/styles";
@@ -33,6 +34,10 @@ export default function NotificationSwitch() {
     const [notifState, setNotifState] = useState(false);
     const [disabled, setDisabled] = useState(false);
 
+    const subscriptions = useSelector(
+        (state) => state.auth.userData.subscriptions
+    );
+
     useEffect(() => {
         if ("serviceWorker" in navigator && "PushManager" in window) {
             navigator.serviceWorker.ready.then((swRegistration) => {
@@ -40,7 +45,7 @@ export default function NotificationSwitch() {
                     .getSubscription()
                     .then((subscription) => {
                         if (subscription) {
-                            setNotifState(true);
+                            if (subscriptions.length > 0) setNotifState(true);
                         } else {
                             setNotifState(false);
                         }

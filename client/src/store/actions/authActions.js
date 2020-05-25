@@ -38,6 +38,7 @@ export const loadUser = () => {
                 category: response.data.category,
                 balance: response.data.balance,
                 uid: response.data.uid,
+                subscriptions: response.data.subscriptions,
             },
         });
     };

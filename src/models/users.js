@@ -16,7 +16,10 @@ const userSchema = mongoose.Schema({
     },
     activationHash: String,
     emailVerHash: String,
-    subscription: Object,
+    subscriptions: {
+        type: Array,
+        default: [],
+    },
     category: {
         type: String,
         required: true,
