@@ -3,7 +3,7 @@ import axios from "axios";
 import imageCompression from "browser-image-compression";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedHTMLMessage, FormattedMessage, useIntl } from "react-intl";
-
+import { MdClear } from "react-icons/md";
 import { addQuestion } from "../../../store/actions/questionsActions";
 import { updateBalance } from "../../../store/actions/authActions";
 
@@ -18,7 +18,9 @@ const UploaderComponent = (props) => {
     const [description, setDescription] = useState("");
     const [subject, setSubject] = useState("Math");
     const [uploadProgress, setUploadProgress] = useState(0);
+    const [compressionProgress, setCompressionProgress] = useState(0);
     const [uploadAnimation, setUploadAnimation] = useState(false);
+    const [compressionLoading, setCompressionLoading] = useState(false);
 
     // useEffect(() => {
     //     const increaseUpload = () => {
@@ -33,26 +35,60 @@ const UploaderComponent = (props) => {
     const dispatch = useDispatch();
     const intl = useIntl();
 
+    const clearImage = () => {
+        setFile(undefined);
+        setFilePreview(undefined);
+    };
+
     const handleInputChange = (event) => {
         const imageFile = event.target.files[0];
         console.log(imageFile);
-        if (imageFile) {
-            setFilePreview(URL.createObjectURL(imageFile));
+
+        if (!imageFile) {
+            setFilePreview(undefined);
+            setFile("");
+            return;
+        }
+
+        if (imageFile && imageFile.size > 1000000) {
+            // Reset compression progress
+            setCompressionProgress(0);
+            setCompressionLoading(true);
+            setFile(imageFile);
 
             // Decrease image size
             imageCompression(imageFile, {
                 maxSizeMB: 1,
+                onProgress: function (progress) {
+                    setCompressionProgress((prevState) => {
+                        if (prevState < progress) {
+                            return progress;
+                        }
+
+                        return prevState;
+                    });
+                },
             })
                 .then((compressedImage) => {
                     // Turn compressed image blob to actual image file
-                    setFile(new File([compressedImage], imageFile.name));
+                    const file = new File([compressedImage], imageFile.name);
+
+                    // Setting preview and file states
+                    setFilePreview(URL.createObjectURL(file));
+                    setFile(file);
+                    setCompressionLoading(false);
+                    document
+                        .getElementById("question-uploader")
+                        .scrollIntoView({
+                            behavior: "smooth",
+                        });
                 })
                 .catch((error) => {
                     console.log(error.message);
                 });
         } else {
-            setFilePreview(undefined);
-            setFile("");
+            setFilePreview(URL.createObjectURL(imageFile));
+            setFile(imageFile);
         }
     };
 
@@ -126,7 +162,7 @@ const UploaderComponent = (props) => {
     };
 
     return (
-        <div className="question-uploader">
+        <div className="question-uploader" id="question-uploader">
             {uploadAnimation && (
                 <div className="question-uploader__progress">
                     <ProgressComponent value={uploadProgress} />
@@ -141,7 +177,7 @@ const UploaderComponent = (props) => {
                     defaultMessage="Upload your question"
                 />
             </h3>
-            <form onSubmit={onSubmit}>
+            <form id="upload-form" onSubmit={onSubmit}>
                 <div className="question-uploader__container">
                     <div className="question-uploader__input">
                         <label htmlFor="description">
@@ -210,15 +246,31 @@ const UploaderComponent = (props) => {
                         </select>
                     </div>
                     <div className="image-preview">
-                        <input
-                            required
-                            type="file"
-                            onChange={handleInputChange}
-                            name="question"
-                            key={inputKey}
-                        />
+                        {!file && (
+                            <input
+                                required
+                                type="file"
+                                onChange={handleInputChange}
+                                name="question"
+                                key={inputKey}
+                                id="upload-image"
+                            />
+                        )}
+                        {compressionLoading && (
+                            <div className="image-preview__compression">
+                                <ProgressComponent
+                                    value={compressionProgress}
+                                />
+                            </div>
+                        )}
                         {filePreview && (
                             <div className="image-preview__image-container">
+                                <div
+                                    className="image-preview__clear-image"
+                                    onClick={clearImage}
+                                >
+                                    <MdClear color="white" size="1.2em" />
+                                </div>
                                 <img
                                     src={filePreview}
                                     alt="Uploaded question"
@@ -226,7 +278,6 @@ const UploaderComponent = (props) => {
                             </div>
                         )}
                     </div>
-
                     {balance === 0 ? (
                         <button
                             disabled
@@ -238,7 +289,12 @@ const UploaderComponent = (props) => {
                             />
                         </button>
                     ) : (
-                        <button className="question-uploader__container__button">
+                        <button
+                            className={`question-uploader__container__button${
+                                compressionLoading ? " disabled" : ""
+                            }`}
+                            disabled={compressionLoading}
+                        >
                             <FormattedMessage
                                 id="student.upload.button.active"
                                 defaultMessage="Upload Question"

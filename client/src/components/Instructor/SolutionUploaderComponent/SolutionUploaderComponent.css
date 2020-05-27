@@ -116,12 +116,12 @@
 
 @media (max-width: 530px) {
     .image-preview {
-        padding: 1rem;
+        /* padding: 1rem; */
     }
 
     .image-preview img {
-        margin-top: 1rem;
-        max-width: 17.5rem;
+        /* margin-top: 1rem; */
+        /* max-width: 17.5rem; */
     }
 
     .sol-uploader__thumbnail__text {
