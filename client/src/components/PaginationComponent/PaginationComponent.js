@@ -1,18 +1,37 @@
 import React from "react";
 import "./PaginationComponent.css";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
+
+const calcDisplayNums = (pageNumbers, currentPage) => {
+    if (pageNumbers.length <= 5) return pageNumbers;
+
+    if (currentPage < 3) return [1, 2, 3, 4, 5];
+
+    if (currentPage > pageNumbers[pageNumbers.length - 3])
+        return pageNumbers.slice(pageNumbers.length - 5);
+
+    return [
+        currentPage - 2,
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        currentPage + 2,
+    ];
+};
 
 const PaginationComponent = ({
     totalQuesitons,
     questionsPerPage,
     changePage,
-    currentPage
+    currentPage,
 }) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalQuesitons / questionsPerPage); i++) {
         pageNumbers.push(i);
     }
+
+    const displayNumbers = calcDisplayNums(pageNumbers, currentPage);
 
     return (
         <div className="pagination">
@@ -25,9 +44,9 @@ const PaginationComponent = ({
                 }}
             >
                 &#60;{" "}
-                <FormattedMessage id="pagination.prev" defaultMessage="Prev" />
+                {/*<FormattedMessage id="pagination.prev" defaultMessage="Prev" />*/}
             </button>
-            {pageNumbers.map(num => (
+            {displayNumbers.map((num) => (
                 <button
                     key={num}
                     onClick={() => changePage(num)}
@@ -48,7 +67,7 @@ const PaginationComponent = ({
                     }
                 }}
             >
-                <FormattedMessage id="pagination.next" defaultMessage="Next" />{" "}
+                {/*<FormattedMessage id="pagination.next" defaultMessage="Next" />{" "}*/}
                 &#62;
             </button>
         </div>
