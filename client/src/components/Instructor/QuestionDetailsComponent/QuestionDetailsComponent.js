@@ -1,13 +1,31 @@
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { FormattedMessage } from "react-intl";
+
+import ImageMagnifyingComponent from "../../ImageMagnifyingComponent/ImageMagnifyingComponent";
 
 import "./QuestionDetailsComponent.css";
 // import ChatComponent from "../../ChatComponent/ChatComponent";
 
 export default function QuestionDetailsComponent(props) {
+    const [imageModalToggle, setImageModalToggle] = useState({
+        isModalOpen: false,
+        src: "",
+    });
+
+    const handleImageModalClose = () => {
+        setImageModalToggle({
+            isModalOpen: false,
+            src: "",
+        });
+    };
     return (
         <div className="question-details__container">
+            <ImageMagnifyingComponent
+                modalState={imageModalToggle.isModalOpen}
+                url={imageModalToggle.src}
+                closeModal={handleImageModalClose}
+            />
             {/*props.chat && (
                 <div className="question-details__chat">
 
@@ -26,7 +44,16 @@ export default function QuestionDetailsComponent(props) {
                     style={{ borderBottom: "1px solid #a5afd74f" }}
                 >
                     <div className="question__img">
-                        <a href={`/images/questions/${props.image_name}`}>
+                        <a
+                            href="/#"
+                            onClick={(event) => {
+                                event.preventDefault();
+                                setImageModalToggle({
+                                    isModalOpen: true,
+                                    src: `/images/questions/${props.image_name}`,
+                                });
+                            }}
+                        >
                             <img
                                 src={`/images/questions/thumbnails/${props.image_name}`}
                                 alt="Question"
@@ -46,7 +73,14 @@ export default function QuestionDetailsComponent(props) {
                     <div className="question__container">
                         <div className="question__img">
                             <a
-                                href={`/images/solutions/${props.solution[0].image}`}
+                                href="/#"
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    setImageModalToggle({
+                                        isModalOpen: true,
+                                        src: `/images/solutions/${props.solution[0].image}`,
+                                    });
+                                }}
                             >
                                 <img
                                     src={`/images/solutions/thumbnails/${props.solution[0].image}`}
