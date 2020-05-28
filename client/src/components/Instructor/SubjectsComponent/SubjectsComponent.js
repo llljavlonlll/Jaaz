@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useIntl } from "react-intl";
 import axios from "axios";
+import ReactLoading from "react-loading";
 
 import { setSelectedSubject } from "../../../store/actions/instructorActions";
-import "./SubjectsComponent.css";
 import { FormattedMessage } from "react-intl";
+
+import "./SubjectsComponent.css";
 
 const SubjectsComponent = (props) => {
     const [subjectCount, setSubjectCount] = useState({});
+    const [questCountLoading, setQuestCountLoading] = useState(true);
 
     const dispatch = useDispatch();
     const intl = useIntl();
@@ -18,9 +21,11 @@ const SubjectsComponent = (props) => {
             .get("/api/pending/count")
             .then((res) => {
                 setSubjectCount(res.data);
+                setQuestCountLoading(false);
             })
             .catch((err) => {
                 console.log(err);
+                setQuestCountLoading(false);
             });
     }, []);
 
@@ -29,7 +34,17 @@ const SubjectsComponent = (props) => {
             <li onClick={() => dispatch(setSelectedSubject(subject))}>
                 <div className="subject-tile">
                     <div className="subject-tile__notification">
-                        {subjectCount[subject] || 0}
+                        {questCountLoading ? (
+                            <ReactLoading
+                                color="white"
+                                type="spin"
+                                width="1.6rem"
+                                height="1.6rem"
+                                className="spinner"
+                            />
+                        ) : (
+                            subjectCount[subject] || 0
+                        )}
                     </div>
                     <div className="subject-tile__title">{title}</div>
                 </div>
