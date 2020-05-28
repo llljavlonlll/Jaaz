@@ -28,7 +28,7 @@ export default function ImageMagnifyingComponent(props) {
             >
                 <MdClose size="1.5em" />
             </div>
-            <img src={props.url} />
+            <img src={props.url} alt="Magnified question or solution" />
         </div>
     );
 }
