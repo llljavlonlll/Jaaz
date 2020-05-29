@@ -3,7 +3,7 @@ const router = new express.Router();
 const auth = require("../../../middleware/auth");
 const Question = require("../../../models/questions");
 
-// Get list of available questions
+// Get all pending questions
 // GET /api/pending
 // Query Params: subject=English uploaded_at=asc
 router.get("/", auth, async (req, res) => {
@@ -30,7 +30,8 @@ router.get("/", auth, async (req, res) => {
 
     try {
         const questions = await Question.find(query, null, {
-            sort: { uploaded_at: uploadedAtAscDesc || 1 },
+            // sort: { uploaded_at: uploadedAtAscDesc || 1 },
+            sort: { uploaded_at: -1 },
         });
 
         // if (questions.length === 0) {
