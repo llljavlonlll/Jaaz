@@ -27,7 +27,7 @@ const AvailableQuestionsComponent = (props) => {
 
     // Fetch questions from database on initial render
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchQuestions = async () => {
             try {
                 const { data } = await axios.get("/api/pending");
                 dispatch(loadQuestions(data));
@@ -39,7 +39,7 @@ const AvailableQuestionsComponent = (props) => {
             }
         };
 
-        fetchPosts();
+        fetchQuestions();
     }, [dispatch, props.api_path, props.subject]);
 
     // Grab questions from redux store
