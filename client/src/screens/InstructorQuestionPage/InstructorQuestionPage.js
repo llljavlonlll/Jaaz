@@ -177,7 +177,7 @@ class QuestionPage extends Component {
                                         marginTop: 0,
                                         background: "#8357c5",
                                         borderBottom: "0.3rem solid #66439b",
-                                        width: "40%",
+                                        minWidth: "40%",
                                     }}
                                     onClick={this.openBookModal}
                                 >
@@ -191,7 +191,7 @@ class QuestionPage extends Component {
                                         marginTop: 0,
                                         background: "#963f3f",
                                         borderBottom: "0.3rem solid #6b2c2c",
-                                        width: "40%",
+                                        minWidth: "40%",
                                     }}
                                     onClick={this.openRejectModal}
                                 >

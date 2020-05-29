@@ -51,10 +51,11 @@
 
 @media (max-width: 530px) {
     .action-box__container button {
-        padding: 1.6rem 2rem;
+        padding: 1.6rem 1.6rem;
+        width: auto;
     }
 
     .action-box__container {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 }
