@@ -54,8 +54,21 @@ router.post("/unbook/:id", auth, async (req, res) => {
     try {
         const question = await Question.findById(req.params.id);
 
+        // If no question return err
         if (!question) {
             return res.status(404).send({ msg: "Question not found!" });
+        }
+
+        // If quesiton not booked return err
+        if (!question.booked_by) {
+            return res.status(400).send({ msg: "Question already unbooked" });
+        }
+
+        // If question is booked by different user return err
+        if (!question.booked_by.equals(req.user._id)) {
+            return res
+                .status(400)
+                .send({ msg: "Question booked by different user" });
         }
 
         question.booked_by = undefined;
@@ -63,7 +76,6 @@ router.post("/unbook/:id", auth, async (req, res) => {
         question.status = "Pending";
 
         await question.save();
-
         res.send({ status: question.status });
     } catch (err) {
         res.status(400).send({ msg: err.message });
@@ -136,7 +148,7 @@ router.post(
 
             // Make a thumbnail
             await sharp(req.file.path)
-                .resize({ width: 200 })
+                .resize({ width: 300 })
                 .png({ quality: 80 })
                 .jpeg({ quality: 80 })
                 .toFile(
