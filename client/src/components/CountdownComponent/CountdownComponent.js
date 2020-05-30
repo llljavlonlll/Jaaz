@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 
 import "./CountdownComponent.css";
+import Axios from "axios";
 
 export default function CountdownComponent(props) {
     const convertToMinutes = (seconds) => {
@@ -22,7 +23,9 @@ export default function CountdownComponent(props) {
 
     useEffect(() => {
         if (props.booking_time + 1200000 <= Date.now()) {
-            window.location.reload(true);
+            Axios.post(`/api/solution/unbook/${props.question_id}`)
+                .then((res) => window.location.reload(true))
+                .catch((err) => window.location.reload(true));
         }
         setTimeout(() => {
             setTimeLeft(calculateTimeLeft(props.booking_time));
