@@ -6,9 +6,9 @@ import { FormattedMessage, injectIntl } from "react-intl";
 import QuestionDetailsComponent from "../../components/Instructor/QuestionDetailsComponent/QuestionDetailsComponent";
 import SolutionUploader from "../../components/Instructor/SolutionUploaderComponent/SolutionUploaderComponent";
 import ModalComponent from "../../components/ModalComponent/ModalComponent";
+import CountdownComponent from "../../components/CountdownComponent/CountdownComponent";
 
 import "./InstructorQuestionPage.css";
-import CountdownComponent from "../../components/CountdownComponent/CountdownComponent";
 
 class QuestionPage extends Component {
     _isMounted = false;
@@ -164,12 +164,12 @@ class QuestionPage extends Component {
                 )}
                 {this.state.status === "Pending" ? (
                     <div className="action-box">
-                        <h3 className="action-box__title">
+                        {/*<h3 className="action-box__title">
                             <FormattedMessage
                                 id="teacher.action.title"
                                 defaultMessage="Action"
                             />
-                        </h3>
+                </h3>*/}
                         <div className="action-box__container">
                             <React.Fragment>
                                 <button
@@ -232,11 +232,6 @@ class QuestionPage extends Component {
                     </div>
                 ) : null}
 
-                {/* Countdown component */}
-                {this.state.status === "Booked" && (
-                    <CountdownComponent booking_time={this.state.booked_at} />
-                )}
-
                 <QuestionDetailsComponent {...this.state} />
 
                 {this.state.status === "Booked" ? (
@@ -250,19 +245,29 @@ class QuestionPage extends Component {
                             handleUploadAnimation={this.handleUploadAnimation}
                             handleReceiveSolution={this.handleReceiveSolution}
                         />
-                        <div className="action-box">
-                            <h3 className="action-box__title">
+                        <div className="action-box cancel-booking">
+                            {/*<h3 className="action-box__title">
                                 <FormattedMessage
                                     id="teacher.action.title"
                                     defaultMessage="Action"
                                 />
-                            </h3>
+                </h3>*/}
+
+                            {/* Countdown component */}
+                            {this.state.status === "Booked" && (
+                                <CountdownComponent
+                                    booking_time={this.state.booked_at}
+                                    question_id={this.props.match.params.id}
+                                />
+                            )}
                             <div className="action-box__container">
                                 <button
                                     style={{
                                         marginTop: 0,
-                                        background: "#963f3f",
-                                        borderBottom: "0.3rem solid #6b2c2c",
+                                        background: "transparent",
+                                        borderBottom: "0.1rem solid #c87878",
+                                        color: "#c87878",
+                                        padding: 0,
                                     }}
                                     onClick={this.openUnbookModal}
                                 >
