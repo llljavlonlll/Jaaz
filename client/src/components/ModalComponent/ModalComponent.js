@@ -24,6 +24,7 @@ export default function BookModalComponent(props) {
             onRequestClose={props.closeModal}
             style={styles.modalStyle}
             contentLabel="Example Modal"
+            shouldCloseOnEsc={true}
         >
             <h2 style={styles.modalTitleStyle}>
                 <FormattedMessage
