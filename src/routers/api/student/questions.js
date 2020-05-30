@@ -33,8 +33,9 @@ router.post(
                     path.resolve(req.file.destination, "..", req.file.filename)
                 );
 
+            // Create a thumbnail
             await sharp(req.file.path)
-                .resize({ width: 200 })
+                .resize({ width: 300 })
                 .png({ quality: 80 })
                 .jpeg({ quality: 80 })
                 .toFile(
