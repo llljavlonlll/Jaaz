@@ -127,7 +127,7 @@ export default function StudentQuestionComponent(props) {
                     >
                         <img
                             className="student-question__content__item__image"
-                            src={`/images/solutions/${question.solution[0].image}`}
+                            src={`/images/solutions/thumbnails/${question.solution[0].image}`}
                             alt="Question"
                         />
                     </a>
@@ -244,7 +244,7 @@ export default function StudentQuestionComponent(props) {
                     >
                         <img
                             className="student-question__content__item__image"
-                            src={`/images/questions/${question.image_name}`}
+                            src={`/images/questions/thumbnails/${question.image_name}`}
                             alt="Solution"
                         />
                     </a>
