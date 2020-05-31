@@ -26,6 +26,7 @@ export default function CountdownComponent(props) {
             Axios.post(`/api/solution/unbook/${props.question_id}`)
                 .then((res) => window.location.reload(true))
                 .catch((err) => window.location.reload(true));
+            return;
         }
         setTimeout(() => {
             setTimeLeft(calculateTimeLeft(props.booking_time));
