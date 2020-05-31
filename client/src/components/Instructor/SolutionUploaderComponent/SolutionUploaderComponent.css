@@ -75,7 +75,6 @@
 
 .sol-uploader__image-preview input {
     padding: 5rem;
-    z-index: 1;
     opacity: 0;
     cursor: pointer;
 }
@@ -94,6 +93,7 @@
 }
 
 .sol-uploader__thumbnail {
+    pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: center;
