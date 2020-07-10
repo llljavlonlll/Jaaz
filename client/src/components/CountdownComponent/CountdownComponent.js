@@ -31,7 +31,7 @@ export default function CountdownComponent(props) {
         setTimeout(() => {
             setTimeLeft(calculateTimeLeft(props.booking_time));
         }, 1000);
-    }, [timeLeft, calculateTimeLeft, props.booking_time]);
+    }, [timeLeft, calculateTimeLeft, props.booking_time, props.question_id]);
 
     return (
         <div className="countdown">

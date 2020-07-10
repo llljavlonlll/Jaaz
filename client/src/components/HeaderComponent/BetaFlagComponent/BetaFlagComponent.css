@@ -1,0 +1,11 @@
+.beta {
+    position: absolute;
+    font-size: 0.7rem;
+    left: 4.3rem;
+    top: -0.4rem;
+}
+
+.beta__text {
+    background-color: #8357c5;
+    padding: 0.1rem 0.3rem;
+}

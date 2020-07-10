@@ -12,6 +12,7 @@ import { userLogout } from "../../store/actions/authActions";
 import ModalComponent from "../ModalComponent/ModalComponent";
 
 import "./HeaderComponent.css";
+import BetaFlagComponent from "./BetaFlagComponent/BetaFlagComponent";
 
 const HeaderComponent = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -146,6 +147,7 @@ const HeaderComponent = (props) => {
                         }}
                     >
                         <h3 className="navbar__title">
+                            <BetaFlagComponent />
                             Jaaz{" "}
                             <span className="navbar__title__slogan">
                                 <FormattedMessage

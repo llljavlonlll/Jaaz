@@ -10,6 +10,7 @@
     margin: 0;
     font-size: 3rem;
     cursor: pointer;
+    position: relative;
 }
 
 .navbar__title__slogan {
