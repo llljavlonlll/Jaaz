@@ -25,6 +25,8 @@ touch .env
 JWT_SECRET
 DB_STRING
 SERVER_HOST (Backend location)
+PUBLIC_VAPID_KEY (For notifications)
+PRIVATE_VAPID_KEY
 ```
 
 ### Add keys for email transporter
@@ -32,6 +34,7 @@ SERVER_HOST (Backend location)
 ```
 cd src/routers/api
 mkdir keys
+cd keys
 touch email-transporter-keys.js
 ```
 
