@@ -29,7 +29,7 @@ const BookedQuestionsList = props => {
             });
     }, [props.apiPath]);
 
-    // Get posts to display on current page
+    // Get questions to display on current page
     const indexOfLastQuestion = currentPage * questionsPerPage;
     const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
     const currentQuestions = questions.slice(

@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import ImageMagnifyingComponent from "../../ImageMagnifyingComponent/ImageMagnifyingComponent";
 
 import "./QuestionDetailsComponent.css";
-// import ChatComponent from "../../ChatComponent/ChatComponent";
+import ChatComponent from "../../ChatComponent/ChatComponent";
 
 export default function QuestionDetailsComponent(props) {
     const [imageModalToggle, setImageModalToggle] = useState({
@@ -26,12 +26,12 @@ export default function QuestionDetailsComponent(props) {
                 url={imageModalToggle.src}
                 closeModal={handleImageModalClose}
             />
-            {/*props.chat && (
+            {props.chat && (
                 <div className="question-details__chat">
 
                     <ChatComponent chatId={props.chat} />
                 </div>
-            )*/}
+            )}
             <div className="question-details">
                 <h3 className="question-details__title">
                     <FormattedMessage

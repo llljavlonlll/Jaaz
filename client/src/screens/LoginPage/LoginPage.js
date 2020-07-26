@@ -40,7 +40,7 @@ class LoginPage extends Component {
             .catch((err) => {
                 this.setState({
                     isLoading: false,
-                    error: err.response.data.err,
+                    error: err.response.data.err || "",
                     password: "",
                 });
             });

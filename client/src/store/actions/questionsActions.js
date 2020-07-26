@@ -29,6 +29,15 @@ export const loadQuestions = (questions = []) => {
                 };
             }
         });
+
+        for(let i = 0; i < modifiedQuestions.length; i++) {
+            if(modifiedQuestions[i].hasNewMessage) {
+                modifiedQuestions.unshift(modifiedQuestions.splice(i,1)[0])
+                
+
+            }
+        }
+
         dispatch({
             type: LOAD_QUESTIONS,
             questions: modifiedQuestions,

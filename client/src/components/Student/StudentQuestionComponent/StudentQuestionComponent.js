@@ -6,10 +6,10 @@ import axios from "axios";
 import moment from "moment";
 
 import "./StudentQuestionComponent.css";
-// import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
+import ChatButtonComponent from "../ChatButtonComponent/ChatButtonComponent";
 import RatingComponent from "../RatingComponent/RatingComponent";
 import ImageMagnifyingComponent from "../../ImageMagnifyingComponent/ImageMagnifyingComponent";
-// import ChatComponent from "../../ChatComponent/ChatComponent";
+import ChatComponent from "../../ChatComponent/ChatComponent";
 
 const BackButton = () => {
     return (
@@ -48,13 +48,13 @@ export default function StudentQuestionComponent(props) {
         });
     };
 
-    // const assignChat = (chatId) =>
-    //     setQuestion((prevState) => {
-    //         return {
-    //             ...prevState,
-    //             chat: chatId,
-    //         };
-    //     });
+    const assignChat = (chatId) =>
+        setQuestion((prevState) => {
+            return {
+                ...prevState,
+                chat: chatId,
+            };
+        });
 
     if (isLoading) {
         return (
@@ -166,8 +166,8 @@ export default function StudentQuestionComponent(props) {
                     rating={question.solution[0].rating}
                     questionId={question._id}
                 />
-                {/*Chat component (disabled)*/}
-                {/*<div
+                
+                <div
                     style={{
                         borderBottom: "1px solid #a5afd75d",
                         margin: "2.5rem 0"
@@ -178,7 +178,7 @@ export default function StudentQuestionComponent(props) {
                     questionId={question._id}
                     assignChat={assignChat}
                 />
-                <ChatComponent chatId={question.chat} />*/}
+                <ChatComponent chatId={question.chat} />
             </React.Fragment>
         );
     } else {
