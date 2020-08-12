@@ -28,7 +28,7 @@ export default function AdminQuestionPage() {
             <div>Owner: {question.owner}</div>
             <div>Image URL: {question.image_name}</div>
             <div>Upload time: {question.uploaded_at}</div>
-            <img src={`/images/questions/${question._id}`}/>
+            <img src={`/images/questions/${question.image_name}`}/>
             </div>)}
         </div>
     )
