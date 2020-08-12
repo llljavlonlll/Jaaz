@@ -66,9 +66,9 @@ router.post("/password_reset", async (req, res) => {
         await user.save();
 
         // Send email with a link + token to create a new password
-        const pass_reset_url = `http://www.jbtruckers.com/password_reset/${hash}`;
+        const pass_reset_url = `http://www.jaaz.uz/password_reset/${hash}`;
         const mailOptions = {
-            from: "no-reply@jbtruckers.com",
+            from: "no-reply@jaaz.uz",
             to: email,
             subject: "Jaaz | Password Reset",
             html: `<p>To reset your password go here: </p><br>${pass_reset_url}`,
@@ -113,7 +113,7 @@ router.post("/sign-up", async (req, res) => {
         });
 
         const hash = user.activationHash;
-        const verificationUrl = `http://www.jbtruckers.com/verify/${hash}`;
+        const verificationUrl = `http://www.jaaz.uz/verify/${hash}`;
         const html = `<h2>Thanks for signing up for Jaaz.uz! Please click the link below to confirm your email address.</h2>
                         <br>
                         <h1 style="background-color: purple; display: inline-block; padding: 5px;">
@@ -126,7 +126,7 @@ router.post("/sign-up", async (req, res) => {
                         <br>
                         ${verificationUrl}`;
         const mailOptions = {
-            from: "no-reply@jbtruckers.com",
+            from: "no-reply@jaaz.uz",
             to: req.body.email,
             subject: "Jaaz.uz | Email verification",
             html,
@@ -136,9 +136,11 @@ router.post("/sign-up", async (req, res) => {
             .sendMail(mailOptions)
             .then((info) => {
                 console.log(info.response);
+                console.log("Email sent to " + req.body.email)
             })
             .catch((err) => {
                 console.log(err);
+                console.log("Error sending email generals.js")
             });
     } catch (err) {
         res.status(400).send({ err });

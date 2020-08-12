@@ -39,6 +39,7 @@ export const loadUser = () => {
                 balance: response.data.balance,
                 uid: response.data.uid,
                 subscriptions: response.data.subscriptions,
+                isVerified: response.data.isVerified
             },
         });
     };
