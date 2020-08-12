@@ -28,6 +28,7 @@ import InstructorMainPage from "./screens/InstructorMainPage/InstructorMainPage"
 import InstructorQuestion from "./screens/InstructorQuestionPage/InstructorQuestionPage";
 import NewPassword from "./screens/NewPasswordPage/NewPassword";
 import AdminMainPage from "./screens/AdminMainPage/AdminMainPage";
+import AdminQuestionPage from "./screens/AdminQuestionPage/AdminQuestionPage";
 
 // Integrate Redux
 import { connect } from "react-redux";
@@ -116,6 +117,7 @@ class App extends Component {
                         component={ForgotPasswordPage}
                     />
                     <Route path="/password_reset/:id" component={NewPassword} />
+                    <Route path="/question/:id" component={AdminQuestionPage}/>
                     <Route path="/*" component={NotFoundPage} />
                 </Switch>
             );

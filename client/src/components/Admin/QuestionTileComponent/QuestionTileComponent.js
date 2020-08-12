@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useIntl } from "react-intl";
-import Axios from "axios";
 import moment from "moment";
-import { MdDeleteForever } from "react-icons/md";
+import Axios from "axios";
 
 import ModalComponent from "../../ModalComponent/ModalComponent";
+
+import { MdDeleteForever } from "react-icons/md";
 import "./QuestionTileComponent.css";
 
 const QuestionTileComponent = (props) => {
     const [modalOpen, setModalOpen] = useState(false);
+
+    const history = useHistory();
 
     const intl = useIntl();
 
@@ -24,8 +28,12 @@ const QuestionTileComponent = (props) => {
             setModalOpen(false);
         });
     };
+
+    const goToQuestionPage = () => {
+        history.push(`/question/${_id}`)
+    }
     return (
-        <tr className="admin-question-tile">
+        <tr className="admin-question-tile" onClick={goToQuestionPage}>
             <td>{qid}</td>
             <td>{description ? description : "--"}</td>
             <td>{subject}</td>
