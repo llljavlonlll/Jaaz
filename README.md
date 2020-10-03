@@ -31,34 +31,6 @@ EMAIL_USERNAME
 EMAIL_PASSWORD
 ```
 
-### Add keys for email transporter
-
-```
-cd src/routers/api
-mkdir keys
-cd keys
-touch email-transporter-keys.js
-```
-
-### Add following object to email transporter
-
-```
-{
-    service: "gmail",
-    auth: {
-        user: "example@gmail.com",
-        pass: "12345"
-    }
-}
-```
-
-### Create following folders in root dir
-
-```
-mkdir questions && mkdir questions/raw
-mkdir solutions && mkdir solutions/raw
-```
-
 ### Install dependencies
 
 ```
