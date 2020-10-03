@@ -27,6 +27,8 @@ DB_STRING
 SERVER_HOST (Backend location)
 PUBLIC_VAPID_KEY (For notifications)
 PRIVATE_VAPID_KEY
+EMAIL_USERNAME
+EMAIL_PASSWORD
 ```
 
 ### Add keys for email transporter
