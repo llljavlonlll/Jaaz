@@ -1,7 +1,8 @@
 // General routes
 const User = require("../../models/users");
 const auth = require("../../middleware/auth");
-const transporter = require("./tools/email-transporter");
+// const transporter = require("./tools/email-transporter");
+const sgMail = require("./tools/sgMail.config");
 
 const jwtDecode = require("jwt-decode");
 const jwt = require("jsonwebtoken");
@@ -74,8 +75,10 @@ router.post("/password_reset", async (req, res) => {
             html: `<p>To reset your password go here: </p><br>${pass_reset_url}`,
         };
 
-        transporter
-            .sendMail(mailOptions)
+        // transporter
+        //     .sendMail(mailOptions)
+        sgMail
+            .send(mailOptions)
             .then((info) => {
                 console.log(info.response);
                 res.send({
@@ -84,6 +87,7 @@ router.post("/password_reset", async (req, res) => {
                 });
             })
             .catch((err) => {
+                console.log("Error sending password reset instructions");
                 console.log(err);
                 res.status(500).send({
                     status: "error",
@@ -132,15 +136,18 @@ router.post("/sign-up", async (req, res) => {
             html,
         };
 
-        transporter
-            .sendMail(mailOptions)
+        // transporter
+        //   .sendMail(mailOptions)
+        sgMail
+            .send(mailOptions)
             .then((info) => {
                 console.log(info.response);
-                console.log("Email sent to " + req.body.email)
+                console.log("Email sent to " + req.body.email);
             })
             .catch((err) => {
+                console.log("Error sending email verification email");
                 console.log(err);
-                console.log("Error sending email generals.js")
+                console.log("Error sending email generals.js");
             });
     } catch (err) {
         res.status(400).send({ err });

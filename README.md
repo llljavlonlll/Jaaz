@@ -29,6 +29,7 @@ PUBLIC_VAPID_KEY (For notifications)
 PRIVATE_VAPID_KEY
 EMAIL_USERNAME
 EMAIL_PASSWORD
+SENDGRID_API_KEY
 ```
 
 ### Install dependencies
